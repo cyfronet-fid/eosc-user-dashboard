@@ -1,0 +1,11 @@
+# app
+fastapi==0.70.0
+uvicorn==0.15.0
+pydantic==1.8.2
+# db
+databases[postgresql]==0.5.3
+SQLAlchemy==1.4.26
+psycopg2-binary
+alembic==1.7.4
+# mocks
+faker==9.8.0
