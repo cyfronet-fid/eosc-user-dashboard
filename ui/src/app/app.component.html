@@ -1,0 +1,159 @@
+<div class="container-xxl">
+  <div class="search-bar">
+    <div class="row">
+      <div class="col-3 d-grid">
+        <a href=".">
+          <img id="logo" src="assets/eosc-logo-color.png" alt="EOSC logo">
+        </a>
+      </div>
+      <div class="col-6 d-grid vertical-center">
+        <input type="text" id="search" class="rounded-pill"/>
+      </div>
+      <div class="col-3 d-grid vertical-center">
+        <button id="btn-search" class="btn btn-primary" type="button">Navigation</button>
+      </div>
+    </div>
+  </div>
+  <div class="dashboard">
+    <h2>Your EOSC dashboard</h2>
+    <br><br><br>
+    <div class="row">
+      <div class="col-9">
+        <section id="recommended-resources">
+          <p>
+            <b>Recommended resources</b>
+            &nbsp;&nbsp;
+            <span class="text-secondary">Browse recommended resources (20)</span>
+          </p>
+          <div class="row">
+            <div class="col custom-card">
+              <div class="card-container">
+                <p class="fs-4 text-secondary">Ads</p>
+                <ngb-rating [max]="3" [rate]="3" [readonly]="true"></ngb-rating>
+                (3)
+                <p class="text-muted"><small>dadadaddawdada</small></p>
+                <p><small>Organisation: BlueBridge</small></p>
+              </div>
+            </div>
+            <div class="col custom-card">
+              <div class="card-container">
+                <p class="fs-4 text-secondary">Ads</p>
+                <ngb-rating [max]="3" [rate]="3" [readonly]="true"></ngb-rating>
+                (3)
+                <p class="text-muted"><small>dadadaddawdada</small></p>
+                <p><small>Organisation: BlueBridge</small></p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="recommended-publications" class="mt-5">
+          <p>
+            <b>Recommended publications</b>
+            &nbsp;&nbsp;
+            <span class="text-secondary">Browse recommended publications (12)</span>
+          </p>
+          <div class="row">
+            <div class="col custom-card">
+              <div class="card-container">
+                <p class="fs-4 text-secondary">dadadadadad</p>
+                <p class="text-muted"><small>dwaddadwa adada</small></p>
+                <p><small>Published: 09 Jul 2021</small></p>
+                <p class="tags">
+                  <span><small>OPEN ACCESS</small></span>
+                  <span><small>GERMAN</small></span>
+                </p>
+              </div>
+            </div>
+            <div class="col custom-card">
+              <div class="card-container">
+                <p class="fs-4 text-secondary">dadadadadad</p>
+                <p class="text-muted"><small>dwaddadwa adada</small></p>
+                <p><small>Published: 09 Jul 2021</small></p>
+                <p class="tags">
+                  <span><small>OPEN ACCESS</small></span>
+                  <span><small>GERMAN</small></span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="popular-articles" class="mt-5">
+          <p><b>Popular articles</b></p>
+          <div class="row">
+            <article class="col custom-card">
+              <div class="card-container">
+                <p class="f-4 text-secondary">dadadadadad</p>
+                <p class="text-muted"><small>dwaddadwa adada</small></p>
+                <p><small>09 Jul 2021</small></p>
+              </div>
+            </article>
+            <article class="col custom-card">
+              <div class="card-container">
+                <p class="fs-4 text-secondary">dadadadadad</p>
+                <p class="text-muted"><small>dwaddadwa adada</small></p>
+                <p><small>09 Jul 2021</small></p>
+              </div>
+            </article>
+          </div>
+        </section>
+        <section id="knowledge-hub" class="mt-5">
+          <p><b>Knowledge hub</b></p>
+          <div class="row">
+            <div class="col-6">
+              <div class="col-6 custom-card"></div>
+              <div class="col-6 custom-card"></div>
+              <div class="col-6 custom-card"></div>
+              <div class="col-6 custom-card"></div>
+            </div>
+            <div class="col-6 custom-card"></div>
+          </div>
+        </section>
+      </div>
+      <div class="col-3">
+        <section id="summary">
+          <p><b>Summary</b></p>
+          <div class="row">
+            <div class="col-6 custom-card">
+              <div class="card-container">
+                12 Projects
+              </div>
+            </div>
+            <div class="col-6 custom-card">
+              <div class="card-container">
+                10 Resources
+              </div>
+            </div>
+          </div>
+          <div class="custom-card">
+            <div class="card-container">
+              <p><small>You are interested in:</small></p>
+              Cloud Computing, Natural Sciences and 5 more
+            </div>
+          </div>
+        </section>
+        <section id="latest-info" class="mt-4">
+          <p><b>Stay udated</b><span class="text-muted float-end">Show all</span></p>
+          <ng-container *ngFor="let information of latestInformations$ | async">
+            <div class="custom-card" (click)="!!window ? window.location.href = information.url : null">
+              <div class="card-container">
+                <p><small>{{ information.type | uppercase }}</small></p>
+                <p><small>{{ information.description }}</small></p>
+              </div>
+            </div>
+          </ng-container>
+        </section>
+        <section id="user-activities" class="mt-4">
+          <p><b>Your recent activities</b><span class="text-muted float-end">Show all</span></p>
+          <ng-container *ngFor="let userActivity of userActivities$ | async">
+            <div class="custom-card" (click)="!!window ? window.location.href = userActivity.url : null">
+              <div class="card-container">
+                <p><small>{{ userActivity.type | uppercase }}</small></p>
+                <p><small>{{ userActivity.description }}</small></p>
+              </div>
+            </div>
+          </ng-container>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
