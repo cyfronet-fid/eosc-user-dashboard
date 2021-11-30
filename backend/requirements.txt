@@ -9,3 +9,5 @@ psycopg2-binary
 alembic==1.7.4
 # mocks
 faker==9.8.0
+oidcrp==2.1.0
+cryptojwt==1.6.0

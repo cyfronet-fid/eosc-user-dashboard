@@ -17,3 +17,100 @@ DATABASE_URL = config(
     cast=DatabaseURL,
     default=f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_SERVER}:{POSTGRES_PORT}/{POSTGRES_DB}"
 )
+
+DOMAIN = config("DOMAIN", cast=str, default='localhost')
+DOMAIN_PORT = config("DOMAIN_PORT", cast=int, default=8000)
+HOST = config("OIDC_HOST", cast=str, default="https://{domain}:{port}")
+OIDC_HOST = config("OIDC_HOST", cast=str, default="aai.eosc-portal.eu")
+OIDC_ISSUER = config("OIDC_ISSUER", cast=str, default=f'https://{OIDC_HOST}/oidc/')
+OIDC_CLIENT_ID = config("OIDC_CLIENT_ID", cast=Secret)
+OIDC_CLIENT_SECRET = config("OIDC_CLIENT_SECRET", cast=Secret)
+
+OIDC_CLIENT_OPTIONS = client_options = dict(
+    issuer=OIDC_ISSUER,
+    client_id=OIDC_CLIENT_ID,
+    client_secret=OIDC_CLIENT_SECRET,
+    client_preferences=dict(
+        application_name="user_profile_service",
+        application_type="web",
+        response_types=["code"],
+        scope=["openid", "profile", "email", "refeds_edu"],
+        token_endpoint_auth_method=[
+            "client_secret_basic",
+            'client_secret_post'
+        ]
+    ),
+    behaviour=dict(
+        authorization_endpoint="/oidc/token",
+        token_endpoint="/oidc/token",
+        userinfo_endpoint="/oidc/userinfo",
+    ),
+    redirect_uris=[f'https://{HOST}/auth/checkin'],
+    post_logout_redirect_uri=f"https://{HOST}/auth/logout",
+    backchannel_logout_uri=f"https://{HOST}/auth/logout",
+    backchannel_logout_session_required=True,
+    services=dict(
+        discovery={
+            "class": "oidcrp.oidc.provider_info_discovery.ProviderInfoDiscovery",
+            "kwargs": {}
+        },
+        registration={
+            "class": "oidcrp.oidc.registration.Registration",
+            "kwargs": {}
+        },
+        authorization={
+            "class": "oidcrp.oidc.authorization.Authorization",
+            "kwargs": {}
+        },
+        accesstoken={
+            "class": "oidcrp.oidc.access_token.AccessToken",
+            "kwargs": {}
+        },
+        userinfo={
+            "class": "oidcrp.oidc.userinfo.UserInfo",
+            "kwargs": {}
+        },
+        end_session={
+            "class": "oidcrp.oidc.end_session.EndSession",
+            "kwargs": {}
+        }
+    ),
+)
+OIDC_CONFIG = dict(
+    port=DOMAIN_PORT,
+    domain=DOMAIN,
+    base_url=HOST,
+    httpc_params=dict(verify=False),
+    clients=dict(aai_provider=OIDC_CLIENT_OPTIONS),
+    services=dict(
+        discovery={
+            "class": "oidcrp.oidc.provider_info_discovery.ProviderInfoDiscovery",
+            "kwargs": {}
+        },
+        registration={
+            "class": "oidcrp.oidc.registration.Registration",
+            "kwargs": {}
+        },
+        authorization={
+            "class": "oidcrp.oidc.authorization.Authorization",
+            "kwargs": {}
+        },
+        accesstoken={
+            "class": "oidcrp.oidc.access_token.AccessToken",
+            "kwargs": {}
+        },
+        userinfo={
+            "class": "oidcrp.oidc.userinfo.UserInfo",
+            "kwargs": {}
+        },
+        end_session={
+            "class": "oidcrp.oidc.end_session.EndSession",
+            "kwargs": {}
+        }
+    ),
+)
+OIDC_CONFIG['rp_keys'] = dict(
+    public_path="/oidc/jwk",
+    issuer_id=OIDC_ISSUER,
+    read_only=True,
+)

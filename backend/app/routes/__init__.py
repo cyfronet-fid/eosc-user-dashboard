@@ -14,4 +14,8 @@ router.include_router(user_activities_router, prefix="/user_activities", tags=["
 router.include_router(latest_info_router, prefix="/latest_info", tags=["latest_info"])
 router.include_router(popular_articles_router, prefix="/popular_articles", tags=["popular_articles"])
 router.include_router(recommended_resources_router, prefix="/recommended_resources", tags=["recommended_resources"])
-router.include_router(recommended_publications_router, prefix="/recommended_publications")
+router.include_router(
+    recommended_publications_router,
+    prefix="/recommended_publications",
+    tags=["recommended_publications"]
+)

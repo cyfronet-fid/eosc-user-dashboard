@@ -26,24 +26,22 @@
             <span class="text-secondary">Browse recommended resources (20)</span>
           </p>
           <div class="row">
-            <div class="col custom-card">
-              <div class="card-container">
-                <p class="fs-4 text-secondary">Ads</p>
-                <ngb-rating [max]="3" [rate]="3" [readonly]="true"></ngb-rating>
-                (3)
-                <p class="text-muted"><small>dadadaddawdada</small></p>
-                <p><small>Organisation: BlueBridge</small></p>
+            <ng-container *ngFor="let recommendedResource of recommendedResources$ | async">
+              <div class="col custom-card">
+                <div class="card-container">
+                  <p class="fs-4 text-secondary">{{ recommendedResource.label }}</p>
+                  <ngb-rating
+                    [max]="recommendedResource.rating"
+                    [rate]="recommendedResource.rating"
+                    [readonly]="true"
+                  >
+                  </ngb-rating>
+                  ({{ recommendedResource.rating }})
+                  <p class="text-muted"><small>{{ recommendedResource.description }}</small></p>
+                  <p><small>Organisation: {{ recommendedResource.organisation }}</small></p>
+                </div>
               </div>
-            </div>
-            <div class="col custom-card">
-              <div class="card-container">
-                <p class="fs-4 text-secondary">Ads</p>
-                <ngb-rating [max]="3" [rate]="3" [readonly]="true"></ngb-rating>
-                (3)
-                <p class="text-muted"><small>dadadaddawdada</small></p>
-                <p><small>Organisation: BlueBridge</small></p>
-              </div>
-            </div>
+            </ng-container>
           </div>
         </section>
         <section id="recommended-publications" class="mt-5">
@@ -53,47 +51,33 @@
             <span class="text-secondary">Browse recommended publications (12)</span>
           </p>
           <div class="row">
-            <div class="col custom-card">
-              <div class="card-container">
-                <p class="fs-4 text-secondary">dadadadadad</p>
-                <p class="text-muted"><small>dwaddadwa adada</small></p>
-                <p><small>Published: 09 Jul 2021</small></p>
-                <p class="tags">
-                  <span><small>OPEN ACCESS</small></span>
-                  <span><small>GERMAN</small></span>
-                </p>
+            <ng-container *ngFor="let recommendedPublication of recommendedPublications$ | async">
+              <div class="col custom-card">
+                <div class="card-container">
+                  <p class="fs-4 text-secondary">{{ recommendedPublication.label }}</p>
+                  <p><small>Published: {{ recommendedPublication.publish_date | date:'shortDate' }}</small></p>
+                  <p class="tags">
+                    <ng-container *ngFor="let tag of recommendedPublication.tags">
+                      <span><small>{{ tag | uppercase }} &nbsp;&nbsp;</small></span>
+                    </ng-container>
+                  </p>
+                </div>
               </div>
-            </div>
-            <div class="col custom-card">
-              <div class="card-container">
-                <p class="fs-4 text-secondary">dadadadadad</p>
-                <p class="text-muted"><small>dwaddadwa adada</small></p>
-                <p><small>Published: 09 Jul 2021</small></p>
-                <p class="tags">
-                  <span><small>OPEN ACCESS</small></span>
-                  <span><small>GERMAN</small></span>
-                </p>
-              </div>
-            </div>
+            </ng-container>
           </div>
         </section>
         <section id="popular-articles" class="mt-5">
           <p><b>Popular articles</b></p>
           <div class="row">
-            <article class="col custom-card">
-              <div class="card-container">
-                <p class="f-4 text-secondary">dadadadadad</p>
-                <p class="text-muted"><small>dwaddadwa adada</small></p>
-                <p><small>09 Jul 2021</small></p>
-              </div>
-            </article>
-            <article class="col custom-card">
-              <div class="card-container">
-                <p class="fs-4 text-secondary">dadadadadad</p>
-                <p class="text-muted"><small>dwaddadwa adada</small></p>
-                <p><small>09 Jul 2021</small></p>
-              </div>
-            </article>
+            <ng-container *ngFor="let popularArticle of popularArticles$ | async">
+              <article class="col custom-card">
+                <div class="card-container">
+                  <p class="f-4 text-secondary">{{ popularArticle.label }}</p>
+                  <p class="text-muted"><small>{{ popularArticle.description }}</small></p>
+                  <p><small>{{ popularArticle.publish_date | date:'shortDate' }}</small></p>
+                </div>
+              </article>
+            </ng-container>
           </div>
         </section>
         <section id="knowledge-hub" class="mt-5">
