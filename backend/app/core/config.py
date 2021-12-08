@@ -20,11 +20,11 @@ DATABASE_URL = config(
 
 DOMAIN = config("DOMAIN", cast=str, default='localhost')
 DOMAIN_PORT = config("DOMAIN_PORT", cast=int, default=8000)
-HOST = config("OIDC_HOST", cast=str, default="https://{domain}:{port}")
-OIDC_HOST = config("OIDC_HOST", cast=str, default="aai.eosc-portal.eu")
+HOST = config("OIDC_HOST", cast=str, default=f'http://{DOMAIN}{f":{DOMAIN_PORT}" if DOMAIN_PORT else ""}')
+OIDC_HOST = config("OIDC_HOST", cast=str, default="aai-demo.eosc-portal.eu")
 OIDC_ISSUER = config("OIDC_ISSUER", cast=str, default=f'https://{OIDC_HOST}/oidc/')
-OIDC_CLIENT_ID = config("OIDC_CLIENT_ID", cast=Secret)
-OIDC_CLIENT_SECRET = config("OIDC_CLIENT_SECRET", cast=Secret)
+OIDC_CLIENT_ID = config("OIDC_CLIENT_ID", cast=str)
+OIDC_CLIENT_SECRET = config("OIDC_CLIENT_SECRET", cast=str)
 
 OIDC_CLIENT_OPTIONS = client_options = dict(
     issuer=OIDC_ISSUER,
@@ -34,20 +34,30 @@ OIDC_CLIENT_OPTIONS = client_options = dict(
         application_name="user_profile_service",
         application_type="web",
         response_types=["code"],
-        scope=["openid", "profile", "email", "refeds_edu"],
+        scope=["openid", "profile", "email"],
         token_endpoint_auth_method=[
             "client_secret_basic",
             'client_secret_post'
         ]
     ),
     behaviour=dict(
-        authorization_endpoint="/oidc/token",
-        token_endpoint="/oidc/token",
-        userinfo_endpoint="/oidc/userinfo",
+        application_name="user_profile_service",
+        application_type="web",
+        response_types=["code"],
+        scope=["openid", "profile", "email"],
+        token_endpoint_auth_method=[
+            "client_secret_basic",
+            'client_secret_post'
+        ]
     ),
-    redirect_uris=[f'https://{HOST}/auth/checkin'],
-    post_logout_redirect_uri=f"https://{HOST}/auth/logout",
-    backchannel_logout_uri=f"https://{HOST}/auth/logout",
+    provider_info=dict(
+        authorization_endpoint=f"https://{OIDC_HOST}/oidc/authorize",
+        token_endpoint=f"https://{OIDC_HOST}/oidc/token",
+        userinfo_endpoint=f"https://{OIDC_HOST}/oidc/userinfo",
+    ),
+    redirect_uris=[f'{HOST}/api/v1/auth/checkin'],
+    post_logout_redirect_uri=f"{HOST}/auth/logout",
+    backchannel_logout_uri=f"{HOST}/auth/logout",
     backchannel_logout_session_required=True,
     services=dict(
         discovery={
@@ -81,7 +91,6 @@ OIDC_CONFIG = dict(
     domain=DOMAIN,
     base_url=HOST,
     httpc_params=dict(verify=False),
-    clients=dict(aai_provider=OIDC_CLIENT_OPTIONS),
     services=dict(
         discovery={
             "class": "oidcrp.oidc.provider_info_discovery.ProviderInfoDiscovery",
@@ -109,8 +118,18 @@ OIDC_CONFIG = dict(
         }
     ),
 )
-OIDC_CONFIG['rp_keys'] = dict(
-    public_path="/oidc/jwk",
+OIDC_JWT_ENCRYPT_CONFIG = dict(
+    public_path=f"https://{OIDC_HOST}/oidc/jwk",
+    key_defs=[
+      {
+        "type": "RSA",
+        "use": [
+          "sig"
+        ]
+      },
+    ],
     issuer_id=OIDC_ISSUER,
     read_only=True,
 )
+OIDC_CONFIG['clients'] = dict()
+OIDC_CONFIG['clients'][OIDC_ISSUER] = OIDC_CLIENT_OPTIONS

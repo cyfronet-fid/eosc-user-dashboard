@@ -1,6 +1,4 @@
-import sys
-
-# import unvicorn
+import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -30,6 +28,4 @@ def get_application():
 app = get_application()
 
 if __name__ == "__main__":
-    sys.path
-    sys.executable
-    # uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8000)
