@@ -1,4 +1,5 @@
 from fastapi import HTTPException
+from starlette import status
 
 
 def valid_limit(limit: int) -> bool:

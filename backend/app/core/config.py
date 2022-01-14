@@ -133,3 +133,12 @@ OIDC_JWT_ENCRYPT_CONFIG = dict(
 )
 OIDC_CONFIG['clients'] = dict()
 OIDC_CONFIG['clients'][OIDC_ISSUER] = OIDC_CLIENT_OPTIONS
+
+AUTH_COOKIES_CONFIG = dict(
+    max_age=24*60*60, # 1 day
+    cookie_name="_mp_service_auth",
+    identifier="general_verifier",
+    auto_error=True,
+    secure=True,
+    secret_key="DONOTUSE",
+)
