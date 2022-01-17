@@ -12,6 +12,6 @@ export class PopularArticlesService {
   constructor(private _http: HttpClient) {}
 
   get(): Observable<IPopularArticle[]> {
-    return this._http.get<IPopularArticle[]>(PopularArticlesService.URL);
+    return this._http.get<IPopularArticle[]>(PopularArticlesService.URL, { withCredentials: true });
   }
 }

@@ -13,6 +13,6 @@ export class UserDataService {
   constructor(private _http: HttpClient) {}
 
   get(): Observable<IUserDataResponse> {
-    return this._http.get<IUserDataResponse>(UserDataService.URL);
+    return this._http.get<IUserDataResponse>(UserDataService.URL, { withCredentials: true });
   }
 }

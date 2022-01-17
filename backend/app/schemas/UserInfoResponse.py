@@ -1,6 +1,5 @@
 from pydantic import BaseModel
 
 
-class SessionData(BaseModel):
+class UserInfoResponse(BaseModel):
     username: str
-    aai_state: str

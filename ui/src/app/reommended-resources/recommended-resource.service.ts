@@ -13,6 +13,6 @@ export class RecommendedResourceService {
   constructor(private _http: HttpClient) {}
 
   get(): Observable<IRecommendedResource[]> {
-    return this._http.get<IRecommendedResource[]>(RecommendedResourceService.URL);
+    return this._http.get<IRecommendedResource[]>(RecommendedResourceService.URL, { withCredentials: true });
   }
 }

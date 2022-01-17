@@ -8,6 +8,7 @@ from fastapi import HTTPException
 
 from app.core.config import OIDC_ISSUER
 from app.schemas.SessionData import SessionData
+from app.schemas.UserInfoResponse import UserInfoResponse
 from app.services.rp_handler_service import RpHandlerService
 
 from app.utils.cookie_validators import backend, cookie, verifier
@@ -32,14 +33,12 @@ async def checkin(code: str, state: str, rph_service=Depends(RpHandlerService)):
     if not state:
         # TODO return to front end page (add URL to consts)
         return RedirectResponse(status_code=400, url="http://localhost:4200")
-
     try:
         aai_response = rph_service.handler.finalize(OIDC_ISSUER, dict(code=code, state=state))
-        username = aai_response["user_info"]["username"]
-        jwt = aai_response["id_token"]["jwt"]
 
         session_id = uuid4()
-        session_data = SessionData(username=username, jwt=jwt)
+        username = aai_response["userinfo"]["name"]
+        session_data = SessionData(username=username, aai_state=state)
         await backend.create(session_id, session_data)
         auth_response = RedirectResponse(status_code=303, url="http://localhost:4200")
         cookie.attach_to_response(auth_response, session_id)
@@ -52,9 +51,9 @@ async def checkin(code: str, state: str, rph_service=Depends(RpHandlerService)):
         )
 
 
-@router.get("/user_info", dependencies=[Depends(cookie)])
-def user_info(session_data: SessionData = Depends(verifier)):
-    return session_data
+@router.get("/userinfo", dependencies=[Depends(cookie)], response_model=UserInfoResponse)
+async def user_info(session_data: SessionData = Depends(verifier)) -> UserInfoResponse:
+    return UserInfoResponse(username=session_data.username)
 
 
 @router.get("/logout")

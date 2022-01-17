@@ -46,13 +46,16 @@ class BasicVerifier(SessionVerifier[UUID, SessionData]):
 
 
 cookie = SessionCookie(
-    **AUTH_COOKIES_CONFIG,
-    cookie_params=CookieParameters()
+    cookie_name=AUTH_COOKIES_CONFIG['cookie_name'],
+    identifier=AUTH_COOKIES_CONFIG['identifier'],
+    secret_key=AUTH_COOKIES_CONFIG['secret_key'],
+    auto_error=AUTH_COOKIES_CONFIG['auto_error'],
+    cookie_params=CookieParameters(**AUTH_COOKIES_CONFIG)
 )
 backend = InMemoryBackend[UUID, SessionData]()
 verifier = BasicVerifier(
-    identifier="general_verifier",
-    auto_error=True,
+    identifier=AUTH_COOKIES_CONFIG['identifier'],
+    auto_error=AUTH_COOKIES_CONFIG['auto_error'],
     backend=backend,
     auth_http_exception=HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Invalid session"),
 )
