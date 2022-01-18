@@ -7,10 +7,16 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {NgbRatingModule} from "@ng-bootstrap/ng-bootstrap";
 import {CommonModule} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
+import {AuthComponent} from "./auth/auth.component";
+import { ErrorPageComponent } from './error-page/error-page.component';
+import { MainPageComponent } from './main-page/main-page.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AuthComponent,
+    ErrorPageComponent,
+    MainPageComponent
   ],
   imports: [
     BrowserModule,

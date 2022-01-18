@@ -11,25 +11,77 @@
   <EoscCommonMainHeader
     username=""
     login-url="http://localhost:8000/api/v1/auth/request"
-    logout-url="http://localhost:8000/api/v1/auth/logout"
+    logout-url="/auth/logout"
   ></EoscCommonMainHeader>
+  <script>
+    // IMPORTANT!!!
+
+    // Long story short: setting username from fetch won't work
+
+    // Script based on parsing priorities available on:
+    // https://addyosmani.com/blog/script-priorities/
+
+    // The script load username from backend using credential cookies.
+    // Because the Common Components are synchronous,
+    // they're rendered before async fetch.
+    // That's why we need to store username in cookies to parse EoscCommonHeader
+    // with the username in synchronous manner (before script containing the Commons Components)
+
+    function setCookie(name, value, ms) {
+      let date = new Date();
+      date.setTime(date.getTime() + ms);
+      const expires = "; expires=" + date.toUTCString();
+      document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+    }
+    function getCookie(name) {
+      let nameEQ = name + "=";
+      let ca = document.cookie.split(';');
+      for(let i=0;i < ca.length;i++) {
+          let c = ca[i];
+          while (c.charAt(0) === ' ') c = c.substring(1,c.length);
+          if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length,c.length);
+      }
+      return null;
+    }
+    function eraseCookie(name) {
+      document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    }
+    const usernameCookieTag = "_mp_username"
+    const username = getCookie(usernameCookieTag)
+    if (username) {
+      const header = document.getElementsByTagName("EoscCommonMainHeader")[0]
+      header.setAttribute("username", username)
+    }
+
+    const headers = {
+        method: 'GET',
+        mode: 'cors',
+        credentials: "include",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      }
+      const url = "http://localhost:8000/api/v1/auth/userinfo"
+      fetch(url, headers)
+        .then(response => {
+          if (getCookie(usernameCookieTag) && !(response.status === 200 || response.status === 303)) {
+            eraseCookie(usernameCookieTag)
+            window.location.reload()
+          }
+          return response.json()
+        })
+        .then(data => {
+          if (!data.username || getCookie(usernameCookieTag)) {
+            return
+          }
+
+          setCookie(usernameCookieTag, data.username, 55*60*60*1000)
+          window.location.reload()
+        })
+  </script>
   <app-root></app-root>
   <EoscCommonMainFooter></EoscCommonMainFooter>
   <EoscCommonEuInformation></EoscCommonEuInformation>
-  <script>
-    const headers = {
-      method: 'GET',
-      mode: 'cors',
-      credentials: "include",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-    }
-    const url = "http://localhost:8000/api/v1/auth/userinfo"
-    fetch(url, headers)
-      .then(response => response.json())
-      .then(data => {})
-  </script>
   <script src="https://s3.cloud.cyfronet.pl/eosc-portal-common/index.production.min.js"></script>
   <link rel="stylesheet" href="https://s3.cloud.cyfronet.pl/eosc-portal-common/index.production.min.css" />
 </body>

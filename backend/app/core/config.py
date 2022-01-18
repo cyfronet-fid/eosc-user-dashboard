@@ -30,16 +30,6 @@ OIDC_CLIENT_OPTIONS = client_options = dict(
     issuer=OIDC_ISSUER,
     client_id=OIDC_CLIENT_ID,
     client_secret=OIDC_CLIENT_SECRET,
-    client_preferences=dict(
-        application_name="user_profile_service",
-        application_type="web",
-        response_types=["code"],
-        scope=["openid", "profile", "email"],
-        token_endpoint_auth_method=[
-            "client_secret_basic",
-            'client_secret_post'
-        ]
-    ),
     behaviour=dict(
         application_name="user_profile_service",
         application_type="web",
@@ -59,32 +49,6 @@ OIDC_CLIENT_OPTIONS = client_options = dict(
     post_logout_redirect_uri=f"{HOST}/auth/logout",
     backchannel_logout_uri=f"{HOST}/auth/logout",
     backchannel_logout_session_required=True,
-    services=dict(
-        discovery={
-            "class": "oidcrp.oidc.provider_info_discovery.ProviderInfoDiscovery",
-            "kwargs": {}
-        },
-        registration={
-            "class": "oidcrp.oidc.registration.Registration",
-            "kwargs": {}
-        },
-        authorization={
-            "class": "oidcrp.oidc.authorization.Authorization",
-            "kwargs": {}
-        },
-        accesstoken={
-            "class": "oidcrp.oidc.access_token.AccessToken",
-            "kwargs": {}
-        },
-        userinfo={
-            "class": "oidcrp.oidc.userinfo.UserInfo",
-            "kwargs": {}
-        },
-        end_session={
-            "class": "oidcrp.oidc.end_session.EndSession",
-            "kwargs": {}
-        }
-    ),
 )
 OIDC_CONFIG = dict(
     port=DOMAIN_PORT,

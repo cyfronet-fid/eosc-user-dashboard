@@ -1,12 +1,13 @@
-from uuid import uuid4
+from uuid import uuid4, UUID
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Response
 from starlette import status
 
-from starlette.responses import RedirectResponse
+from starlette.responses import RedirectResponse, JSONResponse
 from fastapi import HTTPException
 
 from app.core.config import OIDC_ISSUER
+from app.schemas.LogoutResponse import LogoutResponse
 from app.schemas.SessionData import SessionData
 from app.schemas.UserInfoResponse import UserInfoResponse
 from app.services.rp_handler_service import RpHandlerService
@@ -19,7 +20,6 @@ router = APIRouter()
 @router.get("/request")
 async def request(rph_service=Depends(RpHandlerService)):
     try:
-        # TODO: Get user id if available and set in the beginning
         result = rph_service.handler.begin(issuer_id=OIDC_ISSUER)
     except Exception as err:
         raise HTTPException(status_code=400, detail=f'Something went wrong: {err} {repr(err)}')
@@ -29,10 +29,9 @@ async def request(rph_service=Depends(RpHandlerService)):
 
 @router.get("/checkin")
 async def checkin(code: str, state: str, rph_service=Depends(RpHandlerService)):
-    # TODO: set state in session
     if not state:
-        # TODO return to front end page (add URL to consts)
         return RedirectResponse(status_code=400, url="http://localhost:4200")
+
     try:
         aai_response = rph_service.handler.finalize(OIDC_ISSUER, dict(code=code, state=state))
 
@@ -43,7 +42,7 @@ async def checkin(code: str, state: str, rph_service=Depends(RpHandlerService)):
         auth_response = RedirectResponse(status_code=303, url="http://localhost:4200")
         cookie.attach_to_response(auth_response, session_id)
         return auth_response
-    except:
+    except Exception:
         return RedirectResponse(
             status_code=status.HTTP_401_UNAUTHORIZED,
             url="http://localhost:4200",
@@ -56,11 +55,8 @@ async def user_info(session_data: SessionData = Depends(verifier)) -> UserInfoRe
     return UserInfoResponse(username=session_data.username)
 
 
-@router.get("/logout")
-async def logout():
-    pass
-
-
-@router.get("/user_info")
-async def user_info():
-    pass
+@router.post("/logout")
+async def logout(response: Response, session_id: UUID = Depends(cookie)):
+    await backend.delete(session_id)
+    cookie.delete_from_response(response)
+    return LogoutResponse(msg="Session have been removed")
