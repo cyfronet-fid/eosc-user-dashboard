@@ -18,6 +18,7 @@ DATABASE_URL = config(
     default=f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_SERVER}:{POSTGRES_PORT}/{POSTGRES_DB}"
 )
 
+UI_DOMAIN = config("UI_DOMAIN", cast=str, default="http://localhost:4200")
 DOMAIN = config("DOMAIN", cast=str, default='localhost')
 DOMAIN_PORT = config("DOMAIN_PORT", cast=int, default=8000)
 HOST = config("OIDC_HOST", cast=str, default=f'http://{DOMAIN}{f":{DOMAIN_PORT}" if DOMAIN_PORT else ""}')
