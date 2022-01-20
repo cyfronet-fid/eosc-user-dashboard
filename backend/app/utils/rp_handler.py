@@ -1,7 +1,6 @@
 import json
 import tempfile
 import urllib.request
-from functools import lru_cache, cached_property
 from urllib.parse import urlparse
 
 from cryptojwt.key_jar import init_key_jar, KeyJar
@@ -10,20 +9,16 @@ from oidcrp.rp_handler import RPHandler
 from app.core.config import OIDC_CONFIG, OIDC_JWT_ENCRYPT_CONFIG
 
 
-class RpHandlerService:
-    _handler = None
-
-    @property
-    def handler(self):
-        if not RpHandlerService._handler:
-            RpHandlerService._handler = RPHandler(
-                base_url=OIDC_CONFIG['base_url'],
-                client_configs=OIDC_CONFIG['clients'],
-                services=OIDC_CONFIG['services'],
-                keyjar=RpHandlerService._get_key_jar(OIDC_JWT_ENCRYPT_CONFIG),
-                httpc_params=OIDC_CONFIG['httpc_params']
-            )
-        return RpHandlerService._handler
+class RpHandlerFactory:
+    @staticmethod
+    def new():
+        return RPHandler(
+            base_url=OIDC_CONFIG['base_url'],
+            client_configs=OIDC_CONFIG['clients'],
+            services=OIDC_CONFIG['services'],
+            keyjar=RpHandlerFactory._get_key_jar(OIDC_JWT_ENCRYPT_CONFIG),
+            httpc_params=OIDC_CONFIG['httpc_params']
+        )
 
     @staticmethod
     def _get_key_jar(config):
@@ -39,7 +34,7 @@ class RpHandlerService:
         key_jar = KeyJar()
         temp = tempfile.NamedTemporaryFile(suffix=".json")
         try:
-            RpHandlerService._write_jwks_to(config['public_path'], temp)
+            RpHandlerFactory._write_jwks_to(config['public_path'], temp)
             new_config = dict(
                 public_path=temp.name,
                 key_defs=config['key_defs'],
@@ -59,3 +54,6 @@ class RpHandlerService:
             jwks = json.dumps(public_key_jwks, indent=2).encode('utf-8')
             jwks_tempfile.write(jwks)
             jwks_tempfile.seek(0)
+
+
+rp_handler = RpHandlerFactory.new()
