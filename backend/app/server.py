@@ -2,12 +2,12 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.core import tasks
-from app.core.config import API_PREFIX, PROJECT_NAME, VERSION
+from app import tasks
+from app.config import API_PREFIX, PROJECT_NAME, VERSION
 from app.routes import router
 
 
-def get_application():
+def get_app():
     app = FastAPI(title=PROJECT_NAME, version=VERSION)
     app.add_middleware(
         CORSMiddleware,
@@ -23,9 +23,3 @@ def get_application():
     app.include_router(router, prefix=API_PREFIX)
 
     return app
-
-
-app = get_application()
-
-if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)

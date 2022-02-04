@@ -2,13 +2,13 @@ from fastapi import FastAPI
 from databases import Database
 import logging
 
-from app.core.config import DATABASE_URL
+from app.config import DATABASE_URI
 
 logger = logging.getLogger(__name__)
 
 
 async def connect_to_db(app: FastAPI) -> None:
-    database = Database(DATABASE_URL, min_size=2, max_size=10)
+    database = Database(DATABASE_URI, min_size=2, max_size=10)
 
     try:
         await database.connect()

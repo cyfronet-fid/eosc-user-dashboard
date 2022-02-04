@@ -1,17 +1,16 @@
-FROM python:3.8-slim-buster
+FROM python:3.10
 
-WORKDIR /backend
+WORKDIR /app
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONBUFFERED 1
 
-# install system dependencies
-RUN apt-get update \
-  && apt-get -y install netcat gcc postgresql \
-  && apt-get clean
+COPY Pipfile Pipfile.lock /app/
 
-# install python dependencies
-RUN pip install --upgrade pip
-COPY ./requirements.txt /backend/requirements.txt
-RUN pip install -r requirements.txt
-COPY . /backend
+RUN pip install --upgrade pip pipenv
+RUN pipenv install --deploy --system
+
+COPY alembic.ini .
+COPY app app
+
+CMD pipenv run uvicorn --host 0.0.0.0 --port 8000 app.main:app

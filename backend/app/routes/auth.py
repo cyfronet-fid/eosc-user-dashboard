@@ -6,7 +6,7 @@ from starlette import status
 from starlette.responses import RedirectResponse
 from fastapi import HTTPException
 
-from app.core.config import OIDC_ISSUER, UI_DOMAIN
+from app.config import OIDC_ISSUER, UI_DOMAIN
 from app.schemas.LogoutResponse import LogoutResponse
 from app.schemas.SessionData import SessionData
 from app.schemas.UserInfoResponse import UserInfoResponse

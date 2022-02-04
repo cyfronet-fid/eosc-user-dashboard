@@ -3,27 +3,34 @@ version: '3.8'
 
 services:
   api:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    volumes:
-      - ./backend/:/backend/
-    command: uvicorn app.api.server:app --reload --workers 1 --host 0.0.0.0 --port 8000
-    env_file:
-      - ./backend/.env
+    build: ./backend
     ports:
-      - 8000:8000
+      - "8000:8000"
+    networks:
+      - user-dashboard-local
+    environment:
+      DATABASE_URI: postgresql+psycopg2://${POSTGRES_USER:-user-dashboard}:${POSTGRES_PASSWORD:-user-dashboard}@db:5432/${POSTGRES_DB:-user-dashboard}
+      OIDC_CLIENT_ID: "${OIDC_CLIENT_ID}"
+      OIDC_CLIENT_SECRET: "${OIDC_CLIENT_SECRET}"
+      SECRET_KEY: "${SECRET_KEY}"
     depends_on:
       - db
 
   db:
-    image: postgres:13-alpine
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
-    env_file:
-      - ./backend/.env
+    image: postgres:14
     ports:
-      - 5432:5432
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data/
+    networks:
+      - user-dashboard-local
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-user-dashboard}
+      POSTGRES_USER: ${POSTGRES_USER:-user-dashboard}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-user-dashboard}
 
 volumes:
-    postgres_data:
+    db-data:
+
+networks:
+  user-dashboard-local:

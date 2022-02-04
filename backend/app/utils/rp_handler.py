@@ -6,7 +6,7 @@ from urllib.parse import urlparse
 from cryptojwt.key_jar import init_key_jar, KeyJar
 from oidcrp.rp_handler import RPHandler
 
-from app.core.config import OIDC_CONFIG, OIDC_JWT_ENCRYPT_CONFIG
+from app.config import OIDC_CONFIG, OIDC_JWT_ENCRYPT_CONFIG
 
 
 class RpHandlerFactory:
