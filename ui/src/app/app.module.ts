@@ -10,13 +10,15 @@ import {HttpClientModule} from "@angular/common/http";
 import {AuthComponent} from "./auth/auth.component";
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { MainPageComponent } from './main-page/main-page.component';
+import {MainHeaderComponent} from "./main-header.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
     ErrorPageComponent,
-    MainPageComponent
+    MainPageComponent,
+    MainHeaderComponent,
   ],
   imports: [
     BrowserModule,

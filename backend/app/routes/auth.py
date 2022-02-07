@@ -7,7 +7,6 @@ from starlette.responses import RedirectResponse
 from fastapi import HTTPException
 
 from app.config import OIDC_ISSUER, UI_DOMAIN
-from app.schemas.LogoutResponse import LogoutResponse
 from app.schemas.SessionData import SessionData
 from app.schemas.UserInfoResponse import UserInfoResponse
 
@@ -18,17 +17,19 @@ router = APIRouter()
 
 
 @router.get("/request")
-async def request():
+async def auth_request():
     try:
         result = rp_handler.begin(issuer_id=OIDC_ISSUER)
     except Exception as err:
-        raise HTTPException(status_code=400, detail=f'Something went wrong: {err} {repr(err)}')
+        raise HTTPException(
+            status_code=400, detail=f"Something went wrong: {err} {repr(err)}"
+        ) from err
     else:
-        return RedirectResponse(status_code=303, url=result['url'])
+        return RedirectResponse(status_code=303, url=result["url"])
 
 
 @router.get("/checkin")
-async def checkin(code: str, state: str):
+async def auth_checkin(code: str, state: str):
     if not state:
         return RedirectResponse(status_code=400, url=UI_DOMAIN)
 
@@ -46,17 +47,20 @@ async def checkin(code: str, state: str):
         return RedirectResponse(
             status_code=status.HTTP_401_UNAUTHORIZED,
             url=UI_DOMAIN,
-            headers={"WWW-Authenticate": "Bearer"}
+            headers={"WWW-Authenticate": "Bearer"},
         )
 
 
-@router.get("/userinfo", dependencies=[Depends(cookie)], response_model=UserInfoResponse)
+@router.get(
+    "/userinfo", dependencies=[Depends(cookie)], response_model=UserInfoResponse
+)
 async def user_info(session_data: SessionData = Depends(verifier)) -> UserInfoResponse:
     return UserInfoResponse(username=session_data.username)
 
 
-@router.post("/logout")
+@router.get("/logout")
 async def logout(response: Response, session_id: UUID = Depends(cookie)):
     await backend.delete(session_id)
     cookie.delete_from_response(response)
-    return LogoutResponse(msg="Session have been removed")
+    return RedirectResponse(status_code=303, url=UI_DOMAIN)
+

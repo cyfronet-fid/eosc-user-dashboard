@@ -1,3 +1,11 @@
+"""
+    Cookie Session Guards responsible for fetching session data if exist,
+    or throwing unauthorized error if session token doesn't exist.
+
+    For more information's see:
+    https://jordanisaacs.github.io/fastapi-sessions/guide/getting_started/
+"""
+
 from uuid import UUID
 
 from fastapi import HTTPException

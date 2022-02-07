@@ -8,7 +8,7 @@ import {IRecommendedResource} from "./recommended-resource.model";
   providedIn: 'root'
 })
 export class RecommendedResourceService {
-  static URL = `${environment.apiUrlBase}/${environment.apiV1Path}/recommended_resources`;
+  static URL = `${environment.backendUrl}/${environment.webApiPath}/recommended_resources`;
 
   constructor(private _http: HttpClient) {}
 

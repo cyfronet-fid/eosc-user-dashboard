@@ -8,7 +8,7 @@ import {IRecommendedPublication} from "./recommended-publication.model";
   providedIn: 'root'
 })
 export class RecommendedPublicationsService {
-  static URL = `${environment.apiUrlBase}/${environment.apiV1Path}/recommended_publications`;
+  static URL = `${environment.backendUrl}/${environment.webApiPath}/recommended_publications`;
   constructor(private _http: HttpClient) {}
 
   get(): Observable<IRecommendedPublication[]> {

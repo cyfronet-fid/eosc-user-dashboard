@@ -8,7 +8,7 @@ import {Observable} from "rxjs";
   providedIn: 'root'
 })
 export class UserDataService {
-  static URL = `${environment.apiUrlBase}/${environment.apiV1Path}/user_data/current`;
+  static URL = `${environment.backendUrl}/${environment.webApiPath}/user_data/current`;
 
   constructor(private _http: HttpClient) {}
 
