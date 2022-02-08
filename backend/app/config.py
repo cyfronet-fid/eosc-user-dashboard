@@ -24,8 +24,8 @@ DOMAIN_PORT = config("DOMAIN_PORT", cast=int, default=8000)
 HOST = config("OIDC_HOST", cast=str, default=f'http://{DOMAIN}{f":{DOMAIN_PORT}" if DOMAIN_PORT else ""}')
 OIDC_HOST = config("OIDC_HOST", cast=str, default="aai-demo.eosc-portal.eu")
 OIDC_ISSUER = config("OIDC_ISSUER", cast=str, default=f'https://{OIDC_HOST}/oidc/')
-OIDC_CLIENT_ID = config("OIDC_CLIENT_ID", cast=str)
-OIDC_CLIENT_SECRET = config("OIDC_CLIENT_SECRET", cast=str)
+OIDC_CLIENT_ID = config("OIDC_CLIENT_ID", cast=str, default="<MISSING OIDC CLIENT ID>")
+OIDC_CLIENT_SECRET = config("OIDC_CLIENT_SECRET", cast=str, default="<MISING OIDC CLIENT SECRET>")
 
 OIDC_CLIENT_OPTIONS = client_options = dict(
     issuer=OIDC_ISSUER,

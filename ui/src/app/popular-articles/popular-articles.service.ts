@@ -8,7 +8,7 @@ import {IPopularArticle} from "./popular-articles.model";
   providedIn: 'root'
 })
 export class PopularArticlesService {
-  static URL = `${environment.apiUrlBase}/${environment.apiV1Path}/popular_articles`;
+  static URL = `${environment.backendUrl}/${environment.webApiPath}/popular_articles`;
   constructor(private _http: HttpClient) {}
 
   get(): Observable<IPopularArticle[]> {

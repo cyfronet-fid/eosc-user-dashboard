@@ -8,7 +8,7 @@ import {HttpClient} from "@angular/common/http";
   providedIn: 'root'
 })
 export class LatestInfoService {
-  static URL = `${environment.apiUrlBase}/${environment.apiV1Path}/latest_info`;
+  static URL = `${environment.backendUrl}/${environment.webApiPath}/latest_info`;
   constructor(private _http: HttpClient) {}
 
   get(): Observable<ILatestInfo[]> {

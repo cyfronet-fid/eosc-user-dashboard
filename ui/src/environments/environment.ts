@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiV1Path: "api/v1",
-  apiUrlBase: "http://localhost:8000"
+  backendUrl: "http://localhost:8000",
+  webApiPath: "api/v1"
 };
 
 /*

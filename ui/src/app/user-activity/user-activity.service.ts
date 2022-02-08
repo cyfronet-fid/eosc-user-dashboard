@@ -8,7 +8,7 @@ import {IUserActivityResponse} from "./user-activity.model";
   providedIn: 'root'
 })
 export class UserActivityService {
-  static URL = `${environment.apiUrlBase}/${environment.apiV1Path}/user_activities`;
+  static URL = `${environment.backendUrl}/${environment.webApiPath}/user_activities`;
   constructor(private _http: HttpClient) {}
 
   get(): Observable<IUserActivityResponse[]> {
