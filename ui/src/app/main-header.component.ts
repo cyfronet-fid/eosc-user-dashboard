@@ -1,13 +1,21 @@
 import {
   Component,
-  ElementRef,
-  OnInit, Renderer2,
-  ViewChild,
+  OnInit,
   ViewEncapsulation
 } from "@angular/core";
 import {environment} from "../environments/environment";
 import {AuthService} from "./auth/auth.service";
+import {catchError, of} from "rxjs";
 
+
+interface EoscCommonWindow extends Window {
+  eosccommon: {
+    renderMainFooter: (cssSelector: string) => void,
+    renderMainHeader: (cssSelector: string, elementAttr?: {}) => void,
+    renderEuInformation: (cssSelector: string) => void,
+  }
+}
+declare let window: EoscCommonWindow;
 
 @Component({
   selector: 'app-main-header',
@@ -23,28 +31,17 @@ import {AuthService} from "./auth/auth.service";
 })
 export class MainHeaderComponent implements OnInit {
   backendUrl = `${environment.backendUrl}/${environment.webApiPath}`
-
-  @ViewChild("eoscCommonMainHeader", {static: false}) containerRef: ElementRef | undefined;
-
-  constructor(private _authService: AuthService , private _renderer: Renderer2) {}
+  constructor(private _authService: AuthService) {}
 
   ngOnInit() {
     this._authService.getUserInfo$()
-      .toPromise()
-      .then((response: any) => {
-        const { username } = response
-        this._renderer.setAttribute(this.containerRef?.nativeElement, "username", username);
-        (window as any).renderCustomComponent(
-          (window as any).EoscCommonMainHeader,
-          { id: "eosc-common-main-header" }
-        )
-      })
-      .catch(error => {
-        this._renderer.setAttribute(this.containerRef?.nativeElement, "username", "");
-        (window as any).renderCustomComponent(
-          (window as any).EoscCommonMainHeader,
-          { id: "eosc-common-main-header" }
-        )
+      .pipe(catchError(_ => {
+        window.eosccommon.renderMainHeader("#eosc-common-main-header")
+        return of()
+      }))
+      .subscribe((response: any) => {
+        const { username } = response;
+        window.eosccommon.renderMainHeader("#eosc-common-main-header", { username })
       })
   }
 }
