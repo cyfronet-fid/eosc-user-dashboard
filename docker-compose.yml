@@ -12,6 +12,7 @@ services:
       DATABASE_URI: postgresql+psycopg2://${POSTGRES_USER:-user-dashboard}:${POSTGRES_PASSWORD:-user-dashboard}@db:5432/${POSTGRES_DB:-user-dashboard}
       OIDC_CLIENT_ID: "${OIDC_CLIENT_ID}"
       OIDC_CLIENT_SECRET: "${OIDC_CLIENT_SECRET}"
+      OIDC_HOST: "${OIDC_HOST}"
       SECRET_KEY: "${SECRET_KEY}"
       UI_DOMAIN: "${UI_DOMAIN}"
     depends_on:

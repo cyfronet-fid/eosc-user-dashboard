@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  backendUrl: "http://api:8000",
+  backendUrl: "https://eosc-user-dashboard.docker-fid.grid.cyf-kr.edu.pl",
   webApiPath: "api/v1"
 };
