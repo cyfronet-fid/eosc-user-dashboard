@@ -4,6 +4,8 @@ from databases import DatabaseURL
 from starlette.config import Config
 from starlette.datastructures import Secret
 
+from urllib.parse import urlparse
+
 config = Config(environ=os.environ)
 IS_TESTING = config("TESTING", cast=bool, default=False)
 
@@ -17,14 +19,10 @@ DATABASE_URI = config(
     default="postgresql+psycopg2://user-dashboard:user-dashboard@localhost:5432/user-dashboard"
 )
 
+DOMAIN_URL = config("DOMAIN_URL", cast=str, default="http://localhost:8000")
 
-DOMAIN = config("DOMAIN", cast=str, default='localhost')
-DOMAIN_PORT = config("DOMAIN_PORT", cast=int, default=-1)
-DOMAIN_PROTOCOL = config("DOMAIN_PROTOCOL", cast=str, default="https")
-UI_DOMAIN = config("UI_DOMAIN", cast=str, default=f'{DOMAIN_PROTOCOL}://{DOMAIN}{f":{DOMAIN_PORT}" if DOMAIN_PORT > 0 else ""}')
-HOST = config("OIDC_HOST", cast=str, default=f'{DOMAIN_PROTOCOL}://{DOMAIN}{f":{DOMAIN_PORT}" if DOMAIN_PORT > 0 else ""}')
-OIDC_HOST = config("OIDC_HOST", cast=str, default="aai-demo.eosc-portal.eu")
-OIDC_ISSUER = config("OIDC_ISSUER", cast=str, default=f'https://{OIDC_HOST}/oidc/')
+OIDC_HOST = config("OIDC_HOST", cast=str, default="https://aai-demo.eosc-portal.eu")
+OIDC_ISSUER = config("OIDC_ISSUER", cast=str, default=f'{OIDC_HOST}/oidc/')
 OIDC_CLIENT_ID = config("OIDC_CLIENT_ID", cast=str, default="<MISSING OIDC CLIENT ID>")
 OIDC_CLIENT_SECRET = config("OIDC_CLIENT_SECRET", cast=str, default="<MISING OIDC CLIENT SECRET>")
 
@@ -43,19 +41,21 @@ OIDC_CLIENT_OPTIONS = client_options = dict(
         ]
     ),
     provider_info=dict(
-        authorization_endpoint=f"https://{OIDC_HOST}/oidc/authorize",
-        token_endpoint=f"https://{OIDC_HOST}/oidc/token",
-        userinfo_endpoint=f"https://{OIDC_HOST}/oidc/userinfo",
+        authorization_endpoint=f"{OIDC_HOST}/oidc/authorize",
+        token_endpoint=f"{OIDC_HOST}/oidc/token",
+        userinfo_endpoint=f"{OIDC_HOST}/oidc/userinfo",
     ),
-    redirect_uris=[f'{HOST}/api/v1/auth/checkin'],
-    post_logout_redirect_uri=f"{HOST}/auth/logout",
-    backchannel_logout_uri=f"{HOST}/auth/logout",
+    redirect_uris=[f'{DOMAIN_URL}/api/v1/auth/checkin'],
+    post_logout_redirect_uri=f"{DOMAIN_URL}/auth/logout",
+    backchannel_logout_uri=f"{DOMAIN_URL}/auth/logout",
     backchannel_logout_session_required=True,
 )
+
+parsedUrl = urlparse(DOMAIN_URL)
 OIDC_CONFIG = dict(
-    port=DOMAIN_PORT,
-    domain=DOMAIN,
-    base_url=HOST,
+    port=parsedUrl.port if parsedUrl.port else None,
+    domain=f'{parsedUrl.scheme}://{parsedUrl.netloc}',
+    base_url=DOMAIN_URL,
     httpc_params=dict(verify=False),
     services=dict(
         discovery={
@@ -85,7 +85,7 @@ OIDC_CONFIG = dict(
     ),
 )
 OIDC_JWT_ENCRYPT_CONFIG = dict(
-    public_path=f"https://{OIDC_HOST}/oidc/jwk",
+    public_path=f"{OIDC_HOST}/oidc/jwk",
     key_defs=[
       {
         "type": "RSA",
