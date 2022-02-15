@@ -15,7 +15,6 @@ services:
       OIDC_HOST: "${OIDC_HOST}"
       SECRET_KEY: "${SECRET_KEY}"
       DOMAIN: "${DOMAIN}"
-      UI_DOMAIN: "${UI_DOMAIN}"
     depends_on:
       - db
 
