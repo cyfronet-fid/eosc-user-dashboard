@@ -19,7 +19,7 @@ DATABASE_URI = config(
     default="postgresql+psycopg2://user-dashboard:user-dashboard@localhost:5432/user-dashboard"
 )
 
-DOMAIN_URL = config("DOMAIN_URL", cast=str, default="http://localhost:8000")
+BASE_URL = config("BASE_URL", cast=str, default="http://localhost:8000")
 
 OIDC_HOST = config("OIDC_HOST", cast=str, default="https://aai-demo.eosc-portal.eu")
 OIDC_ISSUER = config("OIDC_ISSUER", cast=str, default=f'{OIDC_HOST}/oidc/')
@@ -45,17 +45,17 @@ OIDC_CLIENT_OPTIONS = client_options = dict(
         token_endpoint=f"{OIDC_HOST}/oidc/token",
         userinfo_endpoint=f"{OIDC_HOST}/oidc/userinfo",
     ),
-    redirect_uris=[f'{DOMAIN_URL}/api/v1/auth/checkin'],
-    post_logout_redirect_uri=f"{DOMAIN_URL}/auth/logout",
-    backchannel_logout_uri=f"{DOMAIN_URL}/auth/logout",
+    redirect_uris=[f'{BASE_URL}/api/v1/auth/checkin'],
+    post_logout_redirect_uri=f"{BASE_URL}/auth/logout",
+    backchannel_logout_uri=f"{BASE_URL}/auth/logout",
     backchannel_logout_session_required=True,
 )
 
-parsedUrl = urlparse(DOMAIN_URL)
+parsedUrl = urlparse(BASE_URL)
 OIDC_CONFIG = dict(
     port=parsedUrl.port if parsedUrl.port else None,
     domain=f'{parsedUrl.scheme}://{parsedUrl.netloc}',
-    base_url=DOMAIN_URL,
+    base_url=BASE_URL,
     httpc_params=dict(verify=False),
     services=dict(
         discovery={

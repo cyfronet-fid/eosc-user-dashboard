@@ -15,7 +15,7 @@ services:
       OIDC_CLIENT_SECRET: "${OIDC_CLIENT_SECRET}"
       OIDC_HOST: "${OIDC_HOST}"
       SECRET_KEY: "${SECRET_KEY}"
-      DOMAIN_URL: "${DOMAIN_URL}"
+      BASE_URL: "${BASE_URL}"
     depends_on:
       - db
 

@@ -23,8 +23,8 @@ async def auth_request(request: Request):
     try:
         parsed_url = urlparse(request.headers.get("referer"))
         from app.main import app
-        if not app.UI_DOMAIN_URL:
-            app.UI_DOMAIN_URL = f'{parsed_url.scheme}://{parsed_url.netloc}'
+        if not app.UI_BASE_URL:
+            app.UI_BASE_URL = f'{parsed_url.scheme}://{parsed_url.netloc}'
         result = rp_handler.begin(issuer_id=OIDC_ISSUER)
     except Exception as err:
         raise HTTPException(
@@ -38,7 +38,7 @@ async def auth_request(request: Request):
 async def auth_checkin(code: str, state: str):
     from app.main import app
     if not state:
-        return RedirectResponse(status_code=400, url=app.UI_DOMAIN_URL)
+        return RedirectResponse(status_code=400, url=app.UI_BASE_URL)
 
     try:
         aai_response = rp_handler.finalize(OIDC_ISSUER, dict(code=code, state=state))
@@ -47,13 +47,13 @@ async def auth_checkin(code: str, state: str):
         username = aai_response["userinfo"]["name"]
         session_data = SessionData(username=username, aai_state=state)
         await backend.create(session_id, session_data)
-        auth_response = RedirectResponse(status_code=303, url=app.UI_DOMAIN_URL)
+        auth_response = RedirectResponse(status_code=303, url=app.UI_BASE_URL)
         cookie.attach_to_response(auth_response, session_id)
         return auth_response
     except Exception:
         return RedirectResponse(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            url=app.UI_DOMAIN_URL,
+            url=app.UI_BASE_URL,
             headers={"WWW-Authenticate": "Bearer"},
         )
 
