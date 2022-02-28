@@ -12,6 +12,6 @@ export class UserActivityService {
   constructor(private _http: HttpClient) {}
 
   get(): Observable<IUserActivityResponse[]> {
-    return this._http.get<IUserActivityResponse[]>(UserActivityService.URL, { withCredentials: true });
+    return this._http.get<IUserActivityResponse[]>(UserActivityService.URL);
   }
 }

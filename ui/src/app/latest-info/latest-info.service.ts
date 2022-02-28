@@ -12,6 +12,6 @@ export class LatestInfoService {
   constructor(private _http: HttpClient) {}
 
   get(): Observable<ILatestInfo[]> {
-    return this._http.get<ILatestInfo[]>(LatestInfoService.URL, { withCredentials: true });
+    return this._http.get<ILatestInfo[]>(LatestInfoService.URL);
   }
 }

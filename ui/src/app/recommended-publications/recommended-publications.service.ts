@@ -12,6 +12,6 @@ export class RecommendedPublicationsService {
   constructor(private _http: HttpClient) {}
 
   get(): Observable<IRecommendedPublication[]> {
-    return this._http.get<IRecommendedPublication[]>(RecommendedPublicationsService.URL, { withCredentials: true });
+    return this._http.get<IRecommendedPublication[]>(RecommendedPublicationsService.URL);
   }
 }

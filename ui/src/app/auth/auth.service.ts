@@ -11,11 +11,11 @@ export class AuthService {
 
   getUserInfo$() {
     const url = `${environment.backendUrl}/${environment.webApiPath}/auth/userinfo`
-    return this._http.get(url, { withCredentials: true })
+    return this._http.get(url)
   }
 
   logout() {
     const url = `${environment.backendUrl}/${environment.webApiPath}/auth/logout`
-    return this._http.post(url, {}, { withCredentials: true })
+    return this._http.post(url, {})
   }
 }
