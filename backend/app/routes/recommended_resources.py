@@ -18,14 +18,14 @@ async def get_recommended_resources(
 
     return [
         RecommendedResourceResponse(
-            label="Ads",
+            label="Lorem ipsum dolor sit amet enim",
             rating=5,
             description="A Comprehensive and collaborative environment to collect, harmonize and analyse fisheries "
                         "and stock data. ",
             organisation="BlueBRIDGE"
         ),
         RecommendedResourceResponse(
-            label="Ads",
+            label="Lorem ipsum dolor sit amet enim",
             rating=5,
             description="A Comprehensive and collaborative environment to collect, harmonize and analyse fisheries "
                         "and stock data. ",

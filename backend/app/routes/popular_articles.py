@@ -18,13 +18,13 @@ async def get_popular_articles(
 
     return [
         PopularArticlesResponse(
-            label="EOSC Association looks for staff",
-            description="dadadadadadadadad daa da",
+            label="EOSC Association looks for staff: four positions open lorem ipsum dolor",
+            description="Lorem ipsum dolor sit amet enim. Etiam ullamcorper. Suspendisse a pellentesque dui, non felis. Maecenas malesuada elit lectus felis, malesuada ultricies. Curabitur et ligula.",
             publish_date="2001-10-02T02:48:59Z"
         ),
         PopularArticlesResponse(
-            label="EOSC Association looks for staff",
-            description="dadadadadadadadad daa da",
+            label="EOSC Association looks for staff: four positions open lorem ipsum dolor",
+            description="Lorem ipsum dolor sit amet enim. Etiam ullamcorper. Suspendisse a pellentesque dui, non felis. Maecenas malesuada elit lectus felis, malesuada ultricies. Curabitur et ligula.",
             publish_date="2001-10-02T02:48:59Z"
         )
     ][offset:limit]
