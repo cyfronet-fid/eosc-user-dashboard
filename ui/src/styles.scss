@@ -18,6 +18,16 @@ h1 {
   font-size: 2.1rem;
 }
 
+#ab-view-btn {
+  position: fixed;
+  z-index: 999;
+  bottom: 50px;
+  right: 50px;
+  padding: 25px;
+  border-radius: 25px;
+  background-color: #a2aab1;
+}
+
 .category-separator {
   border-top: 5px solid #f3f4f5;
   margin: 0 0 30px;
