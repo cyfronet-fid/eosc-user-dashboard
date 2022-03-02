@@ -138,13 +138,19 @@
       <section id="knowledge-hub" class="mt-5">
         <p><b>Knowledge hub</b></p>
         <div class="row">
-          <div class="col-6">
-            <div class="col-6 custom-card"></div>
-            <div class="col-6 custom-card"></div>
-            <div class="col-6 custom-card"></div>
-            <div class="col-6 custom-card"></div>
-          </div>
-          <div class="col-6 custom-card"></div>
+          <ng-container *ngFor="let recommendedPublication of recommendedPublications$ | async">
+            <div class="col-12 col-sm-12 col-lg-4">
+              <div class="card-container custom-card">
+                <a href="#" class="card-title">{{ recommendedPublication.label }}</a>
+                <p class="card-description">Published: {{ recommendedPublication.publish_date | date:'shortDate' }}</p>
+                <p class="tags">
+                  <ng-container *ngFor="let tag of recommendedPublication.tags">
+                    <span><small>{{ tag | uppercase }} &nbsp;&nbsp;</small></span>
+                  </ng-container>
+                </p>
+              </div>
+            </div>
+          </ng-container>
         </div>
       </section>
     </div>
