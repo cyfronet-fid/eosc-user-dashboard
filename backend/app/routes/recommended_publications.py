@@ -14,7 +14,6 @@ router = APIRouter()
 async def get_recommended_publications(
         limit: Optional[int] = 3,
         offset: Optional[int] = 0,
-        session_data: SessionData = Depends(verifier)
 ) -> List[RecommendedPublicationResponse]:
     valid_limit(limit)
     valid_offset(limit, offset)
