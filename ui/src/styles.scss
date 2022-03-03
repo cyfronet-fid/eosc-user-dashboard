@@ -28,6 +28,12 @@ h1 {
   background-color: #a2aab1;
 }
 
+#btn-menu {
+  color: #233d4c;
+  background: #eee;
+  border: none;
+}
+
 .category-separator {
   border-top: 5px solid #f3f4f5;
   margin: 0 0 30px;
@@ -219,14 +225,10 @@ input, select, textarea {
   font-size:12px
 }
 .breadcrumbs a:first-child {
-  background:url(//marketplace-1.docker-fid.grid.cyf-kr.edu.pl/packs/media/images/home-icon-e183417203b964558494cdee9a0f2694.svg) top no-repeat;
-  height:16px;
-  opacity:.5;
-  width:17px;
   margin-top:3px;
-  text-indent:100%;
   float:left;
   padding:0;
+  text-decoration: none;
   margin-right:4px;
   overflow:hidden
 }
@@ -376,7 +378,7 @@ input, select, textarea {
     }
 
     &.no-border {
-      padding: 5px 0 10pxgit;
+      padding: 5px 0 10px;
       border: none;
 
       &:hover {
@@ -434,3 +436,27 @@ input, select, textarea {
     }
   }
 }
+
+@media only screen and (max-width: 992px) {
+  h1 {
+    font-weight: 100;
+    font-size: 1.5rem;
+  }
+  .searchbar {
+    display: none;
+  }
+  .left-section .col-12 {
+    margin-bottom: 25px;
+  }
+  .right-section h4, .left-section h4 {
+    font-size: 17px;
+    margin-bottom: 9px;
+  }
+  .left-section .header-row span {
+    position: relative;
+    margin-bottom: 15px;
+    display: block;
+  }
+
+}
+

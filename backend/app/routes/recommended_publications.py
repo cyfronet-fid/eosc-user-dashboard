@@ -20,17 +20,17 @@ async def get_recommended_publications(
 
     return [
                RecommendedPublicationResponse(
-                   label="Evaluation der dadadadad",
+                   label="Lorem ipsum dolor sit amet enim suspendisse a pellentesque dui",
                    publish_date="2004-10-01T05:45:09Z",
                    tags=["open access", "German"]
                ),
                RecommendedPublicationResponse(
-                   label="Evaluation der dadadadad",
+                   label="ELorem ipsum dolor sit amet enim suspendisse a pellentesque dui",
                    publish_date="2004-10-01T05:45:09Z",
                    tags=["open access", "German"]
                ),
                RecommendedPublicationResponse(
-                   label="Evaluation der dadadadad",
+                   label="Lorem ipsum dolor sit amet enim suspendisse a pellentesque dui",
                    publish_date="2004-10-01T05:45:09Z",
                    tags=["open access", "German"]
                )
