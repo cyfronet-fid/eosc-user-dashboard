@@ -9,7 +9,7 @@ router = APIRouter()
 
 
 @router.get("")
-async def get_latest_info(limit: Optional[int] = 3, offset: Optional[int] = 0) -> List[LatestInfoResponse]:
+async def get_latest_info(limit: Optional[int] = 4, offset: Optional[int] = 0) -> List[LatestInfoResponse]:
     valid_limit(limit)
     valid_offset(limit, offset)
 
@@ -17,11 +17,21 @@ async def get_latest_info(limit: Optional[int] = 3, offset: Optional[int] = 0) -
         LatestInfoResponse(
             type="SEARCH",
             description="You have been looking for Cloud computing with additional 4 filters",
-            url="https://test.pl"
+            url="https://google.com"
         ),
+        LatestInfoResponse(
+                    type="STATUS CHANGE",
+                    description="Your resource “Sample resource” status: under review",
+                    url="https://google.com"
+                ),
         LatestInfoResponse(
             type="PROFILE",
             description="You have changed some information in your profile",
-            url="https://test2.com"
-        )
+            url="https://google.com"
+        ),
+        LatestInfoResponse(
+                            type="STATUS CHANGE",
+                            description="Your resource “Sample resource” status: under review",
+                            url="https://google.com"
+                        )
     ][offset:limit]

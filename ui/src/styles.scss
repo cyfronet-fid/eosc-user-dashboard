@@ -294,6 +294,7 @@ input, select, textarea {
 }
 
 .right-section,
+.service-box,
 .left-section {
 
   .header-row {
@@ -358,7 +359,15 @@ input, select, textarea {
     padding: 7px 0;
     text-align: center;
     font-weight: 300;
+    display: block;
+    color: #233d4c;
+    text-decoration: none;
     font-size: 24px;
+    transition: all 0.5s ease;
+
+    &:hover {
+      box-shadow: 0 .3rem .4rem rgba(0,0,0,.15) !important;
+    }
 
     span {
       font-weight: bold;
@@ -437,7 +446,86 @@ input, select, textarea {
   }
 }
 
+/* MAIN PAGE B */
+
+.service-box {
+  border: 1px solid rgba(28,49,58,.1);
+  border-radius: 5px;
+  overflow: hidden;
+
+  h5 {
+    border-bottom: 1px solid rgba(28, 49, 58, 0.15);
+    padding-bottom: 5px;
+  }
+}
+
+.notifications-info {
+  ul {
+    padding: 0 0 0 15px;
+    margin: 0;
+
+    li {
+      font-size: 14px;
+      line-height: 20px;
+      list-style: square;
+      color: #ffc107;
+      margin-bottom: 10px;
+
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+}
+.profile svg {
+  color: #e8eaeb;
+  font-size: 7em;
+  float: left;
+  margin-right: 25px;
+}
+.svg-inline--fa.fa-w-16 {
+  width: 1em;
+}
+svg:not(:root).svg-inline--fa {
+  overflow: visible;
+}
+.display-1 {
+  font-size: 2.25rem;
+  font-weight: 100;
+  line-height: 1.1;
+}
+.display-2, .display-3 {
+  font-weight: 300;
+  font-size: 1.25rem;
+  line-height: 1.2;
+}
+
+.btn-sm {
+  padding: .22rem 1.8rem;
+  font-size: .875rem;
+  line-height: 1.5;
+  border-radius: 2rem;
+}
+
+
+
+
 @media only screen and (max-width: 992px) {
+  .display-1 {
+    font-size: 1.5rem;
+  }
+  .display-2, .display-3 {
+    font-size: 0.8rem;
+  }
+  .profile svg {
+    font-size: 4em;
+    margin-right: 20px;
+  }
+
+  .profile-counters {
+    margin: 30px 0;
+  }
+
   h1 {
     font-weight: 100;
     font-size: 1.5rem;

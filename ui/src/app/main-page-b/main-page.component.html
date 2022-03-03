@@ -41,7 +41,7 @@
       </form>
     </div>
     <div class="col-3 d-grid vertical-center">
-      <button id="btn-search" class="btn btn-primary" type="button">Navigation</button>
+      <button id="btn-menu" class="btn btn-primary" type="button">My EOSC Marketplace </button>
     </div>
   </div>
 </div>
@@ -57,119 +57,51 @@
   <h1>Your EOSC dashboard</h1>
   <hr class="category-separator mb-4">
 
-  <div class="row">
-    <div class="col-9 left-section">
-
-      <section id="recommended-resources">
-        <div class="header-row">
-          <h4>Recommended resources</h4>
-          <span class="text-secondary"><a href="#">Browse recommended resources (20)</a></span>
+  <div class="container">
+    <div class="row media mb-5 service-box shadow-sm pt-4 pl-3 pb-4 pr-4 mt-4 profile">
+      <div class="col-12 col-md-5">
+        <svg class="svg-inline--fa fa-user-circle fa-w-16 fa-7x" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="user-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" data-fa-i2svg=""><path fill="currentColor" d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm0 96c48.6 0 88 39.4 88 88s-39.4 88-88 88-88-39.4-88-88 39.4-88 88-88zm0 344c-58.7 0-111.3-26.6-146.5-68.2 18.8-35.4 55.6-59.8 98.5-59.8 2.4 0 4.8.4 7.1 1.1 13 4.2 26.6 6.9 40.9 6.9 14.3 0 28-2.7 40.9-6.9 2.3-.7 4.7-1.1 7.1-1.1 42.9 0 79.7 24.4 98.5 59.8C359.3 421.4 306.7 448 248 448z"></path></svg><!-- <i class="fas fa-user-circle fa-7x"></i> Font Awesome fontawesome.com -->
+        <div>
+          <p class="display-1 mb-1">
+            John Smith
+          </p>
+          <p class="display-2 font-weight-light">
+            john.smith@domainname.com
+          </p>
+          <a href="#" class="btn btn-sm btn-primary">Your profile settings</a>
         </div>
+      </div>
+      <div class="col-12 col-md-3 profile-counters">
 
-        <div class="row">
+        <a href="#" class="custom-card big-box media mb-3 shadow-sm">
+          <div class="card-container">
+            <span>12</span> projects
+          </div>
+        </a>
 
-          <ng-container *ngFor="let recommendedResource of recommendedResources$ | async">
-            <div class="col-12 col-sm-12 col-lg-4">
-              <div class="card-container custom-card">
-                <a href="#" class="card-title">{{ recommendedResource.label }}</a>
-                <ngb-rating class="rating-row"
-                  [max]="recommendedResource.rating"
-                  [rate]="recommendedResource.rating"
-                  [readonly]="true"
-                >
-                </ngb-rating>
-                <div class="card-rating">({{ recommendedResource.rating }})</div>
-                <p class="card-description">{{ recommendedResource.description }}</p>
-                <p class="card-organisation">Organisation: <a href="#">{{ recommendedResource.organisation }}</a></p>
-              </div>
-            </div>
-          </ng-container>
-
-        </div>
-      </section>
-
-      <section id="recommended-publications" class="mt-5">
-        <div class="header-row">
-          <h4>Recommended publications</h4>
-          <span class="text-secondary"><a href="#">Browse recommended publications (12)</a></span>
-        </div>
-
-        <div class="row">
-          <ng-container *ngFor="let recommendedPublication of recommendedPublications$ | async">
-            <div class="col-12 col-sm-12 col-lg-4">
-              <div class="card-container custom-card">
-                <a href="#" class="card-title">{{ recommendedPublication.label }}</a>
-                <p class="card-description">Published: {{ recommendedPublication.publish_date | date:'shortDate' }}</p>
-                <p class="tags">
-                  <ng-container *ngFor="let tag of recommendedPublication.tags">
-                    <span><small>{{ tag | uppercase }} &nbsp;&nbsp;</small></span>
-                  </ng-container>
-                </p>
-              </div>
-            </div>
-          </ng-container>
-        </div>
-      </section>
-
-      <section id="popular-articles" class="mt-5">
-
-        <div class="header-row">
-          <h4>Popular articles</h4>
-        </div>
-
-        <div class="row">
-          <ng-container *ngFor="let popularArticle of popularArticles$ | async">
-            <article class="col">
-              <div class="card-container custom-card no-border">
-                <a href="#" class="card-title">{{ popularArticle.label }}</a>
-                <p class="card-description">{{ popularArticle.description }}</p>
-                <div class="card-date">{{ popularArticle.publish_date | date:'shortDate' }}</div>
-              </div>
-            </article>
-          </ng-container>
-        </div>
-
-        <div class="row d-flex justify-content-center mt-4">
-          <a class="button button--primary" href="#">show more</a>
-        </div>
-
-      </section>
-
-      <section id="knowledge-hub" class="mt-5">
-        <p><b>Knowledge hub</b></p>
-        <div class="row">
-          <ng-container *ngFor="let recommendedPublication of recommendedPublications$ | async">
-            <div class="col-12 col-sm-12 col-lg-4">
-              <div class="card-container custom-card">
-                <a href="#" class="card-title">{{ recommendedPublication.label }}</a>
-                <p class="card-description">Published: {{ recommendedPublication.publish_date | date:'shortDate' }}</p>
-                <p class="tags">
-                  <ng-container *ngFor="let tag of recommendedPublication.tags">
-                    <span><small>{{ tag | uppercase }} &nbsp;&nbsp;</small></span>
-                  </ng-container>
-                </p>
-              </div>
-            </div>
-          </ng-container>
-        </div>
-      </section>
+        <a href="#" class="custom-card big-box media shadow-sm">
+          <div class="card-container">
+            <span>10</span> favourites
+          </div>
+        </a>
+      </div>
+      <div class="col-12 col-md-4 notifications-info">
+        <h5>Notifications</h5>
+        <ul>
+          <li>
+            <a href="#">New resource “Sample resource” is available in Scientific domain category</a>
+          </li>
+          <li>
+            <a href="#">Lorem ipsum dolor sit amet enim</a>
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class="col-3">
-      <section id="summary" class="right-section">
-        <h5>Summary</h5>
+  </div>
 
-            <div class="custom-card big-box media mb-3 shadow-sm">
-              <div class="card-container">
-                <span>12</span> projects
-              </div>
-            </div>
+  <div class="row">
 
-            <div class="custom-card big-box media mb-4 shadow-sm">
-              <div class="card-container">
-                <span>10</span> resources
-              </div>
-            </div>
-      </section>
+    <div class="col-12 col-sm-12 col-lg-3">
 
       <section id="interested" class="right-section">
         <h5>You are interested in</h5>
@@ -212,5 +144,107 @@
         </ng-container>
       </section>
     </div>
+
+    <div class="col-12 col-sm-12 col-lg-9 left-section">
+
+      <section id="recommended-resources">
+        <div class="header-row">
+          <h4>Recommended resources</h4>
+          <span class="text-secondary"><a href="#">Browse recommended resources (20)</a></span>
+        </div>
+
+        <div class="row">
+
+          <ng-container *ngFor="let recommendedResource of recommendedResources$ | async">
+            <div class="col-12 col-sm-12 col-lg-4">
+              <div class="card-container custom-card">
+                <a href="#" class="card-title">{{ recommendedResource.label }}</a>
+                <ngb-rating class="rating-row"
+                            [max]="recommendedResource.rating"
+                            [rate]="recommendedResource.rating"
+                            [readonly]="true"
+                >
+                </ngb-rating>
+                <div class="card-rating">({{ recommendedResource.rating }})</div>
+                <p class="card-description">{{ recommendedResource.description }}</p>
+                <p class="card-organisation">Organisation: <a href="#">{{ recommendedResource.organisation }}</a></p>
+              </div>
+            </div>
+          </ng-container>
+
+        </div>
+      </section>
+
+      <section id="recommended-publications" class="mt-5">
+        <div class="header-row">
+          <h4>Recommended publications</h4>
+          <span class="text-secondary"><a href="#">Browse recommended publications (12)</a></span>
+        </div>
+
+        <div class="row">
+          <ng-container *ngFor="let recommendedPublication of recommendedPublications$ | async">
+            <div class="col-12 col-sm-12 col-lg-4">
+              <div class="card-container custom-card">
+                <a href="#" class="card-title">{{ recommendedPublication.label }}</a>
+                <p class="card-organisation mt-2">Published: {{ recommendedPublication.publish_date | date:'shortDate' }}</p>
+                <p class="card-organisation mt-2">
+                  <ng-container *ngFor="let tag of recommendedPublication.tags">
+                    {{ tag | uppercase }}
+                  </ng-container>
+                </p>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </section>
+
+      <section id="popular-articles" class="mt-5">
+
+        <div class="header-row">
+          <h4>Popular articles</h4>
+        </div>
+
+        <div class="row">
+          <ng-container *ngFor="let popularArticle of popularArticles$ | async">
+            <article class="col-12 col-sm-12 col-lg-4">
+              <div class="card-container custom-card no-border">
+                <a href="#" class="card-title">{{ popularArticle.label }}</a>
+                <p class="card-description">{{ popularArticle.description }}</p>
+                <div class="card-date">{{ popularArticle.publish_date | date:'shortDate' }}</div>
+              </div>
+            </article>
+          </ng-container>
+        </div>
+
+        <div class="row d-flex justify-content-center mt-4">
+          <a class="button button--primary" href="#">show more</a>
+        </div>
+
+      </section>
+
+      <section id="knowledge-hub" class="mt-5">
+        <div class="header-row">
+          <h4>Knowledge hub</h4>
+        </div>
+
+        <div class="row">
+          <ng-container *ngFor="let recommendedPublication of recommendedPublications$ | async">
+            <div class="col-12 col-sm-12 col-lg-4">
+              <div class="card-container custom-card">
+                <a href="#" class="card-title">{{ recommendedPublication.label }}</a>
+                <p class="card-organisation mt-2">Published: {{ recommendedPublication.publish_date | date:'shortDate' }}</p>
+                <p class="card-organisation mt-2">
+                  <ng-container *ngFor="let tag of recommendedPublication.tags">
+                    {{ tag | uppercase }}
+                  </ng-container>
+                </p>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </section>
+    </div>
+
+
   </div>
 </div>
