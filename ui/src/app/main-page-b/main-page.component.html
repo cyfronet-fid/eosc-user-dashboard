@@ -119,7 +119,7 @@
           <span class="text-muted float-end"><a href="#">Show all</a></span>
         </div>
         <ng-container *ngFor="let information of latestInformations$ | async">
-          <div class="custom-card standard-box media mb-3 shadow-sm" (click)="!!window ? window.location.href = information.url : null">
+          <div class="custom-card standard-box media mb-3 shadow-sm" (click)="!!window ? window.location.href = '#' : null">
             <div class="card-container">
               <p><small>{{ information.type | uppercase }}</small></p>
               <p>{{ information.description }}</p>
@@ -135,7 +135,7 @@
         </div>
 
         <ng-container *ngFor="let userActivity of userActivities$ | async">
-          <div class="custom-card standard-box media mb-3 shadow-sm" (click)="!!window ? window.location.href = userActivity.url : null">
+          <div class="custom-card standard-box media mb-3 shadow-sm" (click)="!!window ? window.location.href = '#' : null">
             <div class="card-container">
               <p><small>{{ userActivity.type | uppercase }}</small></p>
               <p>{{ userActivity.description }}</p>

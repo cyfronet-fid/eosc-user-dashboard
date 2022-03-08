@@ -15,7 +15,7 @@ import {Router} from "@angular/router";
           (change)="changeTemplate()"
         >
         <label class="form-check-label" for="flexCheckDefault">
-          &nbsp;&nbsp;Show B view template
+          &nbsp;&nbsp;Show <strong>{{ isBView ? "A" : "B" }}</strong> view template
         </label>
       </div>
       <router-outlet></router-outlet>
@@ -25,8 +25,7 @@ import {Router} from "@angular/router";
 export class AppComponent {
   isBView = false
 
-  constructor(private _router: Router) {
-  }
+  constructor(private _router: Router) {}
 
   async changeTemplate() {
     await this._router.navigateByUrl(this.isBView ? "b-view" : "")
