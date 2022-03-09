@@ -68,18 +68,18 @@
           <p class="display-2 font-weight-light">
             john.smith@domainname.com
           </p>
-          <a href="#" class="btn btn-sm btn-primary">Your profile settings</a>
+          <a href="/b-view" class="btn btn-sm btn-primary">Your profile settings</a>
         </div>
       </div>
       <div class="col-12 col-md-3 profile-counters">
 
-        <a href="#" class="custom-card big-box media mb-3 shadow-sm">
+        <a href="/b-view" class="custom-card big-box media mb-3 shadow-sm">
           <div class="card-container">
             <span>12</span> projects
           </div>
         </a>
 
-        <a href="#" class="custom-card big-box media shadow-sm">
+        <a href="/b-view" class="custom-card big-box media shadow-sm">
           <div class="card-container">
             <span>10</span> favourites
           </div>
@@ -89,10 +89,10 @@
         <h5>Notifications</h5>
         <ul>
           <li>
-            <a href="#">New resource “Sample resource” is available in Scientific domain category</a>
+            <a href="/b-view">New resource “Sample resource” is available in Scientific domain category</a>
           </li>
           <li>
-            <a href="#">Lorem ipsum dolor sit amet enim</a>
+            <a href="/b-view">Lorem ipsum dolor sit amet enim</a>
           </li>
         </ul>
       </div>
@@ -107,8 +107,8 @@
         <h5>You are interested in</h5>
         <div class="custom-card standard-box media mb-4 shadow-sm">
           <div class="card-container">
-            <a href="#">Cloud Computing</a>, <a href="#">Natural Sciences</a>,
-            <a href="#">Physical Sciences</a>,  <a href="#">Engineering & Technology</a>  and <a href="#">5 more</a>
+            <a href="/b-view">Cloud Computing</a>, <a href="/b-view">Natural Sciences</a>,
+            <a href="/b-view">Physical Sciences</a>,  <a href="/b-view">Engineering & Technology</a>  and <a href="/b-view">5 more</a>
           </div>
         </div>
       </section>
@@ -116,10 +116,10 @@
       <section id="latest-info" class="right-section">
         <div class="header-row">
           <h5>Stay udated</h5>
-          <span class="text-muted float-end"><a href="#">Show all</a></span>
+          <span class="text-muted float-end"><a href="/b-view">Show all</a></span>
         </div>
         <ng-container *ngFor="let information of latestInformations$ | async">
-          <div class="custom-card standard-box media mb-3 shadow-sm" (click)="!!window ? window.location.href = '#' : null">
+          <div class="custom-card standard-box media mb-3 shadow-sm" (click)="!!window ? window.location.href = '/b-view' : null">
             <div class="card-container">
               <p><small>{{ information.type | uppercase }}</small></p>
               <p>{{ information.description }}</p>
@@ -131,11 +131,11 @@
       <section id="user-activities" class="right-section mt-4">
         <div class="header-row">
           <h5>Your recent activities</h5>
-          <span class="text-muted float-end"><a href="#">Show all</a></span>
+          <span class="text-muted float-end"><a href="/b-view">Show all</a></span>
         </div>
 
         <ng-container *ngFor="let userActivity of userActivities$ | async">
-          <div class="custom-card standard-box media mb-3 shadow-sm" (click)="!!window ? window.location.href = '#' : null">
+          <div class="custom-card standard-box media mb-3 shadow-sm" (click)="!!window ? window.location.href = '/b-view' : null">
             <div class="card-container">
               <p><small>{{ userActivity.type | uppercase }}</small></p>
               <p>{{ userActivity.description }}</p>
@@ -150,7 +150,7 @@
       <section id="recommended-resources">
         <div class="header-row">
           <h4>Recommended resources</h4>
-          <span class="text-secondary"><a href="#">Browse recommended resources (20)</a></span>
+          <span class="text-secondary"><a href="/b-view">Browse recommended resources (20)</a></span>
         </div>
 
         <div class="row">
@@ -158,7 +158,7 @@
           <ng-container *ngFor="let recommendedResource of recommendedResources$ | async">
             <div class="col-12 col-sm-12 col-lg-4">
               <div class="card-container custom-card">
-                <a href="#" class="card-title">{{ recommendedResource.label }}</a>
+                <a href="/b-view" class="card-title">{{ recommendedResource.label }}</a>
                 <ngb-rating class="rating-row"
                             [max]="recommendedResource.rating"
                             [rate]="recommendedResource.rating"
@@ -167,7 +167,7 @@
                 </ngb-rating>
                 <div class="card-rating">({{ recommendedResource.rating }})</div>
                 <p class="card-description">{{ recommendedResource.description }}</p>
-                <p class="card-organisation">Organisation: <a href="#">{{ recommendedResource.organisation }}</a></p>
+                <p class="card-organisation">Organisation: <a href="/b-view">{{ recommendedResource.organisation }}</a></p>
               </div>
             </div>
           </ng-container>
@@ -178,14 +178,14 @@
       <section id="recommended-publications" class="mt-5">
         <div class="header-row">
           <h4>Recommended publications</h4>
-          <span class="text-secondary"><a href="#">Browse recommended publications (12)</a></span>
+          <span class="text-secondary"><a href="/b-view">Browse recommended publications (12)</a></span>
         </div>
 
         <div class="row">
           <ng-container *ngFor="let recommendedPublication of recommendedPublications$ | async">
             <div class="col-12 col-sm-12 col-lg-4">
               <div class="card-container custom-card">
-                <a href="#" class="card-title">{{ recommendedPublication.label }}</a>
+                <a href="/b-view" class="card-title">{{ recommendedPublication.label }}</a>
                 <p class="card-organisation mt-2">Published: {{ recommendedPublication.publish_date | date:'shortDate' }}</p>
                 <p class="card-organisation mt-2">
                   <ng-container *ngFor="let tag of recommendedPublication.tags">
@@ -208,7 +208,7 @@
           <ng-container *ngFor="let popularArticle of popularArticles$ | async">
             <article class="col-12 col-sm-12 col-lg-4">
               <div class="card-container custom-card no-border">
-                <a href="#" class="card-title">{{ popularArticle.label }}</a>
+                <a href="/b-view" class="card-title">{{ popularArticle.label }}</a>
                 <p class="card-description">{{ popularArticle.description }}</p>
                 <div class="card-date">{{ popularArticle.publish_date | date:'shortDate' }}</div>
               </div>
@@ -217,7 +217,7 @@
         </div>
 
         <div class="row d-flex justify-content-center mt-4">
-          <a class="button button--primary" href="#">show more</a>
+          <a class="button button--primary" href="/b-view">show more</a>
         </div>
 
       </section>
@@ -231,7 +231,7 @@
           <ng-container *ngFor="let recommendedPublication of recommendedPublications$ | async">
             <div class="col-12 col-sm-12 col-lg-4">
               <div class="card-container custom-card">
-                <a href="#" class="card-title">{{ recommendedPublication.label }}</a>
+                <a href="/b-view" class="card-title">{{ recommendedPublication.label }}</a>
                 <p class="card-organisation mt-2">Published: {{ recommendedPublication.publish_date | date:'shortDate' }}</p>
                 <p class="card-organisation mt-2">
                   <ng-container *ngFor="let tag of recommendedPublication.tags">
