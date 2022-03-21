@@ -1,0 +1,25 @@
+name: UI styles
+
+on: push
+
+jobs:
+  ui:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache web
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-web-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-web-
+      - name: Install dependencies
+        run: npm i
+        working-directory: ./ui
+      - name: Linter check
+        run: npx nx lint
+        working-directory: ./ui
+      - name: Prettier check
+        run: npx nx format:check --files 'apps/ui/src/**/*.{js,ts,html,scss}'
+        working-directory: ./ui
