@@ -165,17 +165,23 @@
         <div>
           <p class="display-1 mb-1">John Smith</p>
           <p class="display-2 font-weight-light">john.smith@domainname.com</p>
-          <a href="/b-view" class="btn btn-sm btn-primary"
+          <a href="javascript:void(0)" class="btn btn-sm btn-primary"
             >Your profile settings</a
           >
         </div>
       </div>
       <div class="col-12 col-md-3 profile-counters">
-        <a href="/b-view" class="custom-card big-box media mb-3 shadow-sm">
+        <a
+          href="javascript:void(0)"
+          class="custom-card big-box media mb-3 shadow-sm"
+        >
           <div class="card-container"><span>12</span> projects</div>
         </a>
 
-        <a href="/b-view" class="custom-card big-box media shadow-sm">
+        <a
+          href="javascript:void(0)"
+          class="custom-card big-box media shadow-sm"
+        >
           <div class="card-container"><span>10</span> favourites</div>
         </a>
       </div>
@@ -183,13 +189,13 @@
         <h5>Notifications</h5>
         <ul>
           <li>
-            <a href="/b-view"
+            <a href="javascript:void(0)"
               >New resource “Sample resource” is available in Scientific domain
               category</a
             >
           </li>
           <li>
-            <a href="/b-view">Lorem ipsum dolor sit amet enim</a>
+            <a href="javascript:void(0)">Lorem ipsum dolor sit amet enim</a>
           </li>
         </ul>
       </div>
@@ -202,11 +208,11 @@
         <h5>You are interested in</h5>
         <div class="custom-card standard-box media mb-4 shadow-sm">
           <div class="card-container">
-            <a href="/b-view">Cloud Computing</a>,
-            <a href="/b-view">Natural Sciences</a>,
-            <a href="/b-view">Physical Sciences</a>,
-            <a href="/b-view">Engineering & Technology</a> and
-            <a href="/b-view">5 more</a>
+            <a href="javascript:void(0)">Cloud Computing</a>,
+            <a href="javascript:void(0)">Natural Sciences</a>,
+            <a href="javascript:void(0)">Physical Sciences</a>,
+            <a href="javascript:void(0)">Engineering & Technology</a> and
+            <a href="javascript:void(0)">5 more</a>
           </div>
         </div>
       </section>
@@ -215,7 +221,7 @@
         <div class="header-row">
           <h5>Stay udated</h5>
           <span class="text-muted float-end"
-            ><a href="/b-view">Show all</a></span
+            ><a href="javascript:void(0)">Show all</a></span
           >
         </div>
         <ng-container *ngFor="let information of latestInformations$ | async">
@@ -237,7 +243,7 @@
         <div class="header-row">
           <h5>Your recent activities</h5>
           <span class="text-muted float-end"
-            ><a href="/b-view">Show all</a></span
+            ><a href="javascript:void(0)">Show all</a></span
           >
         </div>
 
@@ -262,7 +268,9 @@
         <div class="header-row">
           <h4>Recommended resources</h4>
           <span class="text-secondary"
-            ><a href="/b-view">Browse recommended resources (20)</a></span
+            ><a href="javascript:void(0)"
+              >Browse recommended resources (20)</a
+            ></span
           >
         </div>
 
@@ -272,7 +280,7 @@
           >
             <div class="col-12 col-sm-12 col-lg-4">
               <div class="card-container custom-card">
-                <a href="/b-view" class="card-title">{{
+                <a href="javascript:void(0)" class="card-title">{{
                   recommendedResource.label
                 }}</a>
                 <ngb-rating
@@ -290,7 +298,9 @@
                 </p>
                 <p class="card-organisation">
                   Organisation:
-                  <a href="/b-view">{{ recommendedResource.organisation }}</a>
+                  <a href="javascript:void(0)">{{
+                    recommendedResource.organisation
+                  }}</a>
                 </p>
               </div>
             </div>
@@ -302,7 +312,9 @@
         <div class="header-row">
           <h4>Recommended publications</h4>
           <span class="text-secondary"
-            ><a href="/b-view">Browse recommended publications (12)</a></span
+            ><a href="javascript:void(0)"
+              >Browse recommended publications (12)</a
+            ></span
           >
         </div>
 
@@ -314,7 +326,7 @@
           >
             <div class="col-12 col-sm-12 col-lg-4">
               <div class="card-container custom-card">
-                <a href="/b-view" class="card-title">{{
+                <a href="javascript:void(0)" class="card-title">{{
                   recommendedPublication.label
                 }}</a>
                 <p class="card-organisation mt-2">
@@ -341,7 +353,7 @@
           <ng-container *ngFor="let popularArticle of popularArticles$ | async">
             <article class="col-12 col-sm-12 col-lg-4">
               <div class="card-container custom-card no-border">
-                <a href="/b-view" class="card-title">{{
+                <a href="javascript:void(0)" class="card-title">{{
                   popularArticle.label
                 }}</a>
                 <p class="card-description">{{ popularArticle.description }}</p>
@@ -354,7 +366,9 @@
         </div>
 
         <div class="row d-flex justify-content-center mt-4">
-          <a class="button button--primary" href="/b-view">show more</a>
+          <a class="button button--primary" href="javascript:void(0)"
+            >show more</a
+          >
         </div>
       </section>
 
@@ -371,7 +385,7 @@
           >
             <div class="col-12 col-sm-12 col-lg-4">
               <div class="card-container custom-card">
-                <a href="/b-view" class="card-title">{{
+                <a href="javascript:void(0)" class="card-title">{{
                   recommendedPublication.label
                 }}</a>
                 <p class="card-organisation mt-2">

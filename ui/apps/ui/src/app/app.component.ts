@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -23,10 +23,16 @@ import { Router } from '@angular/router';
     </div>
   `,
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   isBView = false;
 
   constructor(private _router: Router) {}
+
+  ngOnInit() {
+    this._router.events.subscribe(() => {
+      this.isBView = this._router.url.includes('b-view');
+    });
+  }
 
   async changeTemplate() {
     await this._router.navigateByUrl(this.isBView ? 'b-view' : '');
