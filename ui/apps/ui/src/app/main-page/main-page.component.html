@@ -147,7 +147,9 @@
         <div class="header-row">
           <h4>Recommended resources</h4>
           <span class="text-secondary"
-            ><a href="#">Browse recommended resources (20)</a></span
+            ><a href="javascript:void(0)"
+              >Browse recommended resources (20)</a
+            ></span
           >
         </div>
 
@@ -157,7 +159,7 @@
           >
             <div class="col-12 col-sm-12 col-lg-4">
               <div class="card-container custom-card">
-                <a href="#" class="card-title">{{
+                <a href="javascript:void(0)" class="card-title">{{
                   recommendedResource.label
                 }}</a>
                 <ngb-rating
@@ -175,7 +177,9 @@
                 </p>
                 <p class="card-organisation">
                   Organisation:
-                  <a href="#">{{ recommendedResource.organisation }}</a>
+                  <a href="javascript:void(0)">{{
+                    recommendedResource.organisation
+                  }}</a>
                 </p>
               </div>
             </div>
@@ -187,7 +191,9 @@
         <div class="header-row">
           <h4>Recommended publications</h4>
           <span class="text-secondary"
-            ><a href="#">Browse recommended publications (12)</a></span
+            ><a href="javascript:void(0)"
+              >Browse recommended publications (12)</a
+            ></span
           >
         </div>
 
@@ -199,7 +205,7 @@
           >
             <div class="col-12 col-sm-12 col-lg-4">
               <div class="card-container custom-card">
-                <a href="#" class="card-title">{{
+                <a href="javascript:void(0)" class="card-title">{{
                   recommendedPublication.label
                 }}</a>
                 <p class="card-organisation mt-2">
@@ -226,7 +232,9 @@
           <ng-container *ngFor="let popularArticle of popularArticles$ | async">
             <article class="col-12 col-sm-12 col-lg-4">
               <div class="card-container custom-card no-border">
-                <a href="#" class="card-title">{{ popularArticle.label }}</a>
+                <a href="javascript:void(0)" class="card-title">{{
+                  popularArticle.label
+                }}</a>
                 <p class="card-description">{{ popularArticle.description }}</p>
                 <div class="card-date">
                   {{ popularArticle.publish_date | date: 'shortDate' }}
@@ -237,7 +245,9 @@
         </div>
 
         <div class="row d-flex justify-content-center mt-4">
-          <a class="button button--primary" href="#">show more</a>
+          <a class="button button--primary" href="javascript:void(0)"
+            >show more</a
+          >
         </div>
       </section>
 
@@ -254,7 +264,7 @@
           >
             <div class="col-12 col-sm-12 col-lg-4">
               <div class="card-container custom-card">
-                <a href="#" class="card-title">{{
+                <a href="javascript:void(0)" class="card-title">{{
                   recommendedPublication.label
                 }}</a>
                 <p class="card-organisation mt-2">
@@ -289,9 +299,11 @@
         <h5>You are interested in</h5>
         <div class="custom-card standard-box media mb-4 shadow-sm">
           <div class="card-container">
-            <a href="#">Cloud Computing</a>, <a href="#">Natural Sciences</a>,
-            <a href="#">Physical Sciences</a>,
-            <a href="#">Engineering & Technology</a> and <a href="#">5 more</a>
+            <a href="javascript:void(0)">Cloud Computing</a>,
+            <a href="javascript:void(0)">Natural Sciences</a>,
+            <a href="javascript:void(0)">Physical Sciences</a>,
+            <a href="javascript:void(0)">Engineering & Technology</a> and
+            <a href="javascript:void(0)">5 more</a>
           </div>
         </div>
       </section>
@@ -299,7 +311,9 @@
       <section id="latest-info" class="right-section">
         <div class="header-row">
           <h5>Stay udated</h5>
-          <span class="text-muted float-end"><a href="#">Show all</a></span>
+          <span class="text-muted float-end"
+            ><a href="javascript:void(0)">Show all</a></span
+          >
         </div>
         <ng-container *ngFor="let information of latestInformations$ | async">
           <div
@@ -319,7 +333,9 @@
       <section id="user-activities" class="right-section mt-4">
         <div class="header-row">
           <h5>Your recent activities</h5>
-          <span class="text-muted float-end"><a href="#">Show all</a></span>
+          <span class="text-muted float-end"
+            ><a href="javascript:void(0)">Show all</a></span
+          >
         </div>
 
         <ng-container *ngFor="let userActivity of userActivities$ | async">
