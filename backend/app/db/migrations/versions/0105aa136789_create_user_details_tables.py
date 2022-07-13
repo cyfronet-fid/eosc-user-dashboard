@@ -3,11 +3,11 @@ Revision ID: 0105aa136789
 Revises: 
 Create Date: 2021-11-03 08:31:32.301472
 """
-from alembic import op
 import sqlalchemy as sa
+from alembic import op
 
 # revision identifiers, used by Alembic
-revision = '0105aa136789'
+revision = "0105aa136789"
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -26,7 +26,7 @@ def create_user_view_configurations() -> None:
     op.create_table(
         "users_view_configurations",
         sa.Column("user_id", sa.Integer, unique=True),
-        sa.Column("configuration", sa.JSON, default={})
+        sa.Column("configuration", sa.JSON, default={}),
     )
 
 
@@ -34,7 +34,7 @@ def create_details_providers() -> None:
     op.create_table(
         "details_providers",
         sa.Column("id", sa.Integer, primary_key=True),
-        sa.Column("name", sa.Text, unique=True)
+        sa.Column("name", sa.Text, unique=True),
     )
 
 
@@ -43,7 +43,7 @@ def create_user_details() -> None:
         "users_details",
         sa.Column("user_id", sa.Integer, unique=True),
         sa.Column("details_provider_id", sa.Integer, unique=True),
-        sa.Column("data", sa.JSON, default={})
+        sa.Column("data", sa.JSON, default={}),
     )
 
 

@@ -1,0 +1,23 @@
+[tool.isort]
+profile = "black"
+src_paths = ["app", "tests"]
+skip_gitignore = true
+
+[tool.pylint.'messages control']
+enable=["useless-suppression"]
+disable=[
+    "similarities",
+    "missing-module-docstring",
+    "missing-function-docstring",
+    "missing-class-docstring"
+]
+# Allow single- and two-character names
+good-names-rgxs="^[_a-z][_a-z0-9]?$"
+# pydantic issue workaround: https://github.com/samuelcolvin/pydantic/issues/1961
+extension-pkg-whitelist = "pydantic"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = ["ignore::DeprecationWarning"]
+addopts = "--strict-markers"
+markers = ["integration: mark the test as an integration test for easier exclusion"]

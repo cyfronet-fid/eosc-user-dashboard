@@ -11,8 +11,7 @@ class User(Base):
     name = Column(String, nullable=False)
 
     def __repr__(self):
-        return "<User(name='%s', email='%s')>" \
-               % (self.name, self.email)
+        return f"<User(name={self.name}, email={self.email})>"
 
     def as_json(self):
         return dict(name=self.name)

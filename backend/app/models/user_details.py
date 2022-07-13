@@ -1,6 +1,6 @@
 import json
 
-from sqlalchemy import Column, Integer, ForeignKey, JSON, PrimaryKeyConstraint
+from sqlalchemy import JSON, Column, ForeignKey, Integer, PrimaryKeyConstraint
 from sqlalchemy.orm import relationship
 
 from app.models import Base
@@ -21,8 +21,13 @@ class UserDetails(Base):
     details_provider = relationship("DetailsProvider", uselist=False)
 
     def __repr__(self):
-        return "<UserDetails(user='%s', details_provider='%s' data='%s')>" \
-               % (json.dumps(self.user), json.dumps(self.details_provider), json.dumps(self.data))
+        return (
+            "<UserDetails("
+            f"user={json.dumps(self.user)}, "
+            f"details_provider={json.dumps(self.details_provider)} "
+            f"data={json.dumps(self.data)})"
+            ">"
+        )
 
     def as_json(self):
         return dict(provider=self.details_provider.name, data=self.data)

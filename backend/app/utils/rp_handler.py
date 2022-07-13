@@ -12,7 +12,7 @@ import tempfile
 import urllib.request
 from urllib.parse import urlparse
 
-from cryptojwt.key_jar import init_key_jar, KeyJar
+from cryptojwt.key_jar import KeyJar, init_key_jar
 from oidcrp.rp_handler import RPHandler
 
 from app.config import OIDC_CONFIG, OIDC_JWT_ENCRYPT_CONFIG
@@ -57,4 +57,3 @@ rp_handler = RPHandler(
     keyjar=_get_key_jar(OIDC_JWT_ENCRYPT_CONFIG),
     httpc_params=OIDC_CONFIG["httpc_params"],
 )
-

@@ -4,19 +4,23 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-fastapi = "==0.70.0"
-uvicorn = "==0.15.0"
-pydantic = "==1.8.2"
-oidcrp = "==2.1.0"
-cryptojwt = "==1.6.0"
-fastapi-sessions = "==0.3.2"
-databases = {version = "==0.5.3", extras = ["postgresql"]}
-psycopg2-binary = "===2.9.3"
-alembic = "==1.7.4"
-SQLAlchemy = "==1.4.26"
-Faker = "==9.8.0"
+fastapi = {extras = ["all"], version = "*"}
+uvicorn = "*"
+pydantic = "*"
+oidcrp = "*"
+cryptojwt = "*"
+fastapi-sessions = "*"
+databases = {version = "*", extras = ["postgresql"]}
+psycopg2-binary = "*"
+alembic = "*"
+SQLAlchemy = "*"
+Faker = "*"
 
 [dev-packages]
+black = "*"
+pylint = "*"
+pytest = "*"
+isort = "*"
 
 [requires]
-python_version = "3.10"
+python_version = "3.10.2"

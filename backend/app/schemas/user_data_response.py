@@ -2,7 +2,7 @@ from typing import Dict, List
 
 from pydantic.main import BaseModel
 
-from app.schemas.UserDetailsRequest import UserDetailsRequest
+from app.schemas.user_details_request import UserDetailsRequest
 
 
 class UserDataResponse(BaseModel):
