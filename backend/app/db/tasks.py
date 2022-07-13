@@ -1,6 +1,8 @@
-from fastapi import FastAPI
-from databases import Database
+# pylint: disable=broad-except,protected-access
 import logging
+
+from databases import Database
+from fastapi import FastAPI
 
 from app.config import DATABASE_URI
 

@@ -1,9 +1,10 @@
+import logging
 import pathlib
 import sys
+from logging.config import fileConfig
+
 import alembic
 from sqlalchemy import engine_from_config, pool
-from logging.config import fileConfig
-import logging
 
 sys.path.append(str(pathlib.Path(__file__).resolve().parents[3]))
 from app.config import DATABASE_URI  # noqa
@@ -27,10 +28,7 @@ def run_migrations_online() -> None:
         )
 
     with connectable.connect() as connection:
-        alembic.context.configure(
-            connection=connection,
-            target_metadata=None
-        )
+        alembic.context.configure(connection=connection, target_metadata=None)
         with alembic.context.begin_transaction():
             alembic.context.run_migrations()
 

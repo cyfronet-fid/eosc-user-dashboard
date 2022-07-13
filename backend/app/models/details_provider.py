@@ -12,8 +12,10 @@ class DetailsProvider(Base):
     name = Column(String, unique=True)
 
     def __repr__(self):
-        return "<DetailsProvider(name='%s', user_details='%s')>" \
-               % (self.name, json.dumps(self.users_details))
+        return (
+            f"<DetailsProvider(name={self.name},"
+            f" user_details={json.dumps(self.users_details)}>"
+        )
 
     def as_json(self):
         return dict(name=self.name)

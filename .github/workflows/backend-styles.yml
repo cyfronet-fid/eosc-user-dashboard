@@ -1,0 +1,31 @@
+name: Backend styles
+
+on: push
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v3
+      with:
+        python-version: '3.10.2'
+        cache: 'pipenv'
+        cache-dependency-path: backend/Pipfile.lock
+    - name: Install pipenv
+      run: pipx install pipenv
+    - name: Install dependencies
+      run: pipenv sync --dev
+      working-directory: ./backend
+    - name: Check with black
+      run: |
+        pipenv run black --check --preview app tests
+      working-directory: ./backend
+    - name: Check with isort
+      run: |
+        pipenv run isort . --check --diff
+      working-directory: ./backend
+    - name: Lint with pylint
+      run: |
+        pipenv run pylint app tests
+      working-directory: ./backend

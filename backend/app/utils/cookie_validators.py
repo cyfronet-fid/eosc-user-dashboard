@@ -10,22 +10,22 @@ from uuid import UUID
 
 from fastapi import HTTPException
 from fastapi_sessions.backends.implementations import InMemoryBackend
-from fastapi_sessions.frontends.implementations import SessionCookie, CookieParameters
+from fastapi_sessions.frontends.implementations import CookieParameters, SessionCookie
 from fastapi_sessions.session_verifier import SessionVerifier
 from starlette import status
 
 from app.config import AUTH_COOKIES_CONFIG
-from app.schemas.SessionData import SessionData
+from app.schemas.session_data import SessionData
 
 
 class BasicVerifier(SessionVerifier[UUID, SessionData]):
     def __init__(
-            self,
-            *,
-            identifier: str,
-            auto_error: bool,
-            backend: InMemoryBackend[UUID, SessionData],
-            auth_http_exception: HTTPException,
+        self,
+        *,
+        identifier: str,
+        auto_error: bool,
+        backend: InMemoryBackend[UUID, SessionData],
+        auth_http_exception: HTTPException,
     ):
         self._identifier = identifier
         self._auto_error = auto_error
@@ -54,16 +54,18 @@ class BasicVerifier(SessionVerifier[UUID, SessionData]):
 
 
 cookie = SessionCookie(
-    cookie_name=AUTH_COOKIES_CONFIG['cookie_name'],
-    identifier=AUTH_COOKIES_CONFIG['identifier'],
-    secret_key=AUTH_COOKIES_CONFIG['secret_key'],
-    auto_error=AUTH_COOKIES_CONFIG['auto_error'],
-    cookie_params=CookieParameters(**AUTH_COOKIES_CONFIG)
+    cookie_name=AUTH_COOKIES_CONFIG["cookie_name"],
+    identifier=AUTH_COOKIES_CONFIG["identifier"],
+    secret_key=AUTH_COOKIES_CONFIG["secret_key"],
+    auto_error=AUTH_COOKIES_CONFIG["auto_error"],
+    cookie_params=CookieParameters(**AUTH_COOKIES_CONFIG),
 )
-backend = InMemoryBackend[UUID, SessionData]()
+inMemoryBackend = InMemoryBackend[UUID, SessionData]()
 verifier = BasicVerifier(
-    identifier=AUTH_COOKIES_CONFIG['identifier'],
-    auto_error=AUTH_COOKIES_CONFIG['auto_error'],
-    backend=backend,
-    auth_http_exception=HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Invalid session"),
+    identifier=AUTH_COOKIES_CONFIG["identifier"],
+    auto_error=AUTH_COOKIES_CONFIG["auto_error"],
+    backend=inMemoryBackend,
+    auth_http_exception=HTTPException(
+        status_code=status.HTTP_403_FORBIDDEN, detail="Invalid session"
+    ),
 )
