@@ -1,14 +1,12 @@
-# pylint: disable=import-outside-toplevel,broad-except
+# pylint: disable=broad-except
 
-from urllib.parse import urlparse
 from uuid import UUID, uuid4
 
 from fastapi import APIRouter, Depends, HTTPException, Response
 from starlette import status
-from starlette.requests import Request
 from starlette.responses import RedirectResponse
 
-from app.config import OIDC_ISSUER
+from app.config import OIDC_ISSUER, UI_BASE_URL
 from app.schemas.session_data import SessionData
 from app.schemas.user_info_response import UserInfoResponse
 from app.utils.cookie_validators import cookie, inMemoryBackend, verifier
@@ -18,13 +16,8 @@ router = APIRouter()
 
 
 @router.get("/request")
-async def auth_request(request: Request):
+async def auth_request():
     try:
-        parsed_url = urlparse(request.headers.get("referer"))
-        from app.main import app
-
-        if not app.UI_BASE_URL:
-            app.UI_BASE_URL = f"{parsed_url.scheme}://{parsed_url.netloc}"
         result = rp_handler.begin(issuer_id=OIDC_ISSUER)
     except Exception as err:
         raise HTTPException(
@@ -36,25 +29,24 @@ async def auth_request(request: Request):
 
 @router.get("/checkin")
 async def auth_checkin(code: str, state: str):
-    from app.main import app
-
     if not state:
-        return RedirectResponse(status_code=400, url=app.UI_BASE_URL)
+        return RedirectResponse(status_code=400, url=UI_BASE_URL)
 
     try:
         aai_response = rp_handler.finalize(OIDC_ISSUER, dict(code=code, state=state))
 
         session_id = uuid4()
         username = aai_response["userinfo"]["name"]
+
         session_data = SessionData(username=username, aai_state=state)
         await inMemoryBackend.create(session_id, session_data)
-        auth_response = RedirectResponse(status_code=303, url=app.UI_BASE_URL)
+        auth_response = RedirectResponse(status_code=303, url=UI_BASE_URL)
         cookie.attach_to_response(auth_response, session_id)
         return auth_response
     except Exception:
         return RedirectResponse(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            url=app.UI_BASE_URL,
+            url=UI_BASE_URL,
             headers={"WWW-Authenticate": "Bearer"},
         )
 
@@ -67,17 +59,11 @@ async def user_info(session_data: SessionData = Depends(verifier)) -> UserInfoRe
 
 
 @router.get("/logout")
-async def logout(
-    response: Response, request: Request, session_id: UUID = Depends(cookie)
-):
+async def logout(response: Response, session_id: UUID = Depends(cookie)):
     try:
         await inMemoryBackend.delete(session_id)
     except KeyError:
         pass
 
     cookie.delete_from_response(response)
-
-    parsed_url = urlparse(request.headers.get("referer"))
-    return RedirectResponse(
-        status_code=303, url=f"{parsed_url.scheme}://{parsed_url.netloc}"
-    )
+    return RedirectResponse(status_code=303, url=UI_BASE_URL)
