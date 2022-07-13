@@ -9,7 +9,6 @@ IS_TESTING = config("TESTING", cast=bool, default=False)
 
 PROJECT_NAME = "EOSC Profile Service"
 VERSION = "0.0.1"
-API_PREFIX = "/api/v1"
 SECRET_KEY = config("SECRET_KEY", cast=Secret, default="CHANGEME")
 DATABASE_URI = config(
     "DATABASE_URI",
@@ -17,14 +16,13 @@ DATABASE_URI = config(
     default="postgresql+psycopg2://user-dashboard:user-dashboard@localhost:5432/user-dashboard",
 )
 
-BASE_URL = config("BASE_URL", cast=str, default="http://localhost:8000")
+BACKEND_BASE_URL = config("BACKEND_BASE_URL", cast=str, default="http://localhost:8000")
+UI_BASE_URL = config("UI_BASE_URL", cast=str, default="http://localhost:4200")
 
 OIDC_HOST = config("OIDC_HOST", cast=str, default="https://aai-demo.eosc-portal.eu")
 OIDC_ISSUER = config("OIDC_ISSUER", cast=str, default=f"{OIDC_HOST}/oidc/")
-OIDC_CLIENT_ID = config("OIDC_CLIENT_ID", cast=str, default="<MISSING OIDC CLIENT ID>")
-OIDC_CLIENT_SECRET = config(
-    "OIDC_CLIENT_SECRET", cast=str, default="<MISING OIDC CLIENT SECRET>"
-)
+OIDC_CLIENT_ID = config("OIDC_CLIENT_ID", cast=str, default="NO_CLIENT_ID")
+OIDC_CLIENT_SECRET = config("OIDC_CLIENT_SECRET", cast=str, default="NO_CLIENT_SECRET")
 
 OIDC_CLIENT_OPTIONS = client_options = dict(
     issuer=OIDC_ISSUER,
@@ -42,17 +40,17 @@ OIDC_CLIENT_OPTIONS = client_options = dict(
         token_endpoint=f"{OIDC_HOST}/oidc/token",
         userinfo_endpoint=f"{OIDC_HOST}/oidc/userinfo",
     ),
-    redirect_uris=[f"{BASE_URL}/api/v1/auth/checkin"],
-    post_logout_redirect_uri=f"{BASE_URL}/auth/logout",
-    backchannel_logout_uri=f"{BASE_URL}/auth/logout",
+    redirect_uris=[f"{BACKEND_BASE_URL}/api/web/auth/checkin"],
+    post_logout_redirect_uri=f"{BACKEND_BASE_URL}/auth/logout",
+    backchannel_logout_uri=f"{BACKEND_BASE_URL}/auth/logout",
     backchannel_logout_session_required=True,
 )
 
-parsedUrl = urlparse(BASE_URL)
+parsed_url = urlparse(BACKEND_BASE_URL)
 OIDC_CONFIG = dict(
-    port=parsedUrl.port if parsedUrl.port else None,
-    domain=f"{parsedUrl.scheme}://{parsedUrl.netloc}",
-    base_url=BASE_URL,
+    port=parsed_url.port if parsed_url.port else None,
+    domain=f"{parsed_url.scheme}://{parsed_url.netloc}",
+    base_url=f"{parsed_url.scheme}://{parsed_url.netloc}",
     httpc_params=dict(verify=False),
     services=dict(
         discovery={
@@ -80,7 +78,9 @@ OIDC_JWT_ENCRYPT_CONFIG = dict(
 OIDC_CONFIG["clients"] = {}
 OIDC_CONFIG["clients"][OIDC_ISSUER] = OIDC_CLIENT_OPTIONS
 
+parsed_url = urlparse(UI_BASE_URL)
 AUTH_COOKIES_CONFIG = dict(
+    domain=parsed_url.hostname,
     max_age=24 * 60 * 60,  # 1 day
     cookie_name="_mp_service_auth",
     identifier="general_verifier",
