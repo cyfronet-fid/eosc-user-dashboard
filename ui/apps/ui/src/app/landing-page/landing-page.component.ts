@@ -1,27 +1,32 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
-  selector: 'ui-error-page',
+  selector: 'ui-landing-page',
   template: `
     <main>
       <div id="container">
         <div class="row">
           <div class="col">
             <div id="info">
-              <h1>Oops!</h1>
+              <h3>Welcome in</h3>
+              <h1>EOSC User Dashboard</h1>
               <p id="description">
-                We can't seem to find the page you're looking for
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
               </p>
-              <button id="primary-btn" (click)="goToMainPage()">
-                Take me to home page
-              </button>
+              <button id="primary-btn" (click)="login()">Login</button>
             </div>
           </div>
           <div class="col">
             <img
               id="info-graphic"
-              src="assets/error.png"
+              src="assets/landing-page.png"
               alt="EOSC User Dashboard"
             />
           </div>
@@ -59,6 +64,11 @@ import { Router } from '@angular/router';
       }
       main {
         height: calc(100vh - 36px);
+        background-image: url('/assets/background-layer.png'),
+          url('/assets/background.png');
+        background-position: center top, center top;
+        background-repeat: no-repeat, no-repeat;
+        background-size: 1560px, 1920px;
       }
       #primary-btn {
         display: flex;
@@ -74,8 +84,7 @@ import { Router } from '@angular/router';
     `,
   ],
 })
-export class ErrorPageComponent {
-  constructor(private _router: Router) {}
-
-  goToMainPage = () => this._router.navigateByUrl('');
+export class LandingPageComponent {
+  constructor(private _authService: AuthService) {}
+  login = () => this._authService.login();
 }
