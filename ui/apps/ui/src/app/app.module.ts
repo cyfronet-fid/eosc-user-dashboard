@@ -11,6 +11,8 @@ import { AuthComponent } from './auth/auth.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { MainHeaderComponent } from './main-header.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { LandingPageModule } from './landing-page/landing-page.module';
+import { DashboardPageModule } from './dashboard-page/dashboard-page.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     CommonModule,
     HttpClientModule,
     FormsModule,
+    LandingPageModule,
+    DashboardPageModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
