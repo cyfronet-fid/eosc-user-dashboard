@@ -1,35 +1,74 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import {
-  DisplayGrid,
-  GridType,
-  GridsterConfig,
-  GridsterItem,
-} from 'angular-gridster2';
-// See more about configuration at https://tiberiuzuld.github.io/angular-gridster2/
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { GridsterConfig, GridsterItem } from 'angular-gridster2';
+import { gridConfig } from './grid.config';
+
+export interface IWidget<T> {
+  id: string;
+  config: Partial<GridsterItem>;
+  label: string;
+  data: T;
+}
 @Component({
   selector: 'ui-grid',
-  template: `<gridster [options]="options">
-    <gridster-item [item]="item" *ngFor="let item of dashboard">
-      <button
-        (mousedown)="removeItem($event, item)"
-        (touchstart)="removeItem($event, item)"
+  template: `
+    <gridster [options]="gridConfig">
+      <gridster-item
+        [item]="$any(widget.config)"
+        *ngFor="let widget of widgets"
       >
-        delete
-      </button>
-    </gridster-item>
-  </gridster>`,
+        <div class="grid-item-header">
+          <span class="grid-item-label"
+            ><b>{{ widget.label }}</b></span
+          >
+          <div class="extras">
+            <div class="icon">
+              <img src="assets/pen-solid.svg" alt="..." />
+            </div>
+            <div class="icon" (click)="remove($event, widget)">
+              <img src="assets/trash-solid.svg" alt="..." />
+            </div>
+          </div>
+        </div>
+      </gridster-item>
+    </gridster>
+  `,
   styles: [
     `
-      /* Dashboard */
+      /* Grid item */
+      .grid-item-label {
+        display: inline-block;
+        padding: 12px;
+      }
+      .extras {
+        float: right;
+      }
+      .icon {
+        position: relative;
+        width: 48px;
+        height: 48px;
+        background-color: rgba(0, 0, 0, 0.02);
+        border-radius: 5px;
+        display: inline-block;
+      }
 
+      .icon img {
+        position: absolute;
+        width: 14px;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translateY(-50%) translateX(-50%);
+        -ms-transform: translateY(-50%) translateX(-50%);
+        transform: translateY(-50%) translateX(-50%);
+      }
+
+      /* Gridster general */
       gridster {
         background: white;
-        z-index: -1;
       }
 
       gridster-item {
         background-color: rgba(0, 0, 0, 0.02);
-        border-radius: 10px;
+        border-radius: 5px;
       }
 
       gridster-item.gridster-item-resizing,
@@ -45,7 +84,7 @@ import {
 
       gridster ::ng-deep .gridster-column,
       gridster ::ng-deep .gridster-row {
-        border-color: rgba(0, 0, 0, 0.01) !important;
+        border-color: rgba(0, 0, 0, 0.02) !important;
       }
 
       [draggable] {
@@ -61,34 +100,84 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GridComponent {
-  options: GridsterConfig = {
-    gridType: GridType.Fit,
-    displayGrid: DisplayGrid.Always,
-    pushItems: true,
-    draggable: {
-      enabled: true,
+  gridConfig: GridsterConfig = gridConfig;
+  widgets: IWidget<unknown>[] = [
+    {
+      id: 'test1',
+      label: 'Recommendation',
+      config: { cols: 2, rows: 1, y: 0, x: 0, minItemCols: 2 },
+      data: {},
     },
-    resizable: {
-      enabled: true,
+    {
+      id: 'test2',
+      label: 'Recommendation',
+      config: { cols: 2, rows: 2, y: 0, x: 2, minItemCols: 2 },
+      data: {},
     },
-  };
-  dashboard: GridsterItem[] = [
-    { cols: 2, rows: 1, y: 0, x: 0 },
-    { cols: 2, rows: 2, y: 0, x: 2 },
-    { cols: 1, rows: 1, y: 0, x: 4 },
-    { cols: 3, rows: 2, y: 1, x: 4 },
-    { cols: 1, rows: 1, y: 4, x: 5 },
-    { cols: 1, rows: 1, y: 2, x: 1 },
-    { cols: 2, rows: 2, y: 5, x: 5 },
-    { cols: 2, rows: 2, y: 3, x: 2 },
-    { cols: 2, rows: 1, y: 2, x: 2 },
-    { cols: 1, rows: 1, y: 3, x: 4 },
-    { cols: 1, rows: 1, y: 0, x: 6 },
+    {
+      id: 'test3',
+      label: 'Recommendation',
+      config: { cols: 2, rows: 1, y: 0, x: 4, minItemCols: 2 },
+      data: {},
+    },
+    {
+      id: 'test4',
+      label: 'Recommendation',
+      config: { cols: 3, rows: 2, y: 1, x: 4, minItemCols: 2 },
+      data: {},
+    },
+    {
+      id: 'test5',
+      label: 'Recommendation',
+      config: { cols: 2, rows: 1, y: 4, x: 5, minItemCols: 2 },
+      data: {},
+    },
+    {
+      id: 'test6',
+      label: 'Recommendation',
+      config: { cols: 2, rows: 1, y: 2, x: 1, minItemCols: 2 },
+      data: {},
+    },
+    {
+      id: 'test7',
+      label: 'Recommendation',
+      config: { cols: 2, rows: 2, y: 5, x: 5, minItemCols: 2 },
+      data: {},
+    },
+    {
+      id: 'test8',
+      label: 'Recommendation',
+      config: { cols: 2, rows: 2, y: 3, x: 2, minItemCols: 2 },
+      data: {},
+    },
+    {
+      id: 'test9',
+      label: 'Recommendation',
+      config: { cols: 2, rows: 1, y: 2, x: 2, minItemCols: 2 },
+      data: {},
+    },
+    {
+      id: 'test10',
+      label: 'Recommendation',
+      config: { cols: 2, rows: 1, y: 3, x: 4, minItemCols: 2 },
+      data: {},
+    },
+    {
+      id: 'test11',
+      label: 'Recommendation',
+      config: { cols: 2, rows: 1, y: 0, x: 6, minItemCols: 2 },
+      data: {},
+    },
   ];
 
-  removeItem($event: MouseEvent | TouchEvent, item: any): void {
+  remove<T>($event: MouseEvent | TouchEvent, widget: IWidget<T>): void {
     $event.preventDefault();
     $event.stopPropagation();
-    this.dashboard.splice(this.dashboard.indexOf(item), 1);
+    this.widgets.splice(
+      this.widgets.indexOf(
+        this.widgets.find(({ id }) => id === widget.id) as IWidget<T>
+      ),
+      1
+    );
   }
 }
