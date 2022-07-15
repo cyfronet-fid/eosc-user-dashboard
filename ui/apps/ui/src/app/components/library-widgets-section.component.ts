@@ -16,6 +16,7 @@ import { ILibraryWidget } from './library-widget.component';
         <ui-library-widget
           [imageSrc]="widget.imageSrc"
           [label]="widget.label"
+          [isActive]="widget.isActive"
         ></ui-library-widget>
       </div>
     </div>
@@ -27,7 +28,7 @@ export class LibraryWidgetsSectionComponent {
   label!: string;
 
   @Input()
-  widgets: ILibraryWidget[] = [];
+  widgets: ILibraryWidget<unknown>[] = [];
 
   @Output()
   selectedWidget = new EventEmitter<string>();

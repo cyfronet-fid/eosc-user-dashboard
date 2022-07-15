@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Output } from '@angular/core';
+import { ILibraryWidget } from '../components/library-widget.component';
 
 @Component({
   selector: 'ui-library',
@@ -22,6 +23,7 @@ import { Component } from '@angular/core';
             <ui-library-widgets-section
               label="Recommendations"
               [widgets]="widgets"
+              (selectedWidget)="setActive($event)"
             ></ui-library-widgets-section>
             <ui-library-widgets-section
               label="Others"
@@ -36,8 +38,9 @@ import { Component } from '@angular/core';
                 (click)="visible = false"
                 nzShape="round"
                 nzBlock
+                [disabled]="activeWidgets.length === 0"
               >
-                Add
+                Add ({{ activeWidgets.length }})
               </button>
             </div>
           </div>
@@ -95,22 +98,58 @@ import { Component } from '@angular/core';
   ],
 })
 export class LibraryComponent {
+  @Output()
   visible = false;
-  widgets = [
+  widgets: ILibraryWidget<unknown>[] = [
     {
       id: 'test-1',
       imageSrc: 'assets/error.png',
       label: 'Projects',
+      config: {
+        label: 'Recommendation',
+        config: { cols: 2, rows: 1, minItemCols: 2 },
+        data: {},
+      },
+      isActive: false,
     },
     {
       id: 'test-2',
       imageSrc: 'assets/error.png',
       label: 'Projects',
+      config: {
+        label: 'Recommendation',
+        config: { cols: 2, rows: 1, minItemCols: 2 },
+        data: {},
+      },
+      isActive: false,
     },
     {
       id: 'test-3',
       imageSrc: 'assets/error.png',
       label: 'Projects',
+      config: {
+        label: 'Recommendation',
+        config: { cols: 2, rows: 1, minItemCols: 2 },
+        data: {},
+      },
+      isActive: false,
     },
   ];
+  activeWidgets: string[] = [];
+
+  setActive(id: string) {
+    const widget = this.widgets.find(
+      ({ id: activeId }) => activeId === id
+    ) as ILibraryWidget<unknown>;
+    if (this.activeWidgets.includes(id)) {
+      this.activeWidgets = this.activeWidgets.filter(
+        (activeId) => activeId === id
+      );
+      widget.isActive = false;
+      return;
+    }
+
+    widget.isActive = true;
+    this.activeWidgets.push(id);
+  }
 }

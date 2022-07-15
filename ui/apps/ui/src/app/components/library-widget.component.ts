@@ -1,15 +1,18 @@
 import { Component, Input } from '@angular/core';
+import { IWidget } from '../layouts/grid.component';
 
-export interface ILibraryWidget {
+export interface ILibraryWidget<T> {
   id: string;
   imageSrc: string;
   label: string;
+  isActive: boolean;
+  config: Partial<IWidget<T>>;
 }
 
 @Component({
   selector: 'ui-library-widget',
   template: `
-    <div class="widget">
+    <div class="widget" [class.active]="isActive">
       <div class="widget-content">
         <img class="widget-icon" [src]="imageSrc" alt="..." />
         <p class="widget-label">{{ label }}</p>
@@ -18,6 +21,9 @@ export interface ILibraryWidget {
   `,
   styles: [
     `
+      .active > .widget-content {
+        background-color: #05cae7;
+      }
       .widget {
         text-align: center;
         cursor: pointer;
@@ -43,4 +49,7 @@ export class LibraryWidgetComponent {
 
   @Input()
   label!: string;
+
+  @Input()
+  isActive!: boolean;
 }
