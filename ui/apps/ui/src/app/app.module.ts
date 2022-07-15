@@ -7,20 +7,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { AuthComponent } from './auth/auth.component';
-import { ErrorPageComponent } from './error-page/error-page.component';
-import { MainHeaderComponent } from './main-header.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
-import { LandingPageModule } from './landing-page/landing-page.module';
-import { DashboardPageModule } from './dashboard-page/dashboard-page.module';
+import { PagesModule } from './pages/pages.module';
+import { LayoutsModule } from './layouts/layouts.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AuthComponent,
-    ErrorPageComponent,
-    MainHeaderComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -29,8 +21,8 @@ import { DashboardPageModule } from './dashboard-page/dashboard-page.module';
     CommonModule,
     HttpClientModule,
     FormsModule,
-    LandingPageModule,
-    DashboardPageModule,
+    PagesModule,
+    LayoutsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
