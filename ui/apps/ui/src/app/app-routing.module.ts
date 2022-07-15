@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ErrorPageComponent } from './error-page/error-page.component';
-import { LandingPageComponent } from './landing-page/landing-page.component';
-import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
+import { ErrorPageComponent } from './pages/error-page/error-page.component';
+import { LandingPageComponent } from './pages/landing-page/landing-page.component';
+import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.component';
 import { AnonymousUser } from './auth/anonymous-user.service';
 import { LoggedInUser } from './auth/logged-in-user.service';
 

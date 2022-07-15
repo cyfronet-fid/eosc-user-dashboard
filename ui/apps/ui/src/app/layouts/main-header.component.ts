@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { environment } from '../environments/environment';
-import { AuthService } from './auth/auth.service';
+import { environment } from '../../environments/environment';
+import { AuthService } from '../auth/auth.service';
 import { catchError, of } from 'rxjs';
 
 interface EoscCommonWindow extends Window {
