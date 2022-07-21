@@ -11,8 +11,8 @@ import { Component } from '@angular/core';
   styles: [
     `
       #container {
-        width: calc(100vw - 15px);
-        height: 100vh;
+        width: 100vw;
+        height: calc(100vh - 36px);
       }
     `,
   ],

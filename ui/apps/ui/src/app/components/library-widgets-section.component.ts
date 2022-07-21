@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ILibraryWidget } from './library-widget.component';
+import { ILibraryWidget } from '../repositories/library-widgets.repository.service';
 
 @Component({
   selector: 'ui-library-widgets-section',
