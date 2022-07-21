@@ -1,13 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { IWidget } from '../layouts/grid.component';
-
-export interface ILibraryWidget<T> {
-  id: string;
-  imageSrc: string;
-  label: string;
-  isActive: boolean;
-  config: Partial<IWidget<T>>;
-}
 
 @Component({
   selector: 'ui-library-widget',
