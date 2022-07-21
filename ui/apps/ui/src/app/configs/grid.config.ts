@@ -1,9 +1,15 @@
-import { DisplayGrid, GridType, GridsterConfig } from 'angular-gridster2';
+import {
+  CompactType,
+  DisplayGrid,
+  GridType,
+  GridsterConfig,
+} from 'angular-gridster2';
 
 // See more about configuration at https://tiberiuzuld.github.io/angular-gridster2/
 export const gridConfig: GridsterConfig = {
-  gridType: GridType.Fit,
+  gridType: GridType.ScrollVertical,
   displayGrid: DisplayGrid.Always,
+  compactType: CompactType.None,
   pushItems: true,
   draggable: {
     enabled: true,
@@ -11,7 +17,6 @@ export const gridConfig: GridsterConfig = {
   resizable: {
     enabled: true,
   },
-  compactType: 'none',
   minCols: 6,
   maxCols: 6,
 };

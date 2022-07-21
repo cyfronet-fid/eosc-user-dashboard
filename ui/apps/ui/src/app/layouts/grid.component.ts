@@ -1,20 +1,19 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { GridsterConfig, GridsterItem } from 'angular-gridster2';
-import { gridConfig } from './grid.config';
+import { GridsterConfig } from 'angular-gridster2';
+import { gridConfig } from '../configs/grid.config';
+import {
+  IWidget,
+  WidgetsRepositoryService,
+} from '../repositories/widgets.repository.service';
+import { Observable } from 'rxjs';
 
-export interface IWidget<T> {
-  id: string;
-  config: Partial<GridsterItem>;
-  label: string;
-  data: T;
-}
 @Component({
   selector: 'ui-grid',
   template: `
     <gridster [options]="gridConfig">
       <gridster-item
         [item]="$any(widget.config)"
-        *ngFor="let widget of widgets"
+        *ngFor="let widget of widgets$ | async"
       >
         <div class="grid-item-header">
           <span class="grid-item-label"
@@ -24,7 +23,11 @@ export interface IWidget<T> {
             <div class="icon">
               <img src="assets/pen-solid.svg" alt="..." />
             </div>
-            <div class="icon" (click)="remove($event, widget)">
+            <div
+              class="icon"
+              (mousedown)="remove($event, widget)"
+              (touchstart)="remove($event, widget)"
+            >
               <img src="assets/trash-solid.svg" alt="..." />
             </div>
           </div>
@@ -50,7 +53,6 @@ export interface IWidget<T> {
         border-radius: 5px;
         display: inline-block;
       }
-
       .icon img {
         position: absolute;
         width: 14px;
@@ -65,19 +67,16 @@ export interface IWidget<T> {
       gridster {
         background: white;
       }
-
       gridster-item {
         background-color: rgba(0, 0, 0, 0.02);
         border-radius: 5px;
       }
-
       gridster-item.gridster-item-resizing,
       gridster-item.gridster-item-moving {
         -webkit-box-shadow: 1px 1px 14px -5px rgba(66, 68, 90, 1);
         -moz-box-shadow: 1px 1px 14px -5px rgba(66, 68, 90, 1);
         box-shadow: 1px 1px 14px -5px rgba(66, 68, 90, 1);
       }
-
       gridster ::ng-deep gridster-preview {
         background: rgba(0, 0, 0, 0.02) !important;
       }
@@ -86,7 +85,6 @@ export interface IWidget<T> {
       gridster ::ng-deep .gridster-row {
         border-color: rgba(0, 0, 0, 0.02) !important;
       }
-
       [draggable] {
         user-select: none;
         cursor: pointer;
@@ -101,83 +99,13 @@ export interface IWidget<T> {
 })
 export class GridComponent {
   gridConfig: GridsterConfig = gridConfig;
-  widgets: IWidget<unknown>[] = [
-    {
-      id: 'test1',
-      label: 'Recommendation',
-      config: { cols: 2, rows: 1, y: 0, x: 0, minItemCols: 2 },
-      data: {},
-    },
-    {
-      id: 'test2',
-      label: 'Recommendation',
-      config: { cols: 2, rows: 2, y: 0, x: 2, minItemCols: 2 },
-      data: {},
-    },
-    {
-      id: 'test3',
-      label: 'Recommendation',
-      config: { cols: 2, rows: 1, y: 0, x: 4, minItemCols: 2 },
-      data: {},
-    },
-    {
-      id: 'test4',
-      label: 'Recommendation',
-      config: { cols: 3, rows: 2, y: 1, x: 4, minItemCols: 2 },
-      data: {},
-    },
-    {
-      id: 'test5',
-      label: 'Recommendation',
-      config: { cols: 2, rows: 1, y: 4, x: 5, minItemCols: 2 },
-      data: {},
-    },
-    {
-      id: 'test6',
-      label: 'Recommendation',
-      config: { cols: 2, rows: 1, y: 2, x: 1, minItemCols: 2 },
-      data: {},
-    },
-    {
-      id: 'test7',
-      label: 'Recommendation',
-      config: { cols: 2, rows: 2, y: 5, x: 5, minItemCols: 2 },
-      data: {},
-    },
-    {
-      id: 'test8',
-      label: 'Recommendation',
-      config: { cols: 2, rows: 2, y: 3, x: 2, minItemCols: 2 },
-      data: {},
-    },
-    {
-      id: 'test9',
-      label: 'Recommendation',
-      config: { cols: 2, rows: 1, y: 2, x: 2, minItemCols: 2 },
-      data: {},
-    },
-    {
-      id: 'test10',
-      label: 'Recommendation',
-      config: { cols: 2, rows: 1, y: 3, x: 4, minItemCols: 2 },
-      data: {},
-    },
-    {
-      id: 'test11',
-      label: 'Recommendation',
-      config: { cols: 2, rows: 1, y: 0, x: 6, minItemCols: 2 },
-      data: {},
-    },
-  ];
+  widgets$: Observable<IWidget<unknown>[]> = this._widgetsRepository.get$;
+
+  constructor(private _widgetsRepository: WidgetsRepositoryService) {}
 
   remove<T>($event: MouseEvent | TouchEvent, widget: IWidget<T>): void {
     $event.preventDefault();
     $event.stopPropagation();
-    this.widgets.splice(
-      this.widgets.indexOf(
-        this.widgets.find(({ id }) => id === widget.id) as IWidget<T>
-      ),
-      1
-    );
+    this._widgetsRepository.remove(widget);
   }
 }

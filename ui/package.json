@@ -38,10 +38,11 @@
     "ng-zorro-antd": "^13.3.2",
     "rxjs": "~7.4.0",
     "tslib": "^2.0.0",
+    "uuid": "^8.3.2",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "14.0.6",
+    "@angular-devkit/build-angular": "^14.1.0",
     "@angular-eslint/eslint-plugin": "14.0.2",
     "@angular-eslint/eslint-plugin-template": "14.0.2",
     "@angular-eslint/template-parser": "14.0.2",
@@ -58,6 +59,8 @@
     "@types/jasmine": "4.0.3",
     "@types/jest": "27.4.1",
     "@types/node": "16.11.7",
+    "@types/uuid": "^8.3.4",
+    "@types/uuid4": "^2.0.0",
     "@typescript-eslint/eslint-plugin": "5.30.6",
     "@typescript-eslint/parser": "5.30.6",
     "eslint": "8.15.0",
