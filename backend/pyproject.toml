@@ -4,12 +4,15 @@ src_paths = ["app", "tests"]
 skip_gitignore = true
 
 [tool.pylint.'messages control']
+ignore-paths=["app/db"]
 enable=["useless-suppression"]
 disable=[
     "similarities",
     "missing-module-docstring",
     "missing-function-docstring",
-    "missing-class-docstring"
+    "missing-class-docstring",
+    "too-few-public-methods",
+    "fixme"
 ]
 # Allow single- and two-character names
 good-names-rgxs="^[_a-z][_a-z0-9]?$"

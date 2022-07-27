@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { GridsterConfig } from 'angular-gridster2';
-import { gridConfig } from '../configs/grid.config';
+import { gridConfig } from './grid.config';
 import {
   IWidget,
   WidgetsRepositoryService,
 } from '../repositories/widgets.repository.service';
 import { Observable } from 'rxjs';
+import { WidgetsService } from '../services/widgets.service';
 
 @Component({
   selector: 'ui-grid',
@@ -101,11 +102,17 @@ export class GridComponent {
   gridConfig: GridsterConfig = gridConfig;
   widgets$: Observable<IWidget<unknown>[]> = this._widgetsRepository.get$;
 
-  constructor(private _widgetsRepository: WidgetsRepositoryService) {}
+  constructor(
+    private _widgetsRepository: WidgetsRepositoryService,
+    private _widgetsService: WidgetsService
+  ) {}
 
-  remove<T>($event: MouseEvent | TouchEvent, widget: IWidget<T>): void {
+  async remove<T>(
+    $event: MouseEvent | TouchEvent,
+    widget: IWidget<T>
+  ): Promise<void> {
     $event.preventDefault();
     $event.stopPropagation();
-    this._widgetsRepository.remove(widget);
+    await this._widgetsService.delete(widget.id).toPromise();
   }
 }

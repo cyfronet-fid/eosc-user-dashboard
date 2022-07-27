@@ -1,9 +1,8 @@
-from typing import Any, Optional
+from typing import Optional
 
 from pydantic import BaseModel
 
 
 class SessionData(BaseModel):
+    aai_id: str
     username: Optional[str]
-    aai_state: Optional[str]
-    rp_handler: Any

@@ -1,13 +1,14 @@
 import { Component, Output } from '@angular/core';
 import {
-  ILibraryWidget,
+  ILibrarySection,
   LibraryWidgetsRepositoryService,
 } from '../repositories/library-widgets.repository.service';
 import { Observable } from 'rxjs';
+import { WidgetsService } from '../services/widgets.service';
 
 @Component({
   selector: 'ui-library',
-  template: `<div id="menu-btn-overlap" (click)="visible = !visible">
+  template: ` <div id="menu-btn-overlap" (click)="visible = !visible">
       {{ visible ? '<' : '>' }}
     </div>
     <div id="lib-line-overlap"></div>
@@ -26,11 +27,11 @@ import { Observable } from 'rxjs';
           {{ visible ? '<' : '>' }}
         </div>
         <div id="lib-container">
-          <div id="lib-widgets">
+          <div id="lib-widgets" *ngFor="let section of sections$ | async">
             <ui-library-widgets-section
-              label="Recommendations"
-              [widgets]="(widgets$ | async) ?? []"
-              (selectedWidget)="setActive($event)"
+              [label]="section.label"
+              [widgets]="section.widgets"
+              (selectedWidget)="add($event)"
             ></ui-library-widgets-section>
           </div>
         </div>
@@ -82,12 +83,13 @@ import { Observable } from 'rxjs';
 export class LibraryComponent {
   @Output()
   visible = false;
-  widgets$: Observable<ILibraryWidget<unknown>[]> =
+  sections$: Observable<ILibrarySection[]> =
     this._libraryWidgetsRepository.get$;
 
   constructor(
-    private _libraryWidgetsRepository: LibraryWidgetsRepositoryService
+    private _libraryWidgetsRepository: LibraryWidgetsRepositoryService,
+    private _widgetsService: WidgetsService
   ) {}
 
-  setActive = (id: string) => this._libraryWidgetsRepository.setActive({ id });
+  add = (id: number) => this._widgetsService.create(id).toPromise();
 }

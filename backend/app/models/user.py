@@ -1,17 +1,14 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, String
+from sqlalchemy.orm import relationship
 
-from app.models import Base
+from app.database import Base
+
+target_metadata = [Base.metadata]
 
 
 class User(Base):
-    __tablename__ = "users"
+    __tablename__ = "user"
 
-    id = Column(Integer, primary_key=True)
-    aai_id = Column(String, unique=True, nullable=False)
-    name = Column(String, nullable=False)
+    aaiId = Column(String, primary_key=True, unique=True, nullable=False)
 
-    def __repr__(self):
-        return f"<User(name={self.name}, email={self.email})>"
-
-    def as_json(self):
-        return dict(name=self.name)
+    widgets = relationship("Widget")

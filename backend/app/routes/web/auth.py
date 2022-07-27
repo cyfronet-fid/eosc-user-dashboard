@@ -3,12 +3,15 @@
 from uuid import UUID, uuid4
 
 from fastapi import APIRouter, Depends, HTTPException, Response
+from sqlalchemy.orm import Session
 from starlette import status
 from starlette.responses import RedirectResponse
 
 from app.config import OIDC_ISSUER, UI_BASE_URL
-from app.schemas.session_data import SessionData
-from app.schemas.user_info_response import UserInfoResponse
+from app.crud.user import create_user, get_user
+from app.database import get_db
+from app.schemas.web.session_data import SessionData
+from app.schemas.web.user_info_response import UserInfoResponse
 from app.utils.cookie_validators import cookie, inMemoryBackend, verifier
 from app.utils.rp_handler import rp_handler
 
@@ -28,7 +31,7 @@ async def auth_request():
 
 
 @router.get("/checkin")
-async def auth_checkin(code: str, state: str):
+async def auth_checkin(code: str, state: str, db: Session = Depends(get_db)):
     if not state:
         return RedirectResponse(status_code=400, url=UI_BASE_URL)
 
@@ -36,9 +39,13 @@ async def auth_checkin(code: str, state: str):
         aai_response = rp_handler.finalize(OIDC_ISSUER, dict(code=code, state=state))
 
         session_id = uuid4()
-        username = aai_response["userinfo"]["name"]
+        aai_id = aai_response["userinfo"]["sub"]
 
-        session_data = SessionData(username=username, aai_state=state)
+        if not get_user(db, aai_id):
+            create_user(db, aai_id)
+
+        username = aai_response["userinfo"]["name"]
+        session_data = SessionData(aai_id=aai_id, username=username, aai_state=state)
         await inMemoryBackend.create(session_id, session_data)
         auth_response = RedirectResponse(status_code=303, url=UI_BASE_URL)
         cookie.attach_to_response(auth_response, session_id)
