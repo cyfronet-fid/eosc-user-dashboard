@@ -1,23 +1,22 @@
 import { Injectable } from '@angular/core';
 import { createStore } from '@ngneat/elf';
 import {
-  addEntities,
-  selectActiveEntity,
   selectAllEntities,
-  setActiveId,
+  setEntities,
   withActiveId,
   withEntities,
 } from '@ngneat/elf-entities';
 import { IWidget } from './widgets.repository.service';
-import { filter, map, shareReplay } from 'rxjs';
-import * as uuid from 'uuid';
-import { libraryWidgetsConfig } from '../configs/library-widgets.config';
 
+export interface ILibrarySection {
+  id: number;
+  label: string;
+  widgets: ILibraryWidget<unknown>[];
+}
 export interface ILibraryWidget<T> {
-  id: string;
+  id: number;
   imageSrc: string;
   label: string;
-  isActive: boolean;
   config: Partial<IWidget<T>>;
 }
 
@@ -27,26 +26,13 @@ export interface ILibraryWidget<T> {
 export class LibraryWidgetsRepositoryService {
   readonly _store = createStore(
     {
-      name: 'library',
+      name: 'library-sections',
     },
-    withEntities<ILibraryWidget<unknown>>(),
+    withEntities<ILibrarySection>(),
     withActiveId()
   );
   readonly get$ = this._store.pipe(selectAllEntities());
-  readonly getNewWidgets$ = this._store.pipe(
-    selectActiveEntity(),
-    filter((widget) => !!widget),
-    map((widget) => widget as ILibraryWidget<unknown>),
-    map(({ config }) => ({ id: uuid.v4(), ...config } as IWidget<unknown>)),
-    shareReplay(1)
-  );
 
-  constructor() {
-    this._store.update(addEntities(libraryWidgetsConfig));
-  }
-
-  setActive = (widget: Partial<ILibraryWidget<unknown>> & { id: string }) => {
-    this._store.update(setActiveId(widget.id));
-    this._store.update(setActiveId(undefined));
-  };
+  set = (sections: ILibrarySection[]) =>
+    this._store.update(setEntities(sections));
 }
