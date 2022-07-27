@@ -7,8 +7,8 @@ from starlette import status
 from starlette.responses import RedirectResponse
 
 from app.config import OIDC_ISSUER, UI_BASE_URL
-from app.schemas.session_data import SessionData
-from app.schemas.user_info_response import UserInfoResponse
+from app.schemas.web.session_data import SessionData
+from app.schemas.web.user_info_response import UserInfoResponse
 from app.utils.cookie_validators import cookie, inMemoryBackend, verifier
 from app.utils.rp_handler import rp_handler
 
@@ -36,9 +36,10 @@ async def auth_checkin(code: str, state: str):
         aai_response = rp_handler.finalize(OIDC_ISSUER, dict(code=code, state=state))
 
         session_id = uuid4()
+        id = aai_response["userinfo"]["sub"]
         username = aai_response["userinfo"]["name"]
 
-        session_data = SessionData(username=username, aai_state=state)
+        session_data = SessionData(id=id, username=username, aai_state=state)
         await inMemoryBackend.create(session_id, session_data)
         auth_response = RedirectResponse(status_code=303, url=UI_BASE_URL)
         cookie.attach_to_response(auth_response, session_id)

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { GridsterConfig } from 'angular-gridster2';
-import { gridConfig } from '../configs/grid.config';
+import { gridConfig } from './grid.config';
 import {
   IWidget,
   WidgetsRepositoryService,

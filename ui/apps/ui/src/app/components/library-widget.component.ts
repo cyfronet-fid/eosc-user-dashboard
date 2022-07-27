@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'ui-library-widget',
   template: `
-    <div class="widget" [class.active]="isActive">
+    <div class="widget">
       <div class="widget-content">
         <img class="widget-icon" [src]="imageSrc" alt="..." />
         <p class="widget-label">{{ label }}</p>
@@ -12,9 +12,6 @@ import { Component, Input } from '@angular/core';
   `,
   styles: [
     `
-      .active > .widget-content {
-        background-color: #05cae7;
-      }
       .widget {
         text-align: center;
         cursor: pointer;
@@ -40,7 +37,4 @@ export class LibraryWidgetComponent {
 
   @Input()
   label!: string;
-
-  @Input()
-  isActive!: boolean;
 }
