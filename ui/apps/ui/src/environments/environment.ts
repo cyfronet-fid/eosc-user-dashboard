@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  backendUrl: 'http://localhost:8000',
-  webApiPath: 'api/web',
+  backendUrl: 'http://localhost:8000/api/web',
 };
 
 /*

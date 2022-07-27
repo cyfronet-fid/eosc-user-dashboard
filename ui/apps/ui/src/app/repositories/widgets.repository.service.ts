@@ -4,24 +4,22 @@ import {
   addEntities,
   deleteEntities,
   selectAllEntities,
+  setEntities,
   updateEntities,
   withActiveId,
   withEntities,
 } from '@ngneat/elf-entities';
 import { LibraryWidgetsRepositoryService } from './library-widgets.repository.service';
 import { GridsterItem } from 'angular-gridster2';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { widgetsMock } from './widgets.mock';
 
 export interface IWidget<T> {
-  id: string;
+  id: number;
   config: Partial<GridsterItem>;
   label: string;
   data: T;
   type: string;
 }
 
-@UntilDestroy()
 @Injectable({
   providedIn: 'root',
 })
@@ -38,18 +36,17 @@ export class WidgetsRepositoryService {
   constructor(
     private _libraryWidgetsRepository: LibraryWidgetsRepositoryService
   ) {
-    this._libraryWidgetsRepository.getNewWidgets$
-      .pipe(untilDestroyed(this))
-      .subscribe((widget) => this.add(widget));
-
-    // TODO: Remove
-    this.add(...widgetsMock);
+    // this._libraryWidgetsRepository.getNewWidgets$
+    //   .pipe(untilDestroyed(this))
+    //   .subscribe((widget) => this.add(widget));
   }
 
+  set = (widgets: IWidget<unknown>[]) =>
+    this._store.update(setEntities(widgets));
   add = (...widgets: IWidget<unknown>[]) =>
     this._store.update(addEntities(widgets));
-  remove = (...widgets: Partial<IWidget<unknown>> & { id: string }[]) =>
+  delete = (...widgets: Partial<IWidget<unknown>> & { id: number }[]) =>
     this._store.update(deleteEntities(widgets.map(({ id }) => id)));
-  update = (id: string, widget: Partial<IWidget<unknown>>) =>
-    this._store.update(updateEntities(id, widget));
+  update = (id: number, data: Partial<IWidget<unknown>>) =>
+    this._store.update(updateEntities(id, data));
 }
