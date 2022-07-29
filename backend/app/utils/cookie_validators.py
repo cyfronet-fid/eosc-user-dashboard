@@ -15,7 +15,7 @@ from fastapi_sessions.session_verifier import SessionVerifier
 from starlette import status
 
 from app.config import AUTH_COOKIES_CONFIG
-from app.schemas.session_data import SessionData
+from app.schemas.web.session_data import SessionData
 
 
 class BasicVerifier(SessionVerifier[UUID, SessionData]):

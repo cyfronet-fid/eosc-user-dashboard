@@ -16,7 +16,6 @@ import { ILibraryWidget } from '../repositories/library-widgets.repository.servi
         <ui-library-widget
           [imageSrc]="widget.imageSrc"
           [label]="widget.label"
-          [isActive]="widget.isActive"
         ></ui-library-widget>
       </div>
     </div>
