@@ -1,22 +1,22 @@
-from typing import Any, Optional
+from typing import Any
 
 from pydantic import BaseModel
 
-from app.schemas.web.widget_config import WidgetConfig
+from app.schemas.web.widget_config import WidgetConfigResponse
 
 
-class PartialWidget(BaseModel):
-    id: Optional[int]
-    libId: Optional[int]
-    config: Optional[WidgetConfig]
-    label: Optional[str]
-    data: Optional[Any]
+class WidgetPutRequest(BaseModel):
+    config: WidgetConfigResponse
 
 
-class Widget(BaseModel):
+class WidgetPostRequest(BaseModel):
+    libId: int
+    config: WidgetConfigResponse
+
+
+class WidgetResponse(BaseModel):
     id: int
     libId: int
-    config: WidgetConfig
+    config: WidgetConfigResponse
     label: str
     data: Any
-    type: str

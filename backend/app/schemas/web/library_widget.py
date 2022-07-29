@@ -1,10 +1,7 @@
 from pydantic import BaseModel
 
-from app.schemas.web.widget import PartialWidget
 
-
-class LibraryWidget(BaseModel):
+class LibraryWidgetResponse(BaseModel):
     id: int
     imageSrc: str
     label: str
-    config: PartialWidget

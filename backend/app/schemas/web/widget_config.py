@@ -3,7 +3,7 @@ from typing import Optional
 from pydantic import BaseModel
 
 
-class WidgetConfig(BaseModel):
+class WidgetConfigResponse(BaseModel):
     x: int
     y: int
     rows: int

@@ -4,5 +4,5 @@ from pydantic import BaseModel
 
 
 class SessionData(BaseModel):
-    id: str
+    aai_id: str
     username: Optional[str]
