@@ -8,10 +8,7 @@ between other services to improve a recommendations' system.
 **IMPORTANT!!! Backend working directory is `backend`, commends will work only in the catalog.**
 
 ### Run
-```bash
-cd backend
-docker-compose up --build
-```
+`docker-compose up --build`
 
 ### Migrate (in case of local run - not Docker)
 `alembic upgrade head`
