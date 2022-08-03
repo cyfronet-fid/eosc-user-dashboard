@@ -23,7 +23,7 @@ router = APIRouter()
 
 @router.get("", dependencies=[Depends(cookie)], response_model=List[WidgetResponse])
 async def get(
-        session_data: SessionData = Depends(verifier), db: Session = Depends(get_db)
+    session_data: SessionData = Depends(verifier), db: Session = Depends(get_db)
 ):
     # TODO: optimize
     widgets = get_widgets_by_user(db, session_data.aai_id)
@@ -37,21 +37,24 @@ async def get(
     responses={400: {"model": Message}},
 )
 async def post(
-        request: WidgetPostRequest,
-        session_data: SessionData = Depends(verifier),
-        db: Session = Depends(get_db),
+    request: WidgetPostRequest,
+    session_data: SessionData = Depends(verifier),
+    db: Session = Depends(get_db),
 ) -> WidgetResponse | JSONResponse:
     new_widget = create_widget(
-        db, request.libId, session_data.aai_id, WidgetConfigResponse(**request.config.__dict__)
+        db,
+        request.libId,
+        session_data.aai_id,
+        WidgetConfigResponse(**request.config.__dict__),
     )
     return await get_widget_with_data(db, new_widget)
 
 
 @router.delete("/{uid}", dependencies=[Depends(cookie)], response_model=Message)
 async def delete(
-        uid: int,
-        session_data: SessionData = Depends(verifier),
-        db: Session = Depends(get_db),
+    uid: int,
+    session_data: SessionData = Depends(verifier),
+    db: Session = Depends(get_db),
 ):
     delete_widget(db, uid, session_data.aai_id)
     return JSONResponse(
@@ -61,10 +64,10 @@ async def delete(
 
 @router.put("/{uid}", dependencies=[Depends(cookie)], response_model=WidgetResponse)
 async def put(
-        uid: int,
-        request: WidgetPutRequest,
-        session_data: SessionData = Depends(verifier),
-        db: Session = Depends(get_db),
+    uid: int,
+    request: WidgetPutRequest,
+    session_data: SessionData = Depends(verifier),
+    db: Session = Depends(get_db),
 ):
     updated_widget = update_widget(db, uid, session_data.aai_id, request.config)
     return await get_widget_with_data(db, updated_widget)
