@@ -116,7 +116,7 @@ export class GridComponent {
     await this._widgetsService.delete(widget.id).toPromise();
   }
 
-  itemChange = (t: any) => {
+  itemChange = (t: unknown) => {
     console.log(t);
   };
 }

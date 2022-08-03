@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  WidgetsRepositoryService,
-} from '../repositories/widgets.repository.service';
+import { WidgetsRepositoryService } from '../repositories/widgets.repository.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable, tap } from 'rxjs';
