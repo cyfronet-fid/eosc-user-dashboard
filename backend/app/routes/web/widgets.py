@@ -4,7 +4,6 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from starlette.responses import JSONResponse
 
-from app.crud.library_widget import get_library_widget_by_id
 from app.crud.widget import (
     create_widget,
     delete_widget,
@@ -12,9 +11,11 @@ from app.crud.widget import (
     update_widget,
 )
 from app.database import get_db
+from app.routes.web.widgets_utils import get_widget_with_data
 from app.schemas.message import Message
 from app.schemas.web.session_data import SessionData
 from app.schemas.web.widget import WidgetPostRequest, WidgetPutRequest, WidgetResponse
+from app.schemas.web.widget_config import WidgetConfigResponse
 from app.utils.cookie_validators import cookie, verifier
 
 router = APIRouter()
@@ -22,19 +23,11 @@ router = APIRouter()
 
 @router.get("", dependencies=[Depends(cookie)], response_model=List[WidgetResponse])
 async def get(
-    session_data: SessionData = Depends(verifier), db: Session = Depends(get_db)
+        session_data: SessionData = Depends(verifier), db: Session = Depends(get_db)
 ):
     # TODO: optimize
     widgets = get_widgets_by_user(db, session_data.aai_id)
-    return [
-        *map(
-            lambda widget: {
-                **widget.__dict__,
-                **get_library_widget_by_id(db, widget.libId).config,
-            },
-            widgets,
-        )
-    ]
+    return [await get_widget_with_data(db, widget) for widget in widgets]
 
 
 @router.post(
@@ -44,28 +37,21 @@ async def get(
     responses={400: {"model": Message}},
 )
 async def post(
-    request: WidgetPostRequest,
-    session_data: SessionData = Depends(verifier),
-    db: Session = Depends(get_db),
+        request: WidgetPostRequest,
+        session_data: SessionData = Depends(verifier),
+        db: Session = Depends(get_db),
 ) -> WidgetResponse | JSONResponse:
-    library_widget = get_library_widget_by_id(db, request.libId)
     new_widget = create_widget(
-        db, request.libId, session_data.aai_id, request.config.__dict__
+        db, request.libId, session_data.aai_id, WidgetConfigResponse(**request.config.__dict__)
     )
-    widget_fields = new_widget.__dict__
-    widget_config = widget_fields.pop("config")
-    return WidgetResponse(
-        **widget_fields,
-        label=library_widget.label,
-        config={**widget_config, **library_widget.config}
-    )
+    return await get_widget_with_data(db, new_widget)
 
 
 @router.delete("/{uid}", dependencies=[Depends(cookie)], response_model=Message)
 async def delete(
-    uid: int,
-    session_data: SessionData = Depends(verifier),
-    db: Session = Depends(get_db),
+        uid: int,
+        session_data: SessionData = Depends(verifier),
+        db: Session = Depends(get_db),
 ):
     delete_widget(db, uid, session_data.aai_id)
     return JSONResponse(
@@ -74,18 +60,11 @@ async def delete(
 
 
 @router.put("/{uid}", dependencies=[Depends(cookie)], response_model=WidgetResponse)
-async def patch(
-    uid: int,
-    request: WidgetPutRequest,
-    session_data: SessionData = Depends(verifier),
-    db: Session = Depends(get_db),
+async def put(
+        uid: int,
+        request: WidgetPutRequest,
+        session_data: SessionData = Depends(verifier),
+        db: Session = Depends(get_db),
 ):
     updated_widget = update_widget(db, uid, session_data.aai_id, request.config)
-    library_widget = get_library_widget_by_id(db, updated_widget.libId)
-    widget_fields = updated_widget.__dict__
-    widget_config = widget_fields.pop("config")
-    return WidgetResponse(
-        **widget_fields,
-        label=library_widget.label,
-        config={**widget_config, **library_widget.config}
-    )
+    return await get_widget_with_data(db, updated_widget)
