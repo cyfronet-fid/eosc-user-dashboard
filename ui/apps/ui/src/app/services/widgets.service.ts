@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import {
-  IWidget,
   WidgetsRepositoryService,
 } from '../repositories/widgets.repository.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable, tap } from 'rxjs';
+import { IWidget } from '../repositories/widget.interface';
 
 @Injectable({
   providedIn: 'root',

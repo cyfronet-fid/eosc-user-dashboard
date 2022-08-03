@@ -8,9 +8,17 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { GridComponent } from './grid.component';
 import { GridsterModule } from 'angular-gridster2';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { WidgetContentComponent } from './widget-content.component';
+import { FeedsComponent } from './feeds.component';
 
 @NgModule({
-  declarations: [MainHeaderComponent, LibraryComponent, GridComponent],
+  declarations: [
+    MainHeaderComponent,
+    LibraryComponent,
+    GridComponent,
+    WidgetContentComponent,
+    FeedsComponent,
+  ],
   imports: [
     CommonModule,
     NzDrawerModule,

@@ -1,10 +1,10 @@
 import { Component, Output } from '@angular/core';
 import {
-  ILibrarySection,
   LibraryWidgetsRepositoryService,
 } from '../repositories/library-widgets.repository.service';
 import { Observable } from 'rxjs';
 import { WidgetsService } from '../services/widgets.service';
+import {ILibrarySection} from "../repositories/library-section.interface";
 
 @Component({
   selector: 'ui-library',

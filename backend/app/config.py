@@ -7,6 +7,7 @@ from starlette.datastructures import Secret
 config = Config(environ=os.environ)
 IS_TESTING = config("TESTING", cast=bool, default=False)
 
+# APP SETUP
 PROJECT_NAME = "EOSC Profile Service"
 VERSION = "0.0.1"
 SECRET_KEY = config("SECRET_KEY", cast=Secret, default="CHANGEME")
@@ -16,9 +17,12 @@ DATABASE_URI = config(
     default="postgresql+psycopg2://user-dashboard:user-dashboard@localhost:5432/user-dashboard",
 )
 
+# SERVICES URLs
 BACKEND_BASE_URL = config("BACKEND_BASE_URL", cast=str, default="http://localhost:8000")
 UI_BASE_URL = config("UI_BASE_URL", cast=str, default="http://localhost:4200")
+FEEDS_BASE_URL = config("FEEDS_BASE_URL", cast=str, default="https://eosc-portal.eu/news-json-date")
 
+# OIDC
 OIDC_HOST = config("OIDC_HOST", cast=str, default="https://aai-demo.eosc-portal.eu")
 OIDC_ISSUER = config("OIDC_ISSUER", cast=str, default=f"{OIDC_HOST}/oidc/")
 OIDC_CLIENT_ID = config("OIDC_CLIENT_ID", cast=str, default="NO_CLIENT_ID")

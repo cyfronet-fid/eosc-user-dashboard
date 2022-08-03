@@ -10,15 +10,7 @@ import {
   withEntities,
 } from '@ngneat/elf-entities';
 import { LibraryWidgetsRepositoryService } from './library-widgets.repository.service';
-import { GridsterItem } from 'angular-gridster2';
-
-export interface IWidget<T> {
-  id: number;
-  config: Partial<GridsterItem>;
-  label: string;
-  data: T;
-  type: string;
-}
+import { IWidget } from './widget.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -35,11 +27,7 @@ export class WidgetsRepositoryService {
 
   constructor(
     private _libraryWidgetsRepository: LibraryWidgetsRepositoryService
-  ) {
-    // this._libraryWidgetsRepository.getNewWidgets$
-    //   .pipe(untilDestroyed(this))
-    //   .subscribe((widget) => this.add(widget));
-  }
+  ) {}
 
   set = (widgets: IWidget<unknown>[]) =>
     this._store.update(setEntities(widgets));
