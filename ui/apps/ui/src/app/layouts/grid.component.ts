@@ -1,29 +1,25 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { GridsterConfig } from 'angular-gridster2';
 import { gridConfig } from './grid.config';
-import {
-  IWidget,
-  WidgetsRepositoryService,
-} from '../repositories/widgets.repository.service';
+import { WidgetsRepositoryService } from '../repositories/widgets.repository.service';
 import { Observable } from 'rxjs';
 import { WidgetsService } from '../services/widgets.service';
+import { IWidget } from '../repositories/widget.interface';
 
 @Component({
   selector: 'ui-grid',
   template: `
     <gridster [options]="gridConfig">
       <gridster-item
-        [item]="$any(widget.config)"
         *ngFor="let widget of widgets$ | async"
+        [item]="$any(widget.config)"
+        (itemChange)="itemChange($event)"
       >
         <div class="grid-item-header">
           <span class="grid-item-label"
             ><b>{{ widget.label }}</b></span
           >
           <div class="extras">
-            <div class="icon">
-              <img src="assets/pen-solid.svg" alt="..." />
-            </div>
             <div
               class="icon"
               (mousedown)="remove($event, widget)"
@@ -33,6 +29,10 @@ import { WidgetsService } from '../services/widgets.service';
             </div>
           </div>
         </div>
+        <ui-widget-content
+          [lib]="widget.libId"
+          [data]="widget.data"
+        ></ui-widget-content>
       </gridster-item>
     </gridster>
   `,
@@ -115,4 +115,8 @@ export class GridComponent {
     $event.stopPropagation();
     await this._widgetsService.delete(widget.id).toPromise();
   }
+
+  itemChange = (t: any) => {
+    console.log(t);
+  };
 }

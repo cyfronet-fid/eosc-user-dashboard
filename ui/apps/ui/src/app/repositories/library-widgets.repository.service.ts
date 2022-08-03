@@ -6,19 +6,7 @@ import {
   withActiveId,
   withEntities,
 } from '@ngneat/elf-entities';
-import { IWidget } from './widgets.repository.service';
-
-export interface ILibrarySection {
-  id: number;
-  label: string;
-  widgets: ILibraryWidget<unknown>[];
-}
-export interface ILibraryWidget<T> {
-  id: number;
-  imageSrc: string;
-  label: string;
-  config: Partial<IWidget<T>>;
-}
+import { ILibrarySection } from './library-section.interface';
 
 @Injectable({
   providedIn: 'root',

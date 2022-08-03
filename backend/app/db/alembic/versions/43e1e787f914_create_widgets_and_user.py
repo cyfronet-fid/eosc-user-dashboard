@@ -61,31 +61,11 @@ def upgrade() -> None:
         library_widget_table,
         [
             {
-                "imageSrc": "assets/error.png",
-                "label": "Projects",
+                "imageSrc": "assets/feeds.svg",
+                "label": "Latest news",
                 "config": json.dumps(
                     {
-                        "label": "Recommendation",
-                        "config": {"cols": 2, "rows": 1, "minItemCols": 2},
-                    }
-                ),
-            },
-            {
-                "imageSrc": "assets/error.png",
-                "label": "Services",
-                "config": json.dumps(
-                    {
-                        "label": "Recommendation",
-                        "config": {"cols": 2, "rows": 1, "minItemCols": 2},
-                    }
-                ),
-            },
-            {
-                "imageSrc": "assets/error.png",
-                "label": "Feeds",
-                "config": json.dumps(
-                    {
-                        "label": "Feeds",
+                        "label": "Latest news",
                         "config": {"cols": 2, "rows": 1, "minItemCols": 2},
                     }
                 ),

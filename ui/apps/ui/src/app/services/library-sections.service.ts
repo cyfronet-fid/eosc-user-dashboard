@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {
-  ILibrarySection,
   LibraryWidgetsRepositoryService,
 } from '../repositories/library-widgets.repository.service';
 import { environment } from '../../environments/environment';
 import { Observable, tap } from 'rxjs';
+import {ILibrarySection} from "../repositories/library-section.interface";
 
 @Injectable({
   providedIn: 'root',
