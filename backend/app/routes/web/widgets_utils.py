@@ -10,7 +10,7 @@ from app.services.latest_news_service import LatestNewsService
 LATEST_NEWS_WIDGET: int = 1
 
 
-async def fetch_data_by(lib: int, **args) -> Any | List[Any] | None:
+async def fetch_data_by(lib: int) -> Any | List[Any] | None:
     if lib == LATEST_NEWS_WIDGET:
         return await LatestNewsService.fetch()
 

@@ -12,11 +12,11 @@ import { FeedComponent } from './feed.component';
     FeedComponent,
   ],
   imports: [CommonModule],
-    exports: [
-        LibraryWidgetComponent,
-        LibraryWidgetsSectionComponent,
-        LibraryWidgetsSectionComponent,
-        FeedComponent,
-    ],
+  exports: [
+    LibraryWidgetComponent,
+    LibraryWidgetsSectionComponent,
+    LibraryWidgetsSectionComponent,
+    FeedComponent,
+  ],
 })
 export class ComponentsModule {}
