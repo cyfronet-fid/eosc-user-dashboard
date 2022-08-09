@@ -2,7 +2,7 @@ from typing import List
 
 from sqlalchemy.orm import Session
 
-from app.models.widget import Widget
+from app.models.web.widget import Widget
 from app.schemas.web.widget_config import WidgetConfigResponse
 
 

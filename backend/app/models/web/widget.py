@@ -1,7 +1,7 @@
 from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy.dialects import postgresql
 
 from app.database import Base
-from app.db.utils import Json
 
 target_metadata = [Base.metadata]
 
@@ -13,4 +13,4 @@ class Widget(Base):
     libId = Column(Integer, ForeignKey("library_widget.id"))
     userId = Column(String, ForeignKey("user.aaiId"))
 
-    config = Column(Json, nullable=False)
+    config = Column(postgresql.JSON, nullable=False)

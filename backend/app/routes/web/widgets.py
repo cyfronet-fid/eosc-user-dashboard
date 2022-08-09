@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from starlette.responses import JSONResponse
 
-from app.crud.widget import (
+from app.crud.web.widget import (
     create_widget,
     delete_widget,
     get_widgets_by_user,

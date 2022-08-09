@@ -24,6 +24,13 @@ FEEDS_BASE_URL = config(
     "FEEDS_BASE_URL", cast=str, default="https://eosc-portal.eu/news-json-date"
 )
 
+# PROVIDERS RIGHTS
+GLOBAL_ACCESS_FIELDS = [
+    "favorites.services",
+    "favorites.projects",
+    "favorites.trainings",
+]
+
 # OIDC
 OIDC_HOST = config("OIDC_HOST", cast=str, default="https://aai-demo.eosc-portal.eu")
 OIDC_ISSUER = config("OIDC_ISSUER", cast=str, default=f"{OIDC_HOST}/oidc/")
