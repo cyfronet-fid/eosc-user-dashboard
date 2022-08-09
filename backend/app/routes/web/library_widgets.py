@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from app.crud.library_widget import get_library_widgets_by_ids
+from app.crud.web.library_widget import get_library_widgets_by_ids
 from app.database import get_db
 from app.routes.web.widgets_utils import LATEST_NEWS_WIDGET
 from app.schemas.web.library_widget import LibraryWidgetResponse

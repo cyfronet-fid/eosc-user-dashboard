@@ -1,8 +1,8 @@
 from sqlalchemy import Column, Integer, String
+from sqlalchemy.dialects import postgresql
 from sqlalchemy.orm import relationship
 
 from app.database import Base
-from app.db.utils import Json
 
 target_metadata = [Base.metadata]
 
@@ -15,5 +15,5 @@ class LibraryWidget(Base):
     label = Column(String, nullable=False)
 
     # Partial widget response
-    config = Column(Json, nullable=False)
+    config = Column(postgresql.JSON, nullable=False)
     widgets = relationship("Widget")

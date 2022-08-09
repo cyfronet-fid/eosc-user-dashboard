@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String
+from sqlalchemy import Boolean, Column, String
 from sqlalchemy.orm import relationship
 
 from app.database import Base
@@ -11,4 +11,10 @@ class User(Base):
 
     aaiId = Column(String, primary_key=True, unique=True, nullable=False)
 
+    provider = Column(Boolean, default=False, nullable=False)
+    admin = Column(Boolean, default=False, nullable=False)
+    superAdmin = Column(Boolean, default=False, nullable=False)
+
     widgets = relationship("Widget")
+    data = relationship("UserData", uselist=False)
+    provider_rights = relationship("ProviderRights", uselist=False)

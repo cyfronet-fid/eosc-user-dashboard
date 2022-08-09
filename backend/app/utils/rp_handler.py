@@ -18,12 +18,12 @@ from oidcrp.rp_handler import RPHandler
 from app.config import OIDC_CONFIG, OIDC_JWT_ENCRYPT_CONFIG
 
 
-def _write_jwks_to(url_to_open, jwks_tempfile):
-    with urllib.request.urlopen(url_to_open) as url:
-        public_key_jwks = json.loads(url.read().decode())
+def _write_jwks_to(url_to_open, jwks_temp_file):
+    with urllib.request.urlopen(url_to_open) as response:
+        public_key_jwks = json.loads(response.read().decode())
         jwks = json.dumps(public_key_jwks, indent=2).encode("utf-8")
-        jwks_tempfile.write(jwks)
-        jwks_tempfile.seek(0)
+        jwks_temp_file.write(jwks)
+        jwks_temp_file.seek(0)
 
 
 def _get_key_jar(config):

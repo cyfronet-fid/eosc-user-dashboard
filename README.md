@@ -10,6 +10,9 @@ between other services to improve a recommendations' system.
 ### Run
 `docker-compose up --build`
 
+### Create new migration
+`alembic revision -m "<revision name>"`
+
 ### Migrate (in case of local run - not Docker)
 `alembic upgrade head`
 
