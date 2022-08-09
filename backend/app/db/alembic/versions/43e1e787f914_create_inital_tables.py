@@ -97,12 +97,10 @@ def upgrade() -> None:
             {
                 "imageSrc": "assets/feeds.svg",
                 "label": "Latest news",
-                "config": json.dumps(
-                    {
-                        "label": "Latest news",
-                        "config": {"cols": 2, "rows": 1, "minItemCols": 2},
-                    }
-                ),
+                "config": {
+                    "label": "Latest news",
+                    "config": {"cols": 2, "rows": 1, "minItemCols": 2},
+                },
             },
         ],
     )
