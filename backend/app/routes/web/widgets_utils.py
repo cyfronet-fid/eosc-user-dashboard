@@ -2,10 +2,10 @@ from typing import Any, List
 
 from sqlalchemy.orm import Session
 
-from app.crud.library_widget import get_library_widget_by_id
-from app.models.widget import Widget
+from app.crud.web.library_widget import get_library_widget_by_id
+from app.models.web.widget import Widget
 from app.schemas.web.widget import WidgetResponse
-from app.services.latest_news_service import LatestNewsService
+from app.services.web.latest_news_service import LatestNewsService
 
 LATEST_NEWS_WIDGET: int = 1
 

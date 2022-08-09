@@ -54,7 +54,6 @@ async def auth_checkin(code: str, state: str, db: Session = Depends(get_db)):
         return RedirectResponse(
             status_code=status.HTTP_401_UNAUTHORIZED,
             url=UI_BASE_URL,
-            headers={"WWW-Authenticate": "Bearer"},
         )
 
 

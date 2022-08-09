@@ -17,6 +17,8 @@ SQLAlchemy = "*"
 Faker = "*"
 httpx = "*"
 aiocache = "*"
+pyjwt = {extras = ["crypto"], version = "*"}
+cachetools = "*"
 
 [dev-packages]
 black = "*"
