@@ -1,7 +1,7 @@
 """create widgets and user
 
 Revision ID: 43e1e787f914
-Revises: 
+Revises:
 Create Date: 2022-07-28 09:39:21.963817
 
 """
@@ -100,6 +100,54 @@ def upgrade() -> None:
                 "config": {
                     "label": "Latest news",
                     "config": {"cols": 2, "rows": 1, "minItemCols": 2},
+                },
+            },
+            {
+                "imageSrc": "assets/favourites.svg",
+                "label": "Favourites",
+                "config": {
+                    "label": "Favourites",
+                    "config": {"cols": 1, "rows": 2, "minItemCols": 1},
+                },
+            },
+            {
+                "imageSrc": "assets/favourites.svg",
+                "label": "Service recommendations",
+                "config": {
+                    "label": "Service recommendations",
+                    "config": {"cols": 1, "rows": 1, "minItemCols": 1},
+                },
+            },
+            {
+                "imageSrc": "assets/feeds.svg",
+                "label": "Training recommendations",
+                "config": {
+                    "label": "Training recommendations",
+                    "config": {"cols": 1, "rows": 1, "minItemCols": 2},
+                },
+            },
+            {
+                "imageSrc": "assets/favourites.svg",
+                "label": "Publication recommendations",
+                "config": {
+                    "label": "Publication recommendations",
+                    "config": {"cols": 1, "rows": 2, "minItemCols": 1},
+                },
+            },
+            {
+                "imageSrc": "assets/favourites.svg",
+                "label": "Dataset recommendations",
+                "config": {
+                    "label": "Dataset recommendations",
+                    "config": {"cols": 1, "rows": 1, "minItemCols": 1},
+                },
+            },
+            {
+                "imageSrc": "assets/favourites.svg",
+                "label": "Software recommendations",
+                "config": {
+                    "label": "Software recommendations",
+                    "config": {"cols": 1, "rows": 2, "minItemCols": 1},
                 },
             },
         ],

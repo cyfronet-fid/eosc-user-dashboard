@@ -524,6 +524,45 @@ svg:not(:root).svg-inline--fa {
   border-radius: 2rem;
 }
 
+.ant-drawer-header {
+  color: #fff;
+  background: rgb(11,69,216);
+  background: linear-gradient(90deg, rgba(6,181,228,1) 0%, rgba(11,69,216,1) 100%);
+  border-radius: 0;
+}
+
+.ant-drawer-title {
+  color: #fff;
+  font-size: 21px;
+  font-weight: bold;
+}
+
+.library-title {
+  text-transform: uppercase;
+}
+
+.widget-content {
+  border: 1px solid rgba(28,49,58,.1);
+  border-radius: 5px;
+  padding: 15px 0 20px !important;
+  overflow: hidden;
+  min-height: 145px;
+  box-shadow: 0 .125rem .2rem rgba(0,0,0,.055);
+}
+
+.widget-content p {
+  margin: 0;
+  line-height: 19px;
+}
+
+.widget-icon {
+  padding-bottom: 15px !important;
+}
+
+
+.widget-content:hover {
+  box-shadow: 0 .125rem .35rem rgba(0,0,0,.085);
+}
 @media only screen and (max-width: 992px) {
   .display-1 {
     font-size: 1.5rem;
@@ -560,5 +599,15 @@ svg:not(:root).svg-inline--fa {
     position: relative;
     margin-bottom: 15px;
     display: block;
+  }
+  .ant-drawer-content-wrapper {
+    width: 300px !important;
+  }
+  #lib-line,
+  #menu-btn {
+    left: 300px !important;
+  }
+  .ant-drawer-body {
+    padding: 15px 10px;
   }
 }

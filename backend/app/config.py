@@ -23,6 +23,24 @@ UI_BASE_URL = config("UI_BASE_URL", cast=str, default="https://localhost:4200/")
 FEEDS_BASE_URL = config(
     "FEEDS_BASE_URL", cast=str, default="https://eosc-portal.eu/news-json-date"
 )
+SERVICE_FAVOURITES_URL = config("SERVICE_FAVOURITES_URL", cast=str, default="")
+SERVICE_RECOMMENDATIONS_URL = config(
+    "SERVICE_RECOMMENDATIONS_URL", cast=str, default=""
+)
+TRAINING_RECOMMENDATIONS_URL = config(
+    "TRAINING_RECOMMENDATIONS_URL", cast=str, default=""
+)
+PUBLICATION_RECOMMENDATIONS_URL = config(
+    "PUBLICATION_RECOMMENDATIONS_URL", cast=str, default=""
+)
+DATASET_RECOMMENDATIONS_URL = config(
+    "DATASET_RECOMMENDATIONS_URL", cast=str, default=""
+)
+SOFTWARE_RECOMMENDATIONS_URL = config(
+    "SOFTWARE_RECOMMENDATIONS_URL", cast=str, default=""
+)
+ORDERED_SERVICES_URL = config("ORDERED_SERVICES_URL", cast=str, default="")
+USER_PROJECTS_URL = config("USER_PROJECTS_URL", cast=str, default="")
 
 # PROVIDERS RIGHTS
 GLOBAL_ACCESS_FIELDS = [

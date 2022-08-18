@@ -1,5 +1,13 @@
 import { Component, Input } from '@angular/core';
-import { LATEST_NEWS_WIDGET } from './widget-content.utils';
+import {
+  DATASET_RECOMMENDATIONS_WIDGET,
+  FAVOURITES_WIDGET,
+  LATEST_NEWS_WIDGET,
+  PUBLICATION_RECOMMENDATIONS_WIDGET,
+  SERVICES_RECOMMENDATIONS_WIDGET,
+  SOFTWARE_RECOMMENDATIONS_WIDGET,
+  TRAINING_RECOMMENDATIONS_WIDGET,
+} from './widget-content.utils';
 
 @Component({
   selector: 'ui-widget-content',
@@ -8,12 +16,36 @@ import { LATEST_NEWS_WIDGET } from './widget-content.utils';
       <ng-container *ngSwitchCase="LATEST_NEWS_WIDGET">
         <ui-feeds [feeds]="$any(data)"></ui-feeds>
       </ng-container>
+      <ng-container *ngSwitchCase="FAVOURITES_WIDGET">
+        <ui-favourites [favourites]="$any(data)"></ui-favourites>
+      </ng-container>
+      <ng-container *ngSwitchCase="SERVICES_RECOMMENDATIONS_WIDGET">
+        <ui-recommendations [resources]="$any(data)"></ui-recommendations>
+      </ng-container>
+      <ng-container *ngSwitchCase="TRAINING_RECOMMENDATIONS_WIDGET">
+        <ui-recommendations [resources]="$any(data)"></ui-recommendations>
+      </ng-container>
+      <ng-container *ngSwitchCase="PUBLICATION_RECOMMENDATIONS_WIDGET">
+        <ui-recommendations [resources]="$any(data)"></ui-recommendations>
+      </ng-container>
+      <ng-container *ngSwitchCase="DATASET_RECOMMENDATIONS_WIDGET">
+        <ui-recommendations [resources]="$any(data)"></ui-recommendations>
+      </ng-container>
+      <ng-container *ngSwitchCase="SOFTWARE_RECOMMENDATIONS_WIDGET">
+        <ui-recommendations [resources]="$any(data)"></ui-recommendations>
+      </ng-container>
     </ng-container>
   `,
   styles: [],
 })
 export class WidgetContentComponent {
   LATEST_NEWS_WIDGET = LATEST_NEWS_WIDGET;
+  FAVOURITES_WIDGET = FAVOURITES_WIDGET;
+  SERVICES_RECOMMENDATIONS_WIDGET = SERVICES_RECOMMENDATIONS_WIDGET;
+  TRAINING_RECOMMENDATIONS_WIDGET = TRAINING_RECOMMENDATIONS_WIDGET;
+  PUBLICATION_RECOMMENDATIONS_WIDGET = PUBLICATION_RECOMMENDATIONS_WIDGET;
+  DATASET_RECOMMENDATIONS_WIDGET = DATASET_RECOMMENDATIONS_WIDGET;
+  SOFTWARE_RECOMMENDATIONS_WIDGET = SOFTWARE_RECOMMENDATIONS_WIDGET;
 
   @Input()
   lib!: number;

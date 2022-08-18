@@ -73,7 +73,7 @@
         "ssl": true,
         "sslCert": ".angular-ssl/server.crt.pem",
         "sslKey": ".angular-ssl/server.key.pem",
-        "proxyConfig": "proxy.conf.json"
+        "proxyConfig": "proxy.external.conf.json"
       },
       "defaultConfiguration": "development"
     },

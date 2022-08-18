@@ -7,7 +7,7 @@ import { ILibrarySection } from '../repositories/library-section.interface';
 @Component({
   selector: 'ui-library',
   template: ` <div id="menu-btn-overlap" (click)="visible = !visible">
-      {{ visible ? '<' : '>' }}
+      <img src="assets/arrow.png" alt="open" />
     </div>
     <div id="lib-line-overlap"></div>
     <nz-drawer
@@ -22,7 +22,11 @@ import { ILibrarySection } from '../repositories/library-section.interface';
       <ng-container *nzDrawerContent>
         <div id="lib-line"></div>
         <div id="menu-btn" (click)="visible = !visible">
-          {{ visible ? '<' : '>' }}
+          <img
+            src="assets/arrow.png"
+            alt="open"
+            style="transform: rotate(180deg);"
+          />
         </div>
         <div id="lib-container">
           <div id="lib-widgets" *ngFor="let section of sections$ | async">
@@ -49,7 +53,7 @@ import { ILibrarySection } from '../repositories/library-section.interface';
       #lib-line-overlap {
         position: fixed;
         height: 100vh;
-        border-left: 4px solid lightgray;
+        border-left: 4px solid #0b3ed7;
         top: 0;
         z-index: 999;
       }
@@ -59,8 +63,13 @@ import { ILibrarySection } from '../repositories/library-section.interface';
       #menu-btn,
       #menu-btn-overlap {
         position: fixed;
-        background: lightgray;
-        padding: 20px 10px;
+        background: rgb(11, 69, 216);
+        background: linear-gradient(
+          90deg,
+          rgba(11, 69, 216, 1) 0%,
+          rgba(6, 181, 228, 1) 100%
+        );
+        padding: 30px 10px;
         top: 50%;
         cursor: pointer;
         border-radius: 0 5px 5px 0;

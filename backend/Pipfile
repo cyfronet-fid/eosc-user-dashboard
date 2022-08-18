@@ -20,6 +20,7 @@ aiocache = "*"
 pyjwt = {extras = ["crypto"], version = "*"}
 cachetools = "*"
 python-benedict = "*"
+autopep8 = "*"
 
 [dev-packages]
 black = "*"

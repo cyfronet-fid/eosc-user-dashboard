@@ -4,7 +4,7 @@ import { ILibraryWidget } from '../repositories/library-widget.interface';
 @Component({
   selector: 'ui-library-widgets-section',
   template: `<div>
-    <p>
+    <p class="library-title">
       <b>{{ label }}</b>
     </p>
     <div class="row gy-2 gx-2">

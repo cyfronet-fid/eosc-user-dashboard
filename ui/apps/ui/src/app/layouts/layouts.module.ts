@@ -10,6 +10,8 @@ import { GridsterModule } from 'angular-gridster2';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { WidgetContentComponent } from './widget-content.component';
 import { FeedsComponent } from './feeds.component';
+import { FavouritesComponent } from './favourites.component';
+import { RecommendationsComponent } from './recommendations.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { FeedsComponent } from './feeds.component';
     GridComponent,
     WidgetContentComponent,
     FeedsComponent,
+    FavouritesComponent,
+    RecommendationsComponent,
   ],
   imports: [
     CommonModule,
