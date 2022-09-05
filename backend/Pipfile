@@ -19,6 +19,7 @@ httpx = "*"
 aiocache = "*"
 pyjwt = {extras = ["crypto"], version = "*"}
 cachetools = "*"
+python-benedict = "*"
 
 [dev-packages]
 black = "*"

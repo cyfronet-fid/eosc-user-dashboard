@@ -19,7 +19,7 @@ DATABASE_URI = config(
 
 # SERVICES URLs
 BACKEND_BASE_URL = config("BACKEND_BASE_URL", cast=str, default="http://localhost:8000")
-UI_BASE_URL = config("UI_BASE_URL", cast=str, default="http://localhost:4200")
+UI_BASE_URL = config("UI_BASE_URL", cast=str, default="https://localhost:4200/")
 FEEDS_BASE_URL = config(
     "FEEDS_BASE_URL", cast=str, default="https://eosc-portal.eu/news-json-date"
 )
