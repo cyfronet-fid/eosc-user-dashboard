@@ -1,7 +1,19 @@
+from pydantic import BaseModel
 from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.dialects import postgresql
 
 from app.database import Base
+
+
+class Favourites(BaseModel):
+    services: set[str] = []
+    publications: set[str] = []
+    projects: set[str] = []
+    trainings: set[str] = []
+
+
+class UserDataProps(BaseModel):
+    favorites: Favourites = Favourites()
 
 
 class UserData(Base):

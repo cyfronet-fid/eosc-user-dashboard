@@ -1,9 +1,8 @@
-from typing import Any, Dict
-
 from sqlalchemy.orm import Session
 from sqlalchemy.orm.attributes import flag_modified
 
 from app.models import UserData
+from app.models.api.user_data import UserDataProps
 from app.models.user import User
 from app.utils.dict_utils import deep_merge
 
@@ -19,7 +18,7 @@ def create_user_data(db: Session, user: User, data=None) -> UserData:
     return user_data
 
 
-def update_user_data(db: Session, user: User, new_data: Dict[str, Any]) -> UserData:
+def update_user_data(db: Session, user: User, new_data: UserDataProps) -> UserData:
     user_data = user.data
     user_data.data = deep_merge(new_data, user.data.data)
     flag_modified(user_data, "data")
