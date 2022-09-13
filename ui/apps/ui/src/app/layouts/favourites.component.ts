@@ -4,7 +4,7 @@ import { IResource } from '../repositories/resource.interface';
 @Component({
   selector: 'ui-favourites',
   template: `
-    <div id="container">
+    <div class="container">
       <ui-favourite
         *ngFor="let favourite of favourites"
         [favourite]="favourite"
@@ -13,7 +13,7 @@ import { IResource } from '../repositories/resource.interface';
   `,
   styles: [
     `
-      #container {
+      .container {
         overflow-y: auto;
         max-height: calc(100% - 96px);
         width: calc(100% - 24px);

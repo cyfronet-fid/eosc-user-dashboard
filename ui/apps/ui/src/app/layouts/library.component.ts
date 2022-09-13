@@ -55,7 +55,6 @@ import { ILibrarySection } from '../repositories/library-section.interface';
         height: 100vh;
         border-left: 4px solid #0b3ed7;
         top: 0;
-        z-index: 999;
       }
       #lib-line {
         left: 378px;

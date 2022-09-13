@@ -4,19 +4,19 @@ import { IFeed } from '../repositories/feed.interface';
 @Component({
   selector: 'ui-feed',
   template: `
-    <div id="container">
+    <div class="container">
       <p>
         <small class="date">{{ feed.post_date }}</small>
       </p>
       <p>
-        <a class="title" href="#">{{ feed.title }}</a>
+        <a class="title" href="{{ feed.Path }}" target="_blank">
+          {{ feed.title }}
+        </a>
       </p>
       <article>
         <p>
           <small>
-            <i>
-              {{ feed.body }}
-            </i>
+            <i [innerHTML]="feed.body"></i>
           </small>
         </p>
       </article>
@@ -29,7 +29,7 @@ import { IFeed } from '../repositories/feed.interface';
       }
       .title {
       }
-      #container {
+      .container {
         margin-bottom: 12px;
         padding: 20px;
         border-radius: 5px;

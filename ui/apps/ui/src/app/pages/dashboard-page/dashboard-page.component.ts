@@ -8,14 +8,15 @@ import { WidgetsService } from '../../services/widgets.service';
   selector: 'ui-dashboard',
   template: `
     <ui-library></ui-library>
-    <div id="container">
+    <div class="container">
       <ui-grid></ui-grid>
     </div>
   `,
   styles: [
     `
-      #container {
-        width: 100vw;
+      .container {
+        display: block;
+        width: 100%;
         height: calc(100vh - 36px);
       }
     `,

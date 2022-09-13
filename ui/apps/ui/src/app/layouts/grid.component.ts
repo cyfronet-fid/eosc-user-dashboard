@@ -43,9 +43,11 @@ import { IWidget } from '../repositories/widget.interface';
         display: inline-block;
         padding: 12px;
       }
+
       .extras {
         float: right;
       }
+
       .icon {
         position: relative;
         width: 48px;
@@ -54,6 +56,7 @@ import { IWidget } from '../repositories/widget.interface';
         border-radius: 5px;
         display: inline-block;
       }
+
       .icon img {
         position: absolute;
         width: 14px;
@@ -68,28 +71,33 @@ import { IWidget } from '../repositories/widget.interface';
       gridster {
         background: white;
       }
+
       gridster-item {
-        background-color: rgba(0, 0, 0, 0.02);
+        background-color: rgba(0, 0, 0, 0.2);
         border-radius: 5px;
       }
+
       gridster-item.gridster-item-resizing,
       gridster-item.gridster-item-moving {
         -webkit-box-shadow: 1px 1px 14px -5px rgba(66, 68, 90, 1);
         -moz-box-shadow: 1px 1px 14px -5px rgba(66, 68, 90, 1);
         box-shadow: 1px 1px 14px -5px rgba(66, 68, 90, 1);
       }
-      gridster ::ng-deep gridster-preview {
+
+      gridster gridster-preview {
         background: rgba(0, 0, 0, 0.02) !important;
       }
 
       gridster ::ng-deep .gridster-column,
       gridster ::ng-deep .gridster-row {
-        border-color: rgba(0, 0, 0, 0.02) !important;
+        border: 1px solid red !important;
       }
+
       [draggable] {
-        user-select: none;
+        user-select: auto;
         cursor: pointer;
       }
+
       router-outlet + * {
         width: 100%;
         overflow: auto;

@@ -4,7 +4,7 @@ import { IResource } from '../repositories/resource.interface';
 @Component({
   selector: 'ui-resource',
   template: `
-    <div id="container" *ngIf="resource !== undefined">
+    <div class="container" *ngIf="resource !== undefined">
       <p>
         <a class="title" href="{{ resource.url }}" target="_blank">{{
           resource.title
@@ -34,7 +34,7 @@ import { IResource } from '../repositories/resource.interface';
       }
       .title {
       }
-      #container {
+      .container {
         margin-bottom: 12px;
         padding: 20px;
         border-radius: 5px;

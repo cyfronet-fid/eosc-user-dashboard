@@ -559,7 +559,11 @@ svg:not(:root).svg-inline--fa {
   padding-bottom: 15px !important;
 }
 
-
+@media (min-width: 1400px) {
+  .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    max-width: 100%;
+  }
+}
 .widget-content:hover {
   box-shadow: 0 .125rem .35rem rgba(0,0,0,.085);
 }
