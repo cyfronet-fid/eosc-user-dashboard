@@ -4,17 +4,21 @@ import { IFeed } from '../repositories/feed.interface';
 @Component({
   selector: 'ui-feeds',
   template: `
-    <div id="container">
-      <ui-feed *ngFor="let feed of feeds" [feed]="feed"></ui-feed>
+    <div class="container">
+      <ui-feed
+        *ngFor="let feed of feeds.slice(0, 9)"
+        [feed]="feed"
+        class="widget-column-container"
+      ></ui-feed>
     </div>
   `,
   styles: [
     `
-      #container {
+      .container {
         overflow-y: auto;
         max-height: calc(100% - 96px);
-        width: calc(100% - 24px);
-        margin: 12px;
+        margin: 0;
+        padding: 0;
       }
     `,
   ],

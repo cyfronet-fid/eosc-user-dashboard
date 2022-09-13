@@ -4,27 +4,19 @@ import { IResource } from '../repositories/resource.interface';
 @Component({
   selector: 'ui-resource',
   template: `
-    <div id="container" *ngIf="resource !== undefined">
-      <p>
-        <a class="title" href="{{ resource.url }}" target="_blank">{{
-          resource.title
-        }}</a>
+    <div class="container" *ngIf="resource !== undefined">
+      <p class="title">
+        <a href="{{ resource.url }}" target="_blank">{{ resource.title }}</a>
       </p>
-      <article>
-        <p>
-          <small>
-            <i>
-              {{ resource.description }}
-            </i>
-          </small>
-        </p>
-      </article>
       <ng-container *ngIf="resource.organisation !== undefined">
-        <p>Organisation: {{ resource.organisation }}</p>
+        <p class="additional">Organisation: {{ resource.organisation }}</p>
       </ng-container>
       <ng-container *ngIf="resource.authors !== undefined">
-        <p>Authors: {{ resource.authors }}</p>
+        <p class="additional">Authors: {{ resource.authors }}</p>
       </ng-container>
+      <article>
+        <p class="description" [innerHTML]="resource.description"></p>
+      </article>
     </div>
   `,
   styles: [
@@ -34,11 +26,10 @@ import { IResource } from '../repositories/resource.interface';
       }
       .title {
       }
-      #container {
+      .container {
         margin-bottom: 12px;
-        padding: 20px;
+        padding: 12px;
         border-radius: 5px;
-        background: white;
       }
       article {
         overflow: hidden;

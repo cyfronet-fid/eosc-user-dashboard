@@ -1,7 +1,9 @@
 export interface IFeed {
-  body: string;
-  image: string;
+  Nid: string;
+  Path: string;
+  title: string;
   news_taxonomy: string;
   post_date: string;
-  title: string;
+  body: string;
+  image: string;
 }

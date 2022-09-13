@@ -5,23 +5,15 @@ import { IResource } from '../repositories/resource.interface';
   selector: 'ui-favourite',
   template: `
     <div id="container" *ngIf="favourite !== undefined">
-      <p>
-        <a class="title" href="{{ favourite.url }}" target="_blank">{{
-          favourite.title
-        }}</a>
+      <p class="title">
+        <a href="{{ favourite.url }}" target="_blank">{{ favourite.title }}</a>
       </p>
-      <article>
-        <p>
-          <small>
-            <i>
-              {{ favourite.description }}
-            </i>
-          </small>
-        </p>
-      </article>
       <ng-container *ngIf="favourite.organisation !== undefined">
-        <p>Organisation: {{ favourite.organisation }}</p>
+        <p class="additional">Organisation: {{ favourite.organisation }}</p>
       </ng-container>
+      <article>
+        <p class="description">{{ favourite.description }}</p>
+      </article>
     </div>
   `,
   styles: [
@@ -30,9 +22,9 @@ import { IResource } from '../repositories/resource.interface';
       }
       #container {
         margin-bottom: 12px;
-        padding: 20px;
+        padding: 12px;
         border-radius: 5px;
-        background: white;
+        background: #f8f9fa;
       }
       article {
         overflow: hidden;

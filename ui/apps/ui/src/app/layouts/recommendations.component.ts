@@ -4,8 +4,9 @@ import { IResource } from '../repositories/resource.interface';
 @Component({
   selector: 'ui-recommendations',
   template: `
-    <div id="container">
+    <div class="widget-container">
       <ui-resource
+        class="widget-column-carousel"
         *ngFor="let resource of resources"
         [resource]="resource"
       ></ui-resource>
@@ -13,11 +14,10 @@ import { IResource } from '../repositories/resource.interface';
   `,
   styles: [
     `
-      #container {
-        overflow-y: auto;
-        max-height: calc(100% - 96px);
-        width: calc(100% - 24px);
-        margin: 12px;
+      .widget-container {
+        display: flex;
+        padding: 0;
+        margin: 0;
       }
     `,
   ],

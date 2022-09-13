@@ -4,20 +4,22 @@ import { IResource } from '../repositories/resource.interface';
 @Component({
   selector: 'ui-favourites',
   template: `
-    <div id="container">
+    <div class="container">
       <ui-favourite
         *ngFor="let favourite of favourites"
+        class="widget-item"
         [favourite]="favourite"
       ></ui-favourite>
     </div>
   `,
   styles: [
     `
-      #container {
+      .container {
         overflow-y: auto;
         max-height: calc(100% - 96px);
         width: calc(100% - 24px);
-        margin: 12px;
+        margin: 0;
+        padding: 0;
       }
     `,
   ],
