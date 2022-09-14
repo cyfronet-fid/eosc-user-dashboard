@@ -1,0 +1,8 @@
+{
+  "/api/*": {
+    "target": "https://eosc-user-dashboard.docker-fid.grid.cyf-kr.edu.pl",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

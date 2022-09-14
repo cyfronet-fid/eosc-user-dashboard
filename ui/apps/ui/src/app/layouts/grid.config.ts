@@ -17,6 +17,6 @@ export const gridConfig: GridsterConfig = {
   resizable: {
     enabled: true,
   },
-  minCols: 6,
-  maxCols: 6,
+  minCols: 2,
+  maxCols: 3,
 };

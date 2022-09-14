@@ -11,13 +11,13 @@ import { LayoutsModule } from '../../layouts/layouts.module';
 @NgModule({
   declarations: [DashboardPageComponent],
   imports: [
-    CommonModule,
     GridsterModule,
     FormsModule,
     NzDrawerModule,
     NzButtonModule,
     ComponentsModule,
     LayoutsModule,
+    CommonModule,
   ],
 })
 export class DashboardPageModule {}
