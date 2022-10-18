@@ -59,7 +59,8 @@ async def get_widget_with_data(db: Session, widget: Widget):
     widget_fields = widget.__dict__
     widget_config = widget_fields.pop("config")
     library_widget = get_library_widget_by_id(db, widget_fields["libId"])
-    library_widget_config = json.loads(library_widget.config)
+    stringified = json.dumps(library_widget.config)
+    library_widget_config = json.loads(stringified)
     widget_response = WidgetResponse(
         **widget_fields,
         label=library_widget.label,
