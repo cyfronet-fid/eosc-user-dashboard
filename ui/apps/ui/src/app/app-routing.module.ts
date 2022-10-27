@@ -18,6 +18,11 @@ const routes: Routes = [
     canActivate: [AnonymousUser],
   },
   {
+    path: 'projects', // Fake navigation to test routes
+    component: LandingPageComponent, 
+    canActivate: [LoggedInUser], // Activate when loggedIn
+  },
+  {
     path: 'dashboard',
     component: DashboardPageComponent,
     canActivate: [LoggedInUser],

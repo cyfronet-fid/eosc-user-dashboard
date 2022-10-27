@@ -12,11 +12,11 @@ export const gridConfig: GridsterConfig = {
   compactType: CompactType.None,
   pushItems: true,
   draggable: {
-    enabled: true,
+    enabled: false,
   },
   resizable: {
-    enabled: true,
+    enabled: false,
   },
-  minCols: 2,
-  maxCols: 3,
+  minCols: 1,
+  maxCols: 1,
 };

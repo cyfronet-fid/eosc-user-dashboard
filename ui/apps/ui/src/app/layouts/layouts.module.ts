@@ -6,12 +6,14 @@ import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { ComponentsModule } from '../components/components.module';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { GridComponent } from './grid.component';
+import { GridRightComponent } from './grid-right.component';
 import { GridsterModule } from 'angular-gridster2';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { WidgetContentComponent } from './widget-content.component';
 import { FeedsComponent } from './feeds.component';
 import { FavouritesComponent } from './favourites.component';
 import { RecommendationsComponent } from './recommendations.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { RecommendationsComponent } from './recommendations.component';
     FeedsComponent,
     FavouritesComponent,
     RecommendationsComponent,
+    GridRightComponent,
   ],
   imports: [
     CommonModule,
@@ -30,7 +33,8 @@ import { RecommendationsComponent } from './recommendations.component';
     NzButtonModule,
     GridsterModule,
     NzDropDownModule,
+    RouterModule
   ],
-  exports: [MainHeaderComponent, LibraryComponent, GridComponent],
+  exports: [MainHeaderComponent, LibraryComponent, GridComponent, GridRightComponent],
 })
 export class LayoutsModule {}

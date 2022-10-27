@@ -7,16 +7,34 @@ import { WidgetsService } from '../../services/widgets.service';
 @Component({
   selector: 'ui-dashboard',
   template: `
-    <ui-library></ui-library>
-    <div id="container">
-      <ui-grid></ui-grid>
+    <!--ui-library></ui-library-->
+    <div id="background">
+      <div class="row">
+        <div class="col-8 ps-5 pe-2 pt-4 pb-4">
+          <div class="rounded" id="container">
+            <ui-grid>
+            </ui-grid>
+          </div>
+        </div>
+        <div class="col-4 ps-2 pe-5 pt-4 pb-4">
+          <div class="rounded" id="container">
+            <ui-grid-right>
+            </ui-grid-right>
+          </div>
+        </div>
+      </div>
     </div>
   `,
   styles: [
     `
       #container {
-        width: 100vw;
-        height: calc(100vh - 36px);
+        height: calc(100vh - 200px);
+      }
+      #background {
+        background-color: #EEF1F3;
+      }
+      .rounded {
+        border-radius: 20px!important;
       }
     `,
   ],
