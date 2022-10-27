@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; // Take all for now for DEV purposes, TODO: remove later
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth.interceptor';
@@ -18,6 +19,7 @@ import { LayoutsModule } from './layouts/layouts.module';
     AppRoutingModule,
     ReactiveFormsModule,
     NgbRatingModule,
+    NgbModule,
     CommonModule,
     HttpClientModule,
     FormsModule,
