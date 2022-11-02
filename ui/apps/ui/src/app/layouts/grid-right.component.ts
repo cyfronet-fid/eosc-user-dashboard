@@ -10,12 +10,13 @@ import { IWidget } from '../repositories/widget.interface';
   template: `
     <div id="container">
       <div
-        *ngFor="let widget of widgets$ | async"        
+        *ngFor="let widget of widgets$ | async"
         (itemChange)="itemChange($event)"
       >
         <div class="grid-item-header">
-          <span class="grid-item-label"><b>{{ widget.label }}</b></span>
-
+          <span class="grid-item-label"
+            ><b>{{ widget.label }}</b></span
+          >
         </div>
         <ui-widget-content
           [lib]="widget.libId"
@@ -26,11 +27,11 @@ import { IWidget } from '../repositories/widget.interface';
   `,
   styles: [
     `
-    #container {
-      height: calc(100vh - 200px);
-      background: white;
-      border-radius: 20px;
-    }
+      #container {
+        height: calc(100vh - 200px);
+        background: white;
+        border-radius: 20px;
+      }
     `,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -42,7 +43,6 @@ export class GridRightComponent {
     private _widgetsRepository: WidgetsRepositoryService,
     private _widgetsService: WidgetsService
   ) {}
-
 
   itemChange = (t: unknown) => {
     console.log(t);

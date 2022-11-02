@@ -9,21 +9,22 @@ import { IWidget } from '../repositories/widget.interface';
 @Component({
   selector: 'ui-grid',
   template: `
-          <div id="container">
-          <div
-            *ngFor="let widget of widgets$ | async"        
-            (itemChange)="itemChange($event)"
+    <div id="container">
+      <div
+        *ngFor="let widget of widgets$ | async"
+        (itemChange)="itemChange($event)"
+      >
+        <div class="grid-item-header">
+          <span class="grid-item-label"
+            ><b>{{ widget.label }}</b></span
           >
-            <div class="grid-item-header">
-              <span class="grid-item-label"><b>{{ widget.label }}</b></span>
-
-            </div>
-            <ui-widget-content
-              [lib]="widget.libId"
-              [data]="widget.data"
-            ></ui-widget-content>
-          </div>
         </div>
+        <ui-widget-content
+          [lib]="widget.libId"
+          [data]="widget.data"
+        ></ui-widget-content>
+      </div>
+    </div>
   `,
   styles: [
     `
@@ -80,7 +81,7 @@ import { IWidget } from '../repositories/widget.interface';
 
       gridster ::ng-deep .gridster-column,
       gridster ::ng-deep .gridster-row {
-        border: 1px solid #D9DEE2;
+        border: 1px solid #d9dee2;
         border-radius: 10px;
       }
       [draggable] {

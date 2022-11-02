@@ -19,7 +19,7 @@ const routes: Routes = [
   },
   {
     path: 'projects', // Fake navigation to test routes
-    component: LandingPageComponent, 
+    component: LandingPageComponent,
     canActivate: [LoggedInUser], // Activate when loggedIn
   },
   {
