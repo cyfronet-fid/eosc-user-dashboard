@@ -1,21 +1,20 @@
 import { Component, Input } from '@angular/core';
-import { IFeed } from '../repositories/feed.interface';
 
 @Component({
   selector: 'ui-feed',
   template: `
     <div id="container">
       <p>
-        <small class="date">{{ feed.post_date }}</small>
+        <!--        <small class="date">{{ feed.post_date }}</small>-->
       </p>
       <p>
-        <a class="title" href="#">{{ feed.title }}</a>
+        <!--        <a class="title" href="#">{{ feed.title }}</a>-->
       </p>
       <article>
         <p>
           <small>
             <i>
-              {{ feed.body }}
+              <!--              {{ feed.body }}-->
             </i>
           </small>
         </p>
@@ -47,6 +46,6 @@ import { IFeed } from '../repositories/feed.interface';
   ],
 })
 export class FeedComponent {
-  @Input()
-  feed!: IFeed;
+  // @Input()
+  // feed!: IFeed;
 }

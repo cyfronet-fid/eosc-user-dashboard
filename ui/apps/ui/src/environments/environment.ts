@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  backendUrl: 'https://localhost:4200/api/web',
-  // backendUrl: 'https://eosc-user-dashboard.docker-fid.grid.cyf-kr.edu.pl/api/web',
+  backendApiPath: 'https://localhost:4200/api/web',
+  userApiPath: 'auth/userinfo',
 };
 
 /*

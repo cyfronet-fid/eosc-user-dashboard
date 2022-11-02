@@ -1,27 +1,27 @@
-import { Component, Input } from '@angular/core';
-import { IResource } from '../repositories/resource.interface';
+import { Component } from '@angular/core';
+// import { IResource } from '../repositories/resource.interface';
 
 @Component({
   selector: 'ui-favourite',
   template: `
     <div id="container" *ngIf="favourite !== undefined">
       <p>
-        <a class="title" href="{{ favourite.url }}" target="_blank">{{
-          favourite.title
-        }}</a>
+        <!--        <a class="title" href="{{ favourite.url }}" target="_blank">{{-->
+        <!--          favourite.title-->
+        <!--        }}</a>-->
       </p>
       <article>
         <p>
           <small>
             <i>
-              {{ favourite.description }}
+              <!--              {{ favourite.description }}-->
             </i>
           </small>
         </p>
       </article>
-      <ng-container *ngIf="favourite.organisation !== undefined">
-        <p>Organisation: {{ favourite.organisation }}</p>
-      </ng-container>
+      <!--      <ng-container *ngIf="favourite.organisation !== undefined">-->
+      <!--        <p>Organisation: {{ favourite.organisation }}</p>-->
+      <!--      </ng-container>-->
     </div>
   `,
   styles: [
@@ -46,6 +46,6 @@ import { IResource } from '../repositories/resource.interface';
   ],
 })
 export class FavouriteComponent {
-  @Input()
-  favourite!: IResource;
+  // @Input()
+  // favourite!: IResource;
 }
