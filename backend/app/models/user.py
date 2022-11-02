@@ -15,6 +15,5 @@ class User(Base):
     admin = Column(Boolean, default=False, nullable=False)
     superAdmin = Column(Boolean, default=False, nullable=False)
 
-    widgets = relationship("Widget")
     data = relationship("UserData", uselist=False)
     provider_rights = relationship("ProviderRights", uselist=False)
