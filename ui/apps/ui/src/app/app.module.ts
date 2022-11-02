@@ -1,33 +1,42 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; // Take all for now for DEV purposes, TODO: remove later
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
+import en from '@angular/common/locales/en';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { UserProfileService } from './auth/user-profile.service';
+import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
 import { AuthInterceptor } from './auth/auth.interceptor';
-import { PagesModule } from './pages/pages.module';
-import { LayoutsModule } from './layouts/layouts.module';
+import { MainHeaderModule } from '@components/main-header/main-header.module';
+
+registerLocaleData(en);
+
+export const getUserProfileFactory$ = (
+  userProfileService: UserProfileService
+) => {
+  return () => userProfileService.get$();
+};
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule,
-    NgbRatingModule,
-    NgbModule,
     CommonModule,
     HttpClientModule,
-    FormsModule,
-    PagesModule,
-    LayoutsModule,
+    MainHeaderModule,
   ],
   providers: [
+    { provide: NZ_I18N, useValue: en_US },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: getUserProfileFactory$,
+      multi: true,
+      deps: [UserProfileService],
+    },
   ],
   bootstrap: [AppComponent],
 })

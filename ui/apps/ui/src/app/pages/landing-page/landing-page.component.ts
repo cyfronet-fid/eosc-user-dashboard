@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../../auth/auth.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'ui-landing-page',
@@ -85,6 +85,7 @@ import { AuthService } from '../../auth/auth.service';
   ],
 })
 export class LandingPageComponent {
-  constructor(private _authService: AuthService) {}
-  login = () => this._authService.login();
+  login() {
+    window.location.href = `${environment.backendApiPath}/auth/request`;
+  }
 }

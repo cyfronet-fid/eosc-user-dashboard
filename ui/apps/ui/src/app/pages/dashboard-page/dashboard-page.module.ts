@@ -5,7 +5,7 @@ import { GridsterModule } from 'angular-gridster2';
 import { FormsModule } from '@angular/forms';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzButtonModule } from 'ng-zorro-antd/button';
-import { ComponentsModule } from '../../components/components.module';
+import { ComponentsModule } from '../../legacy-components/components.module';
 import { LayoutsModule } from '../../layouts/layouts.module';
 
 @NgModule({
