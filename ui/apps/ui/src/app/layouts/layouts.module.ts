@@ -33,8 +33,13 @@ import { RouterModule } from '@angular/router';
     NzButtonModule,
     GridsterModule,
     NzDropDownModule,
-    RouterModule
+    RouterModule,
   ],
-  exports: [MainHeaderComponent, LibraryComponent, GridComponent, GridRightComponent],
+  exports: [
+    MainHeaderComponent,
+    LibraryComponent,
+    GridComponent,
+    GridRightComponent,
+  ],
 })
 export class LayoutsModule {}

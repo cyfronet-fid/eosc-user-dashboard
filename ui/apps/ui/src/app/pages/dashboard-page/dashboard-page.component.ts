@@ -12,14 +12,12 @@ import { WidgetsService } from '../../services/widgets.service';
       <div class="row">
         <div class="col-8 ps-5 pe-2 pt-4 pb-4">
           <div class="rounded" id="container">
-            <ui-grid>
-            </ui-grid>
+            <ui-grid> </ui-grid>
           </div>
         </div>
         <div class="col-4 ps-2 pe-5 pt-4 pb-4">
           <div class="rounded" id="container">
-            <ui-grid-right>
-            </ui-grid-right>
+            <ui-grid-right> </ui-grid-right>
           </div>
         </div>
       </div>
@@ -31,10 +29,10 @@ import { WidgetsService } from '../../services/widgets.service';
         height: calc(100vh - 200px);
       }
       #background {
-        background-color: #EEF1F3;
+        background-color: #eef1f3;
       }
       .rounded {
-        border-radius: 20px!important;
+        border-radius: 20px !important;
       }
     `,
   ],

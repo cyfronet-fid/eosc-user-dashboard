@@ -10,10 +10,17 @@ between other services to improve a recommendations' system.
 ### Run
 `docker-compose up --build`
 
+**IMPORTANT!!! After each session clear db volume.**
+
+`docker-compose down -v`
+
 ### Create new migration
 `alembic revision -m "<revision name>"`
 
 ### Migrate (in case of local run - not Docker)
+**IMPORTANT!!! In prototype phase of project we will modify initial migration to omit merging all changes to one file at the end of the phase.**
+**!!! In that case please `drop` and `create` a fresh `db` on each deployment. !!!**
+
 `alembic upgrade head`
 
 ### Format
