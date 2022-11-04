@@ -1,23 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardPageComponent } from './dashboard-page.component';
-import { GridsterModule } from 'angular-gridster2';
 import { FormsModule } from '@angular/forms';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { ComponentsModule } from '../../legacy-components/components.module';
-import { LayoutsModule } from '../../layouts/layouts.module';
+import { WidgetsModule } from '@components/widgets/widgets.module';
 
 @NgModule({
   declarations: [DashboardPageComponent],
   imports: [
-    GridsterModule,
     FormsModule,
     NzDrawerModule,
     NzButtonModule,
     ComponentsModule,
-    LayoutsModule,
     CommonModule,
+    WidgetsModule,
   ],
 })
 export class DashboardPageModule {}
