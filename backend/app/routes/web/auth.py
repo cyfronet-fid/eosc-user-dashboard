@@ -1,5 +1,6 @@
 # pylint: disable=broad-except
 
+import uuid
 from uuid import UUID, uuid4
 
 from fastapi import APIRouter, Depends, HTTPException, Response
@@ -39,13 +40,18 @@ async def auth_checkin(code: str, state: str, db: Session = Depends(get_db)):
         aai_response = rp_handler.finalize(OIDC_ISSUER, dict(code=code, state=state))
 
         session_id = uuid4()
+        username = aai_response["userinfo"]["name"]
         aai_id = aai_response["userinfo"]["sub"]
 
         if not get_user(db, aai_id):
             create_user(db, aai_id)
 
-        username = aai_response["userinfo"]["name"]
-        session_data = SessionData(aai_id=aai_id, username=username, aai_state=state)
+        session_data = SessionData(
+            username=username,
+            aai_state=state,
+            aai_id=aai_id,
+            session_uuid=str(uuid.uuid4()),
+        )
         await inMemoryBackend.create(session_id, session_data)
         auth_response = RedirectResponse(status_code=303, url=UI_BASE_URL)
         cookie.attach_to_response(auth_response, session_id)
@@ -54,6 +60,7 @@ async def auth_checkin(code: str, state: str, db: Session = Depends(get_db)):
         return RedirectResponse(
             status_code=status.HTTP_401_UNAUTHORIZED,
             url=UI_BASE_URL,
+            headers={"WWW-Authenticate": "Bearer"},
         )
 
 
