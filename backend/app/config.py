@@ -119,3 +119,8 @@ AUTH_COOKIES_CONFIG = dict(
     secure=True,
     secret_key="DONOTUSE",
 )
+
+RECOMMENDER_ENDPOINT = config(
+    "RECOMMENDER_ENDPOINT", cast=str, default="http://localhost:8081/recommendations"
+)
+SOLR_URL = config("SOLR_URL", cast=str, default="http://localhost:8983/solr/")

@@ -17,6 +17,8 @@ services:
       SECRET_KEY: "${SECRET_KEY}"
       BACKEND_BASE_URL: "${BACKEND_BASE_URL}"
       UI_BASE_URL: "${UI_BASE_URL}"
+      RECOMMENDER_ENDPOINT: "${RECOMMENDER_ENDPOINT}"
+      SOLR_URL: "${SOLR_URL}"
     depends_on:
       - db
 
