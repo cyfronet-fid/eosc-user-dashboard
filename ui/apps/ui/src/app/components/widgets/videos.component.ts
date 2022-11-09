@@ -34,18 +34,18 @@ import { delay } from 'rxjs';
             <div class="row" align="end">
               <span>
                 <button
-                  [disabled]="!isNext()"
+                  [disabled]="!hasNext()"
                   type="button"
                   class="btn px-0 py-0"
-                  (click)="getNext()"
+                  (click)="setNext()"
                 >
                   <img width="24px" height="24px" src="assets/left_icon.svg" />
                 </button>
                 <button
-                  [disabled]="!isPrev()"
+                  [disabled]="!hasPrev()"
                   type="button"
                   class="btn px-0 py-0"
-                  (click)="getPrev()"
+                  (click)="setPrev()"
                 >
                   <img width="24px" height="24px" src="assets/right_icon.svg" />
                 </button>
@@ -125,16 +125,16 @@ export class WidgetVideosComponent implements OnInit {
   public showMore() {
     console.log('showMore');
   }
-  public isNext() {
+  public hasNext() {
     return true;
   }
-  public isPrev() {
+  public hasPrev() {
     return true;
   }
-  public getNext() {
+  public setNext() {
     console.log('next');
   }
-  public getPrev() {
+  public setPrev() {
     console.log('prev');
   }
 }
