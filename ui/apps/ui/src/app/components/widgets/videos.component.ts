@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { UserProfileService } from '../../auth/user-profile.service';
 import { environment } from '@environment/environment';
@@ -6,12 +6,12 @@ import { delay } from 'rxjs';
 
 @UntilDestroy()
 @Component({
-  selector: 'ui-widget-social-media',
+  selector: 'ui-widget-videos',
   template: `
     <div>
       <div class="widget rounded paddings">
         <div class="row">
-          <div class="col-6 widget-header">EOSC on Social Media</div>
+          <div class="col-6 widget-header">Videos</div>
           <div class="col-6" align="end">
             <span (click)="showMore()" class="widget-editable"
               >Show more
@@ -21,12 +21,17 @@ import { delay } from 'rxjs';
         </div>
         <div class="row pt-4">
           <div class="col-12">
-            <img width="100%" height="100%" src="assets/socials1.png" />
+            <img width="100%" height="100%" src="assets/video1.png" />
           </div>
         </div>
         <div class="row">
           <div class="col-12">
-            <div class="row pt-3 pb-3" align="end">
+            <div class="row pt-3 pb-3">
+              <span class="widget-header-theme"
+                >EOSC Marketplace Ask Me Anything Session</span
+              >
+            </div>
+            <div class="row" align="end">
               <span>
                 <button
                   [disabled]="!isNext()"
@@ -102,7 +107,7 @@ import { delay } from 'rxjs';
     `,
   ],
 })
-export class WidgetSocialMediaComponent implements OnInit {
+export class WidgetVideosComponent implements OnInit {
   backendUrl = `${environment.backendApiPath}`;
 
   constructor(private _userProfileService: UserProfileService) {}

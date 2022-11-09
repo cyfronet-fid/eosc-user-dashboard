@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { UserProfileService } from '../../auth/user-profile.service';
 import { environment } from '@environment/environment';
@@ -71,7 +71,6 @@ import { UserProfile } from '../../auth/user-profile.types';
       }
     `,
   ],
-  encapsulation: ViewEncapsulation.None,
 })
 export class WidgetUserProfileComponent implements OnInit {
   backendUrl = `${environment.backendApiPath}`;

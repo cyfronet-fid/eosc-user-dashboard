@@ -28,12 +28,24 @@ import { UntilDestroy } from '@ngneat/until-destroy';
           <div class="rounded widget" id="container"></div>
         </div>
         <div class="col-4 ps-2 pe-4 pt-4 pb-4">
-          <ui-widget-user-profile></ui-widget-user-profile>
-          <ui-widget-eosc-numbers></ui-widget-eosc-numbers>
-          <ui-widget-upcoming-events></ui-widget-upcoming-events>
-          <ui-widget-impact></ui-widget-impact>
-          <ui-widget-videos></ui-widget-videos>
-          <ui-widget-social-media></ui-widget-social-media>
+          <div class="mb-3">
+            <ui-widget-user-profile></ui-widget-user-profile>
+          </div>
+          <div class="mb-3">
+            <ui-widget-eosc-numbers></ui-widget-eosc-numbers>
+          </div>
+          <div class="mb-3">
+            <ui-widget-upcoming-events></ui-widget-upcoming-events>
+          </div>
+          <div class="mb-3">
+            <ui-widget-impact></ui-widget-impact>
+          </div>
+          <div class="mb-3">
+            <ui-widget-videos></ui-widget-videos>
+          </div>
+          <div class="mb-3">
+            <ui-widget-social-media></ui-widget-social-media>
+          </div>
         </div>
       </div>
     </div>
@@ -41,7 +53,7 @@ import { UntilDestroy } from '@ngneat/until-destroy';
   styles: [
     `
       #container {
-        height: calc(100vh - 200px);
+        height: auto;
       }
       #background {
         background-color: #eef1f3;
