@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ErrorPageComponent } from '@pages/error-page/error-page.component';
 import { LandingPageComponent } from '@pages/landing-page/landing-page.component';
-import { DashboardPageComponent } from '@pages/dashboard-page/dashboard-page.component';
 import { IsAnonymousUserGuardService } from './auth/is-anonymous-user.guard.service';
 import { IsLoggedInUserGuardService } from './auth/is-logged-in-user.guard.service';
 
@@ -19,7 +18,10 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: DashboardPageComponent,
+    loadChildren: () =>
+      import('./pages/dashboard-page/dashboard-page.module').then(
+        (m) => m.DashboardPageModule
+      ),
     canActivate: [IsLoggedInUserGuardService],
   },
   { path: '**', pathMatch: 'full', component: ErrorPageComponent },

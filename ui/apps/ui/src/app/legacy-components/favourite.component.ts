@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'ui-favourite',
   template: `
-    <div id="container" *ngIf="favourite !== undefined">
+    <div id="container">
       <p>
         <!--        <a class="title" href="{{ favourite.url }}" target="_blank">{{-->
         <!--          favourite.title-->
