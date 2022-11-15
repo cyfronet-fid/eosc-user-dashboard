@@ -10,16 +10,17 @@
 import json
 import tempfile
 import urllib.request
-from cachetools import TTLCache, cached
 from urllib.error import HTTPError
 from urllib.parse import urlparse
 
+from cachetools import TTLCache, cached
 from cryptojwt.key_jar import KeyJar, init_key_jar
 from oidcrp.rp_handler import RPHandler
 
 from app.config import OIDC_CONFIG, OIDC_JWT_ENCRYPT_CONFIG
 
 cache = TTLCache(maxsize=1, ttl=64800)  # 24h
+
 
 @cached(cache)
 def _fetch_jwks(url_to_open):
