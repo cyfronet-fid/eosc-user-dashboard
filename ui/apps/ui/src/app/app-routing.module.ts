@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ErrorPageComponent } from '@pages/error-page/error-page.component';
 import { LandingPageComponent } from '@pages/landing-page/landing-page.component';
 import { IsAnonymousUserGuardService } from './auth/is-anonymous-user.guard.service';
 import { IsLoggedInUserGuardService } from './auth/is-logged-in-user.guard.service';
@@ -24,7 +23,14 @@ const routes: Routes = [
       ),
     canActivate: [IsLoggedInUserGuardService],
   },
-  { path: '**', pathMatch: 'full', component: ErrorPageComponent },
+  {
+    path: '**',
+    pathMatch: 'full',
+    loadChildren: () =>
+      import('./pages/error-page/error-page.module').then(
+        (m) => m.ErrorPageModule
+      ),
+  },
 ];
 
 @NgModule({

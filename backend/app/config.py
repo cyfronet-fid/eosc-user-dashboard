@@ -51,7 +51,7 @@ GLOBAL_ACCESS_FIELDS = [
 
 # OIDC
 OIDC_HOST = config("OIDC_HOST", cast=str, default="https://aai-demo.eosc-portal.eu")
-OIDC_ISSUER = config("OIDC_ISSUER", cast=str, default=f"{OIDC_HOST}/oidc/")
+OIDC_ISSUER = config("OIDC_ISSUER", cast=str, default=f"{OIDC_HOST}/auth/realms/core/")
 OIDC_CLIENT_ID = config("OIDC_CLIENT_ID", cast=str, default="NO_CLIENT_ID")
 OIDC_CLIENT_SECRET = config("OIDC_CLIENT_SECRET", cast=str, default="NO_CLIENT_SECRET")
 
@@ -67,9 +67,9 @@ OIDC_CLIENT_OPTIONS = client_options = dict(
         token_endpoint_auth_method=["client_secret_basic", "client_secret_post"],
     ),
     provider_info=dict(
-        authorization_endpoint=f"{OIDC_HOST}/oidc/authorize",
-        token_endpoint=f"{OIDC_HOST}/oidc/token",
-        userinfo_endpoint=f"{OIDC_HOST}/oidc/userinfo",
+        authorization_endpoint=f"{OIDC_HOST}/auth/realms/core/authorize",
+        token_endpoint=f"{OIDC_HOST}/auth/realms/core/token",
+        userinfo_endpoint=f"{OIDC_HOST}/auth/realms/core/userinfo",
     ),
     redirect_uris=[f"{BACKEND_BASE_URL}/api/web/auth/checkin"],
     post_logout_redirect_uri=f"{BACKEND_BASE_URL}/auth/logout",
@@ -99,7 +99,7 @@ OIDC_CONFIG = dict(
     ),
 )
 OIDC_JWT_ENCRYPT_CONFIG = dict(
-    public_path=f"{OIDC_HOST}/oidc/jwk",
+    public_path=f"{OIDC_HOST}/auth/realms/core/jwk",
     key_defs=[
         {"type": "RSA", "use": ["sig"]},
     ],

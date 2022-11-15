@@ -22,7 +22,7 @@ def get_proxied_user(
     x_client_token: str | None = Header(default=None), db: Session = Depends(get_db)
 ) -> User:
     decoded_token = jwt.decode(x_client_token, options={"verify_signature": False})
-    assert decoded_token["iss"] == OIDC_HOST + "/oidc/"
+    assert decoded_token["iss"] == OIDC_HOST + "/auth/realms/core/"
     aai_id = decoded_token["sub"]
     user = get_user(db, aai_id)
     if user is None:
