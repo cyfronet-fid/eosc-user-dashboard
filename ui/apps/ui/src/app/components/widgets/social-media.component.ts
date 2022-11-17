@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { UserProfileService } from '../../auth/user-profile.service';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { UntilDestroy } from '@ngneat/until-destroy';
+import { SocialMediaWidgetService } from '../../widgets/social-media/social-media-widget.service';
 import { environment } from '@environment/environment';
-import { delay } from 'rxjs';
+import { SocialMediaWidget } from '../../widgets/social-media/social-media-widget.types';
 
 @UntilDestroy()
 @Component({
@@ -20,8 +20,14 @@ import { delay } from 'rxjs';
           </div>
         </div>
         <div class="row pt-4">
-          <div class="col-12">
-            <img width="100%" height="100%" src="assets/socials1.png" />
+          <div *ngIf="social" class="col-12">
+            <a
+              class="twitter-timeline"
+              [attr.href]="'https://twitter.com/' + social.tweetid"
+              data-tweet-limit="2"
+            >
+              Tweets by {{ social.tweetid }}
+            </a>
           </div>
         </div>
         <div class="row">
@@ -102,19 +108,23 @@ import { delay } from 'rxjs';
     `,
   ],
 })
-export class WidgetSocialMediaComponent implements OnInit {
+export class WidgetSocialMediaComponent implements OnInit, AfterViewInit {
   backendUrl = `${environment.backendApiPath}`;
+  social: SocialMediaWidget | undefined;
 
-  constructor(private _userProfileService: UserProfileService) {}
+  constructor(private _socialMediaService: SocialMediaWidgetService) {}
 
   ngOnInit() {
-    this._userProfileService.user$
-      .pipe(
-        untilDestroyed(this),
-        // delay is required to have rerender out of angular's detection cycle
-        delay(0)
-      )
-      .subscribe((profile) => console.log(profile));
+    // TODO: move to widget oneCall singleton place this._socialMediaService.get$()
+    // get value from store, skipping backend call for now
+    this._socialMediaService.social$.subscribe(
+      (social) => (this.social = social)
+    );
+  }
+
+  ngAfterViewInit(): void {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (<any>window).twttr.widgets.load();
   }
 
   public showMore() {
