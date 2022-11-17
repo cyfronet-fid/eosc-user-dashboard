@@ -51,6 +51,7 @@
     "@nrwl/workspace": "14.4.2",
     "@types/jasmine": "4.0.3",
     "@types/jest": "27.4.1",
+    "@types/lodash-es": "^4.17.6",
     "@types/node": "16.11.7",
     "@typescript-eslint/eslint-plugin": "5.30.6",
     "@typescript-eslint/parser": "5.30.6",

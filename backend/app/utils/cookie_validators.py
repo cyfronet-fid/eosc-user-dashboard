@@ -60,11 +60,11 @@ cookie = SessionCookie(
     auto_error=AUTH_COOKIES_CONFIG["auto_error"],
     cookie_params=CookieParameters(**AUTH_COOKIES_CONFIG),
 )
-inMemoryBackend = InMemoryBackend[UUID, SessionData]()
+backend = InMemoryBackend[UUID, SessionData]()
 verifier = BasicVerifier(
     identifier=AUTH_COOKIES_CONFIG["identifier"],
     auto_error=AUTH_COOKIES_CONFIG["auto_error"],
-    backend=inMemoryBackend,
+    backend=backend,
     auth_http_exception=HTTPException(
         status_code=status.HTTP_403_FORBIDDEN, detail="Invalid session"
     ),

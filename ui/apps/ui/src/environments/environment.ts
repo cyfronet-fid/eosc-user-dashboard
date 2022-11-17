@@ -6,6 +6,9 @@ export const environment = {
   production: false,
   backendApiPath: 'https://localhost:4200/api/web',
   userApiPath: 'auth/userinfo',
+  recommendationsApiPath: 'recommendations',
+  searchServiceAllUrl:
+    'https://eosc-search-service.grid.cyfronet.pl/search/all?q=*',
 };
 
 /*

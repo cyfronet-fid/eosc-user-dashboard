@@ -13,7 +13,7 @@ from app.crud.user import create_user, get_user
 from app.database import get_db
 from app.schemas.web.session_data import SessionData
 from app.schemas.web.user_info_response import UserInfoResponse
-from app.utils.cookie_validators import cookie, inMemoryBackend, verifier
+from app.utils.cookie_validators import cookie, backend, verifier
 from app.utils.rp_handler import rp_handler
 
 router = APIRouter()
@@ -52,7 +52,7 @@ async def auth_checkin(code: str, state: str, db: Session = Depends(get_db)):
             aai_id=aai_id,
             session_uuid=str(uuid.uuid4()),
         )
-        await inMemoryBackend.create(session_id, session_data)
+        await backend.create(session_id, session_data)
         auth_response = RedirectResponse(status_code=303, url=UI_BASE_URL)
         cookie.attach_to_response(auth_response, session_id)
         return auth_response
@@ -74,7 +74,7 @@ async def user_info(session_data: SessionData = Depends(verifier)) -> UserInfoRe
 @router.get("/logout")
 async def logout(response: Response, session_id: UUID = Depends(cookie)):
     try:
-        await inMemoryBackend.delete(session_id)
+        await backend.delete(session_id)
     except KeyError:
         pass
 

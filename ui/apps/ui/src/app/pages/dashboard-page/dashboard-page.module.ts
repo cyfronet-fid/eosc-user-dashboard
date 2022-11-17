@@ -12,22 +12,24 @@ import { WidgetVideosModule } from '@components/widgets/videos.module';
 import { WidgetUpcomingEventsModule } from '@components/widgets/upcoming-events.module';
 import { WidgetImpactModule } from '@components/widgets/impact.module';
 import { WidgetSocialMediaModule } from '@components/widgets/social-media.module';
+import {RecommendationsWidgetModule} from "@components/recommendations-widget/recommendations-widget.module";
 
 @NgModule({
-  imports: [
-    FormsModule,
-    NzDrawerModule,
-    NzButtonModule,
-    ComponentsModule,
-    CommonModule,
-    WidgetEoscNumbersModule,
-    WidgetVideosModule,
-    WidgetUpcomingEventsModule,
-    WidgetImpactModule,
-    WidgetSocialMediaModule,
-    WidgetUserProfileModule,
-    DashboardRoutingModule,
-  ],
+    imports: [
+        FormsModule,
+        NzDrawerModule,
+        NzButtonModule,
+        ComponentsModule,
+        CommonModule,
+        WidgetEoscNumbersModule,
+        WidgetVideosModule,
+        WidgetUpcomingEventsModule,
+        WidgetImpactModule,
+        WidgetSocialMediaModule,
+        WidgetUserProfileModule,
+        DashboardRoutingModule,
+        RecommendationsWidgetModule,
+    ],
   declarations: [DashboardPageComponent],
 })
 export class DashboardPageModule {}
