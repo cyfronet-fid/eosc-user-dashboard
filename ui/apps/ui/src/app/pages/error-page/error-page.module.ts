@@ -5,6 +5,5 @@ import { ErrorPageComponent } from './error-page.component';
 @NgModule({
   declarations: [ErrorPageComponent],
   imports: [CommonModule],
-  exports: [ErrorPageComponent],
 })
 export class ErrorPageModule {}
