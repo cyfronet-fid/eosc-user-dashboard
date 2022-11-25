@@ -3,27 +3,28 @@ import { UntilDestroy } from '@ngneat/until-destroy';
 
 @UntilDestroy()
 @Component({
-  selector: 'ui-eosc-community-life-widget',
+  selector: 'ui-eosc-community-panosc-widget',
   template: `
     <div class="widget rounded fixed-size gx-0">
       <div class="row">
         <div class="col-5 ps-4 pt-3 pb-3">
-          <img width="182px" height="168px" src="assets/eosc-life.svg" />
+          <img width="182px" height="168px" src="assets/panosc.svg" />
         </div>
         <div class="col-7 ps-3 pt-4">
           <div class="row pe-3">
             <span class="theme-community"
-              >EOSC-Life open digital space for life sciences</span
-            >
+              >PaNOSC - adopting FAIR data practices at photon and neutron
+              sources
+            </span>
           </div>
           <div class="row pe-3 pt-2">
             <span class="text-community"
-              >The data, digital services and advanced facilities vital for life
-              science research must be findable, accessible, interoperable,
-              reusable (FAIR) across scientific disciplines and national
-              boundaries. Together they cover all aspects of life science
-              research and all life science domains.</span
-            >
+              >The mission of the community is to contribute to the realization
+              of a data commons for Neutron and Photon science, providing
+              services and tools for data storage, analysis and simulation, for
+              the many scientists from existing and future disciplines using
+              data from photon and neutron sources.
+            </span>
           </div>
           <div class="pe-3 pt-2">
             <span (click)="readMore()" class="link-community"
@@ -84,7 +85,7 @@ import { UntilDestroy } from '@ngneat/until-destroy';
     `,
   ],
 })
-export class EoscCommunityLifeWidgetComponent {
+export class EoscCommunityPanoscWidgetComponent {
   public readMore() {
     console.log('readMore');
   }

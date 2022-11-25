@@ -42,24 +42,24 @@ import { UntilDestroy } from '@ngneat/until-destroy';
               ></ui-eosc-community-life-widget>
             </li>
             <li class="carousel-it ps-4 pe-4">
-              <ui-eosc-community-life-widget
+              <ui-eosc-community-escape-widget
                 class="first-community"
-              ></ui-eosc-community-life-widget>
+              ></ui-eosc-community-escape-widget>
             </li>
             <li class="carousel-it ps-4 pe-4">
-              <ui-eosc-community-life-widget
+              <ui-eosc-community-envri-widget
                 class="second-community"
-              ></ui-eosc-community-life-widget>
+              ></ui-eosc-community-envri-widget>
             </li>
             <li class="carousel-it ps-4 pe-4">
-              <ui-eosc-community-life-widget
+              <ui-eosc-community-sshoc-widget
                 class="third-community"
-              ></ui-eosc-community-life-widget>
+              ></ui-eosc-community-sshoc-widget>
             </li>
             <li class="carousel-it ps-4 pe-4">
-              <ui-eosc-community-life-widget
+              <ui-eosc-community-panosc-widget
                 class="fourth-community"
-              ></ui-eosc-community-life-widget>
+              ></ui-eosc-community-panosc-widget>
             </li>
           </ol>
         </div>

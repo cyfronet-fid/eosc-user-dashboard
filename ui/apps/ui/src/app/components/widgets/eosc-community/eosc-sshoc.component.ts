@@ -3,27 +3,30 @@ import { UntilDestroy } from '@ngneat/until-destroy';
 
 @UntilDestroy()
 @Component({
-  selector: 'ui-eosc-community-life-widget',
+  selector: 'ui-eosc-community-sshoc-widget',
   template: `
     <div class="widget rounded fixed-size gx-0">
       <div class="row">
         <div class="col-5 ps-4 pt-3 pb-3">
-          <img width="182px" height="168px" src="assets/eosc-life.svg" />
+          <img
+            width="182px"
+            height="168px"
+            src="assets/sshoc-stakeholders.svg"
+          />
         </div>
         <div class="col-7 ps-3 pt-4">
           <div class="row pe-3">
             <span class="theme-community"
-              >EOSC-Life open digital space for life sciences</span
+              >SSHOC – towards the complete SSH ecosystem</span
             >
           </div>
           <div class="row pe-3 pt-2">
             <span class="text-community"
-              >The data, digital services and advanced facilities vital for life
-              science research must be findable, accessible, interoperable,
-              reusable (FAIR) across scientific disciplines and national
-              boundaries. Together they cover all aspects of life science
-              research and all life science domains.</span
-            >
+              >Social Sciences & Humanities Open Cloud is a project that unites
+              20 partner organizations and their 27 associates in developing the
+              social sciences and humanities area of the European Open Science
+              Cloud.
+            </span>
           </div>
           <div class="pe-3 pt-2">
             <span (click)="readMore()" class="link-community"
@@ -84,7 +87,7 @@ import { UntilDestroy } from '@ngneat/until-destroy';
     `,
   ],
 })
-export class EoscCommunityLifeWidgetComponent {
+export class EoscCommunitySSHOCWidgetComponent {
   public readMore() {
     console.log('readMore');
   }

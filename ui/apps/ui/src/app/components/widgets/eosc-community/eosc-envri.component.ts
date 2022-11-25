@@ -3,27 +3,27 @@ import { UntilDestroy } from '@ngneat/until-destroy';
 
 @UntilDestroy()
 @Component({
-  selector: 'ui-eosc-community-life-widget',
+  selector: 'ui-eosc-community-envri-widget',
   template: `
     <div class="widget rounded fixed-size gx-0">
       <div class="row">
         <div class="col-5 ps-4 pt-3 pb-3">
-          <img width="182px" height="168px" src="assets/eosc-life.svg" />
+          <img width="182px" height="168px" src="assets/envri.svg" />
         </div>
         <div class="col-7 ps-3 pt-4">
           <div class="row pe-3">
             <span class="theme-community"
-              >EOSC-Life open digital space for life sciences</span
-            >
+              >ENVRI Fair – the way to understanding of the Earth System
+            </span>
           </div>
           <div class="row pe-3 pt-2">
             <span class="text-community"
-              >The data, digital services and advanced facilities vital for life
-              science research must be findable, accessible, interoperable,
-              reusable (FAIR) across scientific disciplines and national
-              boundaries. Together they cover all aspects of life science
-              research and all life science domains.</span
-            >
+              >ENVRI is a community of environmental research infrastructures
+              working together to observe the Earth as one system. Community
+              collaborates to provide environmental data, tools, and other
+              services that are Open and FAIR, and can be easily used by anyone
+              for free.
+            </span>
           </div>
           <div class="pe-3 pt-2">
             <span (click)="readMore()" class="link-community"
@@ -84,7 +84,7 @@ import { UntilDestroy } from '@ngneat/until-destroy';
     `,
   ],
 })
-export class EoscCommunityLifeWidgetComponent {
+export class EoscCommunityEnvriWidgetComponent {
   public readMore() {
     console.log('readMore');
   }
