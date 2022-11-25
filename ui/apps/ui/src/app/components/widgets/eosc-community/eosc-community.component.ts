@@ -243,7 +243,6 @@ export class EoscCommunityWidgetComponent implements AfterViewInit {
    * @param {'start'|'end'} direction
    */
   navigateToNextItem(direction: string) {
-    console.log(this.mediaList);
     if (this.mediaList && this.scrollContainer && this.root) {
       let mediaItems = Array.from(
         this.mediaList.querySelectorAll(':scope > *')
