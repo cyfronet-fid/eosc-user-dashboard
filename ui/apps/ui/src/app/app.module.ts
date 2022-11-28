@@ -10,6 +10,7 @@ import { UserProfileService } from './auth/user-profile.service';
 import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { MainHeaderModule } from '@components/main-header/main-header.module';
+import { EoscHeaderModule } from '@components/eosc-header/eosc-header.module';
 
 registerLocaleData(en);
 
@@ -27,6 +28,7 @@ export const getUserProfileFactory$ = (
     CommonModule,
     HttpClientModule,
     MainHeaderModule,
+    EoscHeaderModule,
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },

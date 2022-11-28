@@ -12,6 +12,12 @@ import { WidgetVideosModule } from '@components/widgets/videos.module';
 import { WidgetUpcomingEventsModule } from '@components/widgets/upcoming-events.module';
 import { WidgetImpactModule } from '@components/widgets/impact.module';
 import { WidgetSocialMediaModule } from '@components/widgets/social-media.module';
+import { EoscCommunityWidgetModule } from '@components/widgets/eosc-community/eosc-community.module';
+import { EoscCommunityLifeWidgetModule } from '@components/widgets/eosc-community/eosc-life.module';
+import { EoscCommunitySSHOCWidgetModule } from '@components/widgets/eosc-community/eosc-sshoc.module';
+import { EoscCommunityEscapeWidgetModule } from '@components/widgets/eosc-community/eosc-escape.module';
+import { EoscCommunityEnvriWidgetModule } from '@components/widgets/eosc-community/eosc-envri.module';
+import { EoscCommunityPanoscWidgetModule } from '@components/widgets/eosc-community/eosc-panosc.module';
 
 @NgModule({
   imports: [
@@ -26,6 +32,12 @@ import { WidgetSocialMediaModule } from '@components/widgets/social-media.module
     WidgetImpactModule,
     WidgetSocialMediaModule,
     WidgetUserProfileModule,
+    EoscCommunityWidgetModule,
+    EoscCommunityLifeWidgetModule,
+    EoscCommunitySSHOCWidgetModule,
+    EoscCommunityEscapeWidgetModule,
+    EoscCommunityEnvriWidgetModule,
+    EoscCommunityPanoscWidgetModule,
     DashboardRoutingModule,
   ],
   declarations: [DashboardPageComponent],
