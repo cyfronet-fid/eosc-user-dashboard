@@ -13,6 +13,12 @@ body {
   background-color: #fff;
 }
 
+.open-access {
+}
+
+.other-access {
+}
+
 .test-instance {
   position: fixed;
   top: 0;
@@ -526,8 +532,12 @@ svg:not(:root).svg-inline--fa {
 
 .ant-drawer-header {
   color: #fff;
-  background: rgb(11,69,216);
-  background: linear-gradient(90deg, rgba(6,181,228,1) 0%, rgba(11,69,216,1) 100%);
+  background: rgb(11, 69, 216);
+  background: linear-gradient(
+    90deg,
+    rgba(6, 181, 228, 1) 0%,
+    rgba(11, 69, 216, 1) 100%
+  );
   border-radius: 0;
 }
 
@@ -542,12 +552,12 @@ svg:not(:root).svg-inline--fa {
 }
 
 .widget-content {
-  border: 1px solid rgba(28,49,58,.1);
+  border: 1px solid rgba(28, 49, 58, 0.1);
   border-radius: 5px;
   padding: 15px 0 20px !important;
   overflow: hidden;
   min-height: 145px;
-  box-shadow: 0 .125rem .2rem rgba(0,0,0,.055);
+  box-shadow: 0 0.125rem 0.2rem rgba(0, 0, 0, 0.055);
 }
 
 .widget-content p {
@@ -559,9 +569,8 @@ svg:not(:root).svg-inline--fa {
   padding-bottom: 15px !important;
 }
 
-
 .widget-content:hover {
-  box-shadow: 0 .125rem .35rem rgba(0,0,0,.085);
+  box-shadow: 0 0.125rem 0.35rem rgba(0, 0, 0, 0.085);
 }
 @media only screen and (max-width: 992px) {
   .display-1 {

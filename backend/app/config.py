@@ -1,4 +1,5 @@
 import os
+from typing import Literal
 from urllib.parse import urlparse
 
 from starlette.config import Config
@@ -153,4 +154,7 @@ AUTH_COOKIES_CONFIG = dict(
 RECOMMENDER_ENDPOINT = config(
     "RECOMMENDER_ENDPOINT", cast=str, default="http://localhost:8081/recommendations"
 )
+RecommendationTypes = Literal[
+    "all", "publication", "dataset", "software", "training", "service"
+]
 SOLR_URL = config("SOLR_URL", cast=str, default="http://localhost:8983/solr/")

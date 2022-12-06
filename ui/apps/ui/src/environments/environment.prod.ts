@@ -1,6 +1,7 @@
+import { commonEnvironment } from '@environment/environment.common';
+
 export const environment = {
+  ...commonEnvironment,
   production: true,
-  backendApiPath:
-    'https://eosc-user-dashboard.docker-fid.grid.cyf-kr.edu.pl/api/web',
-  userApiPath: 'auth/userinfo',
+  searchServiceAllUrl: 'https://search.eosc-portal.eu/search/all?q=*',
 };

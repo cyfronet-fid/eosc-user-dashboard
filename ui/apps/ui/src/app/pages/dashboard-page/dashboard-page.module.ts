@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DashboardPageComponent } from './dashboard-page.component';
 import { FormsModule } from '@angular/forms';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -18,8 +17,11 @@ import { EoscCommunitySSHOCWidgetModule } from '@components/widgets/eosc-communi
 import { EoscCommunityEscapeWidgetModule } from '@components/widgets/eosc-community/eosc-escape.module';
 import { EoscCommunityEnvriWidgetModule } from '@components/widgets/eosc-community/eosc-envri.module';
 import { EoscCommunityPanoscWidgetModule } from '@components/widgets/eosc-community/eosc-panosc.module';
+import { DashboardPageComponent } from '@pages/dashboard-page/dashboard-page.component';
+import { RecommendationsWidgetModule } from '@components/recommendations-widget/recommendations-widget.module';
 
 @NgModule({
+  declarations: [DashboardPageComponent],
   imports: [
     FormsModule,
     NzDrawerModule,
@@ -39,7 +41,8 @@ import { EoscCommunityPanoscWidgetModule } from '@components/widgets/eosc-commun
     EoscCommunityEnvriWidgetModule,
     EoscCommunityPanoscWidgetModule,
     DashboardRoutingModule,
+    RecommendationsWidgetModule,
   ],
-  declarations: [DashboardPageComponent],
+  exports: [DashboardPageComponent],
 })
 export class DashboardPageModule {}

@@ -27,7 +27,8 @@
       "@collections/*": ["apps/ui/src/app/collections/*"],
       "@components/*": ["apps/ui/src/app/components/*"],
       "@pages/*": ["apps/ui/src/app/pages/*"]
-    }
+    },
+    "allowSyntheticDefaultImports": true
   },
   "angularCompilerOptions": {
     "strictInjectionParameters": true,
