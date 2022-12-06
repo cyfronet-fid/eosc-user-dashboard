@@ -7,7 +7,7 @@ from benedict import benedict
 from fastapi import APIRouter, Depends, Header, HTTPException
 from sqlalchemy.orm import Session
 
-from app.config import GLOBAL_ACCESS_FIELDS, OIDC_HOST
+from app.config import GLOBAL_ACCESS_FIELDS, OIDC_ISSUER
 from app.crud.user import create_user, get_user
 from app.database import get_db
 from app.models.api.user_data import UserDataProps
@@ -22,7 +22,7 @@ def get_proxied_user(
     x_client_token: str | None = Header(default=None), db: Session = Depends(get_db)
 ) -> User:
     decoded_token = jwt.decode(x_client_token, options={"verify_signature": False})
-    assert decoded_token["iss"] == OIDC_HOST + "/auth/realms/core/"
+    assert decoded_token["iss"] == OIDC_ISSUER
     aai_id = decoded_token["sub"]
     user = get_user(db, aai_id)
     if user is None:
