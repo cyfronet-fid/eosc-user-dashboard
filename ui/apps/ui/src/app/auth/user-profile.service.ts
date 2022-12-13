@@ -25,11 +25,23 @@ export class UserProfileService {
 
   get$(): Observable<UserProfile> {
     return this._http
-      .get<{ username: string }>(
-        `${environment.backendApiPath}/${environment.userApiPath}`
-      )
+      .get<{
+        username: string;
+        email: string;
+        fav: number;
+        aai_id: string;
+        edit_link: string;
+      }>(`${environment.backendApiPath}/${environment.userApiPath}`)
       .pipe(
-        catchError(() => of({ username: '', aaiId: null })),
+        catchError(() =>
+          of({
+            username: '',
+            fav: 0,
+            email: '',
+            aai_id: '',
+            edit_link: '',
+          })
+        ),
         tap((user) => this._store$.update(() => ({ user: user })))
       );
   }

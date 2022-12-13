@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { UserProfileService } from '../../auth/user-profile.service';
 import { environment } from '@environment/environment';
-import { delay } from 'rxjs';
+import { Observable, delay } from 'rxjs';
 import { UserProfile } from '../../auth/user-profile.types';
+import { HttpClient } from '@angular/common/http';
+import { DOCUMENT } from '@angular/common';
 
 @UntilDestroy()
 @Component({
@@ -30,15 +32,15 @@ import { UserProfile } from '../../auth/user-profile.types';
           }}</span
           ><br />
           <span *ngIf="profile" class="widget-text ms-2"
-            >jakisemail@fkfk.com</span
-          >
+            >{{ profile.email }}
+          </span>
         </div>
       </div>
       <div class="row">
         <div class="pt-3">
           <img id="fav-widget-image" src="assets/widget-favourities.svg" />
-          <span class="fav-text ps-1"
-            >{{ this.favNumber }} Favourite Resources</span
+          <span *ngIf="profile" class="fav-text ps-1"
+            >{{ profile.fav }} Favourite Resources</span
           >
         </div>
       </div>
@@ -74,10 +76,23 @@ import { UserProfile } from '../../auth/user-profile.types';
 })
 export class WidgetUserProfileComponent implements OnInit {
   backendUrl = `${environment.backendApiPath}`;
-  profile: UserProfile | undefined;
+  profile: UserProfile;
   favNumber = 0;
+  editLink: string | undefined;
 
-  constructor(private _userProfileService: UserProfileService) {}
+  constructor(
+    private _userProfileService: UserProfileService,
+    private http: HttpClient,
+    @Inject(DOCUMENT) private document: Document
+  ) {
+    this.profile = {
+      username: '',
+      fav: 0,
+      email: '',
+      aai_id: '',
+      edit_link: '',
+    };
+  }
 
   ngOnInit() {
     this._userProfileService.user$
@@ -86,10 +101,22 @@ export class WidgetUserProfileComponent implements OnInit {
         // delay is required to have rerender out of angular's detection cycle
         delay(0)
       )
-      .subscribe((profile) => (this.profile = profile));
+      .subscribe((profile) => {
+        this.profile = profile;
+        this.getJSON().subscribe((data) => {
+          this.editLink = data['account-service'];
+        });
+      });
   }
 
   public triggerEdit() {
-    console.log('triggered');
+    if (this.editLink !== undefined) {
+      this.document.location.href = this.editLink;
+    }
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  public getJSON(): Observable<any> {
+    return this.http.get(this.profile.edit_link);
   }
 }
