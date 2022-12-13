@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject } from '@angular/core';
 import { UntilDestroy } from '@ngneat/until-destroy';
 
 @UntilDestroy()
@@ -88,7 +89,9 @@ import { UntilDestroy } from '@ngneat/until-destroy';
   ],
 })
 export class EoscCommunitySSHOCWidgetComponent {
+  constructor(@Inject(DOCUMENT) private document: Document) {}
+
   public readMore() {
-    console.log('readMore');
+    this.document.location.href = 'https://www.sshopencloud.eu/';
   }
 }
