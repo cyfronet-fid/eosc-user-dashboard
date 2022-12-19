@@ -12,12 +12,12 @@ import { SocialMediaWidget } from '../../widgets/social-media/social-media-widge
       <div class="widget rounded paddings">
         <div class="row">
           <div class="col-6 widget-header">EOSC on Social Media</div>
-          <div class="col-6" align="end">
+          <!--div class="col-6" align="end">
             <span (click)="showMore()" class="widget-editable"
               >Show more
               <img id="show-more" src="assets/arrow_right_small.svg" />
             </span>
-          </div>
+          </div-->
         </div>
         <div class="row pt-4">
           <div *ngIf="social" class="col-12">
@@ -30,7 +30,7 @@ import { SocialMediaWidget } from '../../widgets/social-media/social-media-widge
             </a>
           </div>
         </div>
-        <div class="row">
+        <!--div class="row">
           <div class="col-12">
             <div class="row pt-3 pb-3" align="end">
               <span>
@@ -53,7 +53,7 @@ import { SocialMediaWidget } from '../../widgets/social-media/social-media-widge
               </span>
             </div>
           </div>
-        </div>
+        </div-->
       </div>
     </div>
   `,
