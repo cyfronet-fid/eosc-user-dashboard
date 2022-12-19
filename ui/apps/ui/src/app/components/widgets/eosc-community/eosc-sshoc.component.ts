@@ -92,6 +92,6 @@ export class EoscCommunitySSHOCWidgetComponent {
   constructor(@Inject(DOCUMENT) private document: Document) {}
 
   public readMore() {
-    this.document.location.href = 'https://www.sshopencloud.eu/';
+    window.open('https://www.sshopencloud.eu/', '_blank');
   }
 }

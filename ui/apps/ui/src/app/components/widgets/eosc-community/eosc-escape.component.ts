@@ -90,6 +90,6 @@ export class EoscCommunityEscapeWidgetComponent {
   constructor(@Inject(DOCUMENT) private document: Document) {}
 
   public readMore() {
-    this.document.location.href = 'https://projectescape.eu/';
+    window.open('https://projectescape.eu/', '_blank');
   }
 }

@@ -89,6 +89,6 @@ export class EoscCommunityEnvriWidgetComponent {
   constructor(@Inject(DOCUMENT) private document: Document) {}
 
   public readMore() {
-    this.document.location.href = 'https://envri.eu/';
+    window.open('https://envri.eu/', '_blank');
   }
 }

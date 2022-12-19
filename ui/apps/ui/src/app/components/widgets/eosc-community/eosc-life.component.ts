@@ -89,6 +89,6 @@ export class EoscCommunityLifeWidgetComponent {
   constructor(@Inject(DOCUMENT) private document: Document) {}
 
   public readMore() {
-    this.document.location.href = 'https://www.eosc-life.eu/';
+    window.open('https://www.eosc-life.eu/', '_blank');
   }
 }

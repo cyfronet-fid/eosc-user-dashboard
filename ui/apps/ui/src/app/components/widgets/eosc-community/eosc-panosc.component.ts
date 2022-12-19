@@ -90,6 +90,6 @@ export class EoscCommunityPanoscWidgetComponent {
   constructor(@Inject(DOCUMENT) private document: Document) {}
 
   public readMore() {
-    this.document.location.href = 'https://www.panosc.eu/';
+    window.open('https://www.panosc.eu/', '_blank');
   }
 }
