@@ -14,7 +14,6 @@ export class IsLoggedInUserGuardService implements CanActivate {
 
   canActivate() {
     return this._userProfileService.user$.pipe(
-      tap((user) => console.log(user)),
       switchMap(({ username }) =>
         !username || username === ''
           ? this._router.navigateByUrl('').then(() => false)

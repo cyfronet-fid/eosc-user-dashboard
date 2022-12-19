@@ -41,15 +41,21 @@ async def auth_checkin(code: str, state: str, db: Session = Depends(get_db)):
 
         session_id = uuid4()
         username = aai_response["userinfo"]["name"]
+        email = aai_response["userinfo"]["email"]
         aai_id = aai_response["userinfo"]["sub"]
+        edit_link = aai_response["id_token"]["iss"]
+        fav = 0  # fixed for now..
 
         if not get_user(db, aai_id):
             create_user(db, aai_id)
 
         session_data = SessionData(
             username=username,
+            email=email,
             aai_state=state,
             aai_id=aai_id,
+            edit_link=edit_link,
+            fav=fav,
             session_uuid=str(uuid.uuid4()),
         )
         await backend.create(session_id, session_data)
@@ -68,7 +74,13 @@ async def auth_checkin(code: str, state: str, db: Session = Depends(get_db)):
     "/userinfo", dependencies=[Depends(cookie)], response_model=UserInfoResponse
 )
 async def user_info(session_data: SessionData = Depends(verifier)) -> UserInfoResponse:
-    return UserInfoResponse(username=session_data.username)
+    return UserInfoResponse(
+        username=session_data.username,
+        email=session_data.email,
+        aai_id=session_data.aai_id,
+        edit_link=session_data.edit_link,
+        fav=session_data.fav,
+    )
 
 
 @router.get("/logout")
