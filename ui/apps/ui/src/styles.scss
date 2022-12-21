@@ -727,3 +727,25 @@ svg:not(:root).svg-inline--fa {
     }
   }
 }
+
+#community {
+  background: linear-gradient(180deg, #EDF3FA 0%, rgba(255, 255, 255, 1) 100%);
+  position: relative;
+  min-height: 500px;
+
+  h2 {
+    margin-top: 85px;
+    width: 100%;
+    text-align: center;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 39px;
+    color: #333;
+  }
+}
+
+#promo {
+  background: #EDF3FA;
+  min-height: 500px;
+}

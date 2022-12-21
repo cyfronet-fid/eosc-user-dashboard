@@ -48,6 +48,38 @@ import { environment } from '@environment/environment';
           </div>
         </div>
       </div>
+
+      <div id="community">
+        <div class="container">
+          <div class="row">
+            <h2>News. Events. Community</h2>
+          </div>
+        </div>
+      </div>
+
+      <div id="promo">
+
+      </div>
+
+      <div id="resources">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm">
+              <div class="pre-title">Over 3339935 research resources</div>
+              <h2>Publications, Softwares,<br> Data Sets, Trainings,<br> Services</h2>
+            </div>
+            <div class="col-sm">
+              <p>Let us help you with technical resources and stay focused on what is really important for you. </p>
+              <ul class="check-list">
+                <li>Get notified about news in your domain</li>
+                <li>Read materials selected for you</li>
+                <li>Manage your research projects</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </main>
   `,
 })
