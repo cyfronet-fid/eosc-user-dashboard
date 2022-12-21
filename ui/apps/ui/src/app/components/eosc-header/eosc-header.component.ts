@@ -5,12 +5,6 @@ import { UntilDestroy } from '@ngneat/until-destroy';
 @Component({
   selector: 'ui-eosc-header',
   template: `
-    <div class="row gx-0 header-background">
-      <div class="ps-4 content-header">
-        <img width="169px" height="64px" src="assets/logo_eosc.svg" />
-      </div>
-      <div class="content-header-search" align="center">SEARCH</div>
-    </div>
     <nav class="nav ps-5 mt-2 mb-2">
       <a
         [routerLink]="['/dashboard']"
@@ -49,21 +43,6 @@ import { UntilDestroy } from '@ngneat/until-destroy';
   `,
   styles: [
     `
-      .header-background {
-        background: #3d4db6;
-        height: 117px;
-        width: 100%;
-        position: relative;
-      }
-      .content-header {
-        position: absolute;
-        top: 25%;
-      }
-      .content-header-search {
-        position: absolute;
-        top: 40%;
-        left: 0%;
-      }
       .nav-link {
         font-size: 14px;
         border-bottom: 2px solid white;

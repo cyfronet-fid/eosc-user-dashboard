@@ -5,7 +5,7 @@ import { UntilDestroy } from '@ngneat/until-destroy';
 @Component({
   selector: 'ui-eosc-community-envri-widget',
   template: `
-    <div class="widget rounded fixed-size gx-0">
+    <div class="widget fixed-size gx-0">
       <div class="row">
         <div class="col-5 ps-4 pt-3 pb-3">
           <img width="182px" height="168px" src="assets/envri.svg" />
