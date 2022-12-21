@@ -622,7 +622,7 @@ svg:not(:root).svg-inline--fa {
 }
 
 #topmap {
-  background: url("assets/stars.svg") 100% 40px, linear-gradient(180deg, #EDF3FA 0%, rgba(237, 243, 250, 1) 100%);
+  background: url("assets/stars.svg") 100% 40px, linear-gradient(180deg, #EDF3FA 0%, rgba(255, 255, 255, 1) 100%);
   background-repeat: no-repeat;
   position: relative;
   min-height: 720px;
@@ -695,4 +695,35 @@ svg:not(:root).svg-inline--fa {
   border-color: #144B9E;
   font-size: 22px;
   padding: 5px 55px;
+}
+
+#manage {
+  padding: 130px 0;
+
+  h2 {
+    margin-top: 70px;
+  }
+
+  .image-placeholder {
+    max-width: 540px;
+    min-height: 350px;
+    background: #EDF3FA;
+  }
+
+  ul.check-list {
+    list-style: none;
+    padding: 0;
+    margin: 25px 0 0 0;
+
+    li {
+      list-style:none;
+      background-image: url("assets/icon-check.png");
+      background-repeat: no-repeat;
+      background-position: left center;
+      padding:5px 0px 5px 50px;
+      font-size: 24px;
+      line-height: 32px;
+      margin: 12px 0 19px;
+    }
+  }
 }

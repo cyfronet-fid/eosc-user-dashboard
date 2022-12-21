@@ -35,18 +35,23 @@ import { environment } from '@environment/environment';
         <div class="container">
           <div class="row">
             <div class="col-sm">
-            ssss
+              <div class="image-placeholder"></div>
             </div>
             <div class="col-sm">
-              ssss
+              <h2>Manage. Discover. Measure.</h2>
+              <ul class="check-list">
+                <li>Get notified about news in your domain</li>
+                <li>Read materials selected for you</li>
+                <li>Manage your research projects</li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
     </main>
   `,
-
 })
+
 export class LandingPageComponent {
   login() {
     window.location.href = `${environment.backendApiPath}/auth/request`;
