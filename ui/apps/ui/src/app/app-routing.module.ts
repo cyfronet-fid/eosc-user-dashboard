@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LandingPageComponent } from '@pages/landing-page/landing-page.component';
 import { IsAnonymousUserGuardService } from './auth/is-anonymous-user.guard.service';
 import { IsLoggedInUserGuardService } from './auth/is-logged-in-user.guard.service';
 
@@ -12,7 +11,10 @@ const routes: Routes = [
   },
   {
     path: 'main',
-    component: LandingPageComponent,
+    loadChildren: () =>
+      import('./pages/landing-page/landing-page.module').then(
+        (m) => m.LandingPageModule
+      ),
     canActivate: [IsAnonymousUserGuardService],
   },
   {

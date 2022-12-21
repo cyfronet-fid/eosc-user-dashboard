@@ -6,6 +6,7 @@
     "ng": "nx",
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2020 browser module main",
     "start": "nx serve --proxy-config proxy.conf.json",
+    "start:external": "nx serve --proxy-config proxy.external.conf.json",
     "build": "nx build",
     "test": "nx test"
   },

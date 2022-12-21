@@ -6,19 +6,19 @@ import { UntilDestroy } from '@ngneat/until-destroy';
 @Component({
   selector: 'ui-eosc-community-escape-widget',
   template: `
-    <div class="widget rounded fixed-size gx-0">
+    <div class="widget fixed-size gx-0">
       <div class="row">
-        <div class="col-5 ps-4 pt-3 pb-3">
-          <img width="182px" height="168px" src="assets/logo-Escape_2.svg" />
+        <div class="col-5 ps-4 pt-4 pb-3 carousel-image">
+          <img width="100%" height="auto" src="assets/logo-Escape_2.svg" />
         </div>
-        <div class="col-7 ps-3 pt-4">
+        <div class="col-7 ps-3 pt-4 carousel-text">
           <div class="row pe-3">
             <span class="theme-community"
               >ESCAPE – the consistent European research infrastructure
               ecosystem
             </span>
           </div>
-          <div class="row pe-3 pt-2">
+          <div class="row pe-3 pt-3">
             <span class="text-community"
               >The cluster provides common innovative solutions for the
               management, curation, and deposition of data, for the data driven
@@ -26,15 +26,6 @@ import { UntilDestroy } from '@ngneat/until-destroy';
               fundamental research: astronomy, astrophysics, astroparticle
               physics, high energy physics, particle and nuclear physics.
             </span>
-          </div>
-          <div class="pe-3 pt-2">
-            <span (click)="readMore()" class="link-community"
-              >Read more<img
-                width="14px"
-                height="12px"
-                class="right-arrow"
-                src="assets/right-community.svg"
-            /></span>
           </div>
         </div>
       </div>
@@ -47,25 +38,20 @@ import { UntilDestroy } from '@ngneat/until-destroy';
         padding-left: 4px;
         padding-bottom: 4px;
       }
-      .fixed-size {
-        display: block;
-        width: 457px;
-        height: 198px;
-      }
       .theme-community {
         font-family: 'Inter';
         font-style: normal;
         font-weight: 700;
-        font-size: 12px;
-        line-height: 15px;
+        font-size: 16px;
+        line-height: 19px;
         color: #232c34;
       }
       .text-community {
         font-family: 'Inter';
         font-style: normal;
         font-weight: 400;
-        font-size: 9px;
-        line-height: 14px;
+        font-size: 14px;
+        line-height: 21px;
         color: #232c34;
         opacity: 0.9;
       }
