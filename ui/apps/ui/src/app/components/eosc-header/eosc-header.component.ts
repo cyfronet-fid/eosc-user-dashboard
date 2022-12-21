@@ -9,7 +9,7 @@ import { UntilDestroy } from '@ngneat/until-destroy';
       <div class="ps-4 content-header">
         <img width="169px" height="64px" src="assets/logo_eosc.svg" />
       </div>
-      <div class="content-header-search" align="center">SEARCH</div>
+      <div class="content-header-search" align="center">SEARCHxxxxx</div>
     </div>
     <nav class="nav ps-5 mt-2 mb-2">
       <a

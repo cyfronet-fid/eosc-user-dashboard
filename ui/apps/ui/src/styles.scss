@@ -1,13 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~ng-zorro-antd/ng-zorro-antd.min.css';
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 body {
   margin: 0;
-  font-family: Ubuntu, Roboto, Helvetica Neue, Arial, sans-serif;
+  font-family: Inter, Roboto, Helvetica Neue, Arial, sans-serif;
   font-size: 1rem;
   line-height: 1.5;
-  color: #233d4c;
+  color: #333;
   font-weight: 400;
   text-align: left;
   background-color: #fff;
@@ -619,4 +619,80 @@ svg:not(:root).svg-inline--fa {
   .ant-drawer-body {
     padding: 15px 10px;
   }
+}
+
+#topmap {
+  background: url("assets/stars.svg") 100% 40px, linear-gradient(180deg, #EDF3FA 0%, rgba(237, 243, 250, 1) 100%);
+  background-repeat: no-repeat;
+  position: relative;
+  min-height: 720px;
+
+  .logo-eosc {
+    margin-top: 130px;
+  }
+
+  .intro {
+    margin-top: 25px;
+
+    h1 {
+      font-style: normal;
+      font-weight: 600;
+      font-size: 48px;
+      line-height: 58px;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .description {
+      font-style: normal;
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 32px;
+      max-width: 575px;
+      margin-bottom: 80px;
+    }
+  }
+
+  .features-box {
+    margin-top: 175px;
+    width: 370px;
+    background: #fff;
+    padding: 10px 25px;
+    box-shadow: 14px 8px 16px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+
+    .feature-line {
+      font-style: normal;
+      font-weight: 400;
+      width: 100%;
+      position: relative;
+      font-size: 16px;
+      line-height: 32px;
+      border-bottom: 1px solid #EDF3FA;
+      padding: 14px 0;
+
+      &.last {
+        border: none;
+      }
+
+      .dot {
+        height: 32px;
+        width: 32px;
+        margin-right: 25px;
+        float: left;
+        background-color: #ABD7F1;
+        border-radius: 50%;
+        display: inline-block;
+      }
+    }
+  }
+}
+
+.btn-primary {
+  background: #144B9E;
+  border-radius: 8px;
+  border-color: #144B9E;
+  font-size: 22px;
+  padding: 5px 55px;
 }
