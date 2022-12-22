@@ -124,6 +124,38 @@ import { environment } from '@environment/environment';
         </div>
       </div>
 
+      <div id="up-to-date">
+        <div class="container">
+          <div class="row">
+            <h3>Stay up to date on what is current in your research field</h3>
+            <div class="cards-wrapper">
+              <a href="#" class="card">
+                Medical<br>
+                & Health Sciences
+              </a>
+              <a href="#" class="card">
+                Engineering<br>
+                & Technology
+              </a>
+              <a href="#" class="card">
+                Natural Sciences
+              </a>
+            </div>
+            <div class="cards-wrapper">
+              <a href="#" class="card">
+                Humanities
+              </a>
+              <a href="#" class="card">
+                Agricultural<br>Sciences
+              </a>
+              <a href="#" class="card">
+                Social Sciences
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </main>
   `,
 })

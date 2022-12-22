@@ -881,3 +881,50 @@ ul.check-list {
     color: #333;
   }
 }
+
+#up-to-date {
+  position: relative;
+  padding: 65px 0 60px;
+  background: linear-gradient(180deg, #EDF3FA 0%, rgba(237, 243, 250, 0) 100%);
+
+  h3 {
+    width: 100%;
+    text-align: center;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 39px;
+    color: #333;
+    margin-bottom: 60px;
+  }
+
+  .cards-wrapper {
+    padding: 0 270px;
+    display: flex;
+    margin-bottom: 55px;
+    justify-content: space-between;
+
+    .card {
+      background: #EEF4FE;
+      border: 2px solid #144B9E;
+      border-radius: 8px;
+      width: 225px;
+      text-align: center;
+      height: 200px;
+      padding-bottom: 20px;
+      display: flex;
+      justify-content: flex-end;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 19px;
+      color: #144B9E;
+      transition: all 0.5s ease;
+      box-shadow: none;
+
+      &:hover {
+        box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.2);
+        padding-bottom: 30px;
+      }
+    }
+  }
+}
