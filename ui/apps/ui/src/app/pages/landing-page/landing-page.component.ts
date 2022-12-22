@@ -4,6 +4,7 @@ import { environment } from '@environment/environment';
 @Component({
   selector: 'ui-landing-page',
   template: `
+    <ui-eosc-header></ui-eosc-header>
     <main>
       <div id="topmap">
         <div class="container">
@@ -57,6 +58,9 @@ import { environment } from '@environment/environment';
         </div>
       </div>
 
+
+      <ui-eosc-community-widget></ui-eosc-community-widget>
+
       <div id="promo">
 
       </div>
@@ -66,10 +70,17 @@ import { environment } from '@environment/environment';
           <div class="row">
             <div class="col-sm">
               <div class="pre-title">Over 3339935 research resources</div>
-              <h2>Publications, Softwares,<br> Data Sets, Trainings,<br> Services</h2>
+              <h2>
+                Publications, Software,<br />
+                Data Sets, Trainings,<br />
+                Services
+              </h2>
             </div>
             <div class="col-sm">
-              <p>Let us help you with technical resources and stay focused on what is really important for you. </p>
+              <p>
+                Let us help you with technical resources and stay focused on
+                what is really important for you.
+              </p>
               <ul class="check-list">
                 <li>Get notified about news in your domain</li>
                 <li>Read materials selected for you</li>

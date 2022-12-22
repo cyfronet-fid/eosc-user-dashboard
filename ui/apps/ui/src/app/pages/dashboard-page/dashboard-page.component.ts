@@ -6,6 +6,9 @@ import { UntilDestroy } from '@ngneat/until-destroy';
   selector: 'ui-dashboard',
   template: `
     <div id="background">
+      <ui-searchbar-with-logo></ui-searchbar-with-logo>
+      <ui-eosc-header></ui-eosc-header>
+      <ui-eosc-community-widget></ui-eosc-community-widget>
       <div class="row gx-0">
         <div class="col-8 ps-4 pe-2 pt-4 pb-4">
           <div class="rounded widget" id="container">
