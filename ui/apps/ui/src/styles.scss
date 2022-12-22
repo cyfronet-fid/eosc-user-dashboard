@@ -294,6 +294,7 @@ textarea {
 
 .button--primary {
   color: #fff;
+  font-size: 22px;
   background-color: #0c2bd5;
   background-image: linear-gradient(135deg, #05cae7, #0c2bd5);
 
@@ -302,6 +303,16 @@ textarea {
     color: #fff;
   }
 }
+
+.btn-secondary {
+  color: #fff;
+  background-color: #144B9E;
+  border-color: #144B9E;
+  padding: 6px 30px;
+  border-radius: 8px;
+  font-size: 22px;
+}
+
 .button {
   display: inline-block;
   font-weight: 400;
@@ -709,32 +720,31 @@ svg:not(:root).svg-inline--fa {
     min-height: 350px;
     background: #EDF3FA;
   }
+}
 
-  ul.check-list {
-    list-style: none;
-    padding: 0;
-    margin: 25px 0 0 0;
+ul.check-list {
+  list-style: none;
+  padding: 0;
+  margin: 25px 0 0 0;
 
-    li {
-      list-style:none;
-      background-image: url("assets/icon-check.png");
-      background-repeat: no-repeat;
-      background-position: left center;
-      padding:5px 0px 5px 50px;
-      font-size: 24px;
-      line-height: 32px;
-      margin: 12px 0 19px;
-    }
+  li {
+    list-style:none;
+    background-image: url("assets/icon-check.png");
+    background-repeat: no-repeat;
+    background-position: left center;
+    padding:5px 0px 5px 50px;
+    font-size: 24px;
+    line-height: 32px;
+    margin: 12px 0 19px;
   }
 }
 
 #community {
   background: linear-gradient(180deg, #EDF3FA 0%, rgba(255, 255, 255, 1) 100%);
   position: relative;
-  min-height: 500px;
+  padding: 85px 0 160px;
 
   h2 {
-    margin-top: 85px;
     width: 100%;
     text-align: center;
     font-style: normal;
@@ -748,4 +758,126 @@ svg:not(:root).svg-inline--fa {
 #promo {
   background: #EDF3FA;
   min-height: 500px;
+}
+
+.fixed-size {
+  background: #fff;
+  border-radius: 16px;
+}
+
+#resources {
+  background: #fff;
+  position: relative;
+  padding: 90px 0 160px;
+
+  .pre-title {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 36px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    color: #2F80ED;
+  }
+
+  h3 {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 58px;
+    color: #333;
+  }
+
+  form {
+    margin-top: 75px;
+    display: flex;
+
+    input[type="search"] {
+      padding: 9px 20px;
+      background: #FFFFFF;
+      width: 500px;
+      border: 1px solid #3D4DB6;
+      border-radius: 24px;
+      background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E") no-repeat right 13px center;
+      margin: 0;
+    }
+
+    input[type="search"]::placeholder {
+      color: #bbb;
+    }
+
+    input[type="search"]:focus {
+      box-shadow: 0 0 3px 0 #1183d6;
+      border-color: #1183d6;
+      outline: none;
+    }
+  }
+
+  .right-column p {
+    font-size: 24px;
+    line-height: 36px;
+    padding-top: 35px;
+  }
+}
+
+#join {
+  position: relative;
+  padding: 85px 0 160px;
+
+  h3 {
+    width: 100%;
+    text-align: center;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 39px;
+    color: #333;
+    margin-bottom: 60px;
+  }
+
+  .tile {
+    width: 440px;
+    height: 510px;
+    background: #F9FBFD;
+    border-radius: 12px;
+    position: relative;
+    float: right;
+    transition: all 0.5s ease;
+    box-shadow: none;
+
+    &:hover {
+      box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.05);
+      margin-top: -6px;
+    }
+
+    &.right-tile {
+      float: left;
+    }
+
+    .title {
+      position: absolute;
+      bottom: 65px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      font-weight: 600;
+      font-size: 32px;
+      color: #000;
+      line-height: 39px;
+    }
+  }
+}
+
+#support {
+  background: rgba(237, 243, 250, 0.3);
+  position: relative;
+  padding: 50px 0 40px;
+
+  h3 {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 48px;
+    margin: 100px 0 90px;
+    line-height: 58px;
+    color: #333;
+  }
 }

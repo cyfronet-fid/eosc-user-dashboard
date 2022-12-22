@@ -6,27 +6,29 @@ import { UntilDestroy } from '@ngneat/until-destroy';
   selector: 'ui-eosc-community-widget',
   template: `
     <div class="gx-0 community-background">
-      <div class="row ps-4 content-header">
-        <span class="eosc-nav-text"
-          >EOSC Communities
-          <img
-            width="18px"
-            height="16px"
-            class="left-arrow"
-            id="leftarrow"
-            (click)="handleNavigation($event)"
-            aria-label="Previous"
-            data-direction="start"
-            src="assets/left-community.svg" /><img
-            width="18px"
-            height="16px"
-            id="rightarrow"
-            (click)="handleNavigation($event)"
-            aria-label="Next"
-            data-direction="end"
-            class="right-arrow"
-            src="assets/right-community.svg"
-        /></span>
+      <div class="container">
+        <div class="row ps-4 content-header">
+          <span class="eosc-nav-text"
+            >EOSC Communities
+            <img
+              width="18px"
+              height="16px"
+              class="left-arrow"
+              id="leftarrow"
+              (click)="handleNavigation($event)"
+              aria-label="Previous"
+              data-direction="start"
+              src="assets/left-community.svg" /><img
+              width="18px"
+              height="16px"
+              id="rightarrow"
+              (click)="handleNavigation($event)"
+              aria-label="Next"
+              data-direction="end"
+              class="right-arrow"
+              src="assets/right-community.svg"
+          /></span>
+        </div>
       </div>
       <div class="carousel" #carousel>
         <div
@@ -35,7 +37,7 @@ import { UntilDestroy } from '@ngneat/until-destroy';
           aria-label="carousel"
           tabindex="0"
         >
-          <ol class="carousel-media pt-4 pb-4" role="list">
+          <ol class="carousel-media pt-4" role="list">
             <li class="carousel-it ps-4 pe-4">
               <ui-eosc-community-life-widget
                 class="left-first"
@@ -108,9 +110,9 @@ import { UntilDestroy } from '@ngneat/until-destroy';
         width: 100%;
       }
       .community-background {
-        background: #edf3fa;
         height: 302px;
         width: 100%;
+        overflow: hidden;
       }
       .content-header {
         padding-top: 32px;

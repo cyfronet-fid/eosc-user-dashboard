@@ -4,7 +4,7 @@ import { environment } from '@environment/environment';
 @Component({
   selector: 'ui-landing-page',
   template: `
-    <ui-eosc-header></ui-eosc-header>
+
     <main>
       <div id="topmap">
         <div class="container">
@@ -56,36 +56,69 @@ import { environment } from '@environment/environment';
             <h2>News. Events. Community</h2>
           </div>
         </div>
+        <ui-eosc-community-widget></ui-eosc-community-widget>
       </div>
 
-
-      <ui-eosc-community-widget></ui-eosc-community-widget>
-
-      <div id="promo">
-
-      </div>
+      <div id="promo"></div>
 
       <div id="resources">
         <div class="container">
           <div class="row">
             <div class="col-sm">
               <div class="pre-title">Over 3339935 research resources</div>
-              <h2>
+              <h3>
                 Publications, Software,<br />
                 Data Sets, Trainings,<br />
                 Services
-              </h2>
+              </h3>
+              <form class="search-form">
+                <input class="nosubmit" type="search" placeholder="Search for resources in all catalogs">
+              </form>
             </div>
-            <div class="col-sm">
+            <div class="col-sm right-column">
               <p>
                 Let us help you with technical resources and stay focused on
                 what is really important for you.
               </p>
               <ul class="check-list">
-                <li>Get notified about news in your domain</li>
-                <li>Read materials selected for you</li>
-                <li>Manage your research projects</li>
+                <li>Advanced Search Engine</li>
+                <li>Over 3339935 research resources</li>
+                <li>Intelligent offers management and support</li>
               </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="join">
+        <div class="container">
+          <div class="row">
+            <h3>Join our community</h3>
+            <div class="col-sm">
+              <a href="#" class="tile left-tile">
+                <div class="title">Provider</div>
+              </a>
+            </div>
+            <div class="col-sm">
+              <a href="#" class="tile right-tile">
+                <div class="title">Researcher</div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="support">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm">
+                <img src="assets/illustration-support.svg" alt="support">
+            </div>
+            <div class="col-sm right-column">
+              <h3>
+                We provide you a full support on each research step
+              </h3>
+              <a href="#" class="btn btn-secondary">Contact with our experts</a>
             </div>
           </div>
         </div>
