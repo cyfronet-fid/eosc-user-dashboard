@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { UserProfileService } from '../../auth/user-profile.service';
-import { environment } from '@environment/environment';
 import { delay } from 'rxjs';
+import { EOSCNumbersWidgetService } from '../../widgets/eosc-numbers/eosc-numbers-widget.service';
 
 @UntilDestroy()
 @Component({
@@ -140,17 +139,15 @@ import { delay } from 'rxjs';
   ],
 })
 export class WidgetEoscNumbersComponent implements OnInit {
-  backendUrl = `${environment.backendApiPath}`;
-
-  constructor(private _userProfileService: UserProfileService) {}
+  constructor(private _eoscNumbersService: EOSCNumbersWidgetService) {}
 
   ngOnInit() {
-    this._userProfileService.user$
+    this._eoscNumbersService.numbers$
       .pipe(
         untilDestroyed(this),
         // delay is required to have rerender out of angular's detection cycle
         delay(0)
       )
-      .subscribe((profile) => console.log(profile));
+      .subscribe((numbers) => console.log(numbers));
   }
 }
