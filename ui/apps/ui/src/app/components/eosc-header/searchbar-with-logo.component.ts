@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
     <div class="ps-4 content-header">
       <img width="169px" height="64px" src="assets/logo_eosc.svg" />
     </div>
-    <div class="content-header-search" align="center">SEARCHxxxxx</div>
+    <div class="content-header-search" align="center">SEARCH</div>
   </div>`,
   styles: [
     `
