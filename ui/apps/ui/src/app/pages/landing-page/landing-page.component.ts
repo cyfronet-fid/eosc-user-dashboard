@@ -126,7 +126,7 @@ import { environment } from '@environment/environment';
         <div class="container">
           <div class="row">
             <div class="col-sm">
-              <img src="assets/illustration-support.svg" alt="support" />
+              <img src="assets/illustration-support.svg" alt="support" class="img-fluid"/>
             </div>
             <div class="col-sm right-column">
               <h3>We provide you a full support on each research step</h3>

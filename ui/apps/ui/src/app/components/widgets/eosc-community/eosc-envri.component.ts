@@ -8,7 +8,7 @@ import { UntilDestroy } from '@ngneat/until-destroy';
     <div class="widget fixed-size gx-0">
       <div class="row">
         <div class="col-5 ps-4 pt-3 pb-3">
-          <img width="182px" height="168px" src="assets/envri.svg" />
+          <img width="100%" height="auto" src="assets/envri.svg" />
         </div>
         <div class="col-7 ps-3 pt-4">
           <div class="row pe-3">

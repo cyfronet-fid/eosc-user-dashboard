@@ -928,3 +928,104 @@ ul.check-list {
     }
   }
 }
+
+@media only screen and (max-width: 576px) {
+
+  #topmap {
+    background: url("assets/stars.svg") -95% -45px, linear-gradient(180deg, #EDF3FA 0%, rgba(255, 255, 255, 1) 100%);
+    background-repeat: no-repeat;
+    min-height: 630px;
+
+    .logo-eosc {
+      margin-top: 35px;
+    }
+
+    .intro {
+      h1 {
+        font-size: 23px;
+        line-height: 30px;
+        margin-bottom: 12px;
+      }
+
+      .description {
+        font-size: 16px;
+        line-height: 24px;
+        margin-bottom: 20px;
+      }
+    }
+
+    .features-box {
+      margin-top: 40px;
+      width: auto;
+      padding: 10px 15px;
+    }
+  }
+
+  #manage {
+    padding: 25px 0 50px;
+
+    h2 {
+      margin-top: 50px;
+    }
+  }
+
+  #community {
+    padding: 50px 0 30px;
+
+    h2 {
+      font-size: 24px;
+      line-height: 30px;
+    }
+  }
+
+  ul.check-list li {
+    font-size: 17px;
+    line-height: 24px;
+    margin: 12px 0 7px;
+  }
+
+  #promo {
+    min-height: 200px;
+  }
+
+  .fixed-size {
+    width: 300px !important;
+  }
+
+  #resources {
+    padding: 50px 0 30px;
+
+    h3 {
+      font-size: 24px;
+      line-height: 31px;
+    }
+
+    .pre-title {
+      font-size: 13px;
+      line-height: 20px;
+    }
+
+    form {
+      margin-top: 20px;
+    }
+
+    .right-column {
+      p {
+        font-size: 17px;
+        line-height: 27px;
+        padding-top: 20px;
+      }
+    }
+  }
+
+  #join {
+    padding: 25px 0 30px;
+
+    h3 {
+      font-size: 24px;
+      line-height: 31px;
+    }
+  }
+
+
+}
