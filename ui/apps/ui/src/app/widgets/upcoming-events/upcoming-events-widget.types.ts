@@ -1,6 +1,7 @@
 export interface UpcomingEventsWidget {
-  headline: string;
-  dateplace: string;
-  imgsrc: string;
-  going: number;
+  title: string;
+  body: string;
+  path: string;
+  date: string;
+  image: string;
 }

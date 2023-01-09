@@ -1,41 +1,65 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, filter, of, tap } from 'rxjs';
-import { environment } from '@environment/environment';
 import { UpcomingEventsWidget } from './upcoming-events-widget.types';
 import { createStore, select, withProps } from '@ngneat/elf';
+import { environment } from '@environment/environment';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UserProfileWidgetService {
+export class UpcomingEventsWidgetService {
   constructor(private _http: HttpClient) {}
 
   readonly _store$ = createStore(
     {
       name: 'upcoming-events-widget',
     },
-    withProps<{ events: UpcomingEventsWidget | null }>({ events: null })
+    withProps<{ events: UpcomingEventsWidget[] }>({ events: [] })
   );
 
-  readonly events$: Observable<UpcomingEventsWidget> = this._store$.pipe(
-    select((state) => state.events as UpcomingEventsWidget),
-    filter((user) => user !== null)
+  readonly events$: Observable<UpcomingEventsWidget[]> = this._store$.pipe(
+    select((state) => state.events as UpcomingEventsWidget[]),
+    filter((event) => event !== null)
   );
 
-  get$(): Observable<UpcomingEventsWidget> {
+  get$(): Observable<UpcomingEventsWidget[]> {
     return this._http
-      .get<{
-        headline: string;
-        dateplace: string;
-        imgsrc: string;
-        going: number;
-      }>(`${environment.backendApiPath}/${environment.userApiPath}`)
+      .get<
+        [
+          {
+            title: string;
+            body: string;
+            path: string;
+            date: string;
+            image: string;
+          }
+        ]
+      >(
+        `${environment.backendApiPath}/${environment.upcomingEventsApiPath}/${
+          new Date(
+            this.currentDate().setMonth(this.currentDate().getMonth() - 2)
+          )
+            .toISOString()
+            .split('T')[0]
+        }--${
+          new Date(
+            this.currentDate().setMonth(this.currentDate().getMonth() + 2)
+          )
+            .toISOString()
+            .split('T')[0]
+        }`
+      )
       .pipe(
         catchError(() =>
-          of({ headline: '', dateplace: '', imgsrc: '', going: 0 })
+          of([{ title: '', body: '', path: '', date: '', image: '' }])
         ),
-        tap((events) => this._store$.update(() => ({ events: events })))
+        tap((event) => console.log(event)),
+        tap((event) => this._store$.update(() => ({ events: event })))
       );
+  }
+
+  currentDate() {
+    return new Date();
   }
 }
