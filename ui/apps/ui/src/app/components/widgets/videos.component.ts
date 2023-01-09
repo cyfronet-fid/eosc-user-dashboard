@@ -1,8 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit } from '@angular/core';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { UserProfileService } from '../../auth/user-profile.service';
+import { UntilDestroy } from '@ngneat/until-destroy';
 import { environment } from '@environment/environment';
-import { delay } from 'rxjs';
+import { Observable, map } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { VideoDetail } from '../../widgets/videos/videos-widget.types';
+const YOUTUBE_API_KEY = 'we need key here';
+const YOUTUBE_API_URL = 'https://www.googleapis.com/youtube/v3/search';
 
 @UntilDestroy()
 @Component({
@@ -110,20 +114,50 @@ import { delay } from 'rxjs';
 export class WidgetVideosComponent implements OnInit {
   backendUrl = `${environment.backendApiPath}`;
 
-  constructor(private _userProfileService: UserProfileService) {}
+  constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this._userProfileService.user$
-      .pipe(
-        untilDestroyed(this),
-        // delay is required to have rerender out of angular's detection cycle
-        delay(0)
-      )
-      .subscribe((profile) => console.log(profile));
+    this.search().subscribe((data) => {
+      // Show data and navigate around it
+      console.log(data);
+    });
+  }
+  search(): Observable<VideoDetail[]> {
+    const params: string = [
+      `key=${YOUTUBE_API_KEY}`,
+      `channelId=UCHsaUFy5LJ3rJ28qDg2StGA`,
+      `part=snippet,id`,
+      `order=date`,
+      `maxResults=10`,
+    ].join('&');
+
+    const queryUrl = `${YOUTUBE_API_URL}?${params}`;
+
+    return this.http.get<any>(queryUrl).pipe(
+      map((response) => {
+        return response['items'].map(
+          (item: {
+            id: { videoId: any };
+            snippet: {
+              title: any;
+              description: any;
+              thumbnails: { high: { url: any } };
+            };
+          }) => {
+            return new VideoDetail({
+              id: item.id.videoId,
+              title: item.snippet.title,
+              description: item.snippet.description,
+              thumbnailUrl: item.snippet.thumbnails.high.url,
+            });
+          }
+        );
+      })
+    );
   }
 
   public showMore() {
-    console.log('showMore');
+    window.open('https://www.youtube.com/@EOSCPortal/', '_blank');
   }
   public hasNext() {
     return true;
