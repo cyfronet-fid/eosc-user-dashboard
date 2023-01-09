@@ -17,12 +17,15 @@ declare let window: EoscCommonWindow;
       [attr.data-logout-url]="backendUrl + '/auth/logout'"
       #eoscCommonMainHeader
     ></div>
+    <ui-eosc-header *ngIf="this.loggedIn"></ui-eosc-header>
+    <ui-eosc-community-widget *ngIf="this.loggedIn"></ui-eosc-community-widget>
   `,
   encapsulation: ViewEncapsulation.None,
 })
 export class MainHeaderComponent implements OnInit {
   id = 'eosc-common-main-header';
   backendUrl = `${environment.backendApiPath}`;
+  loggedIn = false;
 
   constructor(private _userProfileService: UserProfileService) {}
 
@@ -33,8 +36,11 @@ export class MainHeaderComponent implements OnInit {
         // delay is required to have rerender out of angular's detection cycle
         delay(0)
       )
-      .subscribe((profile) =>
-        window.eosccommon.renderMainHeader(`#${this.id}`, profile ?? undefined)
-      );
+      .subscribe((profile) => {
+        window.eosccommon.renderMainHeader(`#${this.id}`, profile ?? undefined);
+        profile.username === null || profile.username === ''
+          ? (this.loggedIn = false)
+          : (this.loggedIn = true);
+      });
   }
 }

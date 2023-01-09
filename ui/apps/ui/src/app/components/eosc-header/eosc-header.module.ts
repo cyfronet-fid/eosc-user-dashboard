@@ -7,6 +7,6 @@ import { SearchbarWithLogoComponent } from './searchbar-with-logo.component';
 @NgModule({
   declarations: [EoscHeaderComponent, SearchbarWithLogoComponent],
   imports: [CommonModule, RouterModule],
-    exports: [EoscHeaderComponent, SearchbarWithLogoComponent],
+  exports: [EoscHeaderComponent, SearchbarWithLogoComponent],
 })
 export class EoscHeaderModule {}

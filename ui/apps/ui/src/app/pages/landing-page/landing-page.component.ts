@@ -4,28 +4,38 @@ import { environment } from '@environment/environment';
 @Component({
   selector: 'ui-landing-page',
   template: `
-
     <main>
       <div id="topmap">
         <div class="container">
           <div class="row">
             <div class="col-sm">
               <div class="logo-eosc">
-                <img src="assets/eosc-blue.svg" alt="EOSC">
+                <img src="assets/eosc-blue.svg" alt="EOSC" />
               </div>
               <div class="intro">
-                <h1>Welcome to EOSC<br>User Dashboard</h1>
+                <h1>Welcome to EOSC<br />User Dashboard</h1>
                 <div class="description">
-                  The user panel gives you access to your activities, project management and selects the most interesting research resources for you.
+                  The user panel gives you access to your activities, project
+                  management and selects the most interesting research resources
+                  for you.
                 </div>
                 <button class="btn btn-primary" (click)="login()">Login</button>
               </div>
             </div>
             <div class="col-sm">
               <div class="features-box">
-                <div class="feature-line"><div class="dot"></div> Daily recommendations</div>
-                <div class="feature-line"><div class="dot"></div>Events and news</div>
-                <div class="feature-line last"><div class="dot"></div>Project management</div>
+                <div class="feature-line">
+                  <div class="dot"></div>
+                  Daily recommendations
+                </div>
+                <div class="feature-line">
+                  <div class="dot"></div>
+                  Events and news
+                </div>
+                <div class="feature-line last">
+                  <div class="dot"></div>
+                  Project management
+                </div>
               </div>
             </div>
           </div>
@@ -72,7 +82,11 @@ import { environment } from '@environment/environment';
                 Services
               </h3>
               <form class="search-form">
-                <input class="nosubmit" type="search" placeholder="Search for resources in all catalogs">
+                <input
+                  class="nosubmit"
+                  type="search"
+                  placeholder="Search for resources in all catalogs"
+                />
               </form>
             </div>
             <div class="col-sm right-column">
@@ -112,12 +126,10 @@ import { environment } from '@environment/environment';
         <div class="container">
           <div class="row">
             <div class="col-sm">
-                <img src="assets/illustration-support.svg" alt="support">
+              <img src="assets/illustration-support.svg" alt="support" />
             </div>
             <div class="col-sm right-column">
-              <h3>
-                We provide you a full support on each research step
-              </h3>
+              <h3>We provide you a full support on each research step</h3>
               <a href="#" class="btn btn-secondary">Contact with our experts</a>
             </div>
           </div>
@@ -130,39 +142,28 @@ import { environment } from '@environment/environment';
             <h3>Stay up to date on what is current in your research field</h3>
             <div class="cards-wrapper">
               <a href="#" class="card">
-                Medical<br>
+                Medical<br />
                 & Health Sciences
               </a>
               <a href="#" class="card">
-                Engineering<br>
+                Engineering<br />
                 & Technology
               </a>
-              <a href="#" class="card">
-                Natural Sciences
-              </a>
+              <a href="#" class="card"> Natural Sciences </a>
             </div>
             <div class="cards-wrapper">
-              <a href="#" class="card">
-                Humanities
-              </a>
-              <a href="#" class="card">
-                Agricultural<br>Sciences
-              </a>
-              <a href="#" class="card">
-                Social Sciences
-              </a>
+              <a href="#" class="card"> Humanities </a>
+              <a href="#" class="card"> Agricultural<br />Sciences </a>
+              <a href="#" class="card"> Social Sciences </a>
             </div>
           </div>
         </div>
       </div>
-
     </main>
   `,
 })
-
 export class LandingPageComponent {
   login() {
     window.location.href = `${environment.backendApiPath}/auth/request`;
   }
 }
-

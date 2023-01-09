@@ -19,7 +19,7 @@ import { EoscCommunityEnvriWidgetModule } from '@components/widgets/eosc-communi
 import { EoscCommunityPanoscWidgetModule } from '@components/widgets/eosc-community/eosc-panosc.module';
 import { DashboardPageComponent } from '@pages/dashboard-page/dashboard-page.component';
 import { RecommendationsWidgetModule } from '@components/recommendations-widget/recommendations-widget.module';
-import {EoscHeaderModule} from "@components/eosc-header/eosc-header.module";
+import { EoscHeaderModule } from '@components/eosc-header/eosc-header.module';
 
 @NgModule({
   declarations: [DashboardPageComponent],

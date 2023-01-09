@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'ui-searchbar-with-logo',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
     <div class="ps-4 content-header">
       <img width="169px" height="64px" src="assets/logo_eosc.svg" />
     </div>
-    <div class="content-header-search" align="center">SEARCH</div>
+    <div class="content-header-search" align="center">SEARCHxxxxx</div>
   </div>`,
   styles: [
     `
@@ -28,8 +28,4 @@ import { Component, OnInit } from '@angular/core';
     `,
   ],
 })
-export class SearchbarWithLogoComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit(): void {}
-}
+export class SearchbarWithLogoComponent {}
