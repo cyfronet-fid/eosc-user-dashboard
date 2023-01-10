@@ -12,6 +12,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { MainHeaderModule } from '@components/main-header/main-header.module';
 import { EoscHeaderModule } from '@components/eosc-header/eosc-header.module';
 import { EOSCNumbersWidgetService } from './widgets/eosc-numbers/eosc-numbers-widget.service';
+import { UpcomingEventsWidgetService } from './widgets/upcoming-events/upcoming-events-widget.service';
 
 registerLocaleData(en);
 
@@ -25,6 +26,13 @@ export const getEOSCNumbersFactory$ = (
   eoscNumbersService: EOSCNumbersWidgetService
 ) => {
   return () => eoscNumbersService.get$();
+};
+
+export const getUpcomingEventsFactory$ = (
+  upcomingEventsService: UpcomingEventsWidgetService
+) => {
+  return () => upcomingEventsService.get$();
+
 };
 
 @NgModule({
@@ -51,6 +59,12 @@ export const getEOSCNumbersFactory$ = (
       useFactory: getEOSCNumbersFactory$,
       multi: true,
       deps: [EOSCNumbersWidgetService],
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: getUpcomingEventsFactory$,
+      multi: true,
+      deps: [UpcomingEventsWidgetService],
     },
   ],
   bootstrap: [AppComponent],

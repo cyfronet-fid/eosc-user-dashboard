@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { UserProfileService } from '../../auth/user-profile.service';
 import { environment } from '@environment/environment';
-import { Observable, delay } from 'rxjs';
+import { delay } from 'rxjs';
+import { UpcomingEventsWidgetService } from '../../widgets/upcoming-events/upcoming-events-widget.service';
+import { UpcomingEventsWidget } from '../../widgets/upcoming-events/upcoming-events-widget.types';
 
 @UntilDestroy()
 @Component({
@@ -14,7 +15,7 @@ import { Observable, delay } from 'rxjs';
           <div class="col-6 widget-header">Upcoming Events</div>
           <div class="col-6" align="end">
             <span (click)="showMore()" class="widget-editable"
-              >Show more
+              >Show all
               <img id="show-more" src="assets/arrow_right_small.svg" />
             </span>
           </div>
@@ -123,32 +124,27 @@ import { Observable, delay } from 'rxjs';
 })
 export class WidgetUpcomingEventsComponent implements OnInit {
   backendUrl = `${environment.backendApiPath}`;
-  // TODO To be replaced by Interface and Service
-  upcomingEvents!: Observable<
-    {
-      id: string;
-      img: string;
-      date: string;
-      theme: string;
-      going: number;
-    }[]
-  >;
+  upcomingEvents: UpcomingEventsWidget[];
 
-  constructor(private _userProfileService: UserProfileService) {}
+  constructor(private _widgetEventsService: UpcomingEventsWidgetService) {
+    this.upcomingEvents = [];
+  }
 
   ngOnInit() {
-    this._userProfileService.user$
+    this._widgetEventsService.events$
       .pipe(
         untilDestroyed(this),
         // delay is required to have rerender out of angular's detection cycle
         delay(0)
       )
-      .subscribe((profile) => console.log(profile));
-    //this.upcomingEvents = this._widgetEventsService.getEvents();
+      .subscribe((events) => {
+        console.log(events);
+        //this.upcomingEvents = events;
+      });
   }
 
   public showMore() {
-    console.log('showMore');
+    window.open('https://eosc-portal.eu/media/events', '_blank');
   }
   public interested() {
     console.log('interested');

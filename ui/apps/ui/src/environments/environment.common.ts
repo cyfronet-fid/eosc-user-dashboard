@@ -3,4 +3,5 @@ export const commonEnvironment = {
   userApiPath: 'auth/userinfo',
   recommendationsApiPath: 'recommendations',
   numbersApi: 'numbers',
+  upcomingEventsApiPath: 'events',
 };

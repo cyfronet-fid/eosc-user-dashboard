@@ -8,7 +8,7 @@ import { createStore, select, withProps } from '@ngneat/elf';
 @Injectable({
   providedIn: 'root',
 })
-export class UserProfileWidgetService {
+export class VideoWidgetService {
   constructor(private _http: HttpClient) {}
 
   readonly _store$ = createStore(
