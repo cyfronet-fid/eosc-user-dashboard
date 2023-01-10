@@ -11,6 +11,7 @@ import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { MainHeaderModule } from '@components/main-header/main-header.module';
 import { EoscHeaderModule } from '@components/eosc-header/eosc-header.module';
+import { UpcomingEventsWidgetService } from './widgets/upcoming-events/upcoming-events-widget.service';
 
 registerLocaleData(en);
 
@@ -18,6 +19,12 @@ export const getUserProfileFactory$ = (
   userProfileService: UserProfileService
 ) => {
   return () => userProfileService.get$();
+};
+
+export const getUpcomingEventsFactory$ = (
+  upcomingEventsService: UpcomingEventsWidgetService
+) => {
+  return () => upcomingEventsService.get$();
 };
 
 @NgModule({
@@ -38,6 +45,12 @@ export const getUserProfileFactory$ = (
       useFactory: getUserProfileFactory$,
       multi: true,
       deps: [UserProfileService],
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: getUpcomingEventsFactory$,
+      multi: true,
+      deps: [UpcomingEventsWidgetService],
     },
   ],
   bootstrap: [AppComponent],
