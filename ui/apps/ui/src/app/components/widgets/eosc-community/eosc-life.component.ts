@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject } from '@angular/core';
 import { UntilDestroy } from '@ngneat/until-destroy';
 
 @UntilDestroy()
@@ -85,7 +86,9 @@ import { UntilDestroy } from '@ngneat/until-destroy';
   ],
 })
 export class EoscCommunityLifeWidgetComponent {
+  constructor(@Inject(DOCUMENT) private document: Document) {}
+
   public readMore() {
-    console.log('readMore');
+    window.open('https://www.eosc-life.eu/', '_blank');
   }
 }
