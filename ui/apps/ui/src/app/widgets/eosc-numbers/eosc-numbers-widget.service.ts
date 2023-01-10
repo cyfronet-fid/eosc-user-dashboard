@@ -32,7 +32,7 @@ export class EOSCNumbersWidgetService {
         publications: number;
         trainings: number;
         softwares: number;
-      }>(`${environment.backendApiPath}/${environment.userApiPath}`)
+      }>(`${environment.backendApiPath}/${environment.numbersApi}`)
       .pipe(
         catchError(() =>
           of({ services: 0, publications: 0, trainings: 0, softwares: 0 })
