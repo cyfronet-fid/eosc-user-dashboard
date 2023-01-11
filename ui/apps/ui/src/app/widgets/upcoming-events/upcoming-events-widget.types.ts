@@ -4,4 +4,6 @@ export interface UpcomingEventsWidget {
   path: string;
   date: string;
   image: string;
+  going: string;
+  interested: string;
 }
