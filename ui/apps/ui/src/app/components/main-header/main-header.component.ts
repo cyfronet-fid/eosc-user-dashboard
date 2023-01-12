@@ -17,8 +17,6 @@ declare let window: EoscCommonWindow;
       [attr.data-logout-url]="backendUrl + '/auth/logout'"
       #eoscCommonMainHeader
     ></div>
-    <ui-eosc-header *ngIf="this.loggedIn"></ui-eosc-header>
-    <ui-eosc-community-widget *ngIf="this.loggedIn"></ui-eosc-community-widget>
   `,
   encapsulation: ViewEncapsulation.None,
 })
