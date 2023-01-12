@@ -6,7 +6,7 @@ import { UntilDestroy } from '@ngneat/until-destroy';
   selector: 'ui-eosc-community-widget',
   template: `
     <div class="gx-0 community-background">
-      <div class="row ps-4 content-header">
+      <div class="ps-4 pt-4 content-header">
         <span class="eosc-nav-text"
           >EOSC Communities
           <img

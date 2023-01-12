@@ -6,30 +6,32 @@ import { UntilDestroy } from '@ngneat/until-destroy';
   selector: 'ui-dashboard',
   template: `
     <div id="background">
-      <div class="row gx-0">
-        <div class="col-8 ps-4 pe-2 pt-4 pb-4">
-          <div class="rounded widget" id="container">
-            <ui-recommendations-widget></ui-recommendations-widget>
+      <div class="container">
+        <div class="row gx-0">
+          <div class="col-8 ps-4 pe-2 pt-4 pb-4">
+            <div class="rounded widget" id="container">
+              <ui-recommendations-widget></ui-recommendations-widget>
+            </div>
           </div>
-        </div>
-        <div class="col-4 ps-2 pe-4 pt-4 pb-4">
-          <div class="mb-3">
-            <ui-widget-user-profile></ui-widget-user-profile>
-          </div>
-          <div class="mb-3">
-            <ui-widget-eosc-numbers></ui-widget-eosc-numbers>
-          </div>
-          <div class="mb-3">
-            <ui-widget-upcoming-events></ui-widget-upcoming-events>
-          </div>
-          <div class="mb-3">
-            <ui-widget-impact></ui-widget-impact>
-          </div>
-          <div class="mb-3">
-            <ui-widget-videos></ui-widget-videos>
-          </div>
-          <div class="mb-3">
-            <ui-widget-social-media></ui-widget-social-media>
+          <div class="col-4 ps-2 pe-4 pt-4 pb-4">
+            <div class="mb-3">
+              <ui-widget-user-profile></ui-widget-user-profile>
+            </div>
+            <div class="mb-3">
+              <ui-widget-eosc-numbers></ui-widget-eosc-numbers>
+            </div>
+            <div class="mb-3">
+              <ui-widget-upcoming-events></ui-widget-upcoming-events>
+            </div>
+            <div class="mb-3">
+              <ui-widget-impact></ui-widget-impact>
+            </div>
+            <div class="mb-3">
+              <ui-widget-videos></ui-widget-videos>
+            </div>
+            <div class="mb-3">
+              <ui-widget-social-media></ui-widget-social-media>
+            </div>
           </div>
         </div>
       </div>
