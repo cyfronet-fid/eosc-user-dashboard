@@ -69,8 +69,6 @@ import { environment } from '@environment/environment';
         <ui-eosc-community-widget></ui-eosc-community-widget>
       </div>
 
-      <div id="promo"></div>
-
       <div id="resources">
         <div class="container">
           <div class="row">
@@ -110,12 +108,26 @@ import { environment } from '@environment/environment';
             <h3>Join our community</h3>
             <div class="col-sm">
               <a href="#" class="tile left-tile">
+                <div class="icon">
+                  <img src="assets/providers.png" alt="Provider" />
+                </div>
                 <div class="title">Provider</div>
+                <div class="desc">
+                  Advertise your resources on the EOSC Portal and promote them, reaching a wider user base. Get statistics about access requests and customer feedback. Get a free platform where you can manage service requests and interact with users.
+                </div>
+                <div class="btn btn-sm-landing btn-secondary">Providers Hub</div>
               </a>
             </div>
             <div class="col-sm">
               <a href="#" class="tile right-tile">
+                <div class="icon">
+                  <img src="assets/researchers.png" alt="Researcher" />
+                </div>
                 <div class="title">Researcher</div>
+                <div class="desc">
+                  Get access to a wide web of FAIR data and other resources, ranging from High Technology and Engineering to Social Sciences. Find EOSC Services that suit your use case yourself or describe your use case and get support from our experts.
+                </div>
+                <div class="btn btn-sm-landing btn-secondary">Create Research Project</div>
               </a>
             </div>
           </div>
@@ -125,12 +137,9 @@ import { environment } from '@environment/environment';
       <div id="support">
         <div class="container">
           <div class="row">
-            <div class="col-sm">
-              <img src="assets/illustration-support.svg" alt="support" class="img-fluid"/>
-            </div>
-            <div class="col-sm right-column">
+            <div class="col-sm-5">
               <h3>We provide you a full support on each research step</h3>
-              <a href="#" class="btn btn-secondary">Contact with our experts</a>
+              <a href="#" class="btn btn-sm-landing btn-secondary">Contact with our experts</a>
             </div>
           </div>
         </div>
@@ -142,19 +151,33 @@ import { environment } from '@environment/environment';
             <h3>Stay up to date on what is current in your research field</h3>
             <div class="cards-wrapper">
               <a href="#" class="card">
+                <img src="assets/ico-molecular.svg" alt="Medical">
                 Medical<br />
                 & Health Sciences
               </a>
               <a href="#" class="card">
+                <img src="assets/ico-technology.svg" alt="Engineering">
                 Engineering<br />
                 & Technology
               </a>
-              <a href="#" class="card"> Natural Sciences </a>
+              <a href="#" class="card">
+                <img src="assets/ico-microscope.svg" alt="Natural Sciences">
+                Natural Sciences
+              </a>
             </div>
             <div class="cards-wrapper">
-              <a href="#" class="card"> Humanities </a>
-              <a href="#" class="card"> Agricultural<br />Sciences </a>
-              <a href="#" class="card"> Social Sciences </a>
+              <a href="#" class="card">
+                <img src="assets/ico-artificial-intelligence.svg" alt="Humanities">
+                Humanities
+              </a>
+              <a href="#" class="card">
+                <img src="assets/ico-agriculture.svg" alt="Agricultural">
+                Agricultural<br />Sciences
+              </a>
+              <a href="#" class="card">
+                <img src="assets/ico-social-science.svg" alt="Social Sciences">
+                Social Sciences
+              </a>
             </div>
           </div>
         </div>
