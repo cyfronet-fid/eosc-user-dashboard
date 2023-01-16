@@ -5,7 +5,7 @@ import { environment } from '@environment/environment';
 import { Observable, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { VideoDetail } from '../../widgets/videos/videos-widget.types';
-const YOUTUBE_API_KEY = 'we need key here';
+const YOUTUBE_API_KEY = 'AIzaSyAlLHVx3PSPvVnCUd7DL2wNsj_9UzLPTAk';
 const YOUTUBE_API_URL = 'https://www.googleapis.com/youtube/v3/search';
 
 @UntilDestroy()
@@ -23,33 +23,43 @@ const YOUTUBE_API_URL = 'https://www.googleapis.com/youtube/v3/search';
             </span>
           </div>
         </div>
-        <div class="row pt-4">
-          <div class="col-12">
-            <img width="100%" height="100%" src="assets/video1.png" />
+
+        <div *ngFor="let item of slicedData">
+          <div class="row pt-4">
+            <div class="col-12">
+              <img
+                (click)="moveToVideo(item.id)"
+                width="100%"
+                height="100%"
+                src="{{ item.thumbnailUrl }}"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="row pt-3 pb-3">
+                <span class="widget-header-theme">{{ item.title }}</span>
+              </div>
+            </div>
           </div>
         </div>
         <div class="row">
           <div class="col-12">
-            <div class="row pt-3 pb-3">
-              <span class="widget-header-theme"
-                >EOSC Marketplace Ask Me Anything Session</span
-              >
-            </div>
             <div class="row" align="end">
               <span>
                 <button
-                  [disabled]="!hasNext()"
+                  [disabled]="!hasPrev"
                   type="button"
                   class="btn px-0 py-0"
-                  (click)="setNext()"
+                  (click)="getPreviousData()"
                 >
                   <img width="24px" height="24px" src="assets/left_icon.svg" />
                 </button>
                 <button
-                  [disabled]="!hasPrev()"
+                  [disabled]="!hasNext"
                   type="button"
                   class="btn px-0 py-0"
-                  (click)="setPrev()"
+                  (click)="getNextData()"
                 >
                   <img width="24px" height="24px" src="assets/right_icon.svg" />
                 </button>
@@ -113,13 +123,21 @@ const YOUTUBE_API_URL = 'https://www.googleapis.com/youtube/v3/search';
 })
 export class WidgetVideosComponent implements OnInit {
   backendUrl = `${environment.backendApiPath}`;
+  videos: VideoDetail[];
+  slicedData: VideoDetail[];
+  idx = 0;
+  slideCount = 1;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.videos = [];
+    this.slicedData = [];
+  }
 
   ngOnInit() {
     this.search().subscribe((data) => {
       // Show data and navigate around it
-      console.log(data);
+      this.videos = data;
+      this.slicedData = this.videos.slice(0, 1);
     });
   }
   search(): Observable<VideoDetail[]> {
@@ -134,6 +152,33 @@ export class WidgetVideosComponent implements OnInit {
     const queryUrl = `${YOUTUBE_API_URL}?${params}`;
 
     return this.http.get<any>(queryUrl).pipe(
+      /* TEST MOCK
+      catchError(() =>
+        of([
+          {
+            title:
+              'EBRAINS Research Infrastructure: supporting the future of brain science',
+            id: 'aPD1Tqtc6lk',
+            description: 'desc',
+            thumbnailUrl: 'https://i.ytimg.com/vi/aPD1Tqtc6lk/hqdefault.jpg',
+          },
+          {
+            title:
+              '1EBRAINS Research Infrastructure: supporting the future of brain science',
+            id: 'aPD1Tqtc6lk',
+            description: 'desc',
+            thumbnailUrl: 'https://i.ytimg.com/vi/ds60-4oPR10/hqdefault.jpg',
+          },
+          {
+            title:
+              '2EBRAINS Research Infrastructure: supporting the future of brain science',
+            id: 'aPD1Tqtc6lk',
+            description: 'desc',
+            thumbnailUrl: 'https://i.ytimg.com/vi/HwRkps_gDl0/hqdefault.jpg',
+          },
+        ])
+      ),
+      tap((event: any) => console.log(event))*/
       map((response) => {
         return response['items'].map(
           (item: {
@@ -159,16 +204,34 @@ export class WidgetVideosComponent implements OnInit {
   public showMore() {
     window.open('https://www.youtube.com/@EOSCPortal/', '_blank');
   }
-  public hasNext() {
-    return true;
+  get hasNext() {
+    return this.idx < this.videos.length - 1;
   }
-  public hasPrev() {
-    return true;
+  get hasPrev() {
+    return this.idx > 0;
   }
-  public setNext() {
-    console.log('next');
+
+  public getNextData() {
+    if (this.idx < this.videos.length - 1) {
+      this.idx++;
+      this.slicedData = this.videos.slice(
+        this.idx * this.slideCount,
+        this.idx * this.slideCount + this.slideCount
+      );
+    }
   }
-  public setPrev() {
-    console.log('prev');
+
+  public getPreviousData() {
+    if (this.idx !== 0) {
+      this.idx--;
+      this.slicedData = this.videos.slice(
+        this.idx * this.slideCount,
+        this.idx * this.slideCount + this.slideCount
+      );
+    }
+  }
+
+  public moveToVideo(path: string) {
+    window.open('https://www.youtube.com/watch?v=' + path, '_blank');
   }
 }
