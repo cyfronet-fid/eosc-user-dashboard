@@ -32,7 +32,6 @@ export const getUpcomingEventsFactory$ = (
   upcomingEventsService: UpcomingEventsWidgetService
 ) => {
   return () => upcomingEventsService.get$();
-
 };
 
 @NgModule({

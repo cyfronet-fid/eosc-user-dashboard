@@ -20,47 +20,57 @@ import { UpcomingEventsWidget } from '../../widgets/upcoming-events/upcoming-eve
             </span>
           </div>
         </div>
-        <div class="row pt-4">
-          <div class="col-12">
-            <img width="100%" height="100%" src="assets/events1.png" />
+
+        <div *ngFor="let item of slicedData">
+          <div class="row pt-4">
+            <div class="col-12">
+              <img
+                (click)="moveToEvent(item.path)"
+                width="100%"
+                height="100%"
+                src="{{ item.image }}"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="row pt-3">
+                <span class="widget-header-place">{{ item.date }}</span>
+              </div>
+              <div class="row">
+                <span class="widget-header-theme">{{ item.title }}</span>
+              </div>
+              <div class="row pt-3">
+                <div class="col-6">
+                  <div (click)="interested()" class="interested">
+                    <span class="interested-text">Interested?</span
+                    ><img src="assets/interested.svg" />
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div>
+                    <span class="going-text">{{ item.going }} Going</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="row">
           <div class="col-12">
-            <div class="row pt-3">
-              <span class="widget-header-place"
-                >25-26.11.2022 Paris, France</span
-              >
-            </div>
-            <div class="row">
-              <span class="widget-header-theme">Final Conference</span>
-            </div>
-            <div class="row pt-3">
-              <div class="col-6">
-                <div (click)="interested()" class="interested">
-                  <span class="interested-text">Interested?</span
-                  ><img src="assets/interested.svg" />
-                </div>
-              </div>
-              <div class="col-4">
-                <div><span class="going-text">36 Going</span></div>
-              </div>
-            </div>
             <div class="row" align="end">
               <span>
                 <button
-                  [disabled]="!hasNext()"
-                  type="button"
+                  [disabled]="!hasPrev"
                   class="btn px-0 py-0"
-                  (click)="setNext()"
+                  (click)="getPreviousData()"
                 >
                   <img width="24px" height="24px" src="assets/left_icon.svg" />
                 </button>
                 <button
-                  [disabled]="!hasPrev()"
-                  type="button"
+                  [disabled]="!hasNext"
                   class="btn px-0 py-0"
-                  (click)="setPrev()"
+                  (click)="getNextData()"
                 >
                   <img width="24px" height="24px" src="assets/right_icon.svg" />
                 </button>
@@ -125,9 +135,24 @@ import { UpcomingEventsWidget } from '../../widgets/upcoming-events/upcoming-eve
 export class WidgetUpcomingEventsComponent implements OnInit {
   backendUrl = `${environment.backendApiPath}`;
   upcomingEvents: UpcomingEventsWidget[];
+  idx = 0;
+  slideCount = 1;
+  slicedData: UpcomingEventsWidget[];
 
   constructor(private _widgetEventsService: UpcomingEventsWidgetService) {
     this.upcomingEvents = [];
+    // Some default values needed here
+    this.slicedData = [
+      {
+        title: '',
+        body: '',
+        path: '',
+        date: '',
+        image: '',
+        going: '',
+        interested: '',
+      },
+    ];
   }
 
   ngOnInit() {
@@ -138,27 +163,43 @@ export class WidgetUpcomingEventsComponent implements OnInit {
         delay(0)
       )
       .subscribe((events) => {
-        console.log(events);
-        //this.upcomingEvents = events;
+        this.upcomingEvents = events;
+        this.slicedData = this.upcomingEvents.slice(0, 1);
       });
   }
 
   public showMore() {
     window.open('https://eosc-portal.eu/media/events', '_blank');
   }
+  public moveToEvent(path: string) {
+    window.open('http://eosc-portal.eu' + path, '_blank');
+  }
+
   public interested() {
     console.log('interested');
   }
-  public hasNext() {
-    return true;
+  get hasNext() {
+    return this.idx < this.upcomingEvents.length - 1;
   }
-  public hasPrev() {
-    return true;
+  get hasPrev() {
+    return this.idx > 0;
   }
-  public setNext() {
-    console.log('next');
+  public getNextData() {
+    if (this.idx < this.upcomingEvents.length - 1) {
+      this.idx++;
+      this.slicedData = this.upcomingEvents.slice(
+        this.idx * this.slideCount,
+        this.idx * this.slideCount + this.slideCount
+      );
+    }
   }
-  public setPrev() {
-    console.log('prev');
+  public getPreviousData() {
+    if (this.idx !== 0) {
+      this.idx--;
+      this.slicedData = this.upcomingEvents.slice(
+        this.idx * this.slideCount,
+        this.idx * this.slideCount + this.slideCount
+      );
+    }
   }
 }
