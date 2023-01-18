@@ -9,7 +9,7 @@ import { UntilDestroy } from '@ngneat/until-destroy';
       <div class="container">
         <div class="row ps-4 content-header">
           <span class="eosc-nav-text"
-            >EOSC Communities
+            >Explore EOSC Communitites
             <img
               width="18px"
               height="16px"
@@ -110,24 +110,25 @@ import { UntilDestroy } from '@ngneat/until-destroy';
         width: 100%;
       }
       .community-background {
-        height: 302px;
         width: 100%;
         overflow: hidden;
       }
       .content-header {
-        padding-top: 32px;
+        padding-top: 50px;
       }
       .eosc-nav-text {
         font-family: 'Inter';
         font-style: normal;
         font-weight: 600;
-        font-size: 18px;
-        line-height: 22px;
-        color: #3d4db6;
+        font-size: 24px;
+        line-height: 30px;
+        color: #232C34;
       }
       .right-arrow {
         padding-left: 10px;
-        padding-bottom: 4px;
+        margin-left: 20px;
+        width: 20px;
+        height: 18px;
       }
       .right-arrow:hover {
         width: 20px;
@@ -141,7 +142,9 @@ import { UntilDestroy } from '@ngneat/until-destroy';
       }
       .left-arrow {
         padding-left: 10px;
-        padding-bottom: 4px;
+        margin-left: 15px;
+        width: 20px;
+        height: 18px;
       }
     `,
   ],

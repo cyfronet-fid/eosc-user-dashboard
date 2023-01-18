@@ -639,10 +639,14 @@ svg:not(:root).svg-inline--fa {
 }
 
 #topmap {
-  background: url("assets/stars.svg") 100% 40px, linear-gradient(180deg, #EDF3FA 0%, rgba(255, 255, 255, 1) 100%);
-  background-repeat: no-repeat;
+  background: linear-gradient(180deg, #EDF3FA 0%, rgba(255, 255, 255, 1) 100%);
   position: relative;
   min-height: 720px;
+
+  .stars-bg {
+    background: url("assets/stars.svg") right 40px no-repeat;
+    height: 645px;
+  }
 
   .logo-eosc {
     margin-top: 130px;
@@ -663,7 +667,7 @@ svg:not(:root).svg-inline--fa {
 
     .description {
       font-style: normal;
-      font-weight: 400;
+      font-weight: 600;
       font-size: 24px;
       line-height: 32px;
       max-width: 575px;
@@ -672,7 +676,7 @@ svg:not(:root).svg-inline--fa {
   }
 
   .features-box {
-    margin-top: 175px;
+    margin-top: 110px;
     width: 370px;
     background: #fff;
     padding: 10px 25px;
@@ -760,11 +764,22 @@ ul.check-list {
     line-height: 39px;
     color: #333;
   }
+
+  .sub-title {
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 600;
+    margin: auto;
+    max-width: 880px;
+    text-align: center;
+  }
 }
 
 .fixed-size {
   background: #fff;
   border-radius: 16px;
+  padding-top: 10px;
+  box-shadow: 14px 8px 16px rgb(0 0 0 / 5%);
 }
 
 #resources {
@@ -773,9 +788,6 @@ ul.check-list {
   background-attachment: fixed;
   position: relative;
   padding: 80px 0 80px;
-  -webkit-box-shadow: 0px 0px 24px 12px rgba(0, 0, 0, 1);
-  -moz-box-shadow: 0px 0px 24px 12px rgba(0, 0, 0, 1);
-  box-shadow: 0px 0px 24px 12px rgba(0, 0, 0, 1);
 
   .pre-title {
     font-weight: 500;
@@ -959,6 +971,12 @@ ul.check-list {
         width: auto;
         height: 88px;
         margin: 0 auto 20px;
+      }
+
+      &.natural-sciences {
+        img {
+          margin-bottom: 35px;
+        }
       }
     }
   }

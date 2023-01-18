@@ -13,16 +13,14 @@ import { environment } from '@environment/environment';
                 <img src="assets/eosc-blue.svg" alt="EOSC" />
               </div>
               <div class="intro">
-                <h1>Welcome to EOSC<br />User Dashboard</h1>
+                <h1>Welcome to the EOSC<br />User Dashboard</h1>
                 <div class="description">
-                  The user panel gives you access to your activities, project
-                  management and selects the most interesting research resources
-                  for you.
+                  Access your activity history, manage your research projects and get resource recommendations.
                 </div>
                 <button class="btn btn-primary" (click)="login()">Login</button>
               </div>
             </div>
-            <div class="col-sm">
+            <div class="col-sm stars-bg">
               <div class="features-box">
                 <div class="feature-line">
                   <div class="dot"></div>
@@ -30,7 +28,7 @@ import { environment } from '@environment/environment';
                 </div>
                 <div class="feature-line">
                   <div class="dot"></div>
-                  Events and news
+                  News, events and community
                 </div>
                 <div class="feature-line last">
                   <div class="dot"></div>
@@ -52,7 +50,7 @@ import { environment } from '@environment/environment';
               <h2>Manage. Discover. Measure.</h2>
               <ul class="check-list">
                 <li>Get notified about news in your domain</li>
-                <li>Read materials selected for you</li>
+                <li>Read materials recommended for you</li>
                 <li>Manage your research projects</li>
               </ul>
             </div>
@@ -64,9 +62,10 @@ import { environment } from '@environment/environment';
         <div class="container">
           <div class="row">
             <h2>News. Events. Community</h2>
+            <p class="sub-title">Stay up to date with what's going on in your domain, participate in numerous subject-specific events and related learning activities, and join the community to advance Open science.</p>
           </div>
+          <ui-eosc-community-widget></ui-eosc-community-widget>
         </div>
-        <ui-eosc-community-widget></ui-eosc-community-widget>
       </div>
 
       <div id="resources">
@@ -75,9 +74,7 @@ import { environment } from '@environment/environment';
             <div class="col-sm">
               <div class="pre-title">Over 3339935 research resources</div>
               <h3>
-                Publications, Software,<br />
-                Data Sets, Trainings,<br />
-                Services
+                Publications,<br>Software, Data Sets,<br> Learning Resources,<br> Services
               </h3>
               <form class="search-form">
                 <input
@@ -89,13 +86,12 @@ import { environment } from '@environment/environment';
             </div>
             <div class="col-sm right-column">
               <p>
-                Let us help you with technical resources and stay focused on
-                what is really important for you.
+                Let us help you access the technical resources you need, so you can stay focused on your research
               </p>
               <ul class="check-list">
                 <li>Advanced Search Engine</li>
                 <li>Over 3339935 research resources</li>
-                <li>Intelligent offers management and support</li>
+                <li>Intelligent resource access management <br>and support</li>
               </ul>
             </div>
           </div>
@@ -113,9 +109,9 @@ import { environment } from '@environment/environment';
                 </div>
                 <div class="title">Provider</div>
                 <div class="desc">
-                  Advertise your resources on the EOSC Portal and promote them, reaching a wider user base. Get statistics about access requests and customer feedback. Get a free platform where you can manage service requests and interact with users.
+                  Advertise your resources on the EOSC Portal and promote them, reaching a wider user base. Get statistics about access requests and User feedback. Get free use of a platform where you can manage service requests and interact with your users.
                 </div>
-                <div class="btn btn-sm-landing btn-secondary">Providers Hub</div>
+                <div class="btn btn-sm-landing btn-secondary">Go to Provider’s Hub</div>
               </a>
             </div>
             <div class="col-sm">
@@ -125,7 +121,7 @@ import { environment } from '@environment/environment';
                 </div>
                 <div class="title">Researcher</div>
                 <div class="desc">
-                  Get access to a wide web of FAIR data and other resources, ranging from High Technology and Engineering to Social Sciences. Find EOSC Services that suit your use case yourself or describe your use case and get support from our experts.
+                  Get access to a wide range of FAIR data and other resources, ranging from Technology and Engineering to Social Sciences. Search for EOSC Services that suit your use case or describe your needs and get support from our experts.
                 </div>
                 <div class="btn btn-sm-landing btn-secondary">Create Research Project</div>
               </a>
@@ -138,7 +134,7 @@ import { environment } from '@environment/environment';
         <div class="container">
           <div class="row">
             <div class="col-sm-5">
-              <h3>We provide you a full support on each research step</h3>
+              <h3>We can provide you with full support for each research step </h3>
               <a href="#" class="btn btn-sm-landing btn-secondary">Contact with our experts</a>
             </div>
           </div>
@@ -148,7 +144,7 @@ import { environment } from '@environment/environment';
       <div id="up-to-date">
         <div class="container">
           <div class="row">
-            <h3>Stay up to date on what is current in your research field</h3>
+            <h3>Stay up to date with what is current in your research field</h3>
             <div class="cards-wrapper">
               <a href="#" class="card">
                 <img src="assets/ico-molecular.svg" alt="Medical">
@@ -160,7 +156,7 @@ import { environment } from '@environment/environment';
                 Engineering<br />
                 & Technology
               </a>
-              <a href="#" class="card">
+              <a href="#" class="card natural-sciences">
                 <img src="assets/ico-microscope.svg" alt="Natural Sciences">
                 Natural Sciences
               </a>
