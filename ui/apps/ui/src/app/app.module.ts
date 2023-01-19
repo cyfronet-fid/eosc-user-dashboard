@@ -13,6 +13,7 @@ import { MainHeaderModule } from '@components/main-header/main-header.module';
 import { EoscHeaderModule } from '@components/eosc-header/eosc-header.module';
 import { EOSCNumbersWidgetService } from './widgets/eosc-numbers/eosc-numbers-widget.service';
 import { UpcomingEventsWidgetService } from './widgets/upcoming-events/upcoming-events-widget.service';
+import { VideoWidgetService } from './widgets/videos/videos-widget.service';
 
 registerLocaleData(en);
 
@@ -32,6 +33,10 @@ export const getUpcomingEventsFactory$ = (
   upcomingEventsService: UpcomingEventsWidgetService
 ) => {
   return () => upcomingEventsService.get$();
+};
+
+export const getVideosFactory$ = (videosService: VideoWidgetService) => {
+  return () => videosService.get$();
 };
 
 @NgModule({
@@ -64,6 +69,12 @@ export const getUpcomingEventsFactory$ = (
       useFactory: getUpcomingEventsFactory$,
       multi: true,
       deps: [UpcomingEventsWidgetService],
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: getVideosFactory$,
+      multi: true,
+      deps: [VideoWidgetService],
     },
   ],
   bootstrap: [AppComponent],

@@ -1,12 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit } from '@angular/core';
-import { UntilDestroy } from '@ngneat/until-destroy';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { environment } from '@environment/environment';
-import { Observable, map } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { delay } from 'rxjs';
 import { VideoDetail } from '../../widgets/videos/videos-widget.types';
-const YOUTUBE_API_KEY = 'AIzaSyAlLHVx3PSPvVnCUd7DL2wNsj_9UzLPTAk';
-const YOUTUBE_API_URL = 'https://www.googleapis.com/youtube/v3/search';
+import { VideoWidgetService } from '../../widgets/videos/videos-widget.service';
 
 @UntilDestroy()
 @Component({
@@ -128,77 +126,22 @@ export class WidgetVideosComponent implements OnInit {
   idx = 0;
   slideCount = 1;
 
-  constructor(private http: HttpClient) {
+  constructor(private _widgetVideoService: VideoWidgetService) {
     this.videos = [];
     this.slicedData = [];
   }
 
   ngOnInit() {
-    this.search().subscribe((data) => {
-      // Show data and navigate around it
-      this.videos = data;
-      this.slicedData = this.videos.slice(0, 1);
-    });
-  }
-  search(): Observable<VideoDetail[]> {
-    const params: string = [
-      `key=${YOUTUBE_API_KEY}`,
-      `channelId=UCHsaUFy5LJ3rJ28qDg2StGA`,
-      `part=snippet,id`,
-      `order=date`,
-      `maxResults=10`,
-    ].join('&');
-
-    const queryUrl = `${YOUTUBE_API_URL}?${params}`;
-
-    return this.http.get<any>(queryUrl).pipe(
-      /* TEST MOCK
-      catchError(() =>
-        of([
-          {
-            title:
-              'EBRAINS Research Infrastructure: supporting the future of brain science',
-            id: 'aPD1Tqtc6lk',
-            description: 'desc',
-            thumbnailUrl: 'https://i.ytimg.com/vi/aPD1Tqtc6lk/hqdefault.jpg',
-          },
-          {
-            title:
-              '1EBRAINS Research Infrastructure: supporting the future of brain science',
-            id: 'aPD1Tqtc6lk',
-            description: 'desc',
-            thumbnailUrl: 'https://i.ytimg.com/vi/ds60-4oPR10/hqdefault.jpg',
-          },
-          {
-            title:
-              '2EBRAINS Research Infrastructure: supporting the future of brain science',
-            id: 'aPD1Tqtc6lk',
-            description: 'desc',
-            thumbnailUrl: 'https://i.ytimg.com/vi/HwRkps_gDl0/hqdefault.jpg',
-          },
-        ])
-      ),
-      tap((event: any) => console.log(event))*/
-      map((response) => {
-        return response['items'].map(
-          (item: {
-            id: { videoId: any };
-            snippet: {
-              title: any;
-              description: any;
-              thumbnails: { high: { url: any } };
-            };
-          }) => {
-            return new VideoDetail({
-              id: item.id.videoId,
-              title: item.snippet.title,
-              description: item.snippet.description,
-              thumbnailUrl: item.snippet.thumbnails.high.url,
-            });
-          }
-        );
-      })
-    );
+    this._widgetVideoService.videos$
+      .pipe(
+        untilDestroyed(this),
+        // delay is required to have rerender out of angular's detection cycle
+        delay(0)
+      )
+      .subscribe((data) => {
+        this.videos = data;
+        this.slicedData = this.videos.slice(0, 1);
+      });
   }
 
   public showMore() {

@@ -1,8 +1,3 @@
-export interface VideosWidget {
-  headline: string;
-  link: string;
-}
-
 export class VideoDetail {
   id: string;
   title: string;
