@@ -36,7 +36,10 @@ import { VideoWidgetService } from '../../widgets/videos/videos-widget.service';
           <div class="row">
             <div class="col-12">
               <div class="row pt-3 pb-3">
-                <span class="widget-header-theme">{{ item.title }}</span>
+                <span
+                  class="widget-header-theme"
+                  [innerHTML]="item.title"
+                ></span>
               </div>
             </div>
           </div>
