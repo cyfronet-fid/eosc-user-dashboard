@@ -38,7 +38,10 @@ import { UpcomingEventsWidget } from '../../widgets/upcoming-events/upcoming-eve
                 <span class="widget-header-place">{{ item.Date }}</span>
               </div>
               <div class="row">
-                <span class="widget-header-theme">{{ item.Title }}</span>
+                <span
+                  class="widget-header-theme"
+                  [innerHTML]="item.Title"
+                ></span>
               </div>
               <div class="row pt-3">
                 <div class="col-6">
