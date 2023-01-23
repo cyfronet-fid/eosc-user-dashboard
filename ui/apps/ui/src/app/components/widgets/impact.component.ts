@@ -40,7 +40,7 @@ import { delay } from 'rxjs';
         background-repeat: no-repeat !important;
       }
       .widget-header-text {
-        font-family: 'Switzer';
+        font-family: 'Inter';
         font-style: normal;
         font-weight: 600;
         font-size: 18px;
@@ -48,7 +48,7 @@ import { delay } from 'rxjs';
         color: #1a2128;
       }
       .widget-subheader-text {
-        font-family: 'Switzer';
+        font-family: 'Inter';
         font-style: normal;
         font-weight: 500;
         font-size: 14px;
@@ -70,7 +70,7 @@ import { delay } from 'rxjs';
         border-radius: 10px;
       }
       .button-text {
-        font-family: 'Switzer';
+        font-family: 'Inter';
         font-style: normal;
         font-weight: 600;
         font-size: 14px;

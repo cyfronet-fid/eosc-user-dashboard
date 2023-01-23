@@ -11,30 +11,32 @@ import { UntilDestroy } from '@ngneat/until-destroy';
       <div class="dashboard-carousel">
         <ui-eosc-community-widget></ui-eosc-community-widget>
       </div>
-      <div class="row gx-0">
-        <div class="col-8 ps-4 pe-2 pt-4 pb-4">
-          <div class="rounded widget" id="container">
-            <ui-recommendations-widget></ui-recommendations-widget>
+      <div class="container">
+        <div class="row gx-0">
+          <div class="col-8 ps-1 pe-4 pt-5 pb-4">
+            <div class="rounded widget" id="container">
+              <ui-recommendations-widget></ui-recommendations-widget>
+            </div>
           </div>
-        </div>
-        <div class="col-4 ps-2 pe-4 pt-4 pb-4">
-          <div class="mb-3">
-            <ui-widget-user-profile></ui-widget-user-profile>
-          </div>
-          <div class="mb-3">
-            <ui-widget-eosc-numbers></ui-widget-eosc-numbers>
-          </div>
-          <div class="mb-3">
-            <ui-widget-upcoming-events></ui-widget-upcoming-events>
-          </div>
-          <div class="mb-3">
-            <ui-widget-impact></ui-widget-impact>
-          </div>
-          <div class="mb-3">
-            <ui-widget-videos></ui-widget-videos>
-          </div>
-          <div class="mb-3">
-            <ui-widget-social-media></ui-widget-social-media>
+          <div class="col-4 ps-2 pt-5 pb-4">
+            <div class="mb-3">
+              <ui-widget-user-profile></ui-widget-user-profile>
+            </div>
+            <div class="mb-3">
+              <ui-widget-eosc-numbers></ui-widget-eosc-numbers>
+            </div>
+            <div class="mb-3">
+              <ui-widget-upcoming-events></ui-widget-upcoming-events>
+            </div>
+            <div class="mb-3">
+              <ui-widget-impact></ui-widget-impact>
+            </div>
+            <div class="mb-3">
+              <ui-widget-videos></ui-widget-videos>
+            </div>
+            <div class="mb-3">
+              <ui-widget-social-media></ui-widget-social-media>
+            </div>
           </div>
         </div>
       </div>
@@ -58,7 +60,7 @@ import { UntilDestroy } from '@ngneat/until-destroy';
         padding: 24px;
       }
       .widget-header {
-        font-family: 'Switzer';
+        font-family: 'Inter';
         font-style: normal;
         font-weight: 600;
         font-size: 18px;
@@ -66,7 +68,7 @@ import { UntilDestroy } from '@ngneat/until-destroy';
         color: #1a2128;
       }
       .widget-editable {
-        font-family: 'Switzer';
+        font-family: 'Inter';
         font-style: normal;
         font-weight: 600;
         font-size: 13px;
@@ -78,7 +80,7 @@ import { UntilDestroy } from '@ngneat/until-destroy';
         cursor: pointer;
       }
       .widget-text {
-        font-family: 'Switzer';
+        font-family: 'Inter';
         font-style: normal;
         font-weight: 400;
         font-size: 14px;

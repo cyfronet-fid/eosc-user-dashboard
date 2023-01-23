@@ -108,7 +108,7 @@ import { EOSCNumbersWidgetService } from '../../widgets/eosc-numbers/eosc-number
         border-radius: 8px;
       }
       .widget-subheader {
-        font-family: 'Switzer';
+        font-family: 'Inter';
         font-style: normal;
         font-weight: 400;
         font-size: 14px;
@@ -116,7 +116,7 @@ import { EOSCNumbersWidgetService } from '../../widgets/eosc-numbers/eosc-number
         color: #8e8d8a;
       }
       .widget-numbers {
-        font-family: 'Switzer';
+        font-family: 'Inter';
         font-style: normal;
         font-weight: 600;
         font-size: 24px;
@@ -124,7 +124,7 @@ import { EOSCNumbersWidgetService } from '../../widgets/eosc-numbers/eosc-number
         color: #232c34;
       }
       .widget-numbers-name {
-        font-family: 'Switzer';
+        font-family: 'Inter';
         font-style: normal;
         font-weight: 400;
         font-size: 14px;

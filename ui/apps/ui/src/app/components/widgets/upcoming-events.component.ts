@@ -84,7 +84,7 @@ import { UpcomingEventsWidget } from '../../widgets/upcoming-events/upcoming-eve
   styles: [
     `
       .widget-header-place {
-        font-family: 'Switzer';
+        font-family: 'Inter';
         font-style: normal;
         font-weight: 400;
         font-size: 14px;
@@ -92,7 +92,7 @@ import { UpcomingEventsWidget } from '../../widgets/upcoming-events/upcoming-eve
         color: #1a2128;
       }
       .widget-header-theme {
-        font-family: 'Switzer';
+        font-family: 'Inter';
         font-style: normal;
         font-weight: 600;
         font-size: 20px;
@@ -111,7 +111,7 @@ import { UpcomingEventsWidget } from '../../widgets/upcoming-events/upcoming-eve
         border-radius: 10px;
       }
       .interested-text {
-        font-family: 'Switzer';
+        font-family: 'Inter';
         font-style: normal;
         font-weight: 600;
         font-size: 13px;
@@ -119,7 +119,7 @@ import { UpcomingEventsWidget } from '../../widgets/upcoming-events/upcoming-eve
         color: #144b9e;
       }
       .going-text {
-        font-family: 'Switzer';
+        font-family: 'Inter';
         font-style: normal;
         font-weight: 500;
         font-size: 14px;

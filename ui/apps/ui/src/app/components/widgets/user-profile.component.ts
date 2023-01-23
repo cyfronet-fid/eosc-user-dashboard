@@ -64,7 +64,7 @@ import { DOCUMENT } from '@angular/common';
         float: left;
       }
       .fav-text {
-        font-family: 'Switzer';
+        font-family: 'Inter';
         font-style: normal;
         font-weight: 400;
         font-size: 10px;
