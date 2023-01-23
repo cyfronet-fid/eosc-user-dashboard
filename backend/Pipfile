@@ -21,6 +21,7 @@ pyjwt = {extras = ["crypto"], version = "*"}
 cachetools = "*"
 python-benedict = "*"
 autopep8 = "*"
+async-lru = "*"
 
 [dev-packages]
 black = "*"

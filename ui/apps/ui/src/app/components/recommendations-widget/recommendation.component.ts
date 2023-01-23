@@ -18,7 +18,7 @@ import {
     `
       .recommendation {
         padding: 24px;
-        margin: 24px;
+        margin: 24px 0px;
         border: 1px solid #d9dee2;
         border-radius: 8px;
       }

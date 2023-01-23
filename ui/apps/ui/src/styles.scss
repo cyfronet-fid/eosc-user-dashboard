@@ -306,8 +306,8 @@ textarea {
 
 .btn-secondary {
   color: #fff;
-  background-color: #144B9E;
-  border-color: #144B9E;
+  background-color: #144b9e;
+  border-color: #144b9e;
   padding: 6px 30px;
   border-radius: 8px;
   font-size: 22px;
@@ -639,12 +639,12 @@ svg:not(:root).svg-inline--fa {
 }
 
 #topmap {
-  background: linear-gradient(180deg, #EDF3FA 0%, rgba(255, 255, 255, 1) 100%);
+  background: linear-gradient(180deg, #edf3fa 0%, rgba(255, 255, 255, 1) 100%);
   position: relative;
   min-height: 720px;
 
   .stars-bg {
-    background: url("assets/stars.svg") right 40px no-repeat;
+    background: url('assets/stars.svg') right 40px no-repeat;
     height: 645px;
   }
 
@@ -690,7 +690,7 @@ svg:not(:root).svg-inline--fa {
       position: relative;
       font-size: 16px;
       line-height: 32px;
-      border-bottom: 1px solid #EDF3FA;
+      border-bottom: 1px solid #edf3fa;
       padding: 14px 0;
 
       &.last {
@@ -702,7 +702,7 @@ svg:not(:root).svg-inline--fa {
         width: 32px;
         margin-right: 25px;
         float: left;
-        background-color: #ABD7F1;
+        background-color: #abd7f1;
         border-radius: 50%;
         display: inline-block;
       }
@@ -711,9 +711,9 @@ svg:not(:root).svg-inline--fa {
 }
 
 .btn-primary {
-  background: #144B9E;
+  background: #144b9e;
   border-radius: 8px;
-  border-color: #144B9E;
+  border-color: #144b9e;
   font-size: 22px;
   padding: 5px 55px;
 }
@@ -729,7 +729,7 @@ svg:not(:root).svg-inline--fa {
   .image-placeholder {
     max-width: 600px;
     min-height: 440px;
-    background: #EDF3FA;
+    background: #edf3fa;
   }
 }
 
@@ -739,11 +739,11 @@ ul.check-list {
   margin: 25px 0 0 0;
 
   li {
-    list-style:none;
-    background-image: url("assets/icon-check.png");
+    list-style: none;
+    background-image: url('assets/icon-check.png');
     background-repeat: no-repeat;
     background-position: left center;
-    padding:5px 0px 5px 50px;
+    padding: 5px 0px 5px 50px;
     font-size: 22px;
     font-weight: 600;
     line-height: 32px;
@@ -752,7 +752,7 @@ ul.check-list {
 }
 
 #community {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, #EDF3FA 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, #edf3fa 100%);
   position: relative;
   padding: 85px 0 160px;
 
@@ -784,7 +784,7 @@ ul.check-list {
 }
 
 #resources {
-  background: url("assets/resources-bg.jpg");
+  background: url('assets/resources-bg.jpg');
   background-position: 50% 50%;
   background-attachment: fixed;
   position: relative;
@@ -796,7 +796,7 @@ ul.check-list {
     line-height: 36px;
     margin-bottom: 5px;
     text-transform: uppercase;
-    color: #2F80ED;
+    color: #2f80ed;
   }
 
   h3 {
@@ -811,21 +811,23 @@ ul.check-list {
     margin-top: 75px;
     display: flex;
 
-    input[type="search"] {
+    input[type='search'] {
       padding: 9px 20px;
-      background: #FFFFFF;
+      background: #ffffff;
       width: 500px;
-      border: 1px solid #3D4DB6;
+      border: 1px solid #3d4db6;
       border-radius: 8px;
-      background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E") no-repeat right 13px center;
+      background: #fff
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E")
+        no-repeat right 13px center;
       margin: 0;
     }
 
-    input[type="search"]::placeholder {
+    input[type='search']::placeholder {
       color: #bbb;
     }
 
-    input[type="search"]:focus {
+    input[type='search']:focus {
       box-shadow: 0 0 3px 0 #1183d6;
       border-color: #1183d6;
       outline: none;
@@ -846,7 +848,6 @@ ul.check-list {
       }
     }
   }
-
 }
 
 #join {
@@ -867,7 +868,7 @@ ul.check-list {
   .tile {
     width: 500px;
     min-height: 615px;
-    background: #FFFFFF;
+    background: #ffffff;
     border: 1px solid rgba(217, 222, 226, 0.3);
     box-shadow: 4px 7px 10px 3px rgba(0, 0, 0, 0.04);
     border-radius: 8px;
@@ -915,7 +916,7 @@ ul.check-list {
 }
 
 #support {
-  background: url("assets/support-bg.jpg");
+  background: url('assets/support-bg.jpg');
   background-position: 50% 50%;
   background-attachment: fixed;
   position: relative;
@@ -934,7 +935,7 @@ ul.check-list {
 #up-to-date {
   position: relative;
   padding: 65px 0 60px;
-  background: linear-gradient(180deg, rgba(237, 243, 250, 0) 0%, #EDF3FA 100%);
+  background: linear-gradient(180deg, rgba(237, 243, 250, 0) 0%, #edf3fa 100%);
 
   h3 {
     width: 100%;
@@ -1006,7 +1007,6 @@ ul.check-list {
 }
 
 .dashboard-carousel {
-
   .container {
     max-width: 100%;
   }
@@ -1047,7 +1047,8 @@ ul.check-list {
 @media only screen and (max-width: 992px) {
   #topmap {
     min-height: 580px;
-    background: url("assets/stars.svg") 130% 20%, linear-gradient(180deg, #EDF3FA 0%, rgba(255, 255, 255, 1) 100%);
+    background: url('assets/stars.svg') 130% 20%,
+      linear-gradient(180deg, #edf3fa 0%, rgba(255, 255, 255, 1) 100%);
     background-repeat: no-repeat;
 
     .stars-bg {
@@ -1112,7 +1113,7 @@ ul.check-list {
         line-height: 16px;
       }
 
-      .text-community{
+      .text-community {
         font-size: 11px;
         line-height: 16px;
       }
@@ -1225,13 +1226,12 @@ ul.check-list {
       }
     }
   }
-
 }
 
 @media only screen and (max-width: 576px) {
-
   #topmap {
-    background: url("assets/stars.svg") 225px -140px, linear-gradient(180deg, #EDF3FA 0%, rgba(255, 255, 255, 1) 100%);
+    background: url('assets/stars.svg') 225px -140px,
+      linear-gradient(180deg, #edf3fa 0%, rgba(255, 255, 255, 1) 100%);
     background-repeat: no-repeat;
     min-height: 610px;
 
@@ -1400,5 +1400,4 @@ ul.check-list {
       }
     }
   }
-
 }

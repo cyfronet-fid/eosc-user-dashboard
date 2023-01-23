@@ -1,3 +1,7 @@
+import { IOpenAIREResult } from '@components/recommendations-widget/adapter/openair.model';
+import { ITraining } from '@components/recommendations-widget/adapter/training.model';
+import { IService } from '@components/recommendations-widget/adapter/service.model';
+
 export interface ITag {
   label: string;
   url?: string;
@@ -20,7 +24,10 @@ export type IRecommendationType =
   | 'dataset'
   | 'software'
   | 'training'
-  | 'service';
+  | 'service'
+  | 'data-source'
+  | 'other'
+  | 'news';
 
 export interface ICommonDataModel {
   id: string;
@@ -30,6 +37,12 @@ export interface ICommonDataModel {
   publication_date: string;
 }
 
+export interface IRecommendationResponse {
+  isRand: boolean;
+  message: string;
+  recommendations: Array<IOpenAIREResult & ITraining & IService>;
+}
+
 export interface IRecommendation {
   title: string;
   url: string;
@@ -37,4 +50,5 @@ export interface IRecommendation {
   tags: ITag[];
   secondaryTags: ISecondaryTag[];
   tertiaryTags?: ITertiaryTag[];
+  publicationDate: string;
 }

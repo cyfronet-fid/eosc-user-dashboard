@@ -7,6 +7,7 @@ import { TagsModule } from '@components/recommendations-widget/layouts/tags/tags
 import { SecondaryTagsModule } from '@components/recommendations-widget/layouts/secondary-tags/secondary-tags.module';
 import { TertiaryTagsModule } from '@components/recommendations-widget/layouts/tertiary-tags/tertiary-tags.module';
 import { DescriptionModule } from '@components/recommendations-widget/layouts/description/description.module';
+import { NavbarModule } from '@components/recommendations-widget/layouts/navbar/navbar.module';
 
 @NgModule({
   declarations: [RecommendationsWidgetComponent, RecommendationComponent],
@@ -17,6 +18,7 @@ import { DescriptionModule } from '@components/recommendations-widget/layouts/de
     SecondaryTagsModule,
     TertiaryTagsModule,
     DescriptionModule,
+    NavbarModule,
   ],
   exports: [RecommendationsWidgetComponent, RecommendationComponent],
 })

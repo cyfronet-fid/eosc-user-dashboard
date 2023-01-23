@@ -10,13 +10,49 @@ import {
 import { environment } from '@environment/environment';
 import { toArray } from '@components/recommendations-widget/utils';
 import moment from 'moment';
+import { capitalize } from 'lodash-es';
+
+const urlAdapter = (
+  type: string,
+  data: Partial<IOpenAIREResult & IService & ITraining>
+) => {
+  switch (type) {
+    case 'dataset':
+    case 'publication':
+    case 'software':
+    case 'other':
+      return `https://explore.eosc-portal.eu/search/result?id=${data?.id
+        ?.split('|')
+        ?.pop()}`;
+    case 'data source':
+      return hackDataSourceUrl(data?.pid);
+    case 'service':
+      return `https://marketplace.eosc-portal.eu/services/${data?.pid}`;
+    case 'training':
+      return 'https://search.eosc-portal.eu/trainings/' + data.id;
+    default:
+      return toArray<string>(data.url)[0] ?? '';
+  }
+};
+const SERVICES_AS_DATASOURCES = ['b2share', 'b2find', 'b2safe'];
+export const hackDataSourceUrl = (pid?: string) => {
+  if (!pid) {
+    pid = '';
+  }
+
+  if (SERVICES_AS_DATASOURCES.includes(pid)) {
+    return `https://marketplace.eosc-portal.eu/services/${pid}`;
+  }
+  return `https://marketplace.eosc-portal.eu/datasources/${pid}`;
+};
 
 export const adapter = (
   data: IOpenAIREResult & ITraining & IService
 ): IRecommendation => ({
   title: data.title?.join(''),
   description: data.description?.join(''),
-  url: '',
+  url: urlAdapter(data.type, data),
+  publicationDate: data?.publication_date || '',
   tags: [
     ...createRedirectTagsOf('type', data.type),
     ...createRedirectTagsOf('license', data.license),
@@ -25,8 +61,7 @@ export const adapter = (
   secondaryTags: [
     ...createAccessRightSecondaryTag(data.best_access_right),
     ...createDateSecondaryTag(data.publication_date),
-    ...createTypeSecondaryTag(data.document_type),
-    ...createTypeSecondaryTag(data.resource_type),
+    ...createTypeSecondaryTag(capitalize(data.type)),
     ...createViewsSecondaryTag(data.usage_counts_views),
     ...createDownloadsSecondaryTag(data.usage_counts_downloads),
     ...createKeywordsSecondaryTag('keywords', data.keywords),
@@ -45,7 +80,7 @@ export const createRedirectTagsOf = (
 ): ITag[] =>
   toArray<string>(values).map((value) => ({
     label: value,
-    url: `${environment.searchServiceAllUrl}&fq=${filter}:("${value}")`,
+    url: `${environment.searchServiceAllUrl}&fq=${filter}:"${value}"`,
   }));
 
 export const createAccessRightSecondaryTag = (
