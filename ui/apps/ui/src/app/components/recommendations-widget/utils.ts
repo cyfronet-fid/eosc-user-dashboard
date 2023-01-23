@@ -5,7 +5,5 @@ export const toArray = <T>(data: unknown): T[] => {
     return [];
   }
 
-  console.log(isArray(data) ? (data as T[]) : ([data] as T[]));
-
   return isArray(data) ? (data as T[]) : ([data] as T[]);
 };

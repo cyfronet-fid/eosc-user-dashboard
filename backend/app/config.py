@@ -155,6 +155,14 @@ RECOMMENDER_ENDPOINT = config(
     "RECOMMENDER_ENDPOINT", cast=str, default="http://localhost:8081/recommendations"
 )
 RecommendationTypes = Literal[
-    "all", "publication", "dataset", "software", "training", "service"
+    "all",
+    "publication",
+    "dataset",
+    "software",
+    "training",
+    "service",
+    "other",
+    "data-source",
+    "news",
 ]
 SOLR_URL = config("SOLR_URL", cast=str, default="http://localhost:8983/solr/")

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {
   IRecommendation,
+  IRecommendationResponse,
   IRecommendationType,
 } from '@components/recommendations-widget/types';
 import { environment } from '@environment/environment';
@@ -16,12 +17,20 @@ export class RecommendationsService {
 
   fetch$(type: IRecommendationType): Observable<IRecommendation[]> {
     return this._http
-      .get<never[]>(
+      .get<IRecommendationResponse[]>(
         `${environment.backendApiPath}/${environment.recommendationsApiPath}/${type}`
       )
       .pipe(
         map((recommendations) =>
-          recommendations.map((recommendation) => adapter(recommendation))
+          recommendations
+            .map(({ recommendations }) => recommendations)
+            .reduce((acc, recommendations) => [...acc, ...recommendations], [])
+            .map((recommendation) => adapter(recommendation))
+            .sort(
+              (a, b) =>
+                new Date(b.publicationDate).getTime() -
+                new Date(a.publicationDate).getTime()
+            )
         )
       );
   }
