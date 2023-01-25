@@ -11,19 +11,9 @@ import {
     <ui-tags [tags]="tags"></ui-tags>
     <ui-url-title [title]="title" [url]="url"></ui-url-title>
     <ui-secondary-tags [tags]="secondaryTags"></ui-secondary-tags>
-    <ui-tertiary-tags [tags]="tertiaryTags"></ui-tertiary-tags>
     <ui-description [description]="description"></ui-description>
+    <ui-tertiary-tags [tags]="tertiaryTags"></ui-tertiary-tags>
   </div>`,
-  styles: [
-    `
-      .recommendation {
-        padding: 24px;
-        margin: 24px 0px;
-        border: 1px solid #d9dee2;
-        border-radius: 8px;
-      }
-    `,
-  ],
 })
 export class RecommendationComponent {
   @Input()

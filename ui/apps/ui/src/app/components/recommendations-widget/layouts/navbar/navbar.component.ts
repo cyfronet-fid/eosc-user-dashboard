@@ -27,11 +27,11 @@ export interface IType {
         flex-direction: row;
         align-items: flex-start;
         gap: 10px;
-        margin-bottom: 24px;
+        margin-bottom: 30px;
       }
 
       .type {
-        padding: 2px 8px;
+        padding: 2px 10px;
         color: #3d4db6;
         border-radius: 35px;
         font-size: 14px;
@@ -54,7 +54,7 @@ export class NavbarComponent {
   newType = new EventEmitter<IRecommendationType>();
   types: IType[] = [
     {
-      label: 'All catalogs',
+      label: 'Show all',
       value: 'all',
     },
     {
