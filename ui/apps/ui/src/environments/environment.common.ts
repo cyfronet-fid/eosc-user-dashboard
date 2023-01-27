@@ -4,4 +4,5 @@ export const commonEnvironment = {
   recommendationsApiPath: 'recommendations',
   numbersApi: 'numbers',
   upcomingEventsApiPath: 'events',
+  videoApiPath: 'videos',
 };

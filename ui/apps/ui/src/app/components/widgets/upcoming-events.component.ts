@@ -25,20 +25,23 @@ import { UpcomingEventsWidget } from '../../widgets/upcoming-events/upcoming-eve
           <div class="row pt-4">
             <div class="col-12">
               <img
-                (click)="moveToEvent(item.path)"
+                (click)="moveToEvent(item.Path)"
                 width="100%"
                 height="100%"
-                src="{{ item.image }}"
+                src="{{ item.Image }}"
               />
             </div>
           </div>
           <div class="row">
             <div class="col-12">
               <div class="row pt-3">
-                <span class="widget-header-place">{{ item.date }}</span>
+                <span class="widget-header-place">{{ item.Date }}</span>
               </div>
               <div class="row">
-                <span class="widget-header-theme">{{ item.title }}</span>
+                <span
+                  class="widget-header-theme"
+                  [innerHTML]="item.Title"
+                ></span>
               </div>
               <div class="row pt-3">
                 <div class="col-6">
@@ -49,7 +52,7 @@ import { UpcomingEventsWidget } from '../../widgets/upcoming-events/upcoming-eve
                 </div>
                 <div class="col-4">
                   <div>
-                    <span class="going-text">{{ item.going }} Going</span>
+                    <span class="going-text">{{ 0 }} Going</span>
                   </div>
                 </div>
               </div>
@@ -141,18 +144,7 @@ export class WidgetUpcomingEventsComponent implements OnInit {
 
   constructor(private _widgetEventsService: UpcomingEventsWidgetService) {
     this.upcomingEvents = [];
-    // Some default values needed here
-    this.slicedData = [
-      {
-        title: '',
-        body: '',
-        path: '',
-        date: '',
-        image: '',
-        going: '',
-        interested: '',
-      },
-    ];
+    this.slicedData = [];
   }
 
   ngOnInit() {
@@ -163,7 +155,7 @@ export class WidgetUpcomingEventsComponent implements OnInit {
         delay(0)
       )
       .subscribe((events) => {
-        this.upcomingEvents = events;
+        this.upcomingEvents = events.reverse();
         this.slicedData = this.upcomingEvents.slice(0, 1);
       });
   }
