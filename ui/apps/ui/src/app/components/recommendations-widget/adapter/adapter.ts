@@ -53,15 +53,16 @@ export const adapter = (
   description: data.description?.join(''),
   url: urlAdapter(data.type, data),
   publicationDate: data?.publication_date || '',
-  tags: [
+  tags: [],
+  accessTag: [
     ...createRedirectTagsOf('type', data.type),
     ...createRedirectTagsOf('license', data.license),
-    ...createRedirectTagsOf('language', data.language),
+    ...createAccessRightSecondaryTag(data.best_access_right),
   ],
   secondaryTags: [
-    ...createAccessRightSecondaryTag(data.best_access_right),
-    ...createDateSecondaryTag(data.publication_date),
     ...createTypeSecondaryTag(capitalize(data.type)),
+    ...createRedirectLanguageTagsOf('language', data.language),
+    ...createDateSecondaryTag(data.publication_date),
     ...createViewsSecondaryTag(data.usage_counts_views),
     ...createDownloadsSecondaryTag(data.usage_counts_downloads),
     ...createKeywordsSecondaryTag('keywords', data.keywords),
@@ -75,6 +76,34 @@ export const adapter = (
 });
 
 export const createRedirectTagsOf = (
+  filter: string,
+  values: unknown | unknown[]
+): ISecondaryTag[] =>
+  toArray<string>(values).map((value) => ({
+    values: [{ label: value }],
+    iconPath:
+      value?.toLowerCase() === 'open access'
+        ? 'assets/open access.svg'
+        : 'assets/restricted access.svg',
+    url: `${environment.searchServiceAllUrl}&fq=${filter}:"${value}"`,
+    additionalClass: 'none',
+  }));
+
+export const createRedirectLanguageTagsOf = (
+  filter: string,
+  values: unknown | unknown[]
+): ISecondaryTag[] =>
+  toArray<string>(values).map((value) => ({
+    values: [{ label: value }],
+    iconPath:
+      value?.toLowerCase() === 'open access'
+        ? 'assets/open access.svg'
+        : 'assets/restricted access.svg',
+    url: `${environment.searchServiceAllUrl}&fq=${filter}:"${value}"`,
+    additionalClass: 'none',
+  }));
+
+export const createRedirectTagsOfITag = (
   filter: string,
   values: unknown | unknown[]
 ): ITag[] =>
@@ -131,7 +160,7 @@ export const createKeywordsSecondaryTag = (
   toArray<string>(values).length > 0
     ? [
         {
-          values: createRedirectTagsOf(filter, values),
+          values: createRedirectTagsOfITag(filter, values),
           iconPath: 'assets/tag.svg',
         },
       ]
@@ -144,7 +173,7 @@ export const createTertiaryTagOf = (
   toArray<string>(values).length > 0
     ? [
         {
-          values: createRedirectTagsOf(filter, values),
+          values: createRedirectTagsOfITag(filter, values),
           label,
         },
       ]

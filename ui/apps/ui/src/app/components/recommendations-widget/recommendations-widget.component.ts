@@ -22,6 +22,7 @@ import { ActivatedRoute } from '@angular/router';
       [url]="recommendation.url"
       [description]="recommendation.description"
       [tags]="recommendation.tags"
+      [accessTags]="recommendation.accessTag"
       [secondaryTags]="recommendation.secondaryTags"
       [tertiaryTags]="recommendation.tertiaryTags ?? []"
     ></ui-recommendation>

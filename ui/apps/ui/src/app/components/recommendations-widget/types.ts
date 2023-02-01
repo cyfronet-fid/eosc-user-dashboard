@@ -11,6 +11,7 @@ export interface ISecondaryTag {
   values: ITag[];
   iconPath: string;
   additionalClass?: string;
+  url?: string;
 }
 
 export interface ITertiaryTag {
@@ -48,6 +49,7 @@ export interface IRecommendation {
   url: string;
   description: string;
   tags: ITag[];
+  accessTag: ISecondaryTag[];
   secondaryTags: ISecondaryTag[];
   tertiaryTags?: ITertiaryTag[];
   publicationDate: string;
