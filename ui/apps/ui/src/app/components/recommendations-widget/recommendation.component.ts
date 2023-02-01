@@ -8,7 +8,7 @@ import {
 @Component({
   selector: 'ui-recommendation',
   template: `<div class="recommendation">
-    <ui-tags [tags]="tags"></ui-tags>
+    <ui-tags [tags]="tags" [accesstags]="accessTags"></ui-tags>
     <ui-url-title [title]="title" [url]="url"></ui-url-title>
     <ui-secondary-tags [tags]="secondaryTags"></ui-secondary-tags>
     <ui-tertiary-tags [tags]="tertiaryTags"></ui-tertiary-tags>
@@ -37,6 +37,9 @@ export class RecommendationComponent {
 
   @Input()
   tags: ITag[] = [];
+
+  @Input()
+  accessTags: ISecondaryTag[] = [];
 
   @Input()
   secondaryTags: ISecondaryTag[] = [];
