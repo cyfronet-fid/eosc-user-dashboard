@@ -27,13 +27,6 @@ import { ActivatedRoute } from '@angular/router';
       [tertiaryTags]="recommendation.tertiaryTags ?? []"
     ></ui-recommendation>
   </div>`,
-  styles: [
-    `
-      .recommendations-widget {
-        padding: 24px;
-      }
-    `,
-  ],
 })
 export class RecommendationsWidgetComponent implements OnInit {
   recommendations: IRecommendation[] = [];

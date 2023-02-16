@@ -18,13 +18,6 @@ import { ITertiaryTag } from '@components/recommendations-widget/types';
       </ng-container>
     </div>
   `,
-  styles: [
-    `
-      .tertiary-tags {
-        margin-bottom: 24px;
-      }
-    `,
-  ],
 })
 export class TertiaryTagsComponent {
   @Input()

@@ -74,7 +74,7 @@ import { VideoWidgetService } from '../../widgets/videos/videos-widget.service';
   styles: [
     `
       .widget-header-place {
-        font-family: 'Switzer';
+        font-family: 'Inter';
         font-style: normal;
         font-weight: 400;
         font-size: 14px;
@@ -82,7 +82,7 @@ import { VideoWidgetService } from '../../widgets/videos/videos-widget.service';
         color: #1a2128;
       }
       .widget-header-theme {
-        font-family: 'Switzer';
+        font-family: 'Inter';
         font-style: normal;
         font-weight: 600;
         font-size: 20px;
@@ -101,7 +101,7 @@ import { VideoWidgetService } from '../../widgets/videos/videos-widget.service';
         border-radius: 10px;
       }
       .interested-text {
-        font-family: 'Switzer';
+        font-family: 'Inter';
         font-style: normal;
         font-weight: 600;
         font-size: 13px;
@@ -109,7 +109,7 @@ import { VideoWidgetService } from '../../widgets/videos/videos-widget.service';
         color: #144b9e;
       }
       .going-text {
-        font-family: 'Switzer';
+        font-family: 'Inter';
         font-style: normal;
         font-weight: 500;
         font-size: 14px;

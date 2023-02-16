@@ -47,14 +47,14 @@ import { ISecondaryTag, ITag } from '@components/recommendations-widget/types';
         flex-direction: row;
         align-items: flex-start;
         gap: 10px;
-        margin-bottom: 24px;
+        margin-bottom: 19px;
       }
 
       .tag {
-        padding: 2px 8px;
+        padding: 6px 14px;
         background: #edf4ff;
         border-radius: 35px;
-        font-size: 14px;
+        font-size: 16px;
         line-height: 20px;
         color: #2255a4;
       }
