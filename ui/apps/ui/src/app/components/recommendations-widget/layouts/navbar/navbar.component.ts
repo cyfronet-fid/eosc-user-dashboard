@@ -74,10 +74,6 @@ export class NavbarComponent {
       value: 'service',
     },
     {
-      label: 'News',
-      value: 'news',
-    },
-    {
       label: 'Data source',
       value: 'data-source',
     },

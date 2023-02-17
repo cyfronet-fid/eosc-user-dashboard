@@ -50,6 +50,7 @@ export const adapter = (
   data: IOpenAIREResult & ITraining & IService
 ): IRecommendation => ({
   title: data.title?.join(''),
+  image: data.image?.join(''),
   description: data.description?.join(''),
   url: urlAdapter(data.type, data),
   publicationDate: data?.publication_date || '',

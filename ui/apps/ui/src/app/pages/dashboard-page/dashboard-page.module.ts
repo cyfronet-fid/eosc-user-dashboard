@@ -20,9 +20,12 @@ import { EoscCommunityPanoscWidgetModule } from '@components/widgets/eosc-commun
 import { DashboardPageComponent } from '@pages/dashboard-page/dashboard-page.component';
 import { RecommendationsWidgetModule } from '@components/recommendations-widget/recommendations-widget.module';
 import { EoscHeaderModule } from '@components/eosc-header/eosc-header.module';
+import { WidgetCommunitiesModule } from '../../components/widgets/communities.module';
+import { WidgetNewsModule } from '@components/widgets/news.module';
 
 @NgModule({
   declarations: [DashboardPageComponent],
+  exports: [DashboardPageComponent],
   imports: [
     FormsModule,
     NzDrawerModule,
@@ -44,7 +47,8 @@ import { EoscHeaderModule } from '@components/eosc-header/eosc-header.module';
     DashboardRoutingModule,
     RecommendationsWidgetModule,
     EoscHeaderModule,
+    WidgetCommunitiesModule,
+    WidgetNewsModule,
   ],
-  exports: [DashboardPageComponent],
 })
 export class DashboardPageModule {}

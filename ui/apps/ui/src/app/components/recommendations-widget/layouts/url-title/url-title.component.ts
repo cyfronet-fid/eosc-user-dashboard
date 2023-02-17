@@ -8,9 +8,7 @@ const MAX_CHARS_LENGTH = 256;
     <a *ngIf="url; else onlyTitleRef" [attr.href]="url" target="_blank">
       {{ shortTitle }}
     </a>
-    <ng-template #onlyTitleRef
-      >{{ shortTitle }}</ng-template
-    >
+    <ng-template #onlyTitleRef>{{ shortTitle }}</ng-template>
   </h5>`,
 })
 export class UrlTitleComponent {

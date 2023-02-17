@@ -47,6 +47,7 @@ export interface IRecommendationResponse {
 export interface IRecommendation {
   title: string;
   url: string;
+  image: string;
   description: string;
   tags: ITag[];
   accessTag: ISecondaryTag[];
