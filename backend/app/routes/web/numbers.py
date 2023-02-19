@@ -16,7 +16,7 @@ router = APIRouter()
     responses={200: {"model": dict}, 500: {"model": BadRequest}},
 )
 async def get_numbers():
-    #pylint: disable-msg=too-many-locals
+    # pylint: disable-msg=too-many-locals
     recommendation_type = "publication"
     fq = [f'type:("{recommendation_type}")']
     request_body = {
