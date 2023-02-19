@@ -11,11 +11,11 @@ import { DOCUMENT } from '@angular/common';
 @Component({
   selector: 'ui-widget-user-profile',
   template: `
-    <div class="widget rounded paddings">
+    <div class="widget paddings">
       <div class="row">
         <div class="col-6 widget-header">Your profile</div>
         <div class="col-6" align="end">
-          <span (click)="triggerEdit()" class="widget-editable"
+          <span (click)="editProfile()" class="widget-editable"
             >Edit profile
             <img
               id="editable-widget-graphic"
@@ -44,6 +44,30 @@ import { DOCUMENT } from '@angular/common';
           >
         </div>
       </div>
+      <div class="spacer"></div>
+      <div class="row">
+        <div class="pt-3">
+          <span [routerLink]="['/dashboard']" routerLinkActive="nav-sel">
+          </span>
+          <span class="nav-text ps-4">Feed</span>
+        </div>
+      </div>
+      <div class="spacer"></div>
+      <div class="row">
+        <div class="pt-3">
+          <span [routerLink]="['/profile']" routerLinkActive="nav-sel"> </span>
+          <span class="nav-text ps-4">Profile Settings</span>
+        </div>
+      </div>
+      <div class="spacer"></div>
+      <div class="row">
+        <div class="pt-3">
+          <span [routerLink]="['/favourities']" routerLinkActive="nav-sel">
+          </span>
+          <span class="nav-text ps-4">Favourities</span>
+        </div>
+      </div>
+      <div style="margin-bottom: 200px"></div>
     </div>
   `,
   styles: [
@@ -70,6 +94,26 @@ import { DOCUMENT } from '@angular/common';
         font-size: 10px;
         line-height: 22px;
         color: #000000;
+      }
+      .nav-text {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 22px;
+        color: #000000;
+      }
+      .nav-sel {
+        position: absolute;
+        width: 3px;
+        height: 30px;
+        left: 40px;
+        background: #0066ff;
+        border-radius: 4px;
+      }
+      .spacer {
+        padding: 8px 4px;
+        border-bottom: 1px solid #eef1f3;
       }
     `,
   ],
@@ -114,7 +158,9 @@ export class WidgetUserProfileComponent implements OnInit {
       this.document.location.href = this.editLink;
     }
   }
-
+  public editProfile() {
+    window.open('https://marketplace.eosc-portal.eu/profile', '_blank');
+  }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public getJSON(): Observable<any> {
     return this.http.get(this.profile.edit_link);

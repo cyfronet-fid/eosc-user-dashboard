@@ -22,6 +22,7 @@ import { RecommendationsWidgetModule } from '@components/recommendations-widget/
 import { EoscHeaderModule } from '@components/eosc-header/eosc-header.module';
 import { WidgetCommunitiesModule } from '../../components/widgets/communities.module';
 import { WidgetNewsModule } from '@components/widgets/news.module';
+import { WidgetProjectModule } from '@components/widgets/project.module';
 
 @NgModule({
   declarations: [DashboardPageComponent],
@@ -49,6 +50,7 @@ import { WidgetNewsModule } from '@components/widgets/news.module';
     EoscHeaderModule,
     WidgetCommunitiesModule,
     WidgetNewsModule,
+    WidgetProjectModule,
   ],
 })
 export class DashboardPageModule {}

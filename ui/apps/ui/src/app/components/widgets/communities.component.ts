@@ -16,6 +16,7 @@ import { CommunitiesWidget } from '../../widgets/communities/communities-widget.
           <div class="row pt-4">
             <div class="col-4">
               <img
+                style="cursor:pointer;"
                 (click)="moveToEvent(item.Path)"
                 width="100%"
                 height="100%"

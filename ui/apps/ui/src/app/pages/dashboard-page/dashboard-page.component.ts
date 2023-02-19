@@ -11,17 +11,22 @@ import { UntilDestroy } from '@ngneat/until-destroy';
       <!--div class="dashboard-carousel">
         <ui-eosc-community-widget></ui-eosc-community-widget>
       </div-->
-      <div class="container">
+      <div>
         <div class="row gx-0">
-          <div class="col-8 ps-1 pe-4 pt-3 pb-4">
+          <div class="col-3 pb-4" style="padding-right: 20px">
+            <div class="mb-3">
+              <ui-widget-user-profile></ui-widget-user-profile>
+            </div>
+          </div>
+          <div class="col-6 ps-1 pe-4 pt-3 pb-4">
+            <div class="rounded widget mb-3">
+              <ui-project-widget></ui-project-widget>
+            </div>
             <div class="rounded widget" id="container">
               <ui-recommendations-widget></ui-recommendations-widget>
             </div>
           </div>
-          <div class="col-4 ps-2 pt-3 pb-4">
-            <!--div class="mb-3">
-              <ui-widget-user-profile></ui-widget-user-profile>
-            </div-->
+          <div class="col-3 pt-3 pb-4" style="padding-right: 20px">
             <div class="mb-3">
               <ui-widget-upcoming-events></ui-widget-upcoming-events>
             </div>

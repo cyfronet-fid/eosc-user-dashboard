@@ -13,59 +13,74 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
     <div>
       <div class="widget rounded paddings">
         <div class="row">
-          <div class="col-10 widget-header">EOSC News</div>
-        </div>
+          <div class="col-6 widget-header">EOSC News</div>
+          <div class="col-6" align="end">
+            <span (click)="showMore()" class="widget-editable"
+              >Show all
+              <img id="show-more" src="assets/arrow_right_small.svg" />
+            </span>
+          </div>
 
-        <div *ngFor="let item of slicedData">
-          <div class="row pt-4">
-            <div class="col-12">
-              <img
-                (click)="moveToEvent(item.url)"
-                width="100%"
-                src="{{ item.image }}"
-              />
+          <div *ngFor="let item of slicedData">
+            <div class="row pt-4">
+              <div class="col-12">
+                <img
+                  style="cursor:pointer;"
+                  (click)="moveToEvent(item.url)"
+                  width="100%"
+                  src="{{ item.image }}"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="row pt-3">
+                  <span
+                    class="widget-header-theme"
+                    [innerHTML]="item.title"
+                  ></span>
+                </div>
+              </div>
+            </div>
+            <div class="row pt-2">
+              <div class="col-12">
+                <div class="row pt-3">
+                  <span
+                    class="widget-header-place"
+                    [innerHTML]="truncate(item.description, 500) + '...'"
+                  ></span>
+                </div>
+              </div>
             </div>
           </div>
           <div class="row">
             <div class="col-12">
-              <div class="row pt-3">
-                <span
-                  class="widget-header-theme"
-                  [innerHTML]="item.title"
-                ></span>
+              <div class="row" align="end">
+                <span>
+                  <button
+                    [disabled]="!hasPrev"
+                    class="btn px-0 py-0"
+                    (click)="getPreviousData()"
+                  >
+                    <img
+                      width="24px"
+                      height="24px"
+                      src="assets/left_icon.svg"
+                    />
+                  </button>
+                  <button
+                    [disabled]="!hasNext"
+                    class="btn px-0 py-0"
+                    (click)="getNextData()"
+                  >
+                    <img
+                      width="24px"
+                      height="24px"
+                      src="assets/right_icon.svg"
+                    />
+                  </button>
+                </span>
               </div>
-            </div>
-          </div>
-          <div class="row pt-2">
-            <div class="col-12">
-              <div class="row pt-3">
-                <span
-                  class="widget-header-place"
-                  [innerHTML]="truncate(item.description, 500) + '...'"
-                ></span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-12">
-            <div class="row" align="end">
-              <span>
-                <button
-                  [disabled]="!hasPrev"
-                  class="btn px-0 py-0"
-                  (click)="getPreviousData()"
-                >
-                  <img width="24px" height="24px" src="assets/left_icon.svg" />
-                </button>
-                <button
-                  [disabled]="!hasNext"
-                  class="btn px-0 py-0"
-                  (click)="getNextData()"
-                >
-                  <img width="24px" height="24px" src="assets/right_icon.svg" />
-                </button>
-              </span>
             </div>
           </div>
         </div>
@@ -132,6 +147,9 @@ export class WidgetNewsComponent implements OnInit {
 
   public moveToEvent(path: string) {
     window.open(path, '_blank');
+  }
+  public showMore() {
+    window.open('https://eosc-portal.eu/media/news', '_blank');
   }
 
   get hasNext() {

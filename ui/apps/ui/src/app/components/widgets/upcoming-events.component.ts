@@ -25,6 +25,7 @@ import { UpcomingEventsWidget } from '../../widgets/upcoming-events/upcoming-eve
           <div class="row pt-4">
             <div class="col-12">
               <img
+                style="cursor:pointer;"
                 (click)="moveToEvent(item.Path)"
                 width="100%"
                 height="100%"
