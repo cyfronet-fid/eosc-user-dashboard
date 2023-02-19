@@ -57,7 +57,7 @@ async def get_recommendations(
                         await ExternalRecommendationsService.fetch(
                             client, session, "data-source"
                         ),
-                        #await fetch_news_recommendations(),
+                        # await fetch_news_recommendations(),
                     ]
                 case "news":
                     return [await fetch_news_recommendations()]
