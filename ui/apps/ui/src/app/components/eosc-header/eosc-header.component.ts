@@ -13,7 +13,11 @@ import { UntilDestroy } from '@ngneat/until-destroy';
               [routerLink]="['/dashboard']"
               routerLinkActive="is-active"
               class="nav-link"
-              ><img width="16px" height="16px" src="assets/CodesandboxLogo.svg" />
+              ><img
+                width="16px"
+                height="16px"
+                src="assets/CodesandboxLogo.svg"
+              />
               Feed</a
             >
             <a class="nav-link disabled"

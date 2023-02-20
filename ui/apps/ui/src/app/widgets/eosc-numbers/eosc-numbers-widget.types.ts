@@ -3,4 +3,6 @@ export interface EOSCNumbersWidget {
   publications: number;
   trainings: number;
   softwares: number;
+  data: number;
+  datasources: number;
 }

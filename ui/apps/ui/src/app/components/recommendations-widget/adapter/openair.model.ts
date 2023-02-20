@@ -2,6 +2,7 @@ import { ICommonDataModel } from '@components/recommendations-widget/types';
 
 export interface IOpenAIREResult extends ICommonDataModel {
   url: string[];
+  image: string[];
   author_names: string[];
   description: string[];
   best_access_right: string;

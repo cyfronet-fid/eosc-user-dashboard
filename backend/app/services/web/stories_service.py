@@ -18,6 +18,7 @@ async def fetch_news_recommendations(
         parsed_items = []
         for item in response:
             parse_item = {
+                "image": [item["image"]],
                 "url": item["Path"],
                 "title": [item["title"]],
                 "publication_date": item["post_date"],

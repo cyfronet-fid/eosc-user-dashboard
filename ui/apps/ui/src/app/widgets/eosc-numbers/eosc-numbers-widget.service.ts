@@ -16,7 +16,14 @@ export class EOSCNumbersWidgetService {
       name: 'eosc-numbers-widget',
     },
     withProps<{ numbers: EOSCNumbersWidget | null }>({
-      numbers: { services: 0, publications: 0, trainings: 0, softwares: 0 },
+      numbers: {
+        services: 0,
+        publications: 0,
+        trainings: 0,
+        softwares: 0,
+        data: 0,
+        datasources: 0,
+      },
     })
   );
 
@@ -32,10 +39,19 @@ export class EOSCNumbersWidgetService {
         publications: number;
         trainings: number;
         softwares: number;
-      }>(`${environment.backendApiPath}/${environment.numbersApi}`)
+        data: number;
+        datasources: number;
+      }>(`${environment.backendApiPath}/${environment.numbersApi}/dash`)
       .pipe(
         catchError(() =>
-          of({ services: 0, publications: 0, trainings: 0, softwares: 0 })
+          of({
+            services: 0,
+            publications: 0,
+            trainings: 0,
+            softwares: 0,
+            data: 0,
+            datasources: 0,
+          })
         ),
         tap((numbers) => this._store$.update(() => ({ numbers: numbers })))
       );

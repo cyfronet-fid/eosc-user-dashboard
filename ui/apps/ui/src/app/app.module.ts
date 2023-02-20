@@ -70,12 +70,12 @@ export const getVideosFactory$ = (videosService: VideoWidgetService) => {
       multi: true,
       deps: [UpcomingEventsWidgetService],
     },
-    {
+    /*{
       provide: APP_INITIALIZER,
       useFactory: getVideosFactory$,
       multi: true,
       deps: [VideoWidgetService],
-    },
+    },*/
   ],
   bootstrap: [AppComponent],
 })
