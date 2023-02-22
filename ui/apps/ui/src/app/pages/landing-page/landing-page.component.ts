@@ -95,7 +95,7 @@ import { environment } from '@environment/environment';
           <div class="row">
             <h3>Join our community</h3>
             <div class="col-sm">
-              <a href="#" class="tile left-tile">
+              <a href="https://providers.eosc-portal.eu/becomeAProvider" class="tile left-tile">
                 <div class="icon">
                   <img src="assets/providers.png" alt="Provider" />
                 </div>
@@ -112,16 +112,15 @@ import { environment } from '@environment/environment';
               </a>
             </div>
             <div class="col-sm">
-              <a href="#" class="tile right-tile">
+              <a href="https://marketplace.eosc-portal.eu/projects" class="tile right-tile">
                 <div class="icon">
                   <img src="assets/researchers.png" alt="Researcher" />
                 </div>
                 <div class="title">Researcher</div>
                 <div class="desc">
-                  Get access to a wide range of FAIR data and other resources,
-                  ranging from Technology and Engineering to Social Sciences.
-                  Search for EOSC Services that suit your use case or describe
-                  your needs and get support from our experts.
+                  Get the space to organize your services into logical blocks
+                  and the assistance of international technical teams to advise
+                  on the most suitable solutions.
                 </div>
                 <div class="btn btn-sm-landing btn-secondary">
                   Create a Research Project
