@@ -16,6 +16,16 @@ import { ActivatedRoute } from '@angular/router';
       [activeValue]="activeType"
       (newType)="changeType($event)"
     ></ui-navbar>
+    <ngx-skeleton-loader
+      *ngIf="this.recommendations.length === 0"
+      count="5"
+      appearance="line"
+      animation="pulse"
+      [theme]="{
+        height: '180px',
+        'border-radius': '17px'
+      }"
+    ></ngx-skeleton-loader>
     <ui-recommendation
       *ngFor="let recommendation of recommendations"
       [title]="recommendation.title"

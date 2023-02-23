@@ -8,6 +8,7 @@ import { SecondaryTagsModule } from '@components/recommendations-widget/layouts/
 import { TertiaryTagsModule } from '@components/recommendations-widget/layouts/tertiary-tags/tertiary-tags.module';
 import { DescriptionModule } from '@components/recommendations-widget/layouts/description/description.module';
 import { NavbarModule } from '@components/recommendations-widget/layouts/navbar/navbar.module';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @NgModule({
   declarations: [RecommendationsWidgetComponent, RecommendationComponent],
@@ -19,6 +20,7 @@ import { NavbarModule } from '@components/recommendations-widget/layouts/navbar/
     TertiaryTagsModule,
     DescriptionModule,
     NavbarModule,
+    NgxSkeletonLoaderModule,
   ],
   exports: [RecommendationsWidgetComponent, RecommendationComponent],
 })

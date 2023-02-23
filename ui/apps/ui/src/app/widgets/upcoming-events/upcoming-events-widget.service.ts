@@ -37,11 +37,7 @@ export class UpcomingEventsWidgetService {
         ]
       >(
         `${environment.backendApiPath}/${environment.upcomingEventsApiPath}/${
-          new Date(
-            this.currentDate().setMonth(this.currentDate().getMonth() - 7)
-          )
-            .toISOString()
-            .split('T')[0]
+          new Date(this.currentDate()).toISOString().split('T')[0]
         }--${
           new Date(
             this.currentDate().setMonth(this.currentDate().getMonth() + 7)

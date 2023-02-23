@@ -12,7 +12,7 @@ import { DOCUMENT } from '@angular/common';
   selector: 'ui-widget-user-profile',
   template: `
     <div class="widget paddings">
-      <div class="row">
+      <!--div class="row">
         <div class="col-6 widget-header">Your profile</div>
         <div class="col-6" align="end">
           <span (click)="editProfile()" class="widget-editable"
@@ -23,10 +23,12 @@ import { DOCUMENT } from '@angular/common';
             />
           </span>
         </div>
-      </div>
+      </div-->
       <div class="row">
-        <div class="pt-3">
-          <img id="editable-widget-image" class="flex" />
+        <div class="pt-3 ps-4">
+          <img width="34px" src="assets/user.svg" />
+        </div>
+        <div class="pt-2 ps-4">
           <span *ngIf="profile" class="widget-text ms-2">{{
             profile.username
           }}</span
@@ -36,14 +38,14 @@ import { DOCUMENT } from '@angular/common';
           </span>
         </div>
       </div>
-      <div class="row">
+      <!--div class="row">
         <div class="pt-3">
           <img id="fav-widget-image" src="assets/widget-favourities.svg" />
           <span *ngIf="profile" class="fav-text ps-1"
             >{{ profile.fav }} Favourite Resources</span
           >
         </div>
-      </div>
+      </div-->
       <div class="spacer"></div>
       <div class="row">
         <div class="pt-3">
