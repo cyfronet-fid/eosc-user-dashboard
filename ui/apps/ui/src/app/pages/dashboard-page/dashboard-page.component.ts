@@ -76,7 +76,7 @@ import { UntilDestroy } from '@ngneat/until-destroy';
         color: #919ba3;
       }
       .widget-editable:hover {
-        border-bottom: 1.5px solid #919ba3;
+        color: #3d4db6;
         cursor: pointer;
       }
       .widget-text {

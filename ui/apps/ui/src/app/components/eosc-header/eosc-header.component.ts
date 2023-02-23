@@ -5,10 +5,10 @@ import { UntilDestroy } from '@ngneat/until-destroy';
 @Component({
   selector: 'ui-eosc-header',
   template: `
-    <div class="container-fluid">
+    <div class="container">
       <div class="row">
         <div class="col-9">
-          <nav class="nav ps-2 mt-2 mb-2">
+          <nav class="nav mt-2 mb-2">
             <a
               [routerLink]="['/dashboard']"
               routerLinkActive="is-active"
@@ -50,9 +50,9 @@ import { UntilDestroy } from '@ngneat/until-destroy';
             >
           </nav>
         </div>
-        <div class="col-3" justify="center">
-          <div class="row justify-content-end pe-4">
-            <div class="col-6">
+        <div class="col-3">
+          <div class="row justify-content-end">
+            <div class="col-8">
               <div class="ps-2 mb-2" align="center">
                 <div class="border-img" (click)="addProject()">
                   <div justify="center">
@@ -63,7 +63,7 @@ import { UntilDestroy } from '@ngneat/until-destroy';
               </div>
             </div>
             <div class="col-1">
-              <div class="pe-1 mt-3 mb-2" align="center">
+              <div class="pe-1 mt-3 mb-2">
                 <div>
                   <img
                     width="20px"
@@ -74,7 +74,7 @@ import { UntilDestroy } from '@ngneat/until-destroy';
                 </div>
               </div>
             </div>
-            <div class="col-1">
+            <div class="col-2">
               <div class="ps-1 pe-1 mt-3 mb-2" align="center">
                 <div>
                   <img

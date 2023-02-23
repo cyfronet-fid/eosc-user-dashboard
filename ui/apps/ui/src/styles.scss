@@ -1037,8 +1037,11 @@ ul.check-list {
 }
 
 .eosc-header-row {
-  .row {
-    background: #fff;
+  background: #fff;
+  display: block;
+
+  .nav-link {
+    padding: 0.5rem 0.6rem;
   }
 }
 
@@ -1053,9 +1056,6 @@ ul.check-list {
 }
 
 .dashboard-carousel {
-  .container {
-    max-width: 100%;
-  }
 
   .content-header {
     padding-top: 35px;
@@ -1144,6 +1144,20 @@ ul.check-list {
   margin-top: 20px;
 }
 
+.widget {
+  .btn {
+    &:disabled {
+      border: none !important;
+      opacity: 0.5;
+    }
+  }
+}
+
+.impact {
+  .widget-header-text {
+    font-size: 17px !important;
+  }
+}
 @media only screen and (max-width: 1400px) {
 
   #up-to-date .cards-wrapper {

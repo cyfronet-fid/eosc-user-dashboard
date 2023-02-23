@@ -9,7 +9,7 @@ import { delay } from 'rxjs';
   selector: 'ui-widget-impact',
   template: `
     <div>
-      <div class="widget rounded paddings widget-background">
+      <div class="widget rounded paddings widget-background impact">
         <div class="row" align="center">
           <div class="col-12 widget-header-text">
             Have an impact - We want to hear your story!
@@ -68,6 +68,9 @@ import { delay } from 'rxjs';
         gap: 8px;
         background: #185fc9;
         border-radius: 10px;
+      }
+      .button-contact:hover {
+        background: #000000;
       }
       .button-text {
         font-family: 'Inter';
