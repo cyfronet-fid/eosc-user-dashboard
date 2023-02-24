@@ -113,9 +113,6 @@ import { CommunitiesWidget } from '../../widgets/communities/communities-widget.
         line-height: 18px;
         color: #919ba2;
       }
-      #show-more {
-        padding-right: 6px;
-      }
     `,
   ],
 })

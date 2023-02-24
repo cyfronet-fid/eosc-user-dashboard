@@ -130,9 +130,6 @@ import { UpcomingEventsWidget } from '../../widgets/upcoming-events/upcoming-eve
         line-height: 18px;
         color: #919ba2;
       }
-      #show-more {
-        padding-right: 6px;
-      }
     `,
   ],
 })
