@@ -13,12 +13,12 @@ import { UntilDestroy } from '@ngneat/until-destroy';
       </div-->
       <div>
         <div class="row gx-0">
-          <div class="col-3 pb-4" style="padding-right: 20px">
+          <div class="col-2 pb-4" style="padding-right: 20px">
             <div class="mb-3">
               <ui-widget-user-profile></ui-widget-user-profile>
             </div>
           </div>
-          <div class="col-6 ps-1 pe-4 pt-3 pb-4">
+          <div class="col-7 ps-1 pe-4 pt-3 pb-4">
             <div class="rounded widget mb-3">
               <ui-project-widget></ui-project-widget>
             </div>
@@ -70,6 +70,9 @@ import { UntilDestroy } from '@ngneat/until-destroy';
       .paddings {
         padding: 24px;
       }
+      .user-profile-padding {
+        padding: 24px 10px;
+      }
       .widget-header {
         font-family: 'Inter';
         font-style: normal;
@@ -87,8 +90,8 @@ import { UntilDestroy } from '@ngneat/until-destroy';
         color: #919ba3;
       }
       .widget-editable:hover {
-        border-bottom: 1.5px solid #919ba3;
         cursor: pointer;
+        color: #3D4DB6;
       }
       .widget-text {
         font-family: 'Inter';
@@ -97,6 +100,11 @@ import { UntilDestroy } from '@ngneat/until-destroy';
         font-size: 14px;
         line-height: 18px;
         color: #1a2128;
+      }
+      .email-address {
+        font-size: 12px;
+        line-height: 17px;
+        color: #919ba3;
       }
     `,
   ],

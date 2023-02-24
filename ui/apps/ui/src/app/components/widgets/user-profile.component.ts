@@ -11,7 +11,7 @@ import { DOCUMENT } from '@angular/common';
 @Component({
   selector: 'ui-widget-user-profile',
   template: `
-    <div class="widget paddings">
+    <div class="widget user-profile-padding">
       <!--div class="row">
         <div class="col-6 widget-header">Your profile</div>
         <div class="col-6" align="end">
@@ -33,7 +33,7 @@ import { DOCUMENT } from '@angular/common';
             profile.username
           }}</span
           ><br />
-          <span *ngIf="profile" class="widget-text ms-2"
+          <span *ngIf="profile" class="widget-text ms-2 email-address"
             >{{ profile.email }}
           </span>
         </div>
@@ -103,13 +103,14 @@ import { DOCUMENT } from '@angular/common';
         font-weight: 400;
         font-size: 16px;
         line-height: 22px;
+        cursor: pointer;
         color: #000000;
       }
       .nav-sel {
         position: absolute;
         width: 3px;
         height: 30px;
-        left: 40px;
+        left: 23px;
         background: #0066ff;
         border-radius: 4px;
       }

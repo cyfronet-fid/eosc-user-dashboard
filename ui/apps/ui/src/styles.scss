@@ -710,6 +710,28 @@ svg:not(:root).svg-inline--fa {
   }
 }
 
+.types {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.type {
+  padding: 2px 10px;
+  color: #3d4db6;
+  border-radius: 35px;
+  font-size: 14px;
+  line-height: 20px;
+  border: 1px solid #3d4db6;
+}
+
+.active {
+  color: white !important;
+  background: #3d4db6;
+}
+
 .btn-primary {
   background: #144b9e;
   border-radius: 8px;
@@ -1115,9 +1137,9 @@ ul.check-list {
   padding: 25px;
 
   h3 {
-    font-size: 28px;
+    font-size: 22px;
     font-weight: 600;
-    line-height: 34px;
+    line-height: 30px;
     margin: 0 0 20px;
   }
 }
@@ -1170,10 +1192,27 @@ ul.check-list {
   #up-to-date .cards-wrapper {
     padding: 0 200px;
   }
+  .types {
+    gap: 4px;
+  }
+  .type{
+    padding: 2px 7px;
+    font-size: 12px;
+  }
 
 }
 
 @media only screen and (max-width: 992px) {
+  .paddings {
+    padding: 10px;
+  }
+  .types {
+    gap: 5px;
+  }
+  .type{
+    padding: 2px 4px;
+    font-size: 10px;
+  }
 
   #topmap {
     min-height: auto;

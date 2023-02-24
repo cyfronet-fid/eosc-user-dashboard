@@ -12,8 +12,8 @@ import { UpcomingEventsWidget } from '../../widgets/upcoming-events/upcoming-eve
     <div>
       <div class="widget rounded paddings">
         <div class="row">
-          <div class="col-6 widget-header">Upcoming Events</div>
-          <div class="col-6" align="end">
+          <div class="col-7 widget-header">Upcoming Events</div>
+          <div class="col-5" align="end">
             <span (click)="showMore()" class="widget-editable"
               >Show all
               <img id="show-more" src="assets/arrow_right_small.svg" />
