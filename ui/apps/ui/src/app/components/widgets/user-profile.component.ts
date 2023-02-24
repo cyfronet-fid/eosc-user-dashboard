@@ -31,7 +31,7 @@ import { DOCUMENT } from '@angular/common';
             profile.username
           }}</span
           ><br />
-          <span *ngIf="profile" class="widget-text ms-2"
+          <span *ngIf="profile" class="widget-text ms-2 profile-email"
             >{{ profile.email }}
           </span>
         </div>

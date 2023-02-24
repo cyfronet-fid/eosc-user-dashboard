@@ -20,31 +20,6 @@ export interface IType {
       >{{ type.label }}</a
     >
   </div>`,
-  styles: [
-    `
-      .types {
-        display: flex;
-        flex-direction: row;
-        align-items: flex-start;
-        gap: 10px;
-        margin-bottom: 30px;
-      }
-
-      .type {
-        padding: 2px 10px;
-        color: #3d4db6;
-        border-radius: 35px;
-        font-size: 14px;
-        line-height: 20px;
-        border: 1px solid #3d4db6;
-      }
-
-      .active {
-        color: white !important;
-        background: #3d4db6;
-      }
-    `,
-  ],
 })
 export class NavbarComponent {
   @Input()
