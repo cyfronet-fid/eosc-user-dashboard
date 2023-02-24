@@ -56,7 +56,7 @@ import { DOCUMENT } from '@angular/common';
       </div>
       <div class="spacer"></div>
       <div class="row">
-        <div class="pt-3">
+        <div class="pt-3" (click)="editProfile()">
           <span [routerLink]="['/profile']" routerLinkActive="nav-sel"> </span>
           <span class="nav-text ps-4">Profile Settings</span>
         </div>
