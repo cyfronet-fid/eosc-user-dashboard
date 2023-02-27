@@ -69,6 +69,9 @@ import { delay } from 'rxjs';
         background: #185fc9;
         border-radius: 10px;
       }
+      .button-contact:hover {
+        background: #1a2128;
+      }
       .button-text {
         font-family: 'Inter';
         font-style: normal;

@@ -109,7 +109,7 @@ import { DOCUMENT } from '@angular/common';
       .nav-sel {
         position: absolute;
         width: 3px;
-        height: 30px;
+        height: 25px;
         left: 23px;
         background: #0066ff;
         border-radius: 4px;

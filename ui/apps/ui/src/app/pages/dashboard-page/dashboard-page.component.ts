@@ -13,12 +13,12 @@ import { UntilDestroy } from '@ngneat/until-destroy';
       </div-->
       <div>
         <div class="row gx-0">
-          <div class="col-2 pb-4" style="padding-right: 20px">
+          <div class="col-2 position-fixed left-panel">
             <div class="mb-3">
               <ui-widget-user-profile></ui-widget-user-profile>
             </div>
           </div>
-          <div class="col-7 ps-1 pe-4 pt-3 pb-4">
+          <div class="col-7 ps-1 pe-4 pt-3 pb-4 offset-md-2">
             <div class="rounded widget mb-3">
               <ui-project-widget></ui-project-widget>
             </div>
@@ -71,7 +71,8 @@ import { UntilDestroy } from '@ngneat/until-destroy';
         padding: 24px;
       }
       .user-profile-padding {
-        padding: 24px 10px;
+        padding: 80px 10px 0;
+        height: 100vh;
       }
       .widget-header {
         font-family: 'Inter';

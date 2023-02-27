@@ -568,6 +568,29 @@ svg:not(:root).svg-inline--fa {
   text-transform: uppercase;
 }
 
+#eosc-common-main-header {
+  position: relative;
+  z-index: 100;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.03);
+}
+
+.left-panel {
+  height: 100vh;
+  top: 0;
+  padding-right: 20px;
+}
+
+.widget {
+  .btn {
+    margin-left: 10px;
+
+    &:disabled {
+      border: none;
+      opacity: 0.5;
+    }
+  }
+}
+
 .widget-content {
   border: 1px solid rgba(28, 49, 58, 0.1);
   border-radius: 5px;
@@ -589,6 +612,7 @@ svg:not(:root).svg-inline--fa {
 .widget-content:hover {
   box-shadow: 0 0.125rem 0.35rem rgba(0, 0, 0, 0.085);
 }
+
 @media only screen and (max-width: 992px) {
   .display-1 {
     font-size: 1.5rem;
@@ -1195,6 +1219,11 @@ ul.check-list {
   .types {
     gap: 4px;
   }
+
+  .recommendations-widget {
+    padding: 18px;
+  }
+
   .type{
     padding: 2px 7px;
     font-size: 12px;
@@ -1206,9 +1235,15 @@ ul.check-list {
   .paddings {
     padding: 10px;
   }
+
+  .recommendations-widget {
+    padding: 10px;
+  }
+
   .types {
     gap: 5px;
   }
+
   .type{
     padding: 2px 4px;
     font-size: 10px;
