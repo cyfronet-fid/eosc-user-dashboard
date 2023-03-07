@@ -1,4 +1,3 @@
-"""UserActions-specific dependencies"""
 import datetime
 import json
 import logging
