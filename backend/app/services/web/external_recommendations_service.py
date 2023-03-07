@@ -53,17 +53,22 @@ class ExternalRecommendationsService:
 
     @staticmethod
     def _get_panel(panel_id: RecommendationTypes) -> str:
-        match panel_id:
-            case "publication":
-                return "publications"
-            case "dataset":
-                return "datasets"
-            case "training":
-                return "trainings"
-            case "other":
-                return "other_research_product"
-            case _:
-                return panel_id
+        # pylint: disable=R0911
+        # pylint: disable=R1705
+        if panel_id == "publication":
+            return "publications"
+        elif panel_id == "dataset":
+            return "datasets"
+        elif panel_id == "training":
+            return "trainings"
+        elif panel_id == "service":
+            return "services"
+        elif panel_id == "data-source":
+            return "data-sources"
+        elif panel_id == "other":
+            return "other_research_product"
+        else:
+            return panel_id
 
     @staticmethod
     async def _get_recommended_uuids(
