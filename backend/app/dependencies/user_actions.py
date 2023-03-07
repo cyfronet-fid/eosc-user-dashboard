@@ -36,8 +36,6 @@ class UserActionClient:
             self.client.set_ssl(hosts_and_ports)
 
     def connect(self) -> None:
-        """Connect stomp internal client, this function must be called before using `send`
-        """
         self.client.connect(self.username, self.password, wait=True)
 
     # pylint: disable=too-many-arguments
@@ -51,9 +49,6 @@ class UserActionClient:
         resource_id: Union[str, int],
         resource_type: str,
     ) -> None:
-        """Send user data to databus. Ensure that `.connect()` method has been called before.
-        """
-
         # this hack is required for legacy purposes.
         message = json.dumps(
             self._make_user_action(
@@ -86,8 +81,6 @@ class UserActionClient:
         resource_id: Union[str, int],
         resource_type: str,
     ) -> dict:
-        """Create valid user action json dict"""
-
         user_action = {
             "unique_id": session_uuid,
             "client_id": "user_dashboard",
@@ -112,8 +105,6 @@ class UserActionClient:
 
 
 def user_actions_client() -> UserActionClient | None:
-    """User actions databus client dependency"""
-
     client = UserActionClient(
         STOMP_HOST,
         STOMP_PORT,
