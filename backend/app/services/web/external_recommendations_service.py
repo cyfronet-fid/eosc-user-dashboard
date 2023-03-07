@@ -24,19 +24,25 @@ class ExternalRecommendationsService:
         recommendations_type: RecommendationTypes,
     ):
         try:
-            uuids = await ExternalRecommendationsService._get_recommended_uuids(
+            (
+                uuids,
+                randomuuid,
+            ) = await ExternalRecommendationsService._get_recommended_uuids(
                 client, session, recommendations_type
             )
             items = await ExternalRecommendationsService._get_recommended_items(
-                client, uuids
+                client, uuids, randomuuid
             )
             return {"recommendations": items, "isRand": False}
         except (ExternalRecommenderError, SolrRetrieveError, ReadTimeout) as e:
-            uuids = await ExternalRecommendationsService._get_fixed_recommendations(
+            (
+                uuids,
+                randomuuid,
+            ) = await ExternalRecommendationsService._get_fixed_recommendations(
                 client, recommendations_type
             )
             items = await ExternalRecommendationsService._get_recommended_items(
-                client, uuids
+                client, uuids, randomuuid
             )
             return {
                 "recommendations": items,
@@ -62,12 +68,13 @@ class ExternalRecommendationsService:
     @staticmethod
     async def _get_recommended_uuids(
         client: AsyncClient, session: SessionData | None, panel_id: RecommendationTypes
-    ) -> list[str]:
+    ) -> tuple[list[str], str]:
         try:
+            randomuid = str(uuid.uuid4())
             request_body = {
-                "unique_id": session.session_uuid if session else str(uuid.uuid4()),
+                "unique_id": session.session_uuid if session else randomuid,
                 "timestamp": datetime.datetime.utcnow().isoformat()[:-3] + "Z",
-                "visit_id": str(uuid.uuid4()),
+                "visit_id": randomuid,
                 "page_id": "/search/" + panel_id,
                 "panel_id": ExternalRecommendationsService._get_panel(panel_id),
                 "candidates": [],
@@ -95,7 +102,7 @@ class ExternalRecommendationsService:
             ):
                 raise ExternalRecommenderError(message="No recommendations provided")
 
-            return recommendation_data["recommendations"][:3]
+            return (recommendation_data["recommendations"][:3], randomuid)
         except ConnectError as e:
             raise ExternalRecommenderError(message="Connection error") from e
 
@@ -103,7 +110,7 @@ class ExternalRecommendationsService:
     @alru_cache(maxsize=512)
     async def _get_fixed_recommendations(
         client: AsyncClient, panel_id: RecommendationTypes, count: int = 3
-    ) -> list[str]:
+    ) -> tuple[list[str], str]:
         rows = 100
         if panel_id == "data-source":
             panel_id = "data source"
@@ -124,10 +131,15 @@ class ExternalRecommendationsService:
         docs: list = response.json()["response"]["docs"]
         if len(docs) == 0:
             return []
-        return [doc["id"] for doc in random.sample(docs, k=min(count, len(docs)))]
+        return (
+            [doc["id"] for doc in random.sample(docs, k=min(count, len(docs)))],
+            str(uuid.uuid4()),
+        )
 
     @staticmethod
-    async def _get_recommended_items(client: AsyncClient, uuids: list[str]):
+    async def _get_recommended_items(
+        client: AsyncClient, uuids: list[str], visit_id: str
+    ):
         try:
             items = []
             for item_uuid in uuids:
@@ -135,6 +147,7 @@ class ExternalRecommendationsService:
                 item = response["doc"]
                 if item is None:
                     raise SolrRetrieveError(f"No item with id={item_uuid}")
+                item["visit_id"] = visit_id
                 items.append(item)
 
             return items

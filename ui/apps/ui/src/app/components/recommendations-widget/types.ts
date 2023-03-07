@@ -45,6 +45,8 @@ export interface IRecommendationResponse {
 }
 
 export interface IRecommendation {
+  id: string;
+  type: IValueWithLabel;
   title: string;
   url: string;
   image: string;
@@ -54,4 +56,10 @@ export interface IRecommendation {
   secondaryTags: ISecondaryTag[];
   tertiaryTags?: ITertiaryTag[];
   publicationDate: string;
+  visitId: string;
+}
+
+export interface IValueWithLabel {
+  label: string;
+  value: string;
 }

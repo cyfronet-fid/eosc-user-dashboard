@@ -34,4 +34,28 @@ export class RecommendationsService {
         )
       );
   }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  evaluate$(payload: any): Observable<number> {
+    return this._http.post<number>(
+      `${environment.backendApiPath}/${environment.evaluateApiPath}`,
+      payload
+    );
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  favadd$(payload: any): Observable<number> {
+    return this._http.post<number>(
+      `${environment.backendApiPath}/${environment.favaddApiPath}`,
+      payload
+    );
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  favremove$(payload: any): Observable<number> {
+    return this._http.post<number>(
+      `${environment.backendApiPath}/${environment.favremoveApiPath}`,
+      payload
+    );
+  }
 }
