@@ -21,8 +21,6 @@ logger = logging.getLogger(__name__)
 
 
 class UserActionClient:
-    """Wrapper for the STOMP client which sends valid user action to the databus"""
-
     # pylint: disable=too-many-arguments
     def __init__(
         self, host: str, port: int, username: str, password: str, topic: str, ssl: bool
@@ -144,7 +142,6 @@ def send_user_action_bg_task(
     resource_id: Union[str, int],
     resource_type: str,
 ):
-    """Simple wrapper function which can be used 'as is' in fastapi's BackgroundTask"""
     client.send(
         session, reason, suggestion, action, visit_id, resource_id, resource_type
     )
