@@ -148,7 +148,6 @@ class ExternalRecommendationsService:
                     raise SolrRetrieveError(f"No item with id={item_uuid}")
                 item["visit_id"] = visit_id
                 items.append(item)
-
             return items
         except ConnectError as e:
             raise SolrRetrieveError("Connection Error") from e
