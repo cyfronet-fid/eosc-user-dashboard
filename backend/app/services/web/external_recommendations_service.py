@@ -41,8 +41,9 @@ class ExternalRecommendationsService:
             return {
                 "recommendations": items,
                 "isRand": True,
-                "message": str(e)
-                or "Solr or external recommender service read timeout",
+                "message": (
+                    str(e) or "Solr or external recommender service read timeout"
+                ),
             }
 
     @staticmethod
