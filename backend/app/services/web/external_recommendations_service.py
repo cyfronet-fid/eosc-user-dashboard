@@ -24,25 +24,19 @@ class ExternalRecommendationsService:
         recommendations_type: RecommendationTypes,
     ):
         try:
-            (
-                uuids,
-                randomuuid,
-            ) = await ExternalRecommendationsService._get_recommended_uuids(
+            tupleres = await ExternalRecommendationsService._get_recommended_uuids(
                 client, session, recommendations_type
             )
             items = await ExternalRecommendationsService._get_recommended_items(
-                client, uuids, randomuuid
+                client, tupleres[0], tupleres[1]
             )
             return {"recommendations": items, "isRand": False}
         except (ExternalRecommenderError, SolrRetrieveError, ReadTimeout) as e:
-            (
-                uuids,
-                randomuuid,
-            ) = await ExternalRecommendationsService._get_fixed_recommendations(
+            tupleres = await ExternalRecommendationsService._get_fixed_recommendations(
                 client, recommendations_type
             )
             items = await ExternalRecommendationsService._get_recommended_items(
-                client, uuids, randomuuid
+                client, tupleres[0], tupleres[1]
             )
             return {
                 "recommendations": items,
