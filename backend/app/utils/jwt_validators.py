@@ -38,6 +38,7 @@ async def get_current_user(
         user = get_user(db, decoded_token["sub"])
 
         if not user:
+            # pylint: disable=W0719
             raise Exception
 
         return user

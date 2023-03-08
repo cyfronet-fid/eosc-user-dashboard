@@ -49,6 +49,7 @@ def _get_key_jar(config):
 
         temp.write(jwks)
         temp.seek(0)
+        # pylint: disable=R1735
         new_config = dict(
             public_path=temp.name,
             key_defs=config["key_defs"],
