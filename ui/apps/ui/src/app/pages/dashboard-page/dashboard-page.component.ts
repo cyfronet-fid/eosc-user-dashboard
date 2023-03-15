@@ -89,10 +89,12 @@ import { UntilDestroy } from '@ngneat/until-destroy';
         font-size: 13px;
         line-height: 18px;
         color: #919ba3;
+        float: right;
       }
       .widget-editable:hover {
         cursor: pointer;
-        color: #3D4DB6;
+        text-decoration: none;
+        color: #000;
       }
       .widget-text {
         font-family: 'Inter';

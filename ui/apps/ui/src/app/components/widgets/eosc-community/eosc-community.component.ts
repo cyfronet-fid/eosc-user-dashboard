@@ -119,6 +119,7 @@ import { UntilDestroy } from '@ngneat/until-destroy';
         font-style: normal;
         font-weight: 600;
         font-size: 24px;
+        cursor: pointer;
         line-height: 30px;
         color: #232c34;
       }

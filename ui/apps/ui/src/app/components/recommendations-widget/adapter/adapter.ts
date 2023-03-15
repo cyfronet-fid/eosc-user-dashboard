@@ -99,7 +99,7 @@ export const createRedirectLanguageTagsOf = (
     iconPath:
       value?.toLowerCase() === 'open access'
         ? 'assets/open access.svg'
-        : 'assets/restricted access.svg',
+        : 'assets/languages.svg',
     url: `${environment.searchServiceAllUrl}&fq=${filter}:"${value}"`,
     additionalClass: 'none',
   }));

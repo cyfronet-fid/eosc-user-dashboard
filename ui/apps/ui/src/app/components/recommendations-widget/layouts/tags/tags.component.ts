@@ -11,7 +11,7 @@ import { ISecondaryTag, ITag } from '@components/recommendations-widget/types';
     </div-->
     <ng-container *ngFor="let taga of accesstags">
       <ng-container *ngIf="accesstags.length > 0">
-        <span class="statistic text-muted"
+        <span class="statistic main-tag"
           ><img [src]="taga.iconPath" alt="" />&nbsp;
           <ng-container *ngFor="let value of taga.values">
             <ng-container *ngIf="value.hasOwnProperty('url'); else information">
@@ -40,7 +40,6 @@ import { ISecondaryTag, ITag } from '@components/recommendations-widget/types';
         margin-right: 15px;
       }
       .statistic > img {
-        margin-right: 2px;
       }
       .tags {
         display: flex;
