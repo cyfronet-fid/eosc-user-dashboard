@@ -1204,11 +1204,15 @@ ul.check-list {
 .main-tag {
   background: #EDF4FF;
   border-radius: 24px;
-  padding: 4px 13px;
+  padding: 6px 15px;
   font-size: 16px;
   line-height: 20px;
   color: #2255A4;
   margin-right: 20px;
+
+  img {
+    margin-top: -2px;
+  }
 }
 
 .tag-row {
