@@ -66,8 +66,21 @@ a {
   color: #0c2bd5;
 }
 
+.pr-0 {
+  padding-right: 0 !important;
+}
+
+.pl-0 {
+  padding-left: 0 !important;
+}
+
 .container-xxl {
   padding: 25px 50px 75px 25px;
+}
+
+.user-profile-padding {
+  padding: 80px 10px 0;
+  height: 100vh;
 }
 
 .searchbar {
@@ -574,10 +587,18 @@ svg:not(:root).svg-inline--fa {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.03);
 }
 
+#sidebarMenu {
+  background: #fff;
+}
+
 .left-panel {
   height: 100vh;
   top: 0;
-  padding-right: 20px;
+  width: 250px;
+}
+
+.offset-left-panel {
+  margin-left: 250px;
 }
 
 .widget {
@@ -1225,6 +1246,22 @@ ul.check-list {
   margin-top: 20px;
 }
 
+.eosc-common.footer {
+  z-index: 100;
+  position: relative;
+}
+
+.widget-header-theme:hover {
+  color: #3D4DB6;
+}
+
+.join-box {
+  border: 1px solid #EDF4FF;
+  border-radius: 8px;
+  margin-top: 16px;
+  padding: 15px;
+}
+
 @media only screen and (max-width: 1400px) {
 
   #up-to-date .cards-wrapper {
@@ -1239,8 +1276,8 @@ ul.check-list {
   }
 
   .type{
-    padding: 2px 7px;
-    font-size: 12px;
+    padding: 2px 4px;
+    font-size: 10px;
   }
 
 }
@@ -1472,6 +1509,12 @@ ul.check-list {
 }
 
 @media only screen and (max-width: 576px) {
+
+  .user-profile-padding {
+    padding: 20px 0 0;
+    height: auto;
+  }
+
   #topmap {
     background: url('assets/stars.svg') 225px -140px,
       linear-gradient(180deg, #edf3fa 0%, rgba(255, 255, 255, 1) 100%);

@@ -11,42 +11,46 @@ import { UntilDestroy } from '@ngneat/until-destroy';
       <!--div class="dashboard-carousel">
         <ui-eosc-community-widget></ui-eosc-community-widget>
       </div-->
-      <div>
-        <div class="row gx-0">
-          <div class="col-2 position-fixed left-panel">
+      <div class="container-fluid">
+        <div class="row">
+          <div id="sidebarMenu" class="col-12 col-sm-4 col-md-3 col-xl-2 d-md-block sidebar p-0">
             <div class="mb-3">
               <ui-widget-user-profile></ui-widget-user-profile>
             </div>
           </div>
-          <div class="col-7 ps-1 pe-4 pt-3 pb-4 offset-md-2">
-            <div class="rounded widget mb-3">
-              <ui-project-widget></ui-project-widget>
-            </div>
-            <div class="rounded widget" id="container">
-              <ui-recommendations-widget></ui-recommendations-widget>
-            </div>
-          </div>
-          <div class="col-3 pt-3 pb-4" style="padding-right: 20px">
-            <div class="mb-3">
-              <ui-widget-upcoming-events></ui-widget-upcoming-events>
-            </div>
-            <div class="mb-3">
-              <ui-widget-news></ui-widget-news>
-            </div>
-            <div class="mb-3">
-              <ui-widget-communities></ui-widget-communities>
-            </div>
-            <div class="mb-3">
-              <ui-widget-impact></ui-widget-impact>
-            </div>
-            <!--div class="mb-3">
-              <ui-widget-videos></ui-widget-videos>
-            </div-->
-            <div class="mb-3">
-              <ui-widget-social-media></ui-widget-social-media>
-            </div>
-            <div class="mb-3">
-              <ui-widget-eosc-numbers></ui-widget-eosc-numbers>
+          <div class="col-12 col-sm-8 col-md-9 col-xl-10 ms-sm-auto px-md-4">
+            <div class="row pt-3">
+              <div class="col-12 col-lg-8 ps-1 pe-2 pb-4">
+                <div class="rounded widget mb-3">
+                  <ui-project-widget></ui-project-widget>
+                </div>
+                <div class="rounded widget" id="container">
+                  <ui-recommendations-widget></ui-recommendations-widget>
+                </div>
+              </div>
+              <div class="col-12 col-lg-4 pb-4 pr-0">
+                <div class="mb-3">
+                  <ui-widget-upcoming-events></ui-widget-upcoming-events>
+                </div>
+                <div class="mb-3">
+                  <ui-widget-news></ui-widget-news>
+                </div>
+                <div class="mb-3">
+                  <ui-widget-communities></ui-widget-communities>
+                </div>
+                <div class="mb-3">
+                  <ui-widget-impact></ui-widget-impact>
+                </div>
+                <!--div class="mb-3">
+                  <ui-widget-videos></ui-widget-videos>
+                </div-->
+                <div class="mb-3">
+                  <ui-widget-social-media></ui-widget-social-media>
+                </div>
+                <div class="mb-3">
+                  <ui-widget-eosc-numbers></ui-widget-eosc-numbers>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -69,10 +73,6 @@ import { UntilDestroy } from '@ngneat/until-destroy';
       }
       .paddings {
         padding: 24px;
-      }
-      .user-profile-padding {
-        padding: 80px 10px 0;
-        height: 100vh;
       }
       .widget-header {
         font-family: 'Inter';

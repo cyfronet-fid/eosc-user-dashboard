@@ -12,29 +12,28 @@ import { CommunitiesWidget } from '../../widgets/communities/communities-widget.
           <div class="col-10 widget-header">Join EOSC Communities</div>
         </div>
 
-        <div *ngFor="let item of slicedData">
-          <div class="row pt-4">
-            <div class="col-4">
+        <div class="join-box" *ngFor="let item of slicedData">
+          <div class="row pt-2">
+            <div class="col-3">
               <img
                 style="cursor:pointer;"
                 (click)="moveToEvent(item.Path)"
-                width="100%"
-                height="100%"
+                height="70"
                 src="{{ item.Image }}"
               />
             </div>
-            <div class="col-8">
-              <div class="row pt-3">
-                <span
+            <div class="col-9">
+              <div class="row pt-2">
+                <a (click)="moveToEvent(item.Path)"
                   class="widget-header-theme"
                   [innerHTML]="item.Title"
-                ></span>
+                ></a>
               </div>
             </div>
           </div>
           <div class="row pt-2">
             <div class="col-12">
-              <div class="row pt-3">
+              <div class="row pt-2">
                 <span
                   class="widget-header-place"
                   [innerHTML]="item.Body"
@@ -44,7 +43,7 @@ import { CommunitiesWidget } from '../../widgets/communities/communities-widget.
           </div>
         </div>
         <div class="row">
-          <div class="col-12">
+          <div class="col-12 mt-3">
             <div class="row" align="end">
               <span>
                 <button
@@ -74,17 +73,17 @@ import { CommunitiesWidget } from '../../widgets/communities/communities-widget.
         font-family: 'Inter';
         font-style: normal;
         font-weight: 400;
-        font-size: 14px;
-        line-height: 26px;
+        font-size: 13px;
+        line-height: 17px;
         color: #1a2128;
       }
       .widget-header-theme {
         font-family: 'Inter';
         font-style: normal;
         font-weight: 600;
-        font-size: 16px;
-        line-height: 26px;
-        color: #1a2128;
+        font-size: 15px;
+        line-height: 19px;
+        color: #232C34;
       }
       .interested {
         cursor: pointer;
@@ -119,7 +118,7 @@ import { CommunitiesWidget } from '../../widgets/communities/communities-widget.
 export class WidgetCommunitiesComponent implements OnInit {
   upcomingEvents: CommunitiesWidget[];
   idx = 0;
-  slideCount = 1;
+  slideCount = 2;
   slicedData: CommunitiesWidget[];
 
   constructor() {
@@ -180,7 +179,7 @@ export class WidgetCommunitiesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.slicedData = this.upcomingEvents.slice(0, 1);
+    this.slicedData = this.upcomingEvents.slice(0, 2);
   }
 
   public showMore() {

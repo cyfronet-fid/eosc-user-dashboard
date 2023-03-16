@@ -25,15 +25,15 @@ import { DOCUMENT } from '@angular/common';
         </div>
       </div-->
       <div class="row">
-        <div class="pt-3 ps-4">
-          <img width="34px" src="assets/user.svg" />
+        <div class="pt-3 ps-3">
+          <img width="40px" src="assets/user.svg" />
         </div>
-        <div class="pt-2 ps-4">
-          <span *ngIf="profile" class="widget-text ms-2">{{
+        <div class="pt-2 ps-3 pr-0">
+          <span *ngIf="profile" class="widget-text">{{
             profile.username
           }}</span
           ><br />
-          <span *ngIf="profile" class="widget-text ms-2 email-address"
+          <span *ngIf="profile" class="widget-text email-address"
             >{{ profile.email }}
           </span>
         </div>
@@ -69,7 +69,6 @@ import { DOCUMENT } from '@angular/common';
           <span class="nav-text ps-4">Favourities</span>
         </div>
       </div>
-      <div style="margin-bottom: 200px"></div>
     </div>
   `,
   styles: [
