@@ -11,7 +11,7 @@ import { SocialMediaWidget } from '../../widgets/social-media/social-media-widge
     <div>
       <div class="widget rounded paddings">
         <div class="row">
-          <div class="col-6 widget-header">EOSC on Social Media</div>
+          <div class="col-12 widget-header">EOSC on Social Media</div>
           <!--div class="col-6" align="end">
             <span (click)="showMore()" class="widget-editable"
               >Show more

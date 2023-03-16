@@ -1225,14 +1225,26 @@ ul.check-list {
 .main-tag {
   background: #EDF4FF;
   border-radius: 24px;
-  padding: 6px 15px;
+  padding: 5px 15px;
   font-size: 16px;
   line-height: 20px;
+  text-transform: capitalize;
   color: #2255A4;
   margin-right: 20px;
 
   img {
     margin-top: -2px;
+    margin-right: 6px;
+  }
+
+  &.required {
+    background: rgba(242, 153, 74, 0.2);
+    color: #F97500;
+  }
+
+  &.access {
+    background: #F3FFED;;
+    color: #27AE60;
   }
 }
 
@@ -1240,6 +1252,18 @@ ul.check-list {
   font-size: 12px;
   line-height: 22px;
   opacity: 0.65;
+}
+
+.usage {
+  .statistic {
+    &:last-child {
+      width: 100%;
+      float: left;
+      display: inline-block;
+      margin: 9px 0 12px 0 !important;
+      line-height: 20px;
+    }
+  }
 }
 
 .tertiary-tags {
@@ -1513,6 +1537,27 @@ ul.check-list {
   .user-profile-padding {
     padding: 20px 0 0;
     height: auto;
+  }
+  .nav-sel[_ngcontent-asq-c94] {
+    left: 11px;
+  }
+
+  .url-title {
+    font-size: 16px !important;
+    line-height: 24px !important;
+  }
+
+  .main-tag {
+    padding: 5px 11px;
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  .recommendation {
+    .description {
+      font-size: 12px;
+      line-height: 21px;
+    }
   }
 
   #topmap {

@@ -152,7 +152,7 @@ export const createDownloadsSecondaryTag = (
 ): ISecondaryTag[] =>
   toArray<string>(values).map((value) => ({
     values: [{ label: `${value} Downloads` }],
-    iconPath: 'downloaded.svg',
+    iconPath: 'assets/downloaded.svg',
   }));
 export const createKeywordsSecondaryTag = (
   filter: string,
