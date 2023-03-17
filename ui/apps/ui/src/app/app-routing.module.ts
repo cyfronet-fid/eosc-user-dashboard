@@ -26,6 +26,20 @@ const routes: Routes = [
     canActivate: [IsLoggedInUserGuardService],
   },
   {
+    path: 'privacy-policy',
+    loadChildren: () =>
+      import('./pages/privacy-policy/privacy-policy.module').then(
+        (m) => m.PrivacyPolicyModule
+      ),
+  },
+  {
+    path: 'acceptable-use-policy',
+    loadChildren: () =>
+      import('./pages/acceptable-use-policy/acceptable-use-policy.module').then(
+        (m) => m.AcceptableUsePolicyModule
+      ),
+  },
+  {
     path: '**',
     pathMatch: 'full',
     loadChildren: () =>
