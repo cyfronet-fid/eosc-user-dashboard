@@ -10,9 +10,15 @@ import { EOSCNumbersWidgetService } from '../../widgets/eosc-numbers/eosc-number
     <div>
       <div class="widget rounded paddings">
         <div class="row">
-          <div class="col-12 widget-header">EOSC in Numbers</div>
+          <div class="col-7 widget-header">EOSC in Numbers</div>
+          <div class="col-5" align="end">
+            <a href="https://search.marketplace.eosc-portal.eu" class="widget-editable"
+            >Show more
+              <img id="show-more" src="assets/arrow_right_small.svg" />
+            </a>
+          </div>
         </div>
-        <div class="row pt-2">
+        <div class="row pt-4">
           <div class="col-12 widget-subheader">
             Thanks to your commitment we can realize our mission for FAIR and
             Open Science. At this moment together we have achieved
@@ -156,8 +162,8 @@ import { EOSCNumbersWidgetService } from '../../widgets/eosc-numbers/eosc-number
         font-style: normal;
         font-weight: 400;
         font-size: 14px;
-        line-height: 21px;
-        color: #8e8d8a;
+        line-height: 20px;
+        color: #000;
       }
       .widget-numbers {
         font-family: 'Inter';

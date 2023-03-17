@@ -11,7 +11,7 @@ import { DOCUMENT } from '@angular/common';
 @Component({
   selector: 'ui-widget-user-profile',
   template: `
-    <div class="widget paddings">
+    <div class="widget user-profile-padding">
       <!--div class="row">
         <div class="col-6 widget-header">Your profile</div>
         <div class="col-6" align="end">
@@ -25,15 +25,15 @@ import { DOCUMENT } from '@angular/common';
         </div>
       </div-->
       <div class="row">
-        <div class="pt-3 ps-4">
-          <img width="34px" src="assets/user.svg" />
+        <div class="pt-3 ps-3">
+          <img width="40px" src="assets/user.svg" />
         </div>
-        <div class="pt-2 ps-4">
-          <span *ngIf="profile" class="widget-text ms-2">{{
+        <div class="pt-2 ps-3 pr-0">
+          <span *ngIf="profile" class="widget-text">{{
             profile.username
           }}</span
           ><br />
-          <span *ngIf="profile" class="widget-text ms-2"
+          <span *ngIf="profile" class="widget-text email-address"
             >{{ profile.email }}
           </span>
         </div>
@@ -69,7 +69,6 @@ import { DOCUMENT } from '@angular/common';
           <span class="nav-text ps-4">Favourities</span>
         </div>
       </div>
-      <div style="margin-bottom: 200px"></div>
     </div>
   `,
   styles: [
@@ -103,13 +102,14 @@ import { DOCUMENT } from '@angular/common';
         font-weight: 400;
         font-size: 16px;
         line-height: 22px;
+        cursor: pointer;
         color: #000000;
       }
       .nav-sel {
         position: absolute;
         width: 3px;
-        height: 30px;
-        left: 40px;
+        height: 25px;
+        left: 23px;
         background: #0066ff;
         border-radius: 4px;
       }

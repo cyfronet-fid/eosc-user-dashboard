@@ -7,14 +7,14 @@ import { ISecondaryTag } from '@components/recommendations-widget/types';
     <div class="usage">
       <ng-container *ngFor="let tag of tags">
         <ng-container *ngIf="tags.length > 0">
-          <span class="statistic text-muted"
+          <span class="statistic text-muted "
             ><img [src]="tag.iconPath" alt="" />&nbsp;
             <ng-container *ngFor="let value of tag.values">
               <ng-container
                 *ngIf="value.hasOwnProperty('url'); else information"
               >
                 <a [attr.href]="value?.url" target="_blank"
-                  >{{ value.label }}&nbsp;&nbsp;&nbsp;</a
+                  >{{ value.label }}&nbsp;&nbsp;</a
                 >
               </ng-container>
 
@@ -39,7 +39,6 @@ import { ISecondaryTag } from '@components/recommendations-widget/types';
         margin-right: 15px;
       }
       .statistic > img {
-        margin-right: 2px;
       }
     `,
   ],

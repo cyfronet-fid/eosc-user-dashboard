@@ -42,7 +42,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
                 </div>
               </div>
             </div>
-            <div class="row pt-2">
+            <div class="row">
               <div class="col-12">
                 <div class="row pt-3">
                   <span
@@ -53,9 +53,9 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-12">
-              <div class="row" align="end">
+          <div class="mt-3">
+            <div>
+              <div align="end">
                 <span>
                   <button
                     [disabled]="!hasPrev"
@@ -93,8 +93,8 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
         font-family: 'Inter';
         font-style: normal;
         font-weight: 400;
-        font-size: 14px;
-        line-height: 26px;
+        font-size: 13px;
+        line-height: 19px;
         color: #1a2128;
       }
       .widget-header-theme {
@@ -102,8 +102,8 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
         font-style: normal;
         font-weight: 600;
         font-size: 16px;
-        line-height: 26px;
-        color: #1a2128;
+        line-height: 20px;
+        color: #000;
       }
       .going-text {
         font-family: 'Inter';
@@ -112,9 +112,6 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
         font-size: 14px;
         line-height: 18px;
         color: #919ba2;
-      }
-      #show-more {
-        padding-right: 6px;
       }
     `,
   ],

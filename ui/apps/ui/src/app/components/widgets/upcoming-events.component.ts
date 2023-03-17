@@ -12,10 +12,10 @@ import { UpcomingEventsWidget } from '../../widgets/upcoming-events/upcoming-eve
     <div>
       <div class="widget rounded paddings">
         <div class="row">
-          <div class="col-6 widget-header">Upcoming Events</div>
-          <div class="col-6" align="end">
+          <div class="col-7 widget-header">Upcoming Events</div>
+          <div class="col-5" align="end">
             <span (click)="showMore()" class="widget-editable"
-              >Show all
+              >Show more
               <img id="show-more" src="assets/arrow_right_small.svg" />
             </span>
           </div>
@@ -38,7 +38,7 @@ import { UpcomingEventsWidget } from '../../widgets/upcoming-events/upcoming-eve
               <div class="row pt-3">
                 <span class="widget-header-place">{{ item.Date }}</span>
               </div>
-              <div class="row">
+              <div class="row pt-2">
                 <span
                   class="widget-header-theme"
                   [innerHTML]="item.Title"
@@ -91,17 +91,17 @@ import { UpcomingEventsWidget } from '../../widgets/upcoming-events/upcoming-eve
         font-family: 'Inter';
         font-style: normal;
         font-weight: 400;
-        font-size: 14px;
-        line-height: 26px;
-        color: #1a2128;
+        font-size: 12px;
+        line-height: 15px;
+        color: #1A2128;
       }
       .widget-header-theme {
         font-family: 'Inter';
         font-style: normal;
         font-weight: 600;
-        font-size: 20px;
-        line-height: 26px;
-        color: #1a2128;
+        font-size: 16px;
+        line-height: 20px;
+        color: #000;
       }
       .interested {
         cursor: pointer;
@@ -129,9 +129,6 @@ import { UpcomingEventsWidget } from '../../widgets/upcoming-events/upcoming-eve
         font-size: 14px;
         line-height: 18px;
         color: #919ba2;
-      }
-      #show-more {
-        padding-right: 6px;
       }
     `,
   ],
