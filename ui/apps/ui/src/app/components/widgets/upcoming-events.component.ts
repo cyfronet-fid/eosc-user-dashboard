@@ -93,7 +93,7 @@ import { UpcomingEventsWidget } from '../../widgets/upcoming-events/upcoming-eve
         font-weight: 400;
         font-size: 12px;
         line-height: 15px;
-        color: #1A2128;
+        color: #1a2128;
       }
       .widget-header-theme {
         font-family: 'Inter';

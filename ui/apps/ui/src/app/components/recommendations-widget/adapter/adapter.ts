@@ -54,6 +54,12 @@ export const adapter = (
   description: data.description?.join(''),
   url: urlAdapter(data.type, data),
   publicationDate: data?.publication_date || '',
+  id: data.id,
+  visitId: data.visit_id,
+  type: {
+    label: data.type || '',
+    value: (data.type || '')?.replace(/ +/gm, '-'),
+  },
   tags: [],
   accessTag: [
     ...createRedirectTagsOf('type', data.type),

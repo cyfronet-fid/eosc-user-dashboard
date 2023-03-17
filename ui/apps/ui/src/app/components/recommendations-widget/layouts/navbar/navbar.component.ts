@@ -20,11 +20,7 @@ export interface IType {
       >{{ type.label }}</a
     >
   </div>`,
-  styles: [
-    `
-
-    `,
-  ],
+  styles: [``],
 })
 export class NavbarComponent {
   @Input()

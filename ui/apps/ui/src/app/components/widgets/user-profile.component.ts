@@ -29,9 +29,7 @@ import { DOCUMENT } from '@angular/common';
           <img width="40px" src="assets/user.svg" />
         </div>
         <div class="pt-2 ps-3 pr-0">
-          <span *ngIf="profile" class="widget-text">{{
-            profile.username
-          }}</span
+          <span *ngIf="profile" class="widget-text">{{ profile.username }}</span
           ><br />
           <span *ngIf="profile" class="widget-text email-address"
             >{{ profile.email }}

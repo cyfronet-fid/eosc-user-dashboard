@@ -19,4 +19,5 @@ export interface IOpenAIREResult extends ICommonDataModel {
   doi: string[];
   usage_counts_views: string;
   usage_counts_downloads: string;
+  visit_id: string;
 }

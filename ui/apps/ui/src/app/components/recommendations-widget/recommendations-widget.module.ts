@@ -9,6 +9,8 @@ import { TertiaryTagsModule } from '@components/recommendations-widget/layouts/t
 import { DescriptionModule } from '@components/recommendations-widget/layouts/description/description.module';
 import { NavbarModule } from '@components/recommendations-widget/layouts/navbar/navbar.module';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [RecommendationsWidgetComponent, RecommendationComponent],
@@ -21,6 +23,8 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     DescriptionModule,
     NavbarModule,
     NgxSkeletonLoaderModule,
+    NgbModule,
+    FormsModule,
   ],
   exports: [RecommendationsWidgetComponent, RecommendationComponent],
 })

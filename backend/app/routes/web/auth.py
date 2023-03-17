@@ -21,6 +21,7 @@ router = APIRouter()
 
 @router.get("/request")
 async def auth_request():
+    # pylint: disable=R1720
     try:
         result = rp_handler.begin(issuer_id=OIDC_ISSUER)
     except Exception as err:
@@ -37,6 +38,7 @@ async def auth_checkin(code: str, state: str, db: Session = Depends(get_db)):
         return RedirectResponse(status_code=400, url=UI_BASE_URL)
 
     try:
+        # pylint: disable=R1735
         aai_response = rp_handler.finalize(OIDC_ISSUER, dict(code=code, state=state))
 
         session_id = uuid4()
