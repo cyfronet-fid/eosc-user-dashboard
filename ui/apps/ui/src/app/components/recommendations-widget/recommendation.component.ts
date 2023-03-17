@@ -7,7 +7,7 @@ import {
 
 @Component({
   selector: 'ui-recommendation',
-  template: `<div class="recommendation">
+  template: `<div class="recommendation pt-4">
     <ui-tags [tags]="tags" [accesstags]="accessTags"></ui-tags>
     <ui-url-title [title]="title" [url]="url"></ui-url-title>
     <ui-secondary-tags [tags]="secondaryTags"></ui-secondary-tags>

@@ -66,8 +66,21 @@ a {
   color: #0c2bd5;
 }
 
+.pr-0 {
+  padding-right: 0 !important;
+}
+
+.pl-0 {
+  padding-left: 0 !important;
+}
+
 .container-xxl {
   padding: 25px 50px 75px 25px;
+}
+
+.user-profile-padding {
+  padding: 80px 10px 0;
+  height: 100vh;
 }
 
 .searchbar {
@@ -568,6 +581,37 @@ svg:not(:root).svg-inline--fa {
   text-transform: uppercase;
 }
 
+#eosc-common-main-header {
+  position: relative;
+  z-index: 100;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.03);
+}
+
+#sidebarMenu {
+  background: #fff;
+}
+
+.left-panel {
+  height: 100vh;
+  top: 0;
+  width: 250px;
+}
+
+.offset-left-panel {
+  margin-left: 250px;
+}
+
+.widget {
+  .btn {
+    margin-left: 10px;
+
+    &:disabled {
+      border: none;
+      opacity: 0.5;
+    }
+  }
+}
+
 .widget-content {
   border: 1px solid rgba(28, 49, 58, 0.1);
   border-radius: 5px;
@@ -589,6 +633,7 @@ svg:not(:root).svg-inline--fa {
 .widget-content:hover {
   box-shadow: 0 0.125rem 0.35rem rgba(0, 0, 0, 0.085);
 }
+
 @media only screen and (max-width: 992px) {
   .display-1 {
     font-size: 1.5rem;
@@ -708,6 +753,28 @@ svg:not(:root).svg-inline--fa {
       }
     }
   }
+}
+
+.types {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.type {
+  padding: 2px 10px;
+  color: #3d4db6;
+  border-radius: 35px;
+  font-size: 14px;
+  line-height: 20px;
+  border: 1px solid #3d4db6;
+}
+
+.active {
+  color: white !important;
+  background: #3d4db6;
 }
 
 .btn-primary {
@@ -1115,9 +1182,9 @@ ul.check-list {
   padding: 25px;
 
   h3 {
-    font-size: 28px;
+    font-size: 22px;
     font-weight: 600;
-    line-height: 34px;
+    line-height: 30px;
     margin: 0 0 20px;
   }
 }
@@ -1129,29 +1196,55 @@ ul.check-list {
   border-radius: 8px;
 
   .description {
-    font-size: 16px;
-    line-height: 22px;
-    color: #233D4C;
+    font-size: 14px;
+    line-height: 24px;
+    color: #4a4a4a;
     margin: 0 0 5px;
   }
 }
 
 .url-title {
   font-weight: 500 !important;
-  size: 20px !important;
+  font-size: 20px !important;
   line-height: 28px !important;
   letter-spacing: -0.02em !important;
   text-decoration: underline;
   color: #000;
-  margin-bottom: 10px;
+  margin: 20px 0 8px;
 
   a {
-    color: #3D4DB6;
+    color: #000;
     font-weight: 500 !important;
 
     &:hover {
-      color: #000;
+      color: #3D4DB6;
     }
+  }
+}
+
+.main-tag {
+  background: #EDF4FF;
+  border-radius: 24px;
+  padding: 5px 15px;
+  font-size: 16px;
+  line-height: 20px;
+  text-transform: capitalize;
+  color: #2255A4;
+  margin-right: 20px;
+
+  img {
+    margin-top: -2px;
+    margin-right: 6px;
+  }
+
+  &.required {
+    background: rgba(242, 153, 74, 0.2);
+    color: #F97500;
+  }
+
+  &.access {
+    background: #F3FFED;;
+    color: #27AE60;
   }
 }
 
@@ -1161,8 +1254,36 @@ ul.check-list {
   opacity: 0.65;
 }
 
+.usage {
+  .statistic {
+    &:last-child {
+      width: 100%;
+      float: left;
+      display: inline-block;
+      margin: 9px 0 12px 0 !important;
+      line-height: 20px;
+    }
+  }
+}
+
 .tertiary-tags {
   margin-top: 20px;
+}
+
+.eosc-common.footer {
+  z-index: 100;
+  position: relative;
+}
+
+.widget-header-theme:hover {
+  color: #3D4DB6;
+}
+
+.join-box {
+  border: 1px solid #EDF4FF;
+  border-radius: 8px;
+  margin-top: 16px;
+  padding: 15px;
 }
 
 @media only screen and (max-width: 1400px) {
@@ -1170,10 +1291,38 @@ ul.check-list {
   #up-to-date .cards-wrapper {
     padding: 0 200px;
   }
+  .types {
+    gap: 4px;
+  }
+
+  .recommendations-widget {
+    padding: 18px;
+  }
+
+  .type{
+    padding: 2px 4px;
+    font-size: 10px;
+  }
 
 }
 
 @media only screen and (max-width: 992px) {
+  .paddings {
+    padding: 10px;
+  }
+
+  .recommendations-widget {
+    padding: 10px;
+  }
+
+  .types {
+    gap: 5px;
+  }
+
+  .type{
+    padding: 2px 4px;
+    font-size: 10px;
+  }
 
   #topmap {
     min-height: auto;
@@ -1384,6 +1533,33 @@ ul.check-list {
 }
 
 @media only screen and (max-width: 576px) {
+
+  .user-profile-padding {
+    padding: 20px 0 0;
+    height: auto;
+  }
+  .nav-sel[_ngcontent-asq-c94] {
+    left: 11px;
+  }
+
+  .url-title {
+    font-size: 16px !important;
+    line-height: 24px !important;
+  }
+
+  .main-tag {
+    padding: 5px 11px;
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  .recommendation {
+    .description {
+      font-size: 12px;
+      line-height: 21px;
+    }
+  }
+
   #topmap {
     background: url('assets/stars.svg') 225px -140px,
       linear-gradient(180deg, #edf3fa 0%, rgba(255, 255, 255, 1) 100%);

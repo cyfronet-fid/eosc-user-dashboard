@@ -116,9 +116,6 @@ import { VideoWidgetService } from '../../widgets/videos/videos-widget.service';
         line-height: 18px;
         color: #919ba2;
       }
-      #show-more {
-        padding-right: 6px;
-      }
     `,
   ],
 })

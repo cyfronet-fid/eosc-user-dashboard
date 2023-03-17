@@ -99,7 +99,7 @@ export const createRedirectLanguageTagsOf = (
     iconPath:
       value?.toLowerCase() === 'open access'
         ? 'assets/open access.svg'
-        : 'assets/restricted access.svg',
+        : 'assets/languages.svg',
     url: `${environment.searchServiceAllUrl}&fq=${filter}:"${value}"`,
     additionalClass: 'none',
   }));
@@ -152,7 +152,7 @@ export const createDownloadsSecondaryTag = (
 ): ISecondaryTag[] =>
   toArray<string>(values).map((value) => ({
     values: [{ label: `${value} Downloads` }],
-    iconPath: 'downloaded.svg',
+    iconPath: 'assets/downloaded.svg',
   }));
 export const createKeywordsSecondaryTag = (
   filter: string,
