@@ -11,26 +11,23 @@ import { ISecondaryTag, ITag } from '@components/recommendations-widget/types';
     </div-->
     <ng-container *ngFor="let taga of accesstags">
       <ng-container *ngIf="accesstags.length > 0">
-          <ng-container *ngFor="let value of taga.values">
-            <ng-container *ngIf="value.hasOwnProperty('url'); else information">
-              <span class="statistic main-tag">
-                <img [src]="taga.iconPath" alt="" />
-                <a [attr.href]="value?.url" target="_blank"
-                  >{{ value.label }}</a
-                >
-                </span>
-            </ng-container>
-
-            <ng-template #information>
-              <ng-container *ngFor="let keyword of taga.values">
-                <span class="statistic main-tag {{ keyword.label }}">
-                  <img [src]="taga.iconPath" alt="" />
-                    {{ keyword.label }}
-                </span>
-              </ng-container>
-            </ng-template>
+        <ng-container *ngFor="let value of taga.values">
+          <ng-container *ngIf="value.hasOwnProperty('url'); else information">
+            <span class="statistic main-tag">
+              <img [src]="taga.iconPath" alt="" />
+              <a [attr.href]="value?.url" target="_blank">{{ value.label }}</a>
+            </span>
           </ng-container>
 
+          <ng-template #information>
+            <ng-container *ngFor="let keyword of taga.values">
+              <span class="statistic main-tag {{ keyword.label }}">
+                <img [src]="taga.iconPath" alt="" />
+                {{ keyword.label }}
+              </span>
+            </ng-container>
+          </ng-template>
+        </ng-container>
       </ng-container>
     </ng-container>
   `,

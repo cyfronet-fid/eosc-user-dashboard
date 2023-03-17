@@ -12,8 +12,10 @@ import { EOSCNumbersWidgetService } from '../../widgets/eosc-numbers/eosc-number
         <div class="row">
           <div class="col-7 widget-header">EOSC in Numbers</div>
           <div class="col-5" align="end">
-            <a href="https://search.marketplace.eosc-portal.eu" class="widget-editable"
-            >Show more
+            <a
+              href="https://search.marketplace.eosc-portal.eu"
+              class="widget-editable"
+              >Show more
               <img id="show-more" src="assets/arrow_right_small.svg" />
             </a>
           </div>

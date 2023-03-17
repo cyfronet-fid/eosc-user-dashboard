@@ -13,7 +13,10 @@ import { UntilDestroy } from '@ngneat/until-destroy';
       </div-->
       <div class="container-fluid">
         <div class="row">
-          <div id="sidebarMenu" class="col-12 col-sm-4 col-md-3 col-xl-2 d-md-block sidebar p-0">
+          <div
+            id="sidebarMenu"
+            class="col-12 col-sm-4 col-md-3 col-xl-2 d-md-block sidebar p-0"
+          >
             <div class="mb-3">
               <ui-widget-user-profile></ui-widget-user-profile>
             </div>

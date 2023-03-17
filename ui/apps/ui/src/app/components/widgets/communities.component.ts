@@ -24,7 +24,8 @@ import { CommunitiesWidget } from '../../widgets/communities/communities-widget.
             </div>
             <div class="col-9">
               <div class="row pt-2">
-                <a (click)="moveToEvent(item.Path)"
+                <a
+                  (click)="moveToEvent(item.Path)"
                   class="widget-header-theme"
                   [innerHTML]="item.Title"
                 ></a>
@@ -83,7 +84,7 @@ import { CommunitiesWidget } from '../../widgets/communities/communities-widget.
         font-weight: 600;
         font-size: 15px;
         line-height: 19px;
-        color: #232C34;
+        color: #232c34;
       }
       .interested {
         cursor: pointer;
