@@ -59,14 +59,14 @@ import { DOCUMENT } from '@angular/common';
           <span class="nav-text ps-4">Profile Settings</span>
         </div>
       </div>
-      <div class="spacer"></div>
+      <!--div class="spacer"></div>
       <div class="row">
         <div class="pt-3">
           <span [routerLink]="['/favourities']" routerLinkActive="nav-sel">
           </span>
           <span class="nav-text ps-4">Favourities</span>
         </div>
-      </div>
+      </div-->
     </div>
   `,
   styles: [
