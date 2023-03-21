@@ -44,7 +44,7 @@ import { UpcomingEventsWidget } from '../../widgets/upcoming-events/upcoming-eve
                   [innerHTML]="item.Title"
                 ></span>
               </div>
-              <div class="row pt-3">
+              <!--div class="row pt-3">
                 <div class="col-6">
                   <div (click)="interested()" class="interested">
                     <span class="interested-text">Interested?</span
@@ -56,7 +56,7 @@ import { UpcomingEventsWidget } from '../../widgets/upcoming-events/upcoming-eve
                     <span class="going-text">{{ 0 }} Going</span>
                   </div>
                 </div>
-              </div>
+              </div-->
             </div>
           </div>
         </div>
