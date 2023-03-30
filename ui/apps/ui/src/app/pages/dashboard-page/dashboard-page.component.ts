@@ -111,6 +111,12 @@ import { UntilDestroy } from '@ngneat/until-destroy';
         font-size: 12px;
         line-height: 17px;
         color: #919ba3;
+        margin-top: 7px;
+        width: 94%;
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     `,
   ],
