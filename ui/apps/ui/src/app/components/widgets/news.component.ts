@@ -16,7 +16,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
           <div class="col-6 widget-header">EOSC News</div>
           <div class="col-6" align="end">
             <span (click)="showMore()" class="widget-editable"
-              >Show all
+              >Show more
               <img id="show-more" src="assets/arrow_right_small.svg" />
             </span>
           </div>
