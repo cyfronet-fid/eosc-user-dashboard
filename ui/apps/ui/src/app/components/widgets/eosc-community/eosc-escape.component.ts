@@ -6,7 +6,7 @@ import { UntilDestroy } from '@ngneat/until-destroy';
 @Component({
   selector: 'ui-eosc-community-escape-widget',
   template: `
-    <div class="widget fixed-size gx-0">
+    <a href="https://projectescape.eu/" target="_blank" class="widget fixed-size gx-0">
       <div class="row">
         <div class="col-5 ps-4 pt-4 pb-3 carousel-image">
           <img width="100%" height="auto" src="assets/logo-Escape_2.svg" />
@@ -30,7 +30,7 @@ import { UntilDestroy } from '@ngneat/until-destroy';
         </div>
       </div>
       <div></div>
-    </div>
+    </a>
   `,
   styles: [
     `
