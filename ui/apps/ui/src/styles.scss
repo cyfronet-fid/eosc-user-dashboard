@@ -1218,6 +1218,7 @@ ul.check-list {
 
   a {
     color: #000;
+    overflow-wrap: break-word;
     font-weight: 500 !important;
 
     &:hover {
