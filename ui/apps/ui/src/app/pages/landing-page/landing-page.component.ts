@@ -117,7 +117,10 @@ import { environment } from '@environment/environment';
                   requests and User feedback. Get free use of a platform where
                   you can manage service requests and interact with your users.
                 </div>
-                <a href="https://providers.eosc-portal.eu/" class="btn btn-sm-landing btn-secondary">
+                <a
+                  href="https://providers.eosc-portal.eu/"
+                  class="btn btn-sm-landing btn-secondary"
+                >
                   Go to Provider’s Hub
                 </a>
               </a>
@@ -130,11 +133,16 @@ import { environment } from '@environment/environment';
                 <div class="title">Researcher</div>
                 <div class="desc">
                   Create a unique project within your scientific discipline.
-                  With this feature, you can save and aggregate your favorite services to create
-                  a knowledge base from available EOSC resources. Adding the project will help you organize
-                  your services a into logical blocks and gain support in the scope of the created idea.
+                  With this feature, you can save and aggregate your favorite
+                  services to create a knowledge base from available EOSC
+                  resources. Adding the project will help you organize your
+                  services a into logical blocks and gain support in the scope
+                  of the created idea.
                 </div>
-                <a href="https://marketplace.eosc-portal.eu/projects/" class="btn btn-sm-landing btn-secondary">
+                <a
+                  href="https://marketplace.eosc-portal.eu/projects/"
+                  class="btn btn-sm-landing btn-secondary"
+                >
                   Create a project
                 </a>
               </a>
