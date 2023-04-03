@@ -117,9 +117,9 @@ import { environment } from '@environment/environment';
                   requests and User feedback. Get free use of a platform where
                   you can manage service requests and interact with your users.
                 </div>
-                <div class="btn btn-sm-landing btn-secondary">
+                <a href="https://providers.eosc-portal.eu/" class="btn btn-sm-landing btn-secondary">
                   Go to Provider’s Hub
-                </div>
+                </a>
               </a>
             </div>
             <div class="col-sm">
@@ -129,14 +129,14 @@ import { environment } from '@environment/environment';
                 </div>
                 <div class="title">Researcher</div>
                 <div class="desc">
-                  Get access to a wide range of FAIR data and other resources,
-                  ranging from Technology and Engineering to Social Sciences.
-                  Search for EOSC Services that suit your use case or describe
-                  your needs and get support from our experts.
+                  Create a unique project within your scientific discipline.
+                  With this feature, you can save and aggregate your favorite services to create
+                  a knowledge base from available EOSC resources. Adding the project will help you organize
+                  your services a into logical blocks and gain support in the scope of the created idea.
                 </div>
-                <div class="btn btn-sm-landing btn-secondary">
-                  Create a Research Project
-                </div>
+                <a href="https://marketplace.eosc-portal.eu/projects/" class="btn btn-sm-landing btn-secondary">
+                  Create a project
+                </a>
               </a>
             </div>
           </div>
@@ -182,7 +182,7 @@ import { environment } from '@environment/environment';
               </a>
             </div>
             <div class="col-md-3 col-sm-12">
-              <a href="#" class="eosc-info">
+              <a href="https://my.eosc-portal.eu/" class="eosc-info">
                 <div class="eosc-info-icon">
                   <img src="assets/dashboard.svg" alt="dashboard" />
                 </div>
