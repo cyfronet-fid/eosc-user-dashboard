@@ -59,6 +59,13 @@ import { DOCUMENT } from '@angular/common';
           <span class="nav-text ps-4">Profile Settings</span>
         </div>
       </div>
+      <div class="spacer"></div>
+      <div class="row">
+        <div (click)="gotoProjects()" class="pt-3">
+          <span routerLinkActive="nav-sel"></span>
+          <span class="nav-text ps-4">My Projects</span>
+        </div>
+      </div>
       <!--div class="spacer"></div>
       <div class="row">
         <div class="pt-3">
@@ -160,6 +167,9 @@ export class WidgetUserProfileComponent implements OnInit {
   }
   public editProfile() {
     window.open('https://marketplace.eosc-portal.eu/profile', '_blank');
+  }
+  public gotoProjects() {
+    window.open('https://marketplace.eosc-portal.eu/projects', '_blank');
   }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public getJSON(): Observable<any> {

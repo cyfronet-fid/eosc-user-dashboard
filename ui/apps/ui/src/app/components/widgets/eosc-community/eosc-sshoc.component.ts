@@ -6,7 +6,11 @@ import { UntilDestroy } from '@ngneat/until-destroy';
 @Component({
   selector: 'ui-eosc-community-sshoc-widget',
   template: `
-    <a href="https://www.sshopencloud.eu/" target="_blank" class="widget fixed-size gx-0">
+    <a
+      href="https://www.sshopencloud.eu/"
+      target="_blank"
+      class="widget fixed-size gx-0"
+    >
       <div class="row">
         <div class="col-5 ps-4 pt-4 pb-3 carousel-image">
           <img

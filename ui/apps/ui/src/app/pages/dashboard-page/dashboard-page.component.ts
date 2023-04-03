@@ -24,9 +24,9 @@ import { UntilDestroy } from '@ngneat/until-destroy';
           <div class="col-12 col-sm-8 col-md-9 col-xl-10 ms-sm-auto px-md-4">
             <div class="row pt-3">
               <div class="col-12 col-lg-8 ps-1 pe-2 pb-4">
-                <div class="rounded widget mb-3">
+                <!--div class="rounded widget mb-3">
                   <ui-project-widget></ui-project-widget>
-                </div>
+                </div-->
                 <div class="rounded widget" id="container">
                   <ui-recommendations-widget></ui-recommendations-widget>
                 </div>
