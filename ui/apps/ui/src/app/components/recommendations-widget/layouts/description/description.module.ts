@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DescriptionComponent } from './description.component';
+import { DescriptionComponent, SafeHtmlPipe } from './description.component';
 
 @NgModule({
-  declarations: [DescriptionComponent],
+  declarations: [DescriptionComponent, SafeHtmlPipe],
   imports: [CommonModule],
   exports: [DescriptionComponent],
 })
