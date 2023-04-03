@@ -26,12 +26,12 @@ import { EOSCNumbersWidgetService } from '../../widgets/eosc-numbers/eosc-number
             Open Science. At this moment together we have achieved
           </div>
         </div>
-        <div class="row pt-2">
+        <div class="row pt-4">
           <div class="col-12 img-padding">
             <div>
               <div class="row">
-                <div class="col-4">
-                  <img width="100%" src="assets/articles_book.svg" />
+                <div class="col-4 align-center">
+                  <img src="assets/articles_book.svg" />
                 </div>
                 <div class="col-8">
                   <div class="row pt-4">
@@ -51,8 +51,8 @@ import { EOSCNumbersWidgetService } from '../../widgets/eosc-numbers/eosc-number
           <div class="col-12 img-padding">
             <div>
               <div class="row">
-                <div class="col-4">
-                  <img width="100%" src="assets/Services.svg" />
+                <div class="col-4 align-center">
+                  <img src="assets/Services.svg" />
                 </div>
                 <div class="col-8">
                   <div class="row pt-4">
@@ -72,8 +72,8 @@ import { EOSCNumbersWidgetService } from '../../widgets/eosc-numbers/eosc-number
           <div class="col-12 img-padding">
             <div>
               <div class="row">
-                <div class="col-4">
-                  <img width="100%" src="assets/trainings.svg" />
+                <div class="col-4 align-center">
+                  <img src="assets/trainings.svg" />
                 </div>
                 <div class="col-8">
                   <div class="row pt-4">
@@ -93,8 +93,8 @@ import { EOSCNumbersWidgetService } from '../../widgets/eosc-numbers/eosc-number
           <div class="col-12 img-padding">
             <div>
               <div class="row">
-                <div class="col-4">
-                  <img width="100%" src="assets/cloud_share.svg" />
+                <div class="col-4 align-center">
+                  <img src="assets/cloud_share.svg" />
                 </div>
                 <div class="col-8">
                   <div class="row pt-4">
@@ -114,8 +114,8 @@ import { EOSCNumbersWidgetService } from '../../widgets/eosc-numbers/eosc-number
           <div class="col-12 img-padding">
             <div>
               <div class="row">
-                <div class="col-4">
-                  <img width="100%" src="assets/data.svg" />
+                <div class="col-4 align-center">
+                  <img src="assets/data.svg" />
                 </div>
                 <div class="col-8">
                   <div class="row pt-4">
@@ -133,8 +133,8 @@ import { EOSCNumbersWidgetService } from '../../widgets/eosc-numbers/eosc-number
           <div class="col-12 img-padding">
             <div>
               <div class="row">
-                <div class="col-4">
-                  <img width="100%" src="assets/datasource.svg" />
+                <div class="col-4 align-center">
+                  <img src="assets/datasource.svg" />
                 </div>
                 <div class="col-8">
                   <div class="row pt-4">

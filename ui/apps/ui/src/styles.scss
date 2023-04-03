@@ -37,6 +37,10 @@ h1 {
   font-size: 2.1rem;
 }
 
+.align-center {
+  text-align: center;
+}
+
 #ab-view-btn {
   position: fixed;
   z-index: 999;
@@ -1214,6 +1218,7 @@ ul.check-list {
 
   a {
     color: #000;
+    overflow-wrap: break-word;
     font-weight: 500 !important;
 
     &:hover {
