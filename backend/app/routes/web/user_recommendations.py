@@ -4,8 +4,8 @@ import uuid
 
 from fastapi import APIRouter, Depends, HTTPException, Request, Response
 
-from app.dependencies.user_actions import (
-    UserActionClient,
+from app.dependencies.user_recommendations import (
+    UserActionRecommendationClient,
     send_user_action_bg_task,
     user_actions_client,
 )
@@ -17,12 +17,12 @@ logger = logging.getLogger(__name__)
 
 
 @router.post(
-    "/useraction",
-    name="web:euseractions-user-action",
+    "/dislike",
+    name="web:evaluate-recommendation-user-action",
 )
-async def useractions_user_action(
+async def evaluate_recommendation_user_action(
     request: Request,
-    client: UserActionClient | None = Depends(user_actions_client),
+    client: UserActionRecommendationClient | None = Depends(user_actions_client),
 ):
     payload = await request.json()
     if payload["resource_type"] == "data-source":

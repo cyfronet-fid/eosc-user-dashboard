@@ -68,6 +68,9 @@ STOMP_PASS = config("STOMP_PASS", cast=str, default="guest")
 STOMP_USER_ACTIONS_TOPIC = config(
     "ESS_STOMP_USER_ACTION", cast=str, default="/topic/user_actions"
 )
+STOMP_RECOMMENDATIONS_TOPIC = config(
+    "ESS_STOMP_RECOMMENDATIONS_TOPIC", cast=str, default="/topic/recommendations"
+)
 STOMP_CLIENT_NAME = config("ESS_QUEUE_CLIENT_NAME", cast=str, default="dev-client")
 STOMP_SSL = config("ESS_STOMP_SSL", cast=bool, default=False)
 
