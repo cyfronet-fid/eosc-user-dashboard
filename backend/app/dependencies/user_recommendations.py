@@ -68,6 +68,7 @@ class UserActionRecommendationClient:
             message,
             content_type="application/json",
         )
+        self.client.disconnect()
 
     # pylint: disable=too-many-arguments
     def _make_user_action(
