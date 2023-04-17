@@ -5,11 +5,30 @@ from sqlalchemy.dialects import postgresql
 from app.database import Base
 
 
+class FavouritesBase(BaseModel):
+    title: str
+    img: str
+    url: str
+    type: str
+    pubdate: str
+    id: str
+    visitid: str
+    description: str
+    tags: set[str] = []
+    accesstags: set[str] = []
+    sectags: set[str] = []
+    terttags: set[str] = []
+
+
 class Favourites(BaseModel):
-    services: set[str] = []
-    publications: set[str] = []
-    projects: set[str] = []
-    trainings: set[str] = []
+    publications: list[FavouritesBase] = []
+    datasets: list[FavouritesBase] = []
+    software: list[FavouritesBase] = []
+    services: list[FavouritesBase] = []
+    datasources: list[FavouritesBase] = []
+    trainings: list[FavouritesBase] = []
+    other: list[FavouritesBase] = []
+    othermisc: list[FavouritesBase] = []
 
 
 class UserDataProps(BaseModel):
