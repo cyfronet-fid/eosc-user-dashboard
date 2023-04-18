@@ -59,6 +59,7 @@ async def add_user_data(
         "datasources",
         "trainings",
         "other",
+        "news",
         "othermisc",
     ]:
         raise HTTPException(
@@ -104,6 +105,7 @@ async def delete_user_data(
         "datasources",
         "trainings",
         "other",
+        "news",
         "othermisc",
     ]:
         raise HTTPException(

@@ -44,18 +44,26 @@ export class RecommendationsService {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  favadd$(payload: any): Observable<number> {
+  favget$(): Observable<any> {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return this._http.get<any>(
+      `${environment.backendApiV1Path}/${environment.favApiPath}`
+    );
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  favadd$(payload: any, types: string): Observable<number> {
     return this._http.post<number>(
-      `${environment.backendApiPath}/${environment.favaddApiPath}`,
+      `${environment.backendApiV1Path}/${environment.favApiPath}/${types}`,
       payload
     );
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  favremove$(payload: any): Observable<number> {
-    return this._http.post<number>(
-      `${environment.backendApiPath}/${environment.favremoveApiPath}`,
-      payload
+  favremove$(payload: any, types: string): Observable<any> {
+    return this._http.delete<unknown>(
+      `${environment.backendApiV1Path}/${environment.favApiPath}/${types}`,
+      { body: payload }
     );
   }
 }
