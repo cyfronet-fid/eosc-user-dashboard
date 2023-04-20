@@ -60,7 +60,35 @@ import { UpcomingEventsWidget } from '../../widgets/upcoming-events/upcoming-eve
             </div>
           </div>
         </div>
-        <div class="row">
+        <div class="row" *ngIf="slicedData.length === 0">
+          <div class="col-12">
+            <div class="row pt-4 mb-2" align="center">
+              <div class="col-12">
+                <div>
+                  <img src="assets/noevents.svg" />
+                </div>
+                <div class="pt-2">
+                  <span class="span-text"
+                    >There are no upcoming events yet. Sign up to the newsletter
+                    and we will notify you about future events</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" *ngIf="slicedData.length === 0">
+          <div class="col-12">
+            <div class="row pt-2 mb-4" align="center">
+              <div class="col-12">
+                <div class="button-contact" (click)="subscribe()">
+                  <span class="button-text">Sign up to newsletter</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" *ngIf="slicedData.length > 0">
           <div class="col-12">
             <div class="row" align="end">
               <span>
@@ -87,6 +115,15 @@ import { UpcomingEventsWidget } from '../../widgets/upcoming-events/upcoming-eve
   `,
   styles: [
     `
+      .span-text {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+        text-align: center;
+        color: #000000;
+      }
       .widget-header-place {
         font-family: 'Inter';
         font-style: normal;
@@ -129,6 +166,33 @@ import { UpcomingEventsWidget } from '../../widgets/upcoming-events/upcoming-eve
         font-size: 14px;
         line-height: 18px;
         color: #919ba2;
+      }
+      .button-contact {
+        cursor: pointer;
+        width: 210px;
+        height: 38px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 20px;
+        gap: 8px;
+        background: #185fc9;
+        border-radius: 10px;
+      }
+      .button-contact:hover {
+        background: #1a2128;
+      }
+      .button-text {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 18px;
+        color: #ffffff;
+        flex: none;
+        order: 0;
+        flex-grow: 0;
       }
     `,
   ],
@@ -191,5 +255,8 @@ export class WidgetUpcomingEventsComponent implements OnInit {
         this.idx * this.slideCount + this.slideCount
       );
     }
+  }
+  public subscribe() {
+    window.open('https://eosc-portal.eu/subscribe', '_blank');
   }
 }
