@@ -37,7 +37,7 @@ export class GetId {
         <img width="16px" height="16px" src="assets/trash2.svg" />
       </div>
       <div
-        *ngIf="!this.disableDislike"
+        *ngIf="!this.disableDislike && this.dislikeEnabled"
         class="ms-2 border-img-dis"
         (click)="dislike()"
       >
@@ -52,7 +52,7 @@ export class GetId {
       <div
         ngbDropdown
         ngbDropdownToggle
-        *ngIf="!this.disableDislike"
+        *ngIf="!this.disableDislike && this.dislikeEnabled"
         class="ms-2 dropdown border-img-dis"
       >
         <div id="dropdownBasic1" class="d-inline-block">
@@ -326,6 +326,7 @@ export class RecommendationComponent extends GetId implements OnInit {
   notvis = '';
   notvisdismiss = '';
   addedToFav = false;
+  dislikeEnabled = false;
 
   constructor(
     private _modalService: NgbModal,
