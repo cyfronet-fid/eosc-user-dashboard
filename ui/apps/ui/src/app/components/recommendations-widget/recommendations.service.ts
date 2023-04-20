@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {
   IRecommendation,
@@ -14,6 +14,8 @@ import { adapter } from '@components/recommendations-widget/adapter/adapter';
 })
 export class RecommendationsService {
   constructor(private _http: HttpClient) {}
+
+  public favevent: EventEmitter<null> = new EventEmitter<null>();
 
   fetch$(type: IRecommendationType): Observable<IRecommendation[]> {
     return this._http
@@ -65,5 +67,9 @@ export class RecommendationsService {
       `${environment.backendApiV1Path}/${environment.favApiPath}/${types}`,
       { body: payload }
     );
+  }
+
+  public emitFavRemove() {
+    this.favevent.emit();
   }
 }

@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { ComponentsModule } from '../../legacy-components/components.module';
-import { DashboardRoutingModule } from './dashboard-routing-page.module';
 import { WidgetUserProfileModule } from '@components/widgets/user-profile.module';
 import { WidgetEoscNumbersModule } from '@components/widgets/eosc-numbers.module';
 import { WidgetVideosModule } from '@components/widgets/videos.module';
@@ -23,6 +22,7 @@ import { EoscHeaderModule } from '@components/eosc-header/eosc-header.module';
 import { WidgetCommunitiesModule } from '../../components/widgets/communities.module';
 import { WidgetNewsModule } from '@components/widgets/news.module';
 import { WidgetProjectModule } from '@components/widgets/project.module';
+import { AppRoutingModule } from '../../app-routing.module';
 
 @NgModule({
   declarations: [DashboardPageComponent],
@@ -45,12 +45,12 @@ import { WidgetProjectModule } from '@components/widgets/project.module';
     EoscCommunityEscapeWidgetModule,
     EoscCommunityEnvriWidgetModule,
     EoscCommunityPanoscWidgetModule,
-    DashboardRoutingModule,
     RecommendationsWidgetModule,
     EoscHeaderModule,
     WidgetCommunitiesModule,
     WidgetNewsModule,
     WidgetProjectModule,
+    AppRoutingModule,
   ],
 })
 export class DashboardPageModule {}

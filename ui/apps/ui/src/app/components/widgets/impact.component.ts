@@ -102,7 +102,6 @@ export class WidgetImpactComponent implements OnInit {
   }
 
   public contactUs() {
-    console.log('contact us');
     window.location.href = 'mailto:contact@eosc-portal.eu';
   }
 }

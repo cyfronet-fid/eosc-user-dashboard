@@ -9,6 +9,7 @@ import _ from 'lodash';
 import { v4 as uuidv4 } from 'uuid';
 import { RecommendationsService } from './recommendations.service';
 import { delay } from 'rxjs';
+import { Router } from '@angular/router';
 
 export class GetId {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -328,7 +329,8 @@ export class RecommendationComponent extends GetId implements OnInit {
 
   constructor(
     private _modalService: NgbModal,
-    private _recommendationsService: RecommendationsService
+    private _recommendationsService: RecommendationsService,
+    private _router: Router
   ) {
     super();
     this.notvis = this.getId('notvis');
@@ -514,7 +516,11 @@ export class RecommendationComponent extends GetId implements OnInit {
       .favremove$(payload, this.getValidType(this.type))
       .pipe(delay(0))
       // eslint-disable-next-line @typescript-eslint/no-empty-function
-      .subscribe(() => {});
+      .subscribe(() => {
+        if (this._router.url == '/dashboard/favourities') {
+          this._recommendationsService.emitFavRemove();
+        }
+      });
   }
 
   public dislike() {

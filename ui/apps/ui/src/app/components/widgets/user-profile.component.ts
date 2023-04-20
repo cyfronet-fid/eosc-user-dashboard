@@ -6,6 +6,7 @@ import { Observable, delay } from 'rxjs';
 import { UserProfile } from '../../auth/user-profile.types';
 import { HttpClient } from '@angular/common/http';
 import { DOCUMENT } from '@angular/common';
+import { Router } from '@angular/router';
 
 @UntilDestroy()
 @Component({
@@ -47,15 +48,26 @@ import { DOCUMENT } from '@angular/common';
       <div class="spacer"></div>
       <div class="row">
         <div class="pt-3">
-          <span [routerLink]="['/dashboard']" routerLinkActive="nav-sel">
+          <span
+            [routerLink]="['/dashboard']"
+            [routerLinkActiveOptions]="{ exact: true }"
+            routerLinkActive="nav-sel"
+          >
           </span>
-          <span class="nav-text ps-4">Feed</span>
+          <span (click)="gotoRoute('/dashboard')" class="nav-text ps-4"
+            >Feed</span
+          >
         </div>
       </div>
       <div class="spacer"></div>
       <div class="row">
         <div class="pt-3" (click)="editProfile()">
-          <span [routerLink]="['/profile']" routerLinkActive="nav-sel"> </span>
+          <span
+            [routerLink]="['/profile']"
+            [routerLinkActiveOptions]="{ exact: true }"
+            routerLinkActive="nav-sel"
+          >
+          </span>
           <span class="nav-text ps-4">Profile Settings</span>
         </div>
       </div>
@@ -66,14 +78,22 @@ import { DOCUMENT } from '@angular/common';
           <span class="nav-text ps-4">My Projects</span>
         </div>
       </div>
-      <!--div class="spacer"></div>
+      <div class="spacer"></div>
       <div class="row">
         <div class="pt-3">
-          <span [routerLink]="['/favourities']" routerLinkActive="nav-sel">
+          <span
+            [routerLink]="['/dashboard/favourities']"
+            [routerLinkActiveOptions]="{ exact: true }"
+            routerLinkActive="nav-sel"
+          >
           </span>
-          <span class="nav-text ps-4">Favourities</span>
+          <span
+            (click)="gotoRoute('/dashboard/favourities')"
+            class="nav-text ps-4"
+            >Favourities</span
+          >
         </div>
-      </div-->
+      </div>
     </div>
   `,
   styles: [
@@ -134,6 +154,7 @@ export class WidgetUserProfileComponent implements OnInit {
   constructor(
     private _userProfileService: UserProfileService,
     private http: HttpClient,
+    private router: Router,
     @Inject(DOCUMENT) private document: Document
   ) {
     this.profile = {
@@ -174,5 +195,8 @@ export class WidgetUserProfileComponent implements OnInit {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public getJSON(): Observable<any> {
     return this.http.get(this.profile.edit_link);
+  }
+  public gotoRoute(url: string) {
+    this.router.navigateByUrl(url);
   }
 }
