@@ -2,11 +2,11 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { UserProfileService } from '../../auth/user-profile.service';
 import { environment } from '@environment/environment';
-import { Observable, delay } from 'rxjs';
+import { Observable, delay, map } from 'rxjs';
 import { UserProfile } from '../../auth/user-profile.types';
 import { HttpClient } from '@angular/common/http';
 import { DOCUMENT } from '@angular/common';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @UntilDestroy()
 @Component({
@@ -50,7 +50,9 @@ import { Router } from '@angular/router';
         <div class="pt-3">
           <span
             [routerLink]="['/dashboard']"
-            [routerLinkActiveOptions]="{ exact: true }"
+            [routerLinkActiveOptions]="{
+              exact: (withoutQueryParams$ | async) || false
+            }"
             routerLinkActive="nav-sel"
           >
           </span>
@@ -150,11 +152,13 @@ export class WidgetUserProfileComponent implements OnInit {
   profile: UserProfile;
   favNumber = 0;
   editLink: string | undefined;
+  withoutQueryParams$: Observable<boolean>;
 
   constructor(
     private _userProfileService: UserProfileService,
-    private http: HttpClient,
-    private router: Router,
+    private _http: HttpClient,
+    private _router: Router,
+    private _route: ActivatedRoute,
     @Inject(DOCUMENT) private document: Document
   ) {
     this.profile = {
@@ -164,6 +168,9 @@ export class WidgetUserProfileComponent implements OnInit {
       aai_id: '',
       edit_link: '',
     };
+    this.withoutQueryParams$ = this._route.queryParams.pipe(
+      map((params) => Object.keys(params).length === 0)
+    );
   }
 
   ngOnInit() {
@@ -194,9 +201,9 @@ export class WidgetUserProfileComponent implements OnInit {
   }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public getJSON(): Observable<any> {
-    return this.http.get(this.profile.edit_link);
+    return this._http.get(this.profile.edit_link);
   }
   public gotoRoute(url: string) {
-    this.router.navigateByUrl(url);
+    this._router.navigateByUrl(url);
   }
 }

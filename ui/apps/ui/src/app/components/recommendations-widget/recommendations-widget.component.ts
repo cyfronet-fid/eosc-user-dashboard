@@ -56,10 +56,7 @@ export class RecommendationsWidgetComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this._recommendationsService
-      .favget$()
-      // eslint-disable-next-line @typescript-eslint/no-empty-function
-      .subscribe((storedfavs) => (this.storedfavs = storedfavs));
+    this.getFavs();
     this.activeType =
       this._route.snapshot.queryParams['recommendationType'] || 'all';
     this._recommendationsService
@@ -68,11 +65,21 @@ export class RecommendationsWidgetComponent implements OnInit {
       .subscribe((recommendations) => (this.recommendations = recommendations));
   }
 
+  getFavs() {
+    this._recommendationsService
+      .favget$()
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
+      .subscribe((storedfavs) => (this.storedfavs = storedfavs));
+  }
+
   changeType(newType: IRecommendationType) {
     this.activeType = newType;
+    this.getFavs();
     this._recommendationsService
       .fetch$(newType)
       .pipe(untilDestroyed(this))
-      .subscribe((recommendations) => (this.recommendations = recommendations));
+      .subscribe((recommendations) => {
+        this.recommendations = recommendations;
+      });
   }
 }
