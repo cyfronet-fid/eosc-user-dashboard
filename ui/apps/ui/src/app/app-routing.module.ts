@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { IsAnonymousUserGuardService } from './auth/is-anonymous-user.guard.service';
 import { IsLoggedInUserGuardService } from './auth/is-logged-in-user.guard.service';
+import { DashboardPageComponent } from '@pages/dashboard-page/dashboard-page.component';
 
 const routes: Routes = [
   {
@@ -19,11 +20,26 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    loadChildren: () =>
-      import('./pages/dashboard-page/dashboard-page.module').then(
-        (m) => m.DashboardPageModule
-      ),
+    component: DashboardPageComponent,
     canActivate: [IsLoggedInUserGuardService],
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./pages/dashboard-page/dashboard-results.module').then(
+            (m) => m.DashboardResultsModule
+          ),
+        canActivate: [IsLoggedInUserGuardService],
+      },
+      {
+        path: 'favourities',
+        loadChildren: () =>
+          import('./pages/dashboard-page/dashboard-favs.module').then(
+            (m) => m.DashboardFavsModule
+          ),
+        canActivate: [IsLoggedInUserGuardService],
+      },
+    ],
   },
   {
     path: 'privacy-policy',

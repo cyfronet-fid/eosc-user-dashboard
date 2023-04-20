@@ -92,17 +92,14 @@ export class WidgetImpactComponent implements OnInit {
   constructor(private _userProfileService: UserProfileService) {}
 
   ngOnInit() {
-    this._userProfileService.user$
-      .pipe(
-        untilDestroyed(this),
-        // delay is required to have rerender out of angular's detection cycle
-        delay(0)
-      )
-      .subscribe((profile) => console.log(profile));
+    this._userProfileService.user$.pipe(
+      untilDestroyed(this),
+      // delay is required to have rerender out of angular's detection cycle
+      delay(0)
+    );
   }
 
   public contactUs() {
-    console.log('contact us');
     window.location.href = 'mailto:contact@eosc-portal.eu';
   }
 }

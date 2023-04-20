@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {
   ISecondaryTag,
   ITag,
@@ -9,6 +9,7 @@ import _ from 'lodash';
 import { v4 as uuidv4 } from 'uuid';
 import { RecommendationsService } from './recommendations.service';
 import { delay } from 'rxjs';
+import { Router } from '@angular/router';
 
 export class GetId {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -48,7 +49,12 @@ export class GetId {
           src="assets/unlike.svg"
         />
       </div>
-      <div ngbDropdown ngbDropdownToggle class="ms-2 dropdown border-img-dis">
+      <div
+        ngbDropdown
+        ngbDropdownToggle
+        *ngIf="!this.disableDislike"
+        class="ms-2 dropdown border-img-dis"
+      >
         <div id="dropdownBasic1" class="d-inline-block">
           <img width="16px" height="16px" src="assets/more.svg" />
           <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
@@ -268,7 +274,7 @@ export class GetId {
     `,
   ],
 })
-export class RecommendationComponent extends GetId {
+export class RecommendationComponent extends GetId implements OnInit {
   @Input()
   title!: string;
 
@@ -287,6 +293,16 @@ export class RecommendationComponent extends GetId {
 
   @Input()
   description!: string;
+
+  @Input()
+  image!: string;
+
+  @Input()
+  pubdate!: string;
+
+  @Input()
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  favs: any;
 
   @Input()
   tags: ITag[] = [];
@@ -313,11 +329,24 @@ export class RecommendationComponent extends GetId {
 
   constructor(
     private _modalService: NgbModal,
-    private _recommendationsService: RecommendationsService
+    private _recommendationsService: RecommendationsService,
+    private _router: Router
   ) {
     super();
     this.notvis = this.getId('notvis');
     this.notvisdismiss = this.getId('notvisdismiss');
+  }
+  ngOnInit(): void {
+    if (this.favs) {
+      this.addedToFav = false;
+      if (this.favs.favorites[this.getValidType(this.type)].length !== 0) {
+        for (const elem of this.favs.favorites[this.getValidType(this.type)]) {
+          if (elem.title == this.title && elem.url == this.url) {
+            this.addedToFav = true;
+          }
+        }
+      }
+    }
   }
 
   open(content: unknown) {
@@ -424,22 +453,40 @@ export class RecommendationComponent extends GetId {
     }
   }
 
+  getValidType(types: string) {
+    if (types == 'publication') return 'publications';
+    else if (types == 'software') return 'software';
+    else if (types == 'dataset') return 'datasets';
+    else if (types == 'training') return 'trainings';
+    else if (types == 'service') return 'services';
+    else if (types == 'data-source') return 'datasources';
+    else if (types == 'other') return 'other';
+    else if (types == 'news') return 'news';
+    else return 'othermisc';
+  }
+
   public addFav() {
     this.addedToFav = true;
-    const payload = {
-      title: this.title,
-      url: this.url,
-      description: this.description,
-      tags: this.tags,
-      accessTags: this.accessTags,
-      secondaryTags: this.secondaryTags,
-      tertiaryTags: this.tertiaryTags,
-      action: 'fav',
-      resource_id: this.id,
-      resource_type: this.type,
-    };
+
+    const payload = [
+      {
+        title: this.title,
+        img: this.image,
+        pubdate: this.pubdate,
+        url: this.url,
+        visitid: this.visitid,
+        description: this.description,
+        tags: this.tags,
+        accesstags: this.accessTags,
+        sectags: this.secondaryTags,
+        terttags: this.tertiaryTags,
+        id: this.id,
+        type: this.type,
+      },
+    ];
+
     this._recommendationsService
-      .favadd$(payload)
+      .favadd$(payload, this.getValidType(this.type))
       .pipe(delay(0))
       // eslint-disable-next-line @typescript-eslint/no-empty-function
       .subscribe(() => {});
@@ -447,18 +494,33 @@ export class RecommendationComponent extends GetId {
 
   public removeFav() {
     this.addedToFav = false;
-    const payload = {
-      title: this.title,
-      url: this.url,
-      action: 'fav',
-      resource_id: this.id,
-      resource_type: this.type,
-    };
+
+    const payload = [
+      {
+        title: this.title,
+        img: this.image,
+        pubdate: this.pubdate,
+        url: this.url,
+        visitid: this.visitid,
+        description: this.description,
+        tags: this.tags,
+        accesstags: this.accessTags,
+        sectags: this.secondaryTags,
+        terttags: this.tertiaryTags,
+        id: this.id,
+        type: this.type,
+      },
+    ];
+
     this._recommendationsService
-      .favremove$(payload)
+      .favremove$(payload, this.getValidType(this.type))
       .pipe(delay(0))
       // eslint-disable-next-line @typescript-eslint/no-empty-function
-      .subscribe(() => {});
+      .subscribe(() => {
+        if (this._router.url == '/dashboard/favourities') {
+          this._recommendationsService.emitFavRemove();
+        }
+      });
   }
 
   public dislike() {

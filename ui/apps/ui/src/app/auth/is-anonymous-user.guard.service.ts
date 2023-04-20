@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { UserProfileService } from './user-profile.service';
-import { of, switchMap, tap } from 'rxjs';
+import { of, switchMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -18,8 +18,7 @@ export class IsAnonymousUserGuardService implements CanActivate {
         !!username && username !== ''
           ? this._router.navigateByUrl('dashboard').then(() => false)
           : of(true)
-      ),
-      tap((bool) => console.log(bool))
+      )
     );
   }
 }

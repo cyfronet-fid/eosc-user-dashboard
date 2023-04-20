@@ -2,10 +2,11 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { UserProfileService } from '../../auth/user-profile.service';
 import { environment } from '@environment/environment';
-import { Observable, delay } from 'rxjs';
+import { Observable, delay, map } from 'rxjs';
 import { UserProfile } from '../../auth/user-profile.types';
 import { HttpClient } from '@angular/common/http';
 import { DOCUMENT } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @UntilDestroy()
 @Component({
@@ -47,15 +48,28 @@ import { DOCUMENT } from '@angular/common';
       <div class="spacer"></div>
       <div class="row">
         <div class="pt-3">
-          <span [routerLink]="['/dashboard']" routerLinkActive="nav-sel">
+          <span
+            [routerLink]="['/dashboard']"
+            [routerLinkActiveOptions]="{
+              exact: (withoutQueryParams$ | async) || false
+            }"
+            routerLinkActive="nav-sel"
+          >
           </span>
-          <span class="nav-text ps-4">Feed</span>
+          <span (click)="gotoRoute('/dashboard')" class="nav-text ps-4"
+            >Feed</span
+          >
         </div>
       </div>
       <div class="spacer"></div>
       <div class="row">
         <div class="pt-3" (click)="editProfile()">
-          <span [routerLink]="['/profile']" routerLinkActive="nav-sel"> </span>
+          <span
+            [routerLink]="['/profile']"
+            [routerLinkActiveOptions]="{ exact: true }"
+            routerLinkActive="nav-sel"
+          >
+          </span>
           <span class="nav-text ps-4">Profile Settings</span>
         </div>
       </div>
@@ -66,14 +80,22 @@ import { DOCUMENT } from '@angular/common';
           <span class="nav-text ps-4">My Projects</span>
         </div>
       </div>
-      <!--div class="spacer"></div>
+      <div class="spacer"></div>
       <div class="row">
         <div class="pt-3">
-          <span [routerLink]="['/favourities']" routerLinkActive="nav-sel">
+          <span
+            [routerLink]="['/dashboard/favourities']"
+            [routerLinkActiveOptions]="{ exact: true }"
+            routerLinkActive="nav-sel"
+          >
           </span>
-          <span class="nav-text ps-4">Favourities</span>
+          <span
+            (click)="gotoRoute('/dashboard/favourities')"
+            class="nav-text ps-4"
+            >Favourities</span
+          >
         </div>
-      </div-->
+      </div>
     </div>
   `,
   styles: [
@@ -130,10 +152,13 @@ export class WidgetUserProfileComponent implements OnInit {
   profile: UserProfile;
   favNumber = 0;
   editLink: string | undefined;
+  withoutQueryParams$: Observable<boolean>;
 
   constructor(
     private _userProfileService: UserProfileService,
-    private http: HttpClient,
+    private _http: HttpClient,
+    private _router: Router,
+    private _route: ActivatedRoute,
     @Inject(DOCUMENT) private document: Document
   ) {
     this.profile = {
@@ -143,6 +168,9 @@ export class WidgetUserProfileComponent implements OnInit {
       aai_id: '',
       edit_link: '',
     };
+    this.withoutQueryParams$ = this._route.queryParams.pipe(
+      map((params) => Object.keys(params).length === 0)
+    );
   }
 
   ngOnInit() {
@@ -173,6 +201,9 @@ export class WidgetUserProfileComponent implements OnInit {
   }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public getJSON(): Observable<any> {
-    return this.http.get(this.profile.edit_link);
+    return this._http.get(this.profile.edit_link);
+  }
+  public gotoRoute(url: string) {
+    this._router.navigateByUrl(url);
   }
 }

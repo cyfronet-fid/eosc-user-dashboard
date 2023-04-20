@@ -14,6 +14,7 @@ import { EoscHeaderModule } from '@components/eosc-header/eosc-header.module';
 import { EOSCNumbersWidgetService } from './widgets/eosc-numbers/eosc-numbers-widget.service';
 import { UpcomingEventsWidgetService } from './widgets/upcoming-events/upcoming-events-widget.service';
 import { VideoWidgetService } from './widgets/videos/videos-widget.service';
+import { DashboardPageModule } from '@pages/dashboard-page/dashboard-page.module';
 
 registerLocaleData(en);
 
@@ -48,6 +49,7 @@ export const getVideosFactory$ = (videosService: VideoWidgetService) => {
     HttpClientModule,
     MainHeaderModule,
     EoscHeaderModule,
+    DashboardPageModule,
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },

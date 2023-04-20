@@ -30,11 +30,14 @@ import { ActivatedRoute } from '@angular/router';
       *ngFor="let recommendation of recommendations"
       [title]="recommendation.title"
       [url]="recommendation.url"
+      [image]="recommendation.image"
+      [pubdate]="recommendation.publicationDate"
       [type]="recommendation.type.value"
       [id]="recommendation.id"
       [visitid]="recommendation.visitId"
       [description]="recommendation.description"
       [tags]="recommendation.tags"
+      [favs]="storedfavs"
       [accessTags]="recommendation.accessTag"
       [secondaryTags]="recommendation.secondaryTags"
       [tertiaryTags]="recommendation.tertiaryTags ?? []"
@@ -44,6 +47,8 @@ import { ActivatedRoute } from '@angular/router';
 export class RecommendationsWidgetComponent implements OnInit {
   recommendations: IRecommendation[] = [];
   activeType: IRecommendationType = 'all';
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  storedfavs: any;
 
   constructor(
     private _recommendationsService: RecommendationsService,
@@ -51,6 +56,7 @@ export class RecommendationsWidgetComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.getFavs();
     this.activeType =
       this._route.snapshot.queryParams['recommendationType'] || 'all';
     this._recommendationsService
@@ -59,11 +65,21 @@ export class RecommendationsWidgetComponent implements OnInit {
       .subscribe((recommendations) => (this.recommendations = recommendations));
   }
 
+  getFavs() {
+    this._recommendationsService
+      .favget$()
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
+      .subscribe((storedfavs) => (this.storedfavs = storedfavs));
+  }
+
   changeType(newType: IRecommendationType) {
     this.activeType = newType;
+    this.getFavs();
     this._recommendationsService
       .fetch$(newType)
       .pipe(untilDestroyed(this))
-      .subscribe((recommendations) => (this.recommendations = recommendations));
+      .subscribe((recommendations) => {
+        this.recommendations = recommendations;
+      });
   }
 }

@@ -45,9 +45,14 @@ USER_PROJECTS_URL = config("USER_PROJECTS_URL", cast=str, default="")
 
 # PROVIDERS RIGHTS
 GLOBAL_ACCESS_FIELDS = [
+    "favorites.publications",
+    "favorites.datasets",
+    "favorites.software",
     "favorites.services",
-    "favorites.projects",
+    "favorites.datasources",
     "favorites.trainings",
+    "favorites.other",
+    "favorites.othermisc",
 ]
 
 # OIDC

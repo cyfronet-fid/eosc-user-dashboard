@@ -1,40 +1,32 @@
 import json
 from typing import Any, Dict
 
-import jwt
-import jwt.exceptions
 from benedict import benedict
-from fastapi import APIRouter, Depends, Header, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from app.config import GLOBAL_ACCESS_FIELDS, OIDC_ISSUER
 from app.crud.user import create_user, get_user
 from app.database import get_db
 from app.models.api.user_data import UserDataProps
 from app.models.user import User
-from app.utils.dict_utils import truncate_dict
-from app.utils.jwt_validators import get_current_provider
+from app.schemas.web.session_data import SessionData
+from app.utils.cookie_validators import cookie, verifier
 
 router = APIRouter()
 
 
 def get_proxied_user(
-    x_client_token: str | None = Header(default=None), db: Session = Depends(get_db)
+    session_data: SessionData = Depends(verifier), db: Session = Depends(get_db)
 ) -> User:
-    decoded_token = jwt.decode(x_client_token, options={"verify_signature": False})
-    assert decoded_token["iss"] == OIDC_ISSUER
-    aai_id = decoded_token["sub"]
+    aai_id = (session_data.aai_id,)
     user = get_user(db, aai_id)
     if user is None:
         user = create_user(db, aai_id)
     return user
 
 
-@router.get("", response_model=UserDataProps)
-async def user_data(
-    user: User = Depends(get_proxied_user),
-    provider: User = Depends(get_current_provider),
-):
+@router.get("/fav", dependencies=[Depends(cookie)], response_model=UserDataProps)
+async def user_data(user: User = Depends(get_proxied_user)):
     """
     Get user data. This is API for EOSC service providers who
     want to integrate with the common user data store.
@@ -43,62 +35,101 @@ async def user_data(
     provider's priviledges. Additionally `X-Client-Token` should be set to the user's JWT token
     which it obtains during signing in via AAI.
     """
-    return UserDataProps.parse_obj(
-        truncate_dict(
-            user.data.data, [*provider.provider_rights.read, *GLOBAL_ACCESS_FIELDS]
-        )
-    )
+
+    return UserDataProps.parse_obj(user.data.data)
+    # return UserDataProps.parse_obj(
+    #    truncate_dict(
+    #        user.data.data, [*provider.provider_rights.read, *GLOBAL_ACCESS_FIELDS]
+    #    )
+    # )
 
 
-@router.patch(
-    "/{resource_path}", status_code=204, dependencies=[Depends(get_current_provider)]
-)
-async def patch_user_data(
-    resource_path: str,
+@router.post("/fav/{types}", status_code=204, dependencies=[Depends(cookie)])
+async def add_user_data(
+    types: str,
     data: Dict[str, Any] | list[Any],
     user: User = Depends(get_proxied_user),
     db: Session = Depends(get_db),
 ):
+    if types not in [
+        "publications",
+        "datasets",
+        "software",
+        "services",
+        "datasources",
+        "trainings",
+        "other",
+        "news",
+        "othermisc",
+    ]:
+        raise HTTPException(
+            status_code=400, detail="bad type when updating list object"
+        )
+
     user_props = benedict(UserDataProps.parse_obj(user.data.data).dict())
-    requested_data = user_props[resource_path]
-    if isinstance(requested_data, tuple([list, set])):
-        if not isinstance(data, list):
-            raise HTTPException(
-                status_code=400, detail="list required when updating list object"
-            )
-        if isinstance(requested_data, set):
-            for element in data:
-                requested_data.add(element)
-        elif isinstance(requested_data, list):
-            requested_data += data
+    requested_data = user_props["favorites"][types]
 
-    user.data.data = json.loads(UserDataProps.parse_obj(user_props).json())
-    db.add(user.data)
-    db.commit()
+    if not isinstance(data, list):
+        raise HTTPException(
+            status_code=400, detail="list required when updating list object"
+        )
+
+    if isinstance(requested_data, list):
+        for element in data:
+            notfound = True
+            for elementin in requested_data:
+                if (
+                    element["url"] == elementin["url"]
+                    and element["title"] == elementin["title"]
+                ):
+                    notfound = False
+            if notfound:
+                requested_data.append(element)
+        user.data.data = json.loads(UserDataProps.parse_obj(user_props).json())
+        db.add(user.data)
+        db.commit()
 
 
-@router.delete(
-    "/{resource_path}", status_code=204, dependencies=[Depends(get_current_provider)]
-)
+@router.delete("/fav/{types}", status_code=204, dependencies=[Depends(cookie)])
 async def delete_user_data(
-    resource_path: str,
-    data: list[str],
+    types: str,
+    data: Dict[str, Any] | list[Any],
     user: User = Depends(get_proxied_user),
     db: Session = Depends(get_db),
 ) -> None:
-    user_props = benedict(UserDataProps.parse_obj(user.data.data).dict())
-    requested_data = user_props[resource_path]
-    if isinstance(requested_data, tuple([list, set])):
-        if not isinstance(data, list):
-            raise HTTPException(
-                status_code=400, detail="list required when updating list object"
-            )
-        for key in data:
-            try:
-                requested_data.remove(key)
-            except KeyError:
-                pass
+    if types not in [
+        "publications",
+        "datasets",
+        "software",
+        "services",
+        "datasources",
+        "trainings",
+        "other",
+        "news",
+        "othermisc",
+    ]:
+        raise HTTPException(
+            status_code=400, detail="bad type when updating list object"
+        )
 
-    user.data.data = json.loads(UserDataProps.parse_obj(user_props).json())
-    db.add(user.data)
-    db.commit()
+    user_props = benedict(UserDataProps.parse_obj(user.data.data).dict())
+    requested_data = user_props["favorites"][types]
+
+    if not isinstance(data, list):
+        raise HTTPException(
+            status_code=400, detail="list required when updating list object"
+        )
+
+    if isinstance(requested_data, list):
+        for element in data:
+            for elementin in requested_data:
+                if (
+                    element["url"] == elementin["url"]
+                    and element["title"] == elementin["title"]
+                ):
+                    print("Removing element.." + elementin["title"])
+                    requested_data.remove(elementin)
+
+        user.data.data = json.loads(UserDataProps.parse_obj(user_props).json())
+        db.add(user.data)
+        db.commit()
