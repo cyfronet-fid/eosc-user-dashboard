@@ -77,7 +77,7 @@ class ExternalRecommendationsService:
                 "visit_id": randomuid,
                 "page_id": "/search/" + panel_id,
                 "panel_id": ExternalRecommendationsService._get_panel(panel_id),
-                "candidates": [],
+                "candidates": {},
                 "search_data": {},
             }
 
