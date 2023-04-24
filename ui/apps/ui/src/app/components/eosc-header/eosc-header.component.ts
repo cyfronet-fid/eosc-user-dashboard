@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UntilDestroy } from '@ngneat/until-destroy';
+import { environment } from '@environment/environment';
 
 @UntilDestroy()
 @Component({
@@ -135,6 +136,6 @@ import { UntilDestroy } from '@ngneat/until-destroy';
 })
 export class EoscHeaderComponent {
   public addProject() {
-    window.open('https://marketplace.eosc-portal.eu/projects/new', '_blank');
+    window.open(`${environment.betaMarketplace}projects/new`, '_blank');
   }
 }

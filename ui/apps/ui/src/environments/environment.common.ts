@@ -8,4 +8,10 @@ export const commonEnvironment = {
   numbersApi: 'numbers',
   upcomingEventsApiPath: 'events',
   videoApiPath: 'videos',
+  betaServiceAllUrl:
+    'https://beta.search.marketplace.eosc-portal.eu/search/all?q=*',
+  betaSearch: 'https://beta.search.marketplace.eosc-portal.eu/',
+  betaProviders: 'https://sandbox.providers.eosc-portal.eu/',
+  betaMy: 'https://beta.my.eosc-portal.eu/',
+  betaMarketplace: 'https://beta.marketplace.eosc-portal.eu/',
 };

@@ -118,7 +118,7 @@ import { environment } from '@environment/environment';
                   you can manage service requests and interact with your users.
                 </div>
                 <a
-                  href="https://providers.eosc-portal.eu/"
+                  href="{{ betaProviders }}"
                   class="btn btn-sm-landing btn-secondary"
                 >
                   Go to Provider’s Hub
@@ -140,7 +140,7 @@ import { environment } from '@environment/environment';
                   of the created idea.
                 </div>
                 <a
-                  href="https://marketplace.eosc-portal.eu/projects/"
+                  href="{{ betaMarketplace }}projects/"
                   class="btn btn-sm-landing btn-secondary"
                 >
                   Create a project
@@ -172,7 +172,7 @@ import { environment } from '@environment/environment';
 
           <div class="row mt-5">
             <div class="col-md-3 col-sm-12">
-              <a href="https://marketplace.eosc-portal.eu/" class="eosc-info">
+              <a href="{{ betaMarketplace }}" class="eosc-info">
                 <div class="eosc-info-icon">
                   <img
                     src="assets/browse-marketplace.svg"
@@ -190,7 +190,7 @@ import { environment } from '@environment/environment';
               </a>
             </div>
             <div class="col-md-3 col-sm-12">
-              <a href="https://my.eosc-portal.eu/" class="eosc-info">
+              <a href="{{ betaMy }} " class="eosc-info">
                 <div class="eosc-info-icon">
                   <img src="assets/dashboard.svg" alt="dashboard" />
                 </div>
@@ -219,7 +219,7 @@ import { environment } from '@environment/environment';
               </a>
             </div>
             <div class="col-md-3 col-sm-12">
-              <a href="https://providers.eosc-portal.eu/home" class="eosc-info">
+              <a href="{{ betaProviders }}home" class="eosc-info">
                 <div class="eosc-info-icon">
                   <img src="assets/hub.svg" alt="Providers Hub" />
                 </div>
@@ -244,7 +244,9 @@ import { environment } from '@environment/environment';
             <h3>Stay up to date with what is current in your research field</h3>
             <div class="cards-wrapper">
               <a
-                href="https://search.eosc-portal.eu/search/all?q=*&fq=fos:(%2203%20medical%20and%20health%20sciences%22)"
+                href="{{
+                  betaServiceAllUrl
+                }}&fq=fos:(%2203%20medical%20and%20health%20sciences%22)"
                 class="card"
               >
                 <img src="assets/ico-molecular.svg" alt="Medical" />
@@ -252,7 +254,9 @@ import { environment } from '@environment/environment';
                 & Health Sciences
               </a>
               <a
-                href="https://search.eosc-portal.eu/search/all?q=*&fq=fos:(%2202%20engineering%20and%20technology%22)"
+                href="{{
+                  betaServiceAllUrl
+                }}&fq=fos:(%2202%20engineering%20and%20technology%22)"
                 class="card"
               >
                 <img src="assets/ico-technology.svg" alt="Engineering" />
@@ -260,7 +264,9 @@ import { environment } from '@environment/environment';
                 & Technology
               </a>
               <a
-                href="https://search.eosc-portal.eu/search/all?q=*&fq=fos:(%2201%20natural%20sciences%22)"
+                href="{{
+                  betaServiceAllUrl
+                }}&fq=fos:(%2201%20natural%20sciences%22)"
                 class="card natural-sciences"
               >
                 <img src="assets/ico-microscope.svg" alt="Natural Sciences" />
@@ -269,7 +275,9 @@ import { environment } from '@environment/environment';
             </div>
             <div class="cards-wrapper">
               <a
-                href="https://search.eosc-portal.eu/search/all?q=*&fq=fos:(%2206%20humanities%20and%20the%20arts%22)"
+                href="{{
+                  betaServiceAllUrl
+                }}&fq=fos:(%2206%20humanities%20and%20the%20arts%22)"
                 class="card"
               >
                 <img
@@ -279,14 +287,18 @@ import { environment } from '@environment/environment';
                 Humanities
               </a>
               <a
-                href="https://search.eosc-portal.eu/search/all?q=*&fq=fos:(%2204%20agricultural%20and%20veterinary%20sciences%22)"
+                href="{{
+                  betaServiceAllUrl
+                }}&fq=fos:(%2204%20agricultural%20and%20veterinary%20sciences%22)"
                 class="card"
               >
                 <img src="assets/ico-agriculture.svg" alt="Agricultural" />
                 Agricultural<br />Sciences
               </a>
               <a
-                href="https://search.eosc-portal.eu/search/all?q=*&fq=fos:(%2205%20social%20sciences%22)"
+                href="{{
+                  betaServiceAllUrl
+                }}&fq=fos:(%2205%20social%20sciences%22)"
                 class="card"
               >
                 <img
@@ -303,11 +315,16 @@ import { environment } from '@environment/environment';
   `,
 })
 export class LandingPageComponent {
+  betaServiceAllUrl = `${environment.betaServiceAllUrl}`;
+  betaProviders = `${environment.betaProviders}`;
+  betaMy = `${environment.betaMy}`;
+  betaMarketplace = `${environment.betaMarketplace}`;
+
   login() {
     window.location.href = `${environment.backendApiPath}/auth/request`;
   }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onSearchCustomer(event: any) {
-    window.open(`https://search.eosc-portal.eu/search/all?q=${event}`);
+    window.open(`${environment.betaSearch}search/all?q=${event}`);
   }
 }

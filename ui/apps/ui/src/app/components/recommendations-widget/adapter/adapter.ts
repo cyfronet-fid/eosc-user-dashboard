@@ -27,9 +27,9 @@ const urlAdapter = (
     case 'data source':
       return hackDataSourceUrl(data?.pid);
     case 'service':
-      return `https://marketplace.eosc-portal.eu/services/${data?.pid}`;
+      return `${environment.betaMarketplace}services/${data?.pid}`;
     case 'training':
-      return 'https://search.eosc-portal.eu/trainings/' + data.id;
+      return `${environment.betaSearch}trainings/` + data.id;
     default:
       return toArray<string>(data.url)[0] ?? '';
   }
@@ -41,9 +41,9 @@ export const hackDataSourceUrl = (pid?: string) => {
   }
 
   if (SERVICES_AS_DATASOURCES.includes(pid)) {
-    return `https://marketplace.eosc-portal.eu/services/${pid}`;
+    return `${environment.betaMarketplace}services/${pid}`;
   }
-  return `https://marketplace.eosc-portal.eu/datasources/${pid}`;
+  return `${environment.betaMarketplace}datasources/${pid}`;
 };
 
 export const adapter = (
@@ -92,7 +92,7 @@ export const createRedirectTagsOf = (
       value?.toLowerCase() === 'open access'
         ? 'assets/open access.svg'
         : 'assets/restricted access.svg',
-    url: `${environment.searchServiceAllUrl}&fq=${filter}:"${value}"`,
+    url: `${environment.betaServiceAllUrl}&fq=${filter}:"${value}"`,
     additionalClass: 'none',
   }));
 
@@ -106,7 +106,7 @@ export const createRedirectLanguageTagsOf = (
       value?.toLowerCase() === 'open access'
         ? 'assets/open access.svg'
         : 'assets/languages.svg',
-    url: `${environment.searchServiceAllUrl}&fq=${filter}:"${value}"`,
+    url: `${environment.betaServiceAllUrl}&fq=${filter}:"${value}"`,
     additionalClass: 'none',
   }));
 
@@ -116,7 +116,7 @@ export const createRedirectTagsOfITag = (
 ): ITag[] =>
   toArray<string>(values).map((value) => ({
     label: value,
-    url: `${environment.searchServiceAllUrl}&fq=${filter}:"${value}"`,
+    url: `${environment.betaServiceAllUrl}&fq=${filter}:"${value}"`,
   }));
 
 export const createAccessRightSecondaryTag = (

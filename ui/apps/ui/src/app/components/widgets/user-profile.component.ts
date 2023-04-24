@@ -194,10 +194,10 @@ export class WidgetUserProfileComponent implements OnInit {
     }
   }
   public editProfile() {
-    window.open('https://marketplace.eosc-portal.eu/profile', '_blank');
+    window.open(`${environment.betaMarketplace}profile`, '_blank');
   }
   public gotoProjects() {
-    window.open('https://marketplace.eosc-portal.eu/projects', '_blank');
+    window.open(`${environment.betaMarketplace}projects`, '_blank');
   }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public getJSON(): Observable<any> {
