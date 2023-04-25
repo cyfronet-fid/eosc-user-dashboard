@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { delay } from 'rxjs';
 import { EOSCNumbersWidgetService } from '../../widgets/eosc-numbers/eosc-numbers-widget.service';
+import { environment } from '@environment/environment';
 
 @UntilDestroy()
 @Component({
@@ -218,6 +219,6 @@ export class WidgetEoscNumbersComponent implements OnInit {
       .subscribe((numbers) => (this.results = numbers));
   }
   public showMore() {
-    window.open('https://search.marketplace.eosc-portal.eu', '_blank');
+    window.open(`${environment.betaSearch}`, '_blank');
   }
 }

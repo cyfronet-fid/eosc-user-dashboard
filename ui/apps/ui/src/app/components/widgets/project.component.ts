@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { UserProfileService } from '../../auth/user-profile.service';
 import { delay } from 'rxjs';
+import { environment } from '@environment/environment';
 
 @UntilDestroy()
 @Component({
@@ -116,9 +117,9 @@ export class WidgetProjectComponent implements OnInit {
   }
 
   public showMore() {
-    window.open('https://marketplace.eosc-portal.eu/projects/', '_blank');
+    window.open(`${environment.betaMarketplace}projects`, '_blank');
   }
   public addProject() {
-    window.open('https://marketplace.eosc-portal.eu/projects/new', '_blank');
+    window.open(`${environment.betaMarketplace}new`, '_blank');
   }
 }
