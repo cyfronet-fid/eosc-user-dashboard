@@ -9,4 +9,5 @@ export const environment = {
   betaProviders: 'https://providers.eosc-portal.eu/',
   betaMy: 'https://my.eosc-portal.eu/',
   betaMarketplace: 'https://marketplace.eosc-portal.eu/',
+  dislikeEnabled: false,
 };

@@ -10,6 +10,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { RecommendationsService } from './recommendations.service';
 import { delay } from 'rxjs';
 import { Router } from '@angular/router';
+import { environment } from '@environment/environment';
 
 export class GetId {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -326,7 +327,7 @@ export class RecommendationComponent extends GetId implements OnInit {
   notvis = '';
   notvisdismiss = '';
   addedToFav = false;
-  dislikeEnabled = false;
+  dislikeEnabled = environment.dislikeEnabled;
 
   constructor(
     private _modalService: NgbModal,
