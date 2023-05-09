@@ -15,6 +15,8 @@ import { EOSCNumbersWidgetService } from './widgets/eosc-numbers/eosc-numbers-wi
 import { UpcomingEventsWidgetService } from './widgets/upcoming-events/upcoming-events-widget.service';
 import { VideoWidgetService } from './widgets/videos/videos-widget.service';
 import { DashboardPageModule } from '@pages/dashboard-page/dashboard-page.module';
+import { ConfigService } from './services/config.service';
+import { WINDOW } from './app.providers';
 
 registerLocaleData(en);
 
@@ -36,6 +38,10 @@ export const getUpcomingEventsFactory$ = (
   return () => upcomingEventsService.get$();
 };
 
+export const getConfigFactory$ = (configBootstrapService: ConfigService) => {
+  return () => configBootstrapService.load$();
+};
+
 export const getVideosFactory$ = (videosService: VideoWidgetService) => {
   return () => videosService.get$();
 };
@@ -54,6 +60,7 @@ export const getVideosFactory$ = (videosService: VideoWidgetService) => {
   providers: [
     { provide: NZ_I18N, useValue: en_US },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: WINDOW, useValue: window },
     {
       provide: APP_INITIALIZER,
       useFactory: getUserProfileFactory$,
@@ -71,6 +78,12 @@ export const getVideosFactory$ = (videosService: VideoWidgetService) => {
       useFactory: getUpcomingEventsFactory$,
       multi: true,
       deps: [UpcomingEventsWidgetService],
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: getConfigFactory$,
+      multi: true,
+      deps: [ConfigService],
     },
     /*{
       provide: APP_INITIALIZER,

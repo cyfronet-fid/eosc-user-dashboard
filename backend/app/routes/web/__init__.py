@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 
 from app.routes.web.auth import router as auth_router
+from app.routes.web.configuration import router as configuration_router
 from app.routes.web.events import router as events_router
 from app.routes.web.numbers import router as numbers_router
 from app.routes.web.recommendations import router as recommendations_router
@@ -22,3 +23,5 @@ web_api_router.include_router(
 web_api_router.include_router(
     user_recommendations, prefix="/evaluate", tags=["evaluate"]
 )
+
+web_api_router.include_router(configuration_router, tags=["configuration"])

@@ -197,3 +197,19 @@ YOUTUBE_API_KEY = config(
 EOSC_EVENTS_API = config(
     "EOSC_EVENTS_API", cast=str, default="https://eosc-portal.eu/events-json-date/"
 )
+
+MARKETPLACE_BASE_URL = config(
+    "MARKETPLACE_BASE_URL", cast=str, default="https://marketplace.eosc-portal.eu"
+)
+
+EOSC_COMMONS_URL = config(
+    "EOSC_COMMONS_URL",
+    cast=str,
+    default="https://s3.cloud.cyfronet.pl/eosc-portal-common/",
+)
+
+EOSC_COMMONS_ENV = config("EOSC_COMMONS_ENV", cast=str, default="production")
+
+EOSC_EXPLORE_URL = config(
+    "EOSC_EXPLORE_URL", cast=str, default="https://explore.eosc-portal.eu"
+)
