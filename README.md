@@ -48,3 +48,19 @@ Build artifacts can be found in `ui/dist/apps/ui`.
 `npx nx lint --fix`
 
 `npx nx format:write`
+
+
+### Environmental variables
+
+- `EOSC_COMMONS_URL` 
+  > Base URL to eosc commons
+  > Default: `https://s3.cloud.cyfronet.pl/eosc-portal-common/`
+- `EOSC_COMMONS_ENV`
+  > Environment used to load eosc commons
+  > Default: `production`
+  > Together with `EOSC_COMMONS_URL` two assets are loaded:
+  > `<EOSC_COMMONS_URL>index.<EOSC_COMMONS_ENV>.min.js` and `<EOSC_COMMONS_URL>index.<EOSC_COMMONS_ENV>.min.css`
+- `EOSC_EXPLORE_URL`
+  > base url to explore - used when constructing links for publications
+  > Use when integrating with explore beta instance
+  > Default: https://explore.eosc-portal.eu
