@@ -36,7 +36,11 @@ async def useractions_user_action(
     except HTTPException:
         session_id = uuid.uuid4()
         session = SessionData(
-            username=None, aai_state=None, aai_id=payload["aai_uid"], fav=0, session_uuid=payload["visit_id"]
+            username=None,
+            aai_state=None,
+            aai_id=payload["aai_uid"],
+            fav=0,
+            session_uuid=payload["visit_id"],
         )
         await backend.create(session_id, session)
         cookie.attach_to_response(response, session_id)
