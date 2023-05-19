@@ -11,6 +11,8 @@ import { RecommendationsService } from './recommendations.service';
 import { delay } from 'rxjs';
 import { Router } from '@angular/router';
 import { environment } from '@environment/environment';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { UserProfileService } from '../../auth/user-profile.service';
 
 export class GetId {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -19,6 +21,7 @@ export class GetId {
   }
 }
 
+@UntilDestroy()
 @Component({
   selector: 'ui-recommendation',
   template: `<div class="recommendation pt-4">
@@ -335,7 +338,8 @@ export class RecommendationComponent extends GetId implements OnInit {
   constructor(
     private _modalService: NgbModal,
     private _recommendationsService: RecommendationsService,
-    private _router: Router
+    private _router: Router,
+    private _userProfileService: UserProfileService
   ) {
     super();
     this.notvis = this.getId('notvis');
@@ -383,21 +387,30 @@ export class RecommendationComponent extends GetId implements OnInit {
       // eslint-disable-next-line @typescript-eslint/no-empty-function
       () => {},
       () => {
-        this.disableDislike = true;
-        // get data to send
-        const payload = {
-          reason: this.getReason(),
-          suggestion: this.getSuggestion(),
-          action: 'dislike',
-          resource_id: this.id,
-          resource_type: this.type,
-          visit_id: this.visitid,
-        };
-        this._recommendationsService
-          .evaluate$(payload)
-          .pipe(delay(0))
-          // eslint-disable-next-line @typescript-eslint/no-empty-function
-          .subscribe(() => {});
+        this._userProfileService.user$
+          .pipe(
+            untilDestroyed(this),
+            // delay is required to have rerender out of angular's detection cycle
+            delay(0)
+          )
+          .subscribe((profile) => {
+            this.disableDislike = true;
+            // get data to send
+            const payload = {
+              reason: this.getReason(),
+              suggestion: this.getSuggestion(),
+              action: 'dislike',
+              resource_id: this.id,
+              resource_type: this.type,
+              visit_id: this.visitid,
+              aai_uid: profile.aai_id,
+            };
+            this._recommendationsService
+              .evaluate$(payload)
+              .pipe(delay(0))
+              // eslint-disable-next-line @typescript-eslint/no-empty-function
+              .subscribe(() => {});
+          });
       }
     );
   }

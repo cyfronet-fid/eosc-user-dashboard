@@ -66,7 +66,8 @@ export class RecommendationsService {
       .set('X-Client-Token', jwt);
     return this._http.post<number>(
       `${environment.backendApiV1Path}/${environment.favApiPath}/${types}`,
-      { body: payload, headers: headers }
+      payload,
+      { headers: headers }
     );
   }
 
