@@ -11,10 +11,12 @@ import { NavbarModule } from '@components/recommendations-widget/layouts/navbar/
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { WidgetUserProfileModule } from '@components/widgets/user-profile.module';
 
 @NgModule({
   declarations: [RecommendationsWidgetComponent, RecommendationComponent],
   imports: [
+    WidgetUserProfileModule,
     CommonModule,
     UrlTitleModule,
     TagsModule,

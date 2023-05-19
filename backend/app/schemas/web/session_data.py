@@ -10,5 +10,6 @@ class SessionData(BaseModel):
     aai_id: Optional[str]
     edit_link: Optional[str]
     fav: int
+    jwttoken: str
     rp_handler: Any
     session_uuid: str

@@ -6,6 +6,8 @@ import {
 } from '@components/recommendations-widget/types';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { ActivatedRoute } from '@angular/router';
+import { UserProfileService } from '../../auth/user-profile.service';
+import { delay } from 'rxjs';
 
 @UntilDestroy()
 @Component({
@@ -38,6 +40,7 @@ import { ActivatedRoute } from '@angular/router';
       [description]="recommendation.description"
       [tags]="recommendation.tags"
       [favs]="storedfavs"
+      [jwttoken]="jwttoken"
       [accessTags]="recommendation.accessTag"
       [secondaryTags]="recommendation.secondaryTags"
       [tertiaryTags]="recommendation.tertiaryTags ?? []"
@@ -49,25 +52,38 @@ export class RecommendationsWidgetComponent implements OnInit {
   activeType: IRecommendationType = 'all';
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   storedfavs: any;
+  jwttoken!: string;
 
   constructor(
     private _recommendationsService: RecommendationsService,
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private _userProfileService: UserProfileService
   ) {}
 
   ngOnInit() {
-    this.getFavs();
-    this.activeType =
-      this._route.snapshot.queryParams['recommendationType'] || 'all';
-    this._recommendationsService
-      .fetch$(this.activeType)
-      .pipe(untilDestroyed(this))
-      .subscribe((recommendations) => (this.recommendations = recommendations));
+    this._userProfileService.user$
+      .pipe(
+        untilDestroyed(this),
+        // delay is required to have rerender out of angular's detection cycle
+        delay(0)
+      )
+      .subscribe((profile) => {
+        this.jwttoken = profile.jwttoken;
+        this.getFavs();
+        this.activeType =
+          this._route.snapshot.queryParams['recommendationType'] || 'all';
+        this._recommendationsService
+          .fetch$(this.activeType)
+          .pipe(untilDestroyed(this))
+          .subscribe(
+            (recommendations) => (this.recommendations = recommendations)
+          );
+      });
   }
 
   getFavs() {
     this._recommendationsService
-      .favget$()
+      .favget$(this.jwttoken)
       // eslint-disable-next-line @typescript-eslint/no-empty-function
       .subscribe((storedfavs) => (this.storedfavs = storedfavs));
   }

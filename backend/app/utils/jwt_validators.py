@@ -1,6 +1,6 @@
 import json
 import urllib.request
-from typing import Dict
+from typing import Annotated, Dict
 
 import jwt
 from cachetools import TTLCache, cached
@@ -29,7 +29,7 @@ def _pub_keys() -> Dict[str, str]:
 
 # TODO: make more specific errors messages and errors catch
 async def get_current_user(
-    token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)
+    token: Annotated[str, Depends(oauth2_scheme)], db: Session = Depends(get_db)
 ) -> User:
     try:
         token_header = jwt.get_unverified_header(token)
@@ -51,7 +51,7 @@ async def get_current_user(
 
 
 async def get_current_provider(
-    token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)
+    token: Annotated[str, Depends(oauth2_scheme)], db: Session = Depends(get_db)
 ) -> User:
     user = await get_current_user(token, db)
     if not user.provider:
@@ -68,7 +68,7 @@ async def get_current_provider(
 
 
 async def get_current_admin(
-    token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)
+    token: Annotated[str, Depends(oauth2_scheme)], db: Session = Depends(get_db)
 ) -> User:
     user = await get_current_user(token, db)
     if not user.admin:
@@ -85,7 +85,7 @@ async def get_current_admin(
 
 
 async def get_current_super_admin(
-    token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)
+    token: Annotated[str, Depends(oauth2_scheme)], db: Session = Depends(get_db)
 ) -> User:
     user = await get_current_user(token, db)
     if not user.superAdmin:

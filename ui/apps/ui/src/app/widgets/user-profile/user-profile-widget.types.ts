@@ -3,4 +3,5 @@ export interface UserProfileWidget {
   favourites: number;
   imgsrc: string;
   edit: string;
+  jwttoken: string;
 }

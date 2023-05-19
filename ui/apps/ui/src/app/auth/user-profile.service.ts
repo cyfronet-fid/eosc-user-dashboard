@@ -31,6 +31,7 @@ export class UserProfileService {
         fav: number;
         aai_id: string;
         edit_link: string;
+        jwttoken: string;
       }>(`${environment.backendApiPath}/${environment.userApiPath}`)
       .pipe(
         catchError(() =>
@@ -40,6 +41,7 @@ export class UserProfileService {
             email: '',
             aai_id: '',
             edit_link: '',
+            jwttoken: '',
           })
         ),
         tap((user) => this._store$.update(() => ({ user: user })))
