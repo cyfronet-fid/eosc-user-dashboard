@@ -7,3 +7,4 @@ class UserInfoResponse(BaseModel):
     aai_id: str
     edit_link: str
     fav: int
+    jwttoken: str

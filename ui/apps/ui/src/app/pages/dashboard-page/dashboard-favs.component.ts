@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { RecommendationsService } from '@components/recommendations-widget/recommendations.service';
-import { UntilDestroy } from '@ngneat/until-destroy';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { UserProfileService } from '../../auth/user-profile.service';
+import { delay } from 'rxjs';
 
 @UntilDestroy()
 @Component({
@@ -19,6 +21,7 @@ import { UntilDestroy } from '@ngneat/until-destroy';
           [description]="recommendation.description"
           [tags]="recommendation.tags"
           [favs]="storedfavs"
+          [jwttoken]="jwttoken"
           [accessTags]="recommendation.accesstags"
           [secondaryTags]="recommendation.sectags"
           [tertiaryTags]="recommendation.terttags ?? []"
@@ -45,7 +48,10 @@ import { UntilDestroy } from '@ngneat/until-destroy';
   encapsulation: ViewEncapsulation.None,
 })
 export class DashboardFavsComponent implements OnInit {
-  constructor(private _recommendationsService: RecommendationsService) {
+  constructor(
+    private _recommendationsService: RecommendationsService,
+    private _userProfileService: UserProfileService
+  ) {
     this.trigger = 1;
     this._recommendationsService.favevent.subscribe({
       next: () => {
@@ -59,6 +65,7 @@ export class DashboardFavsComponent implements OnInit {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   recommendations: any[] = [];
   trigger: number;
+  jwttoken!: string;
 
   ngOnInit(): void {
     this.callgetFavs();
@@ -69,13 +76,22 @@ export class DashboardFavsComponent implements OnInit {
   }
 
   callgetFavs() {
-    this._recommendationsService
-      .favget$()
-      // eslint-disable-next-line @typescript-eslint/no-empty-function
-      .subscribe((storedfavs) => {
-        this.storedfavs = storedfavs;
-        this.mergeFavs(storedfavs);
-        this.rerender();
+    this._userProfileService.user$
+      .pipe(
+        untilDestroyed(this),
+        // delay is required to have rerender out of angular's detection cycle
+        delay(0)
+      )
+      .subscribe((profile) => {
+        this.jwttoken = profile.jwttoken;
+        this._recommendationsService
+          .favget$(this.jwttoken)
+          // eslint-disable-next-line @typescript-eslint/no-empty-function
+          .subscribe((storedfavs) => {
+            this.storedfavs = storedfavs;
+            this.mergeFavs(storedfavs);
+            this.rerender();
+          });
       });
   }
 

@@ -167,6 +167,7 @@ export class WidgetUserProfileComponent implements OnInit {
       email: '',
       aai_id: '',
       edit_link: '',
+      jwttoken: '',
     };
     this.withoutQueryParams$ = this._route.queryParams.pipe(
       map((params) => Object.keys(params).length === 0)

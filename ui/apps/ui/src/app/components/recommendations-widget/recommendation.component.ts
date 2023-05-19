@@ -309,6 +309,9 @@ export class RecommendationComponent extends GetId implements OnInit {
   tags: ITag[] = [];
 
   @Input()
+  jwttoken!: string;
+
+  @Input()
   accessTags: ISecondaryTag[] = [];
 
   @Input()
@@ -488,7 +491,7 @@ export class RecommendationComponent extends GetId implements OnInit {
     ];
 
     this._recommendationsService
-      .favadd$(payload, this.getValidType(this.type))
+      .favadd$(payload, this.getValidType(this.type), this.jwttoken)
       .pipe(delay(0))
       // eslint-disable-next-line @typescript-eslint/no-empty-function
       .subscribe(() => {});
@@ -515,7 +518,7 @@ export class RecommendationComponent extends GetId implements OnInit {
     ];
 
     this._recommendationsService
-      .favremove$(payload, this.getValidType(this.type))
+      .favremove$(payload, this.getValidType(this.type), this.jwttoken)
       .pipe(delay(0))
       // eslint-disable-next-line @typescript-eslint/no-empty-function
       .subscribe(() => {

@@ -4,4 +4,5 @@ export interface UserProfile {
   fav: number;
   aai_id: string;
   edit_link: string;
+  jwttoken: string;
 }

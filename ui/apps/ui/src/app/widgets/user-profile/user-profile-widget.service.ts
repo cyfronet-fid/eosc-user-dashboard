@@ -30,10 +30,18 @@ export class UserProfileWidgetService {
         favourites: number;
         imgsrc: string;
         edit: string;
+        jwttoken: string;
       }>(`${environment.backendApiPath}/${environment.userApiPath}`)
       .pipe(
         catchError(() =>
-          of({ username: '', aaiId: null, favourites: 0, imgsrc: '', edit: '' })
+          of({
+            username: '',
+            aaiId: null,
+            favourites: 0,
+            imgsrc: '',
+            edit: '',
+            jwttoken: '',
+          })
         ),
         tap((user) => this._store$.update(() => ({ user: user })))
       );

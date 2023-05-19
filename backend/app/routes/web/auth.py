@@ -47,6 +47,7 @@ async def auth_checkin(code: str, state: str, db: Session = Depends(get_db)):
         aai_id = aai_response["userinfo"]["sub"]
         edit_link = aai_response["id_token"]["iss"]
         fav = 0  # fixed for now..
+        jwttoken = aai_response["token"]
 
         if not get_user(db, aai_id):
             create_user(db, aai_id)
@@ -58,6 +59,7 @@ async def auth_checkin(code: str, state: str, db: Session = Depends(get_db)):
             aai_id=aai_id,
             edit_link=edit_link,
             fav=fav,
+            jwttoken=jwttoken,
             session_uuid=str(uuid.uuid4()),
         )
         await backend.create(session_id, session_data)
@@ -82,6 +84,7 @@ async def user_info(session_data: SessionData = Depends(verifier)) -> UserInfoRe
         aai_id=session_data.aai_id,
         edit_link=session_data.edit_link,
         fav=session_data.fav,
+        jwttoken=session_data.jwttoken,
     )
 
 

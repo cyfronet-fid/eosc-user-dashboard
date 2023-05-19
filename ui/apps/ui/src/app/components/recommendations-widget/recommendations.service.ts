@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {
   IRecommendation,
   IRecommendationResponse,
@@ -46,26 +46,39 @@ export class RecommendationsService {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  favget$(): Observable<any> {
+  favget$(jwt: string): Observable<any> {
+    const tok = 'Bearer ' + jwt;
+    const headers = new HttpHeaders()
+      .set('Authorization', tok)
+      .set('X-Client-Token', jwt);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return this._http.get<any>(
-      `${environment.backendApiV1Path}/${environment.favApiPath}`
+      `${environment.backendApiV1Path}/${environment.favApiPath}`,
+      { headers: headers }
     );
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  favadd$(payload: any, types: string): Observable<number> {
+  favadd$(payload: any, types: string, jwt: string): Observable<number> {
+    const tok = 'Bearer ' + jwt;
+    const headers = new HttpHeaders()
+      .set('Authorization', tok)
+      .set('X-Client-Token', jwt);
     return this._http.post<number>(
       `${environment.backendApiV1Path}/${environment.favApiPath}/${types}`,
-      payload
+      { body: payload, headers: headers }
     );
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  favremove$(payload: any, types: string): Observable<any> {
+  favremove$(payload: any, types: string, jwt: string): Observable<any> {
+    const tok = 'Bearer ' + jwt;
+    const headers = new HttpHeaders()
+      .set('Authorization', tok)
+      .set('X-Client-Token', jwt);
     return this._http.delete<unknown>(
       `${environment.backendApiV1Path}/${environment.favApiPath}/${types}`,
-      { body: payload }
+      { body: payload, headers: headers }
     );
   }
 

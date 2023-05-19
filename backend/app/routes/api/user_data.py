@@ -1,31 +1,34 @@
 import json
 from typing import Any, Dict
 
+import jwt
+import jwt.exceptions
 from benedict import benedict
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, Header, HTTPException
 from sqlalchemy.orm import Session
 
+from app.config import OIDC_ISSUER
 from app.crud.user import create_user, get_user
 from app.database import get_db
 from app.models.api.user_data import UserDataProps
 from app.models.user import User
-from app.schemas.web.session_data import SessionData
-from app.utils.cookie_validators import cookie, verifier
 
 router = APIRouter()
 
 
 def get_proxied_user(
-    session_data: SessionData = Depends(verifier), db: Session = Depends(get_db)
+    x_client_token: str | None = Header(default=None), db: Session = Depends(get_db)
 ) -> User:
-    aai_id = (session_data.aai_id,)
+    decoded_token = jwt.decode(x_client_token, options={"verify_signature": False})
+    assert decoded_token["iss"] == OIDC_ISSUER
+    aai_id = decoded_token["sub"]
     user = get_user(db, aai_id)
     if user is None:
         user = create_user(db, aai_id)
     return user
 
 
-@router.get("/fav", dependencies=[Depends(cookie)], response_model=UserDataProps)
+@router.get("/fav", response_model=UserDataProps)
 async def user_data(user: User = Depends(get_proxied_user)):
     """
     Get user data. This is API for EOSC service providers who
@@ -35,16 +38,10 @@ async def user_data(user: User = Depends(get_proxied_user)):
     provider's priviledges. Additionally `X-Client-Token` should be set to the user's JWT token
     which it obtains during signing in via AAI.
     """
-
     return UserDataProps.parse_obj(user.data.data)
-    # return UserDataProps.parse_obj(
-    #    truncate_dict(
-    #        user.data.data, [*provider.provider_rights.read, *GLOBAL_ACCESS_FIELDS]
-    #    )
-    # )
 
 
-@router.post("/fav/{types}", status_code=204, dependencies=[Depends(cookie)])
+@router.post("/fav/{types}", status_code=204)
 async def add_user_data(
     types: str,
     data: Dict[str, Any] | list[Any],
@@ -90,7 +87,7 @@ async def add_user_data(
         db.commit()
 
 
-@router.delete("/fav/{types}", status_code=204, dependencies=[Depends(cookie)])
+@router.delete("/fav/{types}", status_code=204)
 async def delete_user_data(
     types: str,
     data: Dict[str, Any] | list[Any],
