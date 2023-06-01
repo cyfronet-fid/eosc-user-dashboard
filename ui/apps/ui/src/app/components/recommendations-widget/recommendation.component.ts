@@ -24,169 +24,177 @@ export class GetId {
 @UntilDestroy()
 @Component({
   selector: 'ui-recommendation',
-  template: `<div class="recommendation pt-4">
-    <ui-tags [tags]="tags" [accesstags]="accessTags"></ui-tags>
-    <ui-url-title [title]="title" [url]="url"></ui-url-title>
-    <ui-secondary-tags [tags]="secondaryTags"></ui-secondary-tags>
-    <ui-description [description]="description"></ui-description>
-    <ui-tertiary-tags [tags]="tertiaryTags"></ui-tertiary-tags>
-    <hr class="my-12" />
-    <div class="row justify-content-start ps-2 pe-2">
-      <div *ngIf="!this.addedToFav" class="border-img" (click)="addFav()">
-        <span class="add-fav-text pe-2">Add to favourites</span>
-        <img width="16px" height="16px" src="assets/interested.svg" />
+  template: `<div>
+    <div *ngIf="!this.disliked" class="recommendation pt-4">
+      <ui-tags [tags]="tags" [accesstags]="accessTags"></ui-tags>
+      <ui-url-title [title]="title" [url]="url"></ui-url-title>
+      <ui-secondary-tags [tags]="secondaryTags"></ui-secondary-tags>
+      <ui-description [description]="description"></ui-description>
+      <ui-tertiary-tags [tags]="tertiaryTags"></ui-tertiary-tags>
+      <hr class="my-12" />
+      <div class="row justify-content-start ps-2 pe-2">
+        <div *ngIf="!this.addedToFav" class="border-img" (click)="addFav()">
+          <span class="add-fav-text pe-2">Add to favourites</span>
+          <img width="16px" height="16px" src="assets/interested.svg" />
+        </div>
+        <div *ngIf="this.addedToFav" class="border-img2" (click)="removeFav()">
+          <span class="add-fav-text pe-2">In favourites!</span>
+          <img width="16px" height="16px" src="assets/trash2.svg" />
+        </div>
+        <div
+          *ngIf="!this.disableDislike && this.dislikeEnabled"
+          class="ms-2 border-img-dis"
+          (click)="dislike()"
+        >
+          <img
+            width="16px"
+            ngbTooltip="Show less like this"
+            placement="top"
+            height="16px"
+            src="assets/unlike.svg"
+          />
+        </div>
+        <div
+          ngbDropdown
+          ngbDropdownToggle
+          *ngIf="!this.disableDislike && this.dislikeEnabled"
+          class="ms-2 dropdown border-img-dis"
+        >
+          <div id="dropdownBasic1" class="d-inline-block">
+            <img width="16px" height="16px" src="assets/more.svg" />
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button
+                [disabled]="this.disableDislike"
+                ngbDropdownItem
+                class="add-fav-text"
+                (click)="open(content)"
+              >
+                Send Feedback
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-      <div *ngIf="this.addedToFav" class="border-img2" (click)="removeFav()">
-        <span class="add-fav-text pe-2">In favourites!</span>
-        <img width="16px" height="16px" src="assets/trash2.svg" />
-      </div>
-      <div
-        *ngIf="!this.disableDislike && this.dislikeEnabled"
-        class="ms-2 border-img-dis"
-        (click)="dislike()"
-      >
-        <img
-          width="16px"
-          ngbTooltip="Show less like this"
-          placement="top"
-          height="16px"
-          src="assets/unlike.svg"
-        />
-      </div>
-      <div
-        ngbDropdown
-        ngbDropdownToggle
-        *ngIf="!this.disableDislike && this.dislikeEnabled"
-        class="ms-2 dropdown border-img-dis"
-      >
-        <div id="dropdownBasic1" class="d-inline-block">
-          <img width="16px" height="16px" src="assets/more.svg" />
-          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <button
-              [disabled]="this.disableDislike"
-              ngbDropdownItem
-              class="add-fav-text"
-              (click)="open(content)"
+      <ng-template #content let-modal>
+        <div class="modal-header">
+          <img width="48px" height="48px" src="assets/modal_ok.svg" />
+        </div>
+        <div class="modal-body">
+          <div>
+            <span class="add-title-text pe-2"
+              >The provided data will help improve the EOSC search engine.</span
             >
-              Send Feedback
+          </div>
+          <div class="mb-3 mt-3">
+            <div class="form-check mt-1 mb-1">
+              <input
+                mdbCheckbox
+                class="form-check-input"
+                type="checkbox"
+                value="Something is wrong"
+                id="flexCheck1"
+                (change)="checkBox1($event)"
+              />
+              <label class="form-check-label" for="flexCheck1">
+                Something is wrong
+              </label>
+            </div>
+            <div class="form-check mt-1 mb-1">
+              <input
+                mdbCheckbox
+                class="form-check-input"
+                type="checkbox"
+                value="Not relevant"
+                id="flexCheck2"
+                (change)="checkBox2($event)"
+              />
+              <label class="form-check-label" for="flexCheck2">
+                This isn't relevant
+              </label>
+            </div>
+            <div class="form-check mt-1 mb-1">
+              <input
+                mdbCheckbox
+                class="form-check-input"
+                type="checkbox"
+                value="This is spam"
+                id="flexCheck3"
+                (change)="checkBox3($event)"
+              />
+              <label class="form-check-label" for="flexCheck3">
+                This is spam
+              </label>
+            </div>
+          </div>
+          <label mdbLabel class="form-label">Comments or suggestions?</label>
+          <textarea
+            mdbInput
+            class="form-control"
+            rows="4"
+            [(ngModel)]="textValue"
+            (ngModelChange)="textAreaEmpty()"
+          ></textarea>
+        </div>
+        <div class="row ps-2 pe-2 pt-2 pb-2">
+          <div class="col-6 pe-1">
+            <button
+              style="min-width: 100%!important"
+              type="button"
+              class="btn btn-outline-dark"
+              aria-label="Cancel"
+              (click)="modal.dismiss('Dismissed')"
+            >
+              Cancel
+            </button>
+          </div>
+          <div class="col-6 ps-1">
+            <button
+              type="button"
+              style="min-width: 100%!important"
+              class="btn btn-outline-primary"
+              [disabled]="option1 || option2 || option3 || area ? false : true"
+              (click)="modal.close('Save click')"
+            >
+              Send
             </button>
           </div>
         </div>
-      </div>
+      </ng-template>
+      <button
+        [hidden]="true"
+        class="add-fav-text"
+        (click)="open2(content2)"
+        [id]="this.notvis"
+      ></button>
+      <ng-template #content2 let-modal>
+        <div class="modal-body second-modal">
+          <div>
+            <span class="add-title-text2 pe-2"
+              >Thanks for your feedback! You will see less resources like
+              this.</span
+            >
+            <span class="add-title-text2 pe-2"
+              >Refresh site to see updated recommendations.</span
+            >
+            <span class="add-title-text3" (click)="modal.close('Canceled!')"
+              >Undo.</span
+            >
+            <button
+              [hidden]="true"
+              class="add-fav-text"
+              (click)="modal.dismiss('Sending User Action..')"
+              [id]="this.notvisdismiss"
+            ></button>
+          </div>
+        </div>
+      </ng-template>
     </div>
-    <ng-template #content let-modal>
-      <div class="modal-header">
-        <img width="48px" height="48px" src="assets/modal_ok.svg" />
-      </div>
-      <div class="modal-body">
-        <div>
-          <span class="add-title-text pe-2"
-            >The provided data will help improve the EOSC search engine.</span
-          >
-        </div>
-        <div class="mb-3 mt-3">
-          <div class="form-check mt-1 mb-1">
-            <input
-              mdbCheckbox
-              class="form-check-input"
-              type="checkbox"
-              value="Something is wrong"
-              id="flexCheck1"
-              (change)="checkBox1($event)"
-            />
-            <label class="form-check-label" for="flexCheck1">
-              Something is wrong
-            </label>
-          </div>
-          <div class="form-check mt-1 mb-1">
-            <input
-              mdbCheckbox
-              class="form-check-input"
-              type="checkbox"
-              value="Not relevant"
-              id="flexCheck2"
-              (change)="checkBox2($event)"
-            />
-            <label class="form-check-label" for="flexCheck2">
-              This isn't relevant
-            </label>
-          </div>
-          <div class="form-check mt-1 mb-1">
-            <input
-              mdbCheckbox
-              class="form-check-input"
-              type="checkbox"
-              value="This is spam"
-              id="flexCheck3"
-              (change)="checkBox1($event)"
-            />
-            <label class="form-check-label" for="flexCheck3">
-              This is spam
-            </label>
-          </div>
-        </div>
-        <label mdbLabel class="form-label">Comments or suggestions?</label>
-        <textarea
-          mdbInput
-          class="form-control"
-          rows="4"
-          [(ngModel)]="textValue"
-          (ngModelChange)="textAreaEmpty()"
-        ></textarea>
-      </div>
-      <div class="row ps-2 pe-2 pt-2 pb-2">
-        <div class="col-6 pe-1">
-          <button
-            style="min-width: 100%!important"
-            type="button"
-            class="btn btn-outline-dark"
-            aria-label="Cancel"
-            (click)="modal.dismiss('Dismissed')"
-          >
-            Cancel
-          </button>
-        </div>
-        <div class="col-6 ps-1">
-          <button
-            type="button"
-            style="min-width: 100%!important"
-            class="btn btn-outline-primary"
-            [disabled]="option1 || option2 || option3 || area ? false : true"
-            (click)="modal.close('Save click')"
-          >
-            Send
-          </button>
-        </div>
-      </div>
-    </ng-template>
-    <button
-      [hidden]="true"
-      class="add-fav-text"
-      (click)="open2(content2)"
-      [id]="this.notvis"
-    ></button>
-    <ng-template #content2 let-modal>
-      <div class="modal-body second-modal">
-        <div>
-          <span class="add-title-text2 pe-2"
-            >Thanks for your feedback! You will see less resources like
-            this.</span
-          >
-          <span class="add-title-text2 pe-2"
-            >Refresh site to see updated recommendations.</span
-          >
-          <span class="add-title-text3" (click)="modal.close('Canceled!')"
-            >Undo.</span
-          >
-          <button
-            [hidden]="true"
-            class="add-fav-text"
-            (click)="modal.dismiss('Sending User Action..')"
-            [id]="this.notvisdismiss"
-          ></button>
-        </div>
-      </div>
-    </ng-template>
+    <div *ngIf="this.disliked" class="recommendation pt-3">
+      <span class="add-fav-text"
+        >Disliked. Refresh website to see better adjusted recommendations. It
+        can take few hours until new rocommendation appears.</span
+      >
+    </div>
   </div>`,
   styles: [
     `
@@ -309,6 +317,10 @@ export class RecommendationComponent extends GetId implements OnInit {
   favs: any;
 
   @Input()
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  dis: any;
+
+  @Input()
   tags: ITag[] = [];
 
   @Input()
@@ -333,6 +345,7 @@ export class RecommendationComponent extends GetId implements OnInit {
   notvis = '';
   notvisdismiss = '';
   addedToFav = false;
+  disliked = false;
   dislikeEnabled = environment.dislikeEnabled;
 
   constructor(
@@ -352,6 +365,16 @@ export class RecommendationComponent extends GetId implements OnInit {
         for (const elem of this.favs.favorites[this.getValidType(this.type)]) {
           if (elem.title == this.title && elem.url == this.url) {
             this.addedToFav = true;
+          }
+        }
+      }
+    }
+    if (this.dis) {
+      this.disliked = false;
+      if (this.dis.dislikes[this.getValidType(this.type)].length !== 0) {
+        for (const elem of this.dis.dislikes[this.getValidType(this.type)]) {
+          if (elem.title == this.title && elem.url == this.url) {
+            this.disliked = true;
           }
         }
       }
@@ -395,6 +418,7 @@ export class RecommendationComponent extends GetId implements OnInit {
           )
           .subscribe((profile) => {
             this.disableDislike = true;
+            this.disliked = true;
             // get data to send
             const payload = {
               reason: this.getReason(),
@@ -404,9 +428,11 @@ export class RecommendationComponent extends GetId implements OnInit {
               resource_type: this.type,
               visit_id: this.visitid,
               aai_uid: profile.aai_id,
+              title: this.title,
+              url: this.url,
             };
             this._recommendationsService
-              .evaluate$(payload)
+              .evaluate$(payload, this.getValidType(this.type), this.jwttoken)
               .pipe(delay(0))
               // eslint-disable-next-line @typescript-eslint/no-empty-function
               .subscribe(() => {});

@@ -38,10 +38,28 @@ export class RecommendationsService {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  evaluate$(payload: any): Observable<number> {
+  evaluate$(payload: any, types: string, jwt: string): Observable<number> {
+    const tok = 'Bearer ' + jwt;
+    const headers = new HttpHeaders()
+      .set('Authorization', tok)
+      .set('X-Client-Token', jwt);
     return this._http.post<number>(
-      `${environment.backendApiPath}/${environment.evaluateApiPath}`,
-      payload
+      `${environment.backendApiPath}/${environment.evaluateApiPath}/${types}`,
+      payload,
+      { headers: headers }
+    );
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  disget$(jwt: string): Observable<any> {
+    const tok = 'Bearer ' + jwt;
+    const headers = new HttpHeaders()
+      .set('Authorization', tok)
+      .set('X-Client-Token', jwt);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return this._http.get<any>(
+      `${environment.backendApiV1Path}/${environment.favApiPath}`,
+      { headers: headers }
     );
   }
 

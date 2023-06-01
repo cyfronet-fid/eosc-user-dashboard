@@ -4,6 +4,7 @@ export const commonEnvironment = {
   userApiPath: 'auth/userinfo',
   recommendationsApiPath: 'recommendations',
   evaluateApiPath: 'evaluate/dislike',
+  evaluateApiPathGet: 'evaluate/dislikeget',
   favApiPath: 'user-data/fav',
   numbersApi: 'numbers',
   upcomingEventsApiPath: 'events',
