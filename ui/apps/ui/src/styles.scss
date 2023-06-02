@@ -37,6 +37,13 @@ h1 {
   font-size: 2.1rem;
 }
 
+h1.page-title {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 30px;
+  margin: 0 0 20px;
+}
+
 .align-center {
   text-align: center;
 }
@@ -557,11 +564,18 @@ svg:not(:root).svg-inline--fa {
   line-height: 1.2;
 }
 
+.btn-primary {
+  background: #144b9e;
+  border-radius: 8px;
+  border-color: #144b9e;
+  font-size: 22px;
+  padding: 5px 55px;
+}
+
 .btn-sm {
   padding: 0.22rem 1.8rem;
   font-size: 0.875rem;
   line-height: 1.5;
-  border-radius: 2rem;
 }
 
 .ant-drawer-header {
@@ -781,13 +795,6 @@ svg:not(:root).svg-inline--fa {
   background: #3d4db6;
 }
 
-.btn-primary {
-  background: #144b9e;
-  border-radius: 8px;
-  border-color: #144b9e;
-  font-size: 22px;
-  padding: 5px 55px;
-}
 
 #manage {
   padding: 0 0 130px 0;
@@ -1289,6 +1296,42 @@ ul.check-list {
   border-radius: 8px;
   margin-top: 16px;
   padding: 15px;
+}
+
+.empty-placeholder {
+  margin: auto;
+  max-width:500px;
+  text-align: center;
+  margin-bottom: 120px;
+
+  .placeholder-image {
+    margin: 0 auto 25px;
+    width: 100%;
+    text-align: center;
+
+    img {
+      width: 275px;
+      height: auto;
+    }
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 22px;
+    line-height: 32px;
+    margin: 0 0 20px;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 30px;
+  }
+
+  .btn {
+    font-size: 16px;
+    padding: 7px 15px;
+  }
 }
 
 @media only screen and (max-width: 1400px) {

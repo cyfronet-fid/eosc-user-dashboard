@@ -9,8 +9,15 @@ import { delay } from 'rxjs';
   template: `
     <div>
       <div class="rounded widget" id="container" *mcRerender="trigger">
-        <div *ngIf="recommendations.length === 0">
-          Add placeholder for no favs here
+        <h1 class="page-title">Favourites</h1>
+        <div *ngIf="recommendations.length === 0" class="empty-placeholder">
+
+          <div class="placeholder-image">
+            <img src="assets/empty-list.svg" alt="empty list">
+          </div>
+          <h2>You haven't added any favourites yet!</h2>
+          <p>Keep all of the resources that has caught your eye, just click the favourite icon on the resource box.</p>
+            <a href="/dashboard" class="btn btn-primary">Browse selected for you</a>
         </div>
         <div *ngIf="recommendations.length > 0">
           <ui-recommendation
