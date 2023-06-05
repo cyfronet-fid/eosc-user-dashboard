@@ -25,7 +25,11 @@ export class GetId {
 @Component({
   selector: 'ui-recommendation',
   template: `<div>
-    <div *ngIf="!this.disliked" class="recommendation pt-4">
+    <div
+      *ngIf="!this.disliked && !this.duringdislike"
+      class="recommendation pt-4"
+      style="position:relative;"
+    >
       <ui-tags [tags]="tags" [accesstags]="accessTags"></ui-tags>
       <ui-url-title [title]="title" [url]="url"></ui-url-title>
       <ui-secondary-tags [tags]="secondaryTags"></ui-secondary-tags>
@@ -44,7 +48,7 @@ export class GetId {
         <div
           *ngIf="!this.disableDislike && this.dislikeEnabled"
           class="ms-2 border-img-dis"
-          (click)="dislike()"
+          (click)="open(content)"
         >
           <img
             width="16px"
@@ -54,32 +58,32 @@ export class GetId {
             src="assets/unlike.svg"
           />
         </div>
-        <div
-          ngbDropdown
-          ngbDropdownToggle
-          *ngIf="!this.disableDislike && this.dislikeEnabled"
-          class="ms-2 dropdown border-img-dis"
-        >
-          <div id="dropdownBasic1" class="d-inline-block">
-            <img width="16px" height="16px" src="assets/more.svg" />
-            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-              <button
-                [disabled]="this.disableDislike"
-                ngbDropdownItem
-                class="add-fav-text"
-                (click)="open(content)"
-              >
-                Send Feedback
-              </button>
-            </div>
-          </div>
-        </div>
+        <!--div
+              ngbDropdown
+              ngbDropdownToggle
+              *ngIf="!this.disableDislike && this.dislikeEnabled"
+              class="ms-2 dropdown border-img-dis"
+            >
+              <div id="dropdownBasic1" class="d-inline-block">
+                <img width="16px" height="16px" src="assets/more.svg" />
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                  <button
+                    [disabled]="this.disableDislike"
+                    ngbDropdownItem
+                    class="add-fav-text"
+                    (click)="open(content)"
+                  >
+                    Send Feedback
+                  </button>
+                </div>
+              </div>
+            </div-->
       </div>
       <ng-template #content let-modal>
-        <div class="modal-header">
+        <div class="modal-header ms-10 me-10">
           <img width="48px" height="48px" src="assets/modal_ok.svg" />
         </div>
-        <div class="modal-body">
+        <div class="modal-body ms-10 me-10">
           <div>
             <span class="add-title-text pe-2"
               >The provided data will help improve the EOSC search engine.</span
@@ -131,6 +135,7 @@ export class GetId {
             mdbInput
             class="form-control"
             rows="4"
+            placeholder="Type in.."
             [(ngModel)]="textValue"
             (ngModelChange)="textAreaEmpty()"
           ></textarea>
@@ -150,8 +155,8 @@ export class GetId {
           <div class="col-6 ps-1">
             <button
               type="button"
-              style="min-width: 100%!important"
-              class="btn btn-outline-primary"
+              style="min-width: 100%!important; background-color: #010F87; color: white;"
+              class="btn"
               [disabled]="option1 || option2 || option3 || area ? false : true"
               (click)="modal.close('Save click')"
             >
@@ -160,37 +165,34 @@ export class GetId {
           </div>
         </div>
       </ng-template>
-      <button
-        [hidden]="true"
-        class="add-fav-text"
-        (click)="open2(content2)"
-        [id]="this.notvis"
-      ></button>
-      <ng-template #content2 let-modal>
-        <div class="modal-body second-modal">
-          <div>
-            <span class="add-title-text2 pe-2"
-              >Thanks for your feedback! You will see less resources like
-              this.</span
-            >
-            <span class="add-title-text2 pe-2"
-              >Refresh site to see updated recommendations.</span
-            >
-            <span class="add-title-text3" (click)="modal.close('Canceled!')"
-              >Undo.</span
-            >
-            <button
-              [hidden]="true"
-              class="add-fav-text"
-              (click)="modal.dismiss('Sending User Action..')"
-              [id]="this.notvisdismiss"
-            ></button>
-          </div>
-        </div>
-      </ng-template>
     </div>
-    <div *ngIf="this.disliked" class="recommendation pt-3">
-      <span class="add-fav-text"
+    <div
+      *ngIf="this.duringdislike"
+      class="recommendation pt-3 blured-bck"
+      align="center"
+    >
+      <div class="pt-2 pb-4">
+        <span class="add-fav-text-dislike pe-2"
+          >We will show you less resources like this.</span
+        >
+      </div>
+      <button
+        style="min-width: 20%!important"
+        type="button"
+        class="btn btn-sm btn-dark mb-3"
+        aria-label="Undo"
+        (click)="this.dislikecanceled = true; this.duringdislike = false"
+      >
+        Undo
+      </button>
+    </div>
+    <div
+      *ngIf="this.disliked"
+      class="recommendation pt-3 blured-bck"
+      style="position: relative; top: 0; left:0; width: 100%; height: 100%;"
+      align="center"
+    >
+      <span class="add-fav-text-dislike" style="z-index:99; position:relative;"
         >Disliked. Refresh website to see better adjusted recommendations. It
         can take few hours until new rocommendation appears.</span
       >
@@ -198,6 +200,30 @@ export class GetId {
   </div>`,
   styles: [
     `
+      .blured-bck {
+        background-color: rgba(14, 35, 66, 0.33) !important;
+        backdrop-filter: blur(7.5px);
+        -webkit-backdrop-filter: blur(7.5px);
+        border: 1px solid #eef1f3;
+        z-index: 98;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+      .blured-bck2 {
+        background-color: rgba(14, 35, 66, 0.63) !important;
+        -webkit-filter: blur(3px);
+        -moz-filter: blur(3px);
+        -o-filter: blur(3px);
+        -ms-filter: blur(3px);
+        filter: blur(3px);
+        z-index: 98;
+        top: 0;
+        bottom: 0;
+        position: relative;
+        border: 1px solid #eef1f3;
+      }
       .second-modal {
         background: black;
         border-radius: 6px;
@@ -233,6 +259,14 @@ export class GetId {
         font-size: 12px;
         line-height: 14px;
         color: #144b9e;
+      }
+      .add-fav-text-dislike {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 14px;
+        color: white;
       }
       .add-title-text {
         font-family: 'Inter';
@@ -342,11 +376,11 @@ export class RecommendationComponent extends GetId implements OnInit {
   textValue = '';
   area = false;
   disableDislike = false;
-  notvis = '';
-  notvisdismiss = '';
   addedToFav = false;
   disliked = false;
   dislikeEnabled = environment.dislikeEnabled;
+  duringdislike = false;
+  dislikecanceled = false;
 
   constructor(
     private _modalService: NgbModal,
@@ -355,8 +389,6 @@ export class RecommendationComponent extends GetId implements OnInit {
     private _userProfileService: UserProfileService
   ) {
     super();
-    this.notvis = this.getId('notvis');
-    this.notvisdismiss = this.getId('notvisdismiss');
   }
   ngOnInit(): void {
     if (this.favs) {
@@ -383,14 +415,13 @@ export class RecommendationComponent extends GetId implements OnInit {
 
   open(content: unknown) {
     this._modalService
-      .open(content, { centered: true, size: 'sm' })
+      .open(content, { centered: true, size: 'md' })
       .result.then(
         (result) => {
           this.closeResult = `Send with: ${result}`;
-          const elem = document.getElementById(this.notvis);
-          if (elem) {
-            elem.click();
-          }
+          this.duringdislike = true;
+          this.dislikecanceled = false;
+          this.open2();
         },
         (reason) => {
           this.closeResult = `Dismissed: ${reason}`;
@@ -398,18 +429,9 @@ export class RecommendationComponent extends GetId implements OnInit {
       );
   }
 
-  open2(content: unknown) {
+  open2() {
     setTimeout(() => {
-      const elem = document.getElementById(this.notvisdismiss);
-      if (elem) {
-        elem.click();
-      }
-    }, 4000);
-
-    this._modalService.open(content).result.then(
-      // eslint-disable-next-line @typescript-eslint/no-empty-function
-      () => {},
-      () => {
+      if (!this.dislikecanceled) {
         this._userProfileService.user$
           .pipe(
             untilDestroyed(this),
@@ -431,6 +453,8 @@ export class RecommendationComponent extends GetId implements OnInit {
               title: this.title,
               url: this.url,
             };
+            this.duringdislike = false;
+            this.dislikecanceled = false;
             this._recommendationsService
               .evaluate$(payload, this.getValidType(this.type), this.jwttoken)
               .pipe(delay(0))
@@ -438,7 +462,7 @@ export class RecommendationComponent extends GetId implements OnInit {
               .subscribe(() => {});
           });
       }
-    );
+    }, 5000);
   }
 
   getReason() {
@@ -565,12 +589,5 @@ export class RecommendationComponent extends GetId implements OnInit {
           this._recommendationsService.emitFavRemove();
         }
       });
-  }
-
-  public dislike() {
-    const elem = document.getElementById(this.notvis);
-    if (elem) {
-      elem.click();
-    }
   }
 }
