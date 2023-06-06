@@ -585,7 +585,7 @@ export class RecommendationComponent extends GetId implements OnInit {
       .pipe(delay(0))
       // eslint-disable-next-line @typescript-eslint/no-empty-function
       .subscribe(() => {
-        if (this._router.url == '/dashboard/favourities') {
+        if (this._router.url == '/dashboard/favourites') {
           this._recommendationsService.emitFavRemove();
         }
       });

@@ -51,7 +51,7 @@ import { environment } from '@environment/environment';
             >
             <a class="nav-link disabled"
               ><img width="16px" height="16px" src="assets/Circle.svg" />
-              Favourities</a
+              Favourites</a
             >
           </nav>
         </div>

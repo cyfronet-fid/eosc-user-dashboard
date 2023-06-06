@@ -84,15 +84,15 @@ import { ActivatedRoute, Router } from '@angular/router';
       <div class="row">
         <div class="pt-3">
           <span
-            [routerLink]="['/dashboard/favourities']"
+            [routerLink]="['/dashboard/favourites']"
             [routerLinkActiveOptions]="{ exact: true }"
             routerLinkActive="nav-sel"
           >
           </span>
           <span
-            (click)="gotoRoute('/dashboard/favourities')"
+            (click)="gotoRoute('/dashboard/favourites')"
             class="nav-text ps-4"
-            >Favourities</span
+            >Favourites</span
           >
         </div>
       </div>
