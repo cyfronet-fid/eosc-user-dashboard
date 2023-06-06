@@ -42,6 +42,7 @@ import { delay } from 'rxjs';
       [favs]="storedfavs"
       [dis]="storeddis"
       [jwttoken]="jwttoken"
+      [fromfav]="false"
       [accessTags]="recommendation.accessTag"
       [secondaryTags]="recommendation.secondaryTags"
       [tertiaryTags]="recommendation.tertiaryTags ?? []"

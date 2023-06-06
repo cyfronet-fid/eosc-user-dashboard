@@ -26,7 +26,10 @@ export class GetId {
   selector: 'ui-recommendation',
   template: `<div>
     <div
-      *ngIf="!this.disliked && !this.duringdislike"
+      *ngIf="
+        (!this.disliked && !this.duringdislike) ||
+        (this.fromfav && !this.duringdislike)
+      "
       class="recommendation pt-4"
       style="position:relative;"
     >
@@ -46,7 +49,7 @@ export class GetId {
           <img width="16px" height="16px" src="assets/trash2.svg" />
         </div>
         <div
-          *ngIf="!this.disableDislike && this.dislikeEnabled"
+          *ngIf="!this.disableDislike && this.dislikeEnabled && !this.disliked"
           class="ms-2 border-img-dis"
           (click)="open(content)"
         >
@@ -187,7 +190,7 @@ export class GetId {
       </button>
     </div>
     <div
-      *ngIf="this.disliked"
+      *ngIf="this.disliked && !this.fromfav"
       class="recommendation pt-3 blured-bck"
       style="position: relative; top: 0; left:0; width: 100%; height: 100%;"
       align="center"
@@ -345,6 +348,9 @@ export class RecommendationComponent extends GetId implements OnInit {
 
   @Input()
   pubdate!: string;
+
+  @Input()
+  fromfav!: boolean;
 
   @Input()
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
