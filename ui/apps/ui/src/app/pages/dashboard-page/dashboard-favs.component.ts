@@ -16,10 +16,13 @@ import { delay } from 'rxjs';
           </div>
           <h2>You haven't added any favourites yet!</h2>
           <p>
-            Keep all of the resources that has caught your eye,just click the
-            favourite icon on the resource box.
+            Keep all of the resources that has caught your eye,<br />just click
+            the favourite icon on the resource box.
           </p>
-          <a href="/dashboard" class="btn btn-primary"
+          <a
+            href="/dashboard"
+            class="btn btn-primary"
+            style="background-color: #010F87!important;"
             >Browse selected for you</a
           >
         </div>
