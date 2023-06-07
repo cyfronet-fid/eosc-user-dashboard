@@ -49,7 +49,12 @@ export class GetId {
           <img width="16px" height="16px" src="assets/trash2.svg" />
         </div>
         <div
-          *ngIf="!this.disableDislike && this.dislikeEnabled && !this.disliked"
+          *ngIf="
+            !this.disableDislike &&
+            this.dislikeEnabled &&
+            !this.disliked &&
+            !this.fromfav
+          "
           class="ms-2 border-img-dis"
           (click)="open(content)"
         >
