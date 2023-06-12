@@ -32,7 +32,7 @@ const routes: Routes = [
         canActivate: [IsLoggedInUserGuardService],
       },
       {
-        path: 'favourities',
+        path: 'favourites',
         loadChildren: () =>
           import('./pages/dashboard-page/dashboard-favs.module').then(
             (m) => m.DashboardFavsModule

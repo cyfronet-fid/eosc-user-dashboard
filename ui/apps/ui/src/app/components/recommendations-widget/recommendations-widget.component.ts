@@ -40,7 +40,9 @@ import { delay } from 'rxjs';
       [description]="recommendation.description"
       [tags]="recommendation.tags"
       [favs]="storedfavs"
+      [dis]="storeddis"
       [jwttoken]="jwttoken"
+      [fromfav]="false"
       [accessTags]="recommendation.accessTag"
       [secondaryTags]="recommendation.secondaryTags"
       [tertiaryTags]="recommendation.tertiaryTags ?? []"
@@ -52,6 +54,8 @@ export class RecommendationsWidgetComponent implements OnInit {
   activeType: IRecommendationType = 'all';
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   storedfavs: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  storeddis: any;
   jwttoken!: string;
 
   constructor(
@@ -70,6 +74,7 @@ export class RecommendationsWidgetComponent implements OnInit {
       .subscribe((profile) => {
         this.jwttoken = profile.jwttoken;
         this.getFavs();
+        this.getDis();
         this.activeType =
           this._route.snapshot.queryParams['recommendationType'] || 'all';
         this._recommendationsService
@@ -88,9 +93,17 @@ export class RecommendationsWidgetComponent implements OnInit {
       .subscribe((storedfavs) => (this.storedfavs = storedfavs));
   }
 
+  getDis() {
+    this._recommendationsService
+      .disget$(this.jwttoken)
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
+      .subscribe((storeddis) => (this.storeddis = storeddis));
+  }
+
   changeType(newType: IRecommendationType) {
     this.activeType = newType;
     this.getFavs();
+    this.getDis();
     this._recommendationsService
       .fetch$(newType)
       .pipe(untilDestroyed(this))

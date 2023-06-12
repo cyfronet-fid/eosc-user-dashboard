@@ -9,23 +9,44 @@ import { delay } from 'rxjs';
   template: `
     <div>
       <div class="rounded widget" id="container" *mcRerender="trigger">
-        <ui-recommendation
-          *ngFor="let recommendation of recommendations"
-          [title]="recommendation.title"
-          [url]="recommendation.url"
-          [image]="recommendation.img"
-          [pubdate]="recommendation.pubdate"
-          [type]="recommendation.type"
-          [id]="recommendation.id"
-          [visitid]="recommendation.visitid"
-          [description]="recommendation.description"
-          [tags]="recommendation.tags"
-          [favs]="storedfavs"
-          [jwttoken]="jwttoken"
-          [accessTags]="recommendation.accesstags"
-          [secondaryTags]="recommendation.sectags"
-          [tertiaryTags]="recommendation.terttags ?? []"
-        ></ui-recommendation>
+        <h1 class="page-title">Favourites</h1>
+        <div *ngIf="recommendations.length === 0" class="empty-placeholder">
+          <div class="placeholder-image">
+            <img src="assets/empty-list.svg" alt="empty list" />
+          </div>
+          <h2>You haven't added any favourites yet!</h2>
+          <p>
+            Keep all of the resources that has caught your eye,<br />just click
+            the favourite icon on the resource box.
+          </p>
+          <a
+            href="/dashboard"
+            class="btn btn-primary"
+            style="background-color: #010F87!important;"
+            >Browse selected for you</a
+          >
+        </div>
+        <div *ngIf="recommendations.length > 0">
+          <ui-recommendation
+            *ngFor="let recommendation of recommendations"
+            [title]="recommendation.title"
+            [url]="recommendation.url"
+            [image]="recommendation.img"
+            [pubdate]="recommendation.pubdate"
+            [type]="recommendation.type"
+            [id]="recommendation.id"
+            [visitid]="recommendation.visitid"
+            [description]="recommendation.description"
+            [tags]="recommendation.tags"
+            [favs]="storedfavs"
+            [dis]="storeddis"
+            [jwttoken]="jwttoken"
+            [fromfav]="true"
+            [accessTags]="recommendation.accesstags"
+            [secondaryTags]="recommendation.sectags"
+            [tertiaryTags]="recommendation.terttags ?? []"
+          ></ui-recommendation>
+        </div>
       </div>
     </div>
   `,
@@ -56,6 +77,7 @@ export class DashboardFavsComponent implements OnInit {
     this._recommendationsService.favevent.subscribe({
       next: () => {
         this.callgetFavs();
+        this.callgetDis();
       },
     });
   }
@@ -63,12 +85,15 @@ export class DashboardFavsComponent implements OnInit {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   storedfavs: any;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  storeddis: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   recommendations: any[] = [];
   trigger: number;
   jwttoken!: string;
 
   ngOnInit(): void {
     this.callgetFavs();
+    this.callgetDis();
   }
 
   public rerender(): void {
@@ -90,6 +115,25 @@ export class DashboardFavsComponent implements OnInit {
           .subscribe((storedfavs) => {
             this.storedfavs = storedfavs;
             this.mergeFavs(storedfavs);
+            this.rerender();
+          });
+      });
+  }
+
+  callgetDis() {
+    this._userProfileService.user$
+      .pipe(
+        untilDestroyed(this),
+        // delay is required to have rerender out of angular's detection cycle
+        delay(0)
+      )
+      .subscribe((profile) => {
+        this.jwttoken = profile.jwttoken;
+        this._recommendationsService
+          .disget$(this.jwttoken)
+          // eslint-disable-next-line @typescript-eslint/no-empty-function
+          .subscribe((storeddis) => {
+            this.storeddis = storeddis;
             this.rerender();
           });
       });

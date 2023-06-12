@@ -44,6 +44,11 @@ class FavouritesBase(BaseModel):
     terttags: list[ITertiaryTag] = []
 
 
+class DislikesBase(BaseModel):
+    title: str
+    url: str
+
+
 class Favourites(BaseModel):
     publications: list[FavouritesBase] = []
     datasets: list[FavouritesBase] = []
@@ -56,8 +61,21 @@ class Favourites(BaseModel):
     news: list[FavouritesBase] = []
 
 
+class Dislikes(BaseModel):
+    publications: list[DislikesBase] = []
+    datasets: list[DislikesBase] = []
+    software: list[DislikesBase] = []
+    services: list[DislikesBase] = []
+    datasources: list[DislikesBase] = []
+    trainings: list[DislikesBase] = []
+    other: list[DislikesBase] = []
+    othermisc: list[DislikesBase] = []
+    news: list[DislikesBase] = []
+
+
 class UserDataProps(BaseModel):
     favorites: Favourites = Favourites()
+    dislikes: Dislikes = Dislikes()
 
 
 class UserData(Base):
