@@ -34,16 +34,13 @@ const urlAdapter = (
       return toArray<string>(data.url)[0] ?? '';
   }
 };
-const SERVICES_AS_DATASOURCES = ['b2share', 'b2find', 'b2safe'];
+
 export const hackDataSourceUrl = (pid?: string) => {
   if (!pid) {
     pid = '';
   }
 
-  if (SERVICES_AS_DATASOURCES.includes(pid)) {
-    return `${environment.betaMarketplace}services/${pid}`;
-  }
-  return `${environment.betaMarketplace}datasources/${pid}`;
+  return `${environment.betaMarketplace}services/${pid}`;
 };
 
 export const adapter = (
