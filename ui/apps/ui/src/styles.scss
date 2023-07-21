@@ -1236,12 +1236,87 @@ ul.check-list {
 .main-tag {
   background: #edf4ff;
   border-radius: 24px;
-  padding: 5px 15px;
+  padding: 5px 15px 5px 42px;
   font-size: 16px;
   line-height: 20px;
+  position: relative;
   text-transform: capitalize;
   color: #2255a4;
   margin-right: 20px;
+  
+  &:nth-child(2) {
+    padding-left: 15px;
+  }
+  
+  &.access {
+    padding-left: 42px;
+  }
+  
+  i {
+   display: inline-block;
+   width: 25px;
+   position: absolute;
+   top: 3px;
+   left: 10px;
+   background-size: contain;
+   background-repeat: no-repeat;
+   background-position: center;
+   height: 25px;
+ }
+ 
+  &.training {
+  	i {
+ 	background-image: url('assets/icon-training.svg');
+    }
+  }
+  
+  &.other {
+  	i {
+ 	background-image: url('assets/icon-other.svg');
+    }
+  }
+  
+  &.data {
+  	i {
+ 	background-image: url('assets/icon-datasource.svg');
+    }
+  }
+  
+  &.publication {
+  	i {
+ 	background-image: url('assets/icon-publication.svg');
+    }
+  }
+  
+  &.dataset {
+  	i {
+ 	background-image: url('assets/icon-dataset.svg');
+    }
+  }
+  
+  &.service {
+  	i {
+ 	background-image: url('assets/icon-service.svg');
+    }
+  }
+  
+  &.software {
+  	i {
+ 	background-image: url('assets/icon-software.svg');
+    }
+  }
+  
+  &.Open {
+  	i {
+ 	background-image: url('assets/open access.svg');
+    }
+  }
+  
+  &.restricted {
+  	i {
+ 	background-image: url('assets/restricted access.svg');
+    }
+  }
 
   img {
     margin-top: -2px;
