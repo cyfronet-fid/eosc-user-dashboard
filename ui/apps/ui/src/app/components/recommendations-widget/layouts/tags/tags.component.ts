@@ -22,7 +22,7 @@ import { ISecondaryTag, ITag } from '@components/recommendations-widget/types';
           <ng-template #information>
             <ng-container *ngFor="let keyword of taga.values">
               <span class="statistic main-tag {{ keyword.label }}">
-                <img [src]="taga.iconPath" alt="" />
+                <i class="tag-icon"></i>
                 {{ keyword.label }}
               </span>
             </ng-container>
