@@ -9,9 +9,6 @@ import { environment } from '@environment/environment';
         <div class="container">
           <div class="row stars-bg">
             <div class="col-sm-8">
-              <div class="logo-eosc">
-                <img src="assets/eosc-blue.svg" alt="EOSC" />
-              </div>
               <div class="intro">
                 <h1>Welcome to the EOSC<br />User Dashboard</h1>
                 <div class="description">
