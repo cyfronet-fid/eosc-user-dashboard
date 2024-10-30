@@ -9,9 +9,6 @@ import { environment } from '@environment/environment';
         <div class="container">
           <div class="row stars-bg">
             <div class="col-sm-8">
-              <div class="logo-eosc">
-                <img src="assets/eosc-blue.svg" alt="EOSC" />
-              </div>
               <div class="intro">
                 <h1>Welcome to the EOSC<br />User Dashboard</h1>
                 <div class="description">
@@ -150,17 +147,10 @@ import { environment } from '@environment/environment';
           </div>
         </div>
       </div>
-
       <div id="eosc-navy">
         <div class="container">
           <div class="row">
-            <div class="col-md-3 col-sm-12 mb-4">
-              <img
-                src="assets/eosc-logo-mono.svg"
-                alt="EOSC Portal Catalogue and Marketplace"
-                class="eosc-logo-navy"
-              />
-            </div>
+            <div class="col-md-3 col-sm-12 mb-4"></div>
             <div class="col-md-9 col-sm-12">
               <h4>
                 We are the European Open Science Cloud (EOSC), an environment
@@ -204,16 +194,22 @@ import { environment } from '@environment/environment';
               </a>
             </div>
             <div class="col-md-3 col-sm-12">
-              <a href="https://eosc-portal.eu/" class="eosc-info">
+              <a href="https://sandbox.eosc-beyond.eu/" class="eosc-info">
                 <div class="eosc-info-icon">
-                  <img src="assets/portal.svg" alt="EOSC Portal" />
+                  <img
+                    src="assets/portal.svg"
+                    alt="EOSC Core Innovation Sandbox"
+                  />
                 </div>
                 <div class="eosc-info-texts">
-                  <div class="eosc-info-title">EOSC Portal</div>
+                  <div class="eosc-info-title">
+                    EOSC Core Innovation Sandbox
+                  </div>
                   <div class="eosc-info-subtitle">
-                    Stay up to date with news and events. Read use cases or
-                    success stories that highlight how EOSC resources can
-                    support the daily work of researchers and innovators.
+                    Your pre-production environment for testing and staging
+                    within the EOSC Platform. It's designed for EOSC Core
+                    service providers, EOSC Exchange service providers, and EOSC
+                    Nodes to integrate seamlessly with EOSC.
                   </div>
                 </div>
               </a>
