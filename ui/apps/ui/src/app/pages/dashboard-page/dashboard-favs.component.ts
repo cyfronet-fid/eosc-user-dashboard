@@ -31,7 +31,6 @@ import { delay } from 'rxjs';
             *ngFor="let recommendation of recommendations"
             [title]="recommendation.title"
             [url]="recommendation.url"
-            [image]="recommendation.img"
             [pubdate]="recommendation.pubdate"
             [type]="recommendation.type"
             [id]="recommendation.id"
