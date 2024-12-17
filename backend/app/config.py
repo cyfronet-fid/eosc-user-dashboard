@@ -191,9 +191,7 @@ SOLR_URL = config("SOLR_URL", cast=str, default="http://localhost:8983/solr/")
 YOUTUBE_API_URL = config(
     "YOUTUBE_API_URL", cast=str, default="https://www.googleapis.com/youtube/v3/search"
 )
-YOUTUBE_API_KEY = config(
-    "YOUTUBE_API_KEY", cast=str, default="AIzaSyAlLHVx3PSPvVnCUd7DL2wNsj_9UzLPTAk"
-)
+YOUTUBE_API_KEY = config("YOUTUBE_API_KEY", cast=str, default="secret")
 EOSC_EVENTS_API = config(
     "EOSC_EVENTS_API", cast=str, default="https://eosc-portal.eu/events-json-date/"
 )

@@ -1,4 +1,5 @@
 """Operations on Solr"""
+
 from httpx import AsyncClient, Response
 
 from app.config import SOLR_URL
